@@ -1,16 +1,29 @@
 const express = require('express');
 //const EventEmitter = require('events');
 const fs = require('fs');
-
+const deep = require('deep-diff');
 const expApp = express();
+
+const obj1 = {
+  prop: {name: 'ryan'}
+}
+
+const obj2 = {
+  prop: {name: 'ryan?'}
+}
+
+console.log(deep.diff(obj1, obj2));
+
+function diff(req, res, next) {
+  console.log("req.local: ", req.route)
+}
 
 const watchDog = () => {
   return {
-    get: (route, ...middleware) => {
-      //const newMiddlewareArr =
-      middleware.map(element => console.log(element.toString()) );
+    get: (route, middleware) => {
+      //middleware.map(element => console.log(element.toString()) );
 
-      return expApp.get(route, ...middleware);
+      return expApp.get(route, middleware, diff);
     },
     use: (middleware) => {
       return expApp.use(middleware);

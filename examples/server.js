@@ -3,28 +3,35 @@ console.log('============TYPEOF EXPRESS()==========', typeof express());
 //const express = require('express');
 const path = require('path');
 const app = express();
-const EventEmitter = require('events');
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-class MyEmitter extends EventEmitter { }
 
-const myEmitter = new MyEmitter();
-myEmitter.on('event', () => {
-  console.log('an event occurred!');
-});
+// class MyEmitter extends EventEmitter { }
+// const EventEmitter = require('events');
+// const myEmitter = new MyEmitter();
+// myEmitter.on('event', () => {
+//   console.log('an event occurred!');
+// });
 
-myEmitter.emit('event');
+// myEmitter.emit('event');
 
 
-myEmitter.addListener('get', (req, res) => {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", req.body)
-})
+// myEmitter.addListener('get', (req, res) => {
+//   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", req.body)
+// })
+
+// app.get('/data', (req, res, next)=>{
+//     return next();
+// }, (req, res)=>{
+//     res.send('hi');
+// })
 
 app.get('/data', (req, res, next)=>{
-    return next();
-}, (req, res)=>{
-    res.send('hi');
-})
+    res.cookie('visited','true');
+    //res.send("i am data");
+    next();
+});
 
 // app.get('/', (req, res, next) => {
 //   res.sendFile(path.join(__dirname, './index.html'));
