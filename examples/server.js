@@ -1,11 +1,12 @@
-const express = require('express');
+const express = require('./getwrapper.js');
+console.log('============TYPEOF EXPRESS()==========', typeof express());
+//const express = require('express');
 const path = require('path');
 const app = express();
-const EventEmitter = require('events')
+const EventEmitter = require('events');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 class MyEmitter extends EventEmitter { }
-const http = require('./getwrapper.js')
 
 const myEmitter = new MyEmitter();
 myEmitter.on('event', () => {
@@ -19,11 +20,11 @@ myEmitter.addListener('get', (req, res) => {
   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", req.body)
 })
 
-
 app.get('/data', (req, res, next)=>{
-  http.get('http://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg', (response) =>{
-    res.end("hello");
-  });
+  //app.get('http://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg', (response) =>{
+    //console.log(response)
+    res.send("hi");
+  //});
 })
 
 app.get('/', (req, res, next) => {
