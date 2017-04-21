@@ -21,25 +21,24 @@ myEmitter.addListener('get', (req, res) => {
 })
 
 app.get('/data', (req, res, next)=>{
-  //app.get('http://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg', (response) =>{
-    //console.log(response)
-    res.send("hi");
-  //});
+    return next();
+}, (req, res)=>{
+    res.send('hi');
 })
 
-app.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, './index.html'));
-})
+// app.get('/', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, './index.html'));
+// })
 
-app.get('/redirect', (req, res, next) => {
-  myEmitter.emit('get', req, res);
-  res.redirect(301, '/secondRedirect')
-})
+// app.get('/redirect', (req, res, next) => {
+//   myEmitter.emit('get', req, res);
+//   res.redirect(301, '/secondRedirect')
+// })
 
-app.get('/secondRedirect', (req, res) => {
-  myEmitter.emit('event')
-  res.redirect(301, '/');
-})
+// app.get('/secondRedirect', (req, res) => {
+//   myEmitter.emit('event')
+//   res.redirect(301, '/');
+// })
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');

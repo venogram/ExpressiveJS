@@ -1,5 +1,5 @@
 const express = require('express');
-const EventEmitter = require('events');
+//const EventEmitter = require('events');
 const fs = require('fs');
 
 const expApp = express();
@@ -8,13 +8,15 @@ const watchDog = () => {
   return {
     get: (route, ...middleware) => {
       //const newMiddlewareArr =
+      middleware.map(element => console.log(element.toString()) );
+
       return expApp.get(route, ...middleware);
     },
     use: (middleware) => {
       return expApp.use(middleware);
     },
     listen: (port, callback) => {
-      return expApp.listen(port, callback)
+      return expApp.listen(port, callback);
     }
   };
   // {
@@ -44,5 +46,3 @@ const watchDog = () => {
 }
 
 module.exports = watchDog;
-//module.exports = express;
-//module.exports = EventEmitter;
