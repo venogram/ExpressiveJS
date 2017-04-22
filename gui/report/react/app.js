@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Method from './method';
-const watchData = require('./../../../watchDogLog.json');
+const watchData = require('./../../../watchDog.json');
 
 class App extends Component {
     constructor(props) {
