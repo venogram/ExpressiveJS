@@ -1,0 +1,25 @@
+{
+  "name": "watch-dog",
+  "version": "1.0.0",
+  "description": "End to end server route tracking for express.js",
+  "main": "watchDog.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venogram/watch-dog.git"
+  },
+  "author": "Venogram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/venogram/watch-dog/issues"
+  },
+  "homepage": "https://github.com/venogram/watch-dog#readme",
+  "dependencies": {
+    "deep-diff": "^0.3.4"
+  }
+}
