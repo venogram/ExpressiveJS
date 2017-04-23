@@ -32,7 +32,7 @@ displayReport(route) {
 
   Object.keys(this.state.watchData).map((element) => {
     if(element === route) {
-      tempReport.push(this.state.watchData[route]['timeline'])
+      tempReport = (this.state.watchData[route]['timeline'])
     }
   })
   this.setState({userReports: tempReport});

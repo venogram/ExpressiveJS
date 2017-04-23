@@ -9583,7 +9583,7 @@ var App = function (_Component) {
 
       Object.keys(this.state.watchData).map(function (element) {
         if (element === route) {
-          tempReport.push(_this3.state.watchData[route]['timeline']);
+          tempReport = _this3.state.watchData[route]['timeline'];
         }
       });
       this.setState({ userReports: tempReport });
@@ -9771,17 +9771,18 @@ var Report = function (_Component) {
       //this.props.userReports === timeline array
       //console.log(this.props.userReports)
       var report = this.props.userReports.map(function (element, index) {
-        // console.log(element[0])
-        return element.map(function (el) {
-          if ((typeof el === 'undefined' ? 'undefined' : _typeof(el)) === "object") {
-            for (var key in el) {
-              // console.log("key", key)
-              // console.log("el: ", el[key])
-              return key + ': ' + el[key];
-            }
-            return el;
+        if ((typeof element === 'undefined' ? 'undefined' : _typeof(element)) === "object") {
+          for (var key in element) {
+            // console.log("key", key)
+            // console.log("el: ", el[key])
+            return _react2.default.createElement(
+              'p',
+              { key: index },
+              key + ': ' + element[key]
+            );
           }
-        });
+          return element;
+        }
       });
 
       console.log(report);
@@ -9795,7 +9796,7 @@ var Report = function (_Component) {
           'i am from report.js'
         ),
         _react2.default.createElement(
-          'p',
+          'div',
           null,
           report
         )

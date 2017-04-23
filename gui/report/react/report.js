@@ -5,25 +5,22 @@ class Report extends Component {
     //this.props.userReports === timeline array
     //console.log(this.props.userReports)
     let report = this.props.userReports.map((element, index) => {
-      // console.log(element[0])
-      return element.map(el => {
-        if (typeof el === "object") {
-          for (let key in el) {
+        if (typeof element === "object") {
+          for (let key in element) {
             // console.log("key", key)
             // console.log("el: ", el[key])
-            return key + ': ' + el[key]
+            return <p key={index}>{key + ': ' + element[key]}</p>
           }
-          return el
+          return element
         }
-      })
-    })
+    });
 
     console.log(report)
 
     return (
       <div className="report">
         <p>i am from report.js</p>
-        <p>{report}</p>
+        <div>{report}</div>
       </div>
     );
   }
