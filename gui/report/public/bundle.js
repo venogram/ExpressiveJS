@@ -9550,7 +9550,8 @@ var App = function (_Component) {
 
     _this.state = {
       watchData: watchData,
-      userRoutes: []
+      userRoutes: [],
+      userReports: []
     };
     _this.displayRoute = _this.displayRoute.bind(_this);
     _this.displayReport = _this.displayReport.bind(_this);
@@ -9564,22 +9565,33 @@ var App = function (_Component) {
 
       //our method is get or post (for right now)
       var tempRoute = [];
-      //clear existing state of userRoutes
-      this.state.userRoutes = [];
+
       Object.keys(this.state.watchData).map(function (element) {
         if (_this2.state.watchData[element]['method'] === method) {
           tempRoute.push(element);
         }
       });
-      this.setState({ userRoutes: this.state.userRoutes.concat(tempRoute) });
+      this.setState({ userRoutes: tempRoute });
+      // console.log('userR', this.state.userRoutes);
     }
   }, {
     key: 'displayReport',
-    value: function displayReport() {}
+    value: function displayReport(route) {
+      var _this3 = this;
+
+      var tempReport = [];
+
+      Object.keys(this.state.watchData).map(function (element) {
+        if (element === route) {
+          tempReport = _this3.state.watchData[route]['timeline'];
+        }
+      });
+      this.setState({ userReports: tempReport });
+    }
   }, {
     key: 'render',
     value: function render() {
-      // console.log(this.state.userRoutes)
+
       return _react2.default.createElement(
         'div',
         { className: 'App' },
@@ -9588,7 +9600,7 @@ var App = function (_Component) {
           null,
           'I am from app.js'
         ),
-        _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes,
+        _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
           displayRoute: this.displayRoute, displayReport: this.displayReport })
       );
     }
@@ -9706,7 +9718,8 @@ var Method = function (_Component) {
         'div',
         { className: 'method' },
         methodButtons,
-        _react2.default.createElement(_route2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes })
+        _react2.default.createElement(_route2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes, userReports: this.props.userReports,
+          displayRoute: this.props.displayRoute, displayReport: this.props.displayReport })
       );
     }
   }]);
@@ -9726,6 +9739,8 @@ exports.default = Method;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -9751,16 +9766,39 @@ var Report = function (_Component) {
   }
 
   _createClass(Report, [{
-    key: "render",
+    key: 'render',
     value: function render() {
+      //this.props.userReports === timeline array
+      //console.log(this.props.userReports)
+      var report = this.props.userReports.map(function (element, index) {
+        if ((typeof element === 'undefined' ? 'undefined' : _typeof(element)) === "object") {
+          for (var key in element) {
+            // console.log("key", key)
+            // console.log("el: ", el[key])
+            return _react2.default.createElement(
+              'p',
+              { key: index },
+              key + ': ' + element[key]
+            );
+          }
+          return element;
+        }
+      });
+
+      console.log(report);
 
       return _react2.default.createElement(
-        "div",
-        { className: "report" },
+        'div',
+        { className: 'report' },
         _react2.default.createElement(
-          "p",
+          'p',
           null,
-          "i am from report.js"
+          'i am from report.js'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          report
         )
       );
     }
@@ -9811,16 +9849,26 @@ var Route = function (_Component) {
 
   _createClass(Route, [{
     key: 'render',
+
+    // constructor(props) {
+    //   super(props)
+    // }
     value: function render() {
+      var _this2 = this;
+
       //this is an array of userRoutes
       //console.log(this.props.userRoutes)
-      var methodRouteButtons = this.props.userRoutes.map(function (element, index) {
+
+      //console.log(this.props.displayReport)
+      var methodRouteButtons = this.props.userRoutes.map(function (element, index, arr) {
         return _react2.default.createElement(
           'span',
           { key: index },
           _react2.default.createElement(
             'button',
-            { key: index },
+            { key: index, onClick: function onClick() {
+                return _this2.props.displayReport(element);
+              } },
             ' ',
             element,
             ' '
@@ -9838,7 +9886,7 @@ var Route = function (_Component) {
           'i am from route.js'
         ),
         methodRouteButtons,
-        _react2.default.createElement(_report2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes })
+        _react2.default.createElement(_report2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes, userReports: this.props.userReports })
       );
     }
   }]);
@@ -22314,10 +22362,10 @@ module.exports = {
 		},
 		"timeline": [
 			{
-				"res": "i am res from /route"
+				"res": "i am get res from /route"
 			},
 			{
-				"req": "i am req from /route"
+				"req": "i am get req from /route"
 			}
 		],
 		"statusCode": "200",
@@ -22332,10 +22380,10 @@ module.exports = {
 		},
 		"timeline": [
 			{
-				"res": "i am res from /train"
+				"res": "i am get res from /train"
 			},
 			{
-				"req": "i am req from /train"
+				"req": "i am get req from /train"
 			}
 		],
 		"statusCode": "408",
@@ -22350,10 +22398,10 @@ module.exports = {
 		},
 		"timeline": [
 			{
-				"res": "i am res from /train"
+				"res": "i am post res from /train"
 			},
 			{
-				"req": "i am req from /train"
+				"req": "i am post req from /train"
 			}
 		],
 		"statusCode": "222",
