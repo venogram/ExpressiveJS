@@ -5,7 +5,7 @@
       "route": "/route",
       "statusCode": "200"
     },
-    "timeline": [{"res":"i am res from /route"},{"req":"i am req from /route"}],
+    "timeline": [{"res":"i am get res from /route"},{"req":"i am get req from /route"}],
     "statusCode": "200",
     "duration": "500ms",
     "method": "GET"
@@ -16,7 +16,7 @@
       "route": "/train",
       "statusCode": "408"
     },
-    "timeline": [{"res":"i am res from /train"},{"req":"i am req from /train"}],
+    "timeline": [{"res":"i am get res from /train"},{"req":"i am get req from /train"}],
     "statusCode": "408",
     "duration": "1000ms",
     "method": "GET"
@@ -27,7 +27,7 @@
       "route": "/train",
       "statusCode": "222"
     },
-    "timeline": [{"res":"i am res from /train"},{"req":"i am req from /train"}],
+    "timeline": [{"res":"i am post res from /train"},{"req":"i am post req from /train"}],
     "statusCode": "222",
     "duration": "2000ms",
     "method": "POST"

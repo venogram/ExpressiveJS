@@ -14,14 +14,17 @@ class Method extends Component {
     })
     //create method button
     let methodButtons = Object.keys(userMethods)
-    .map((element, index) => <span key={index}><button key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button><br/></span>);
+    .map((element, index) => {
+      return <span key={index}><button key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button><br/></span>
+    });
 
     //let test = document.getElementById('GET')
 
     return (
       <div className="method">
         {methodButtons}
-        <Route watchData={this.props.watchData} userRoutes={this.props.userRoutes}/>
+        <Route watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+        displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
       </div>
     );
   }
