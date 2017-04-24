@@ -7,15 +7,12 @@ class Report extends Component {
     let report = this.props.userReports.map((element, index) => {
         if (typeof element === "object") {
           for (let key in element) {
-            // console.log("key", key)
-            // console.log("el: ", el[key])
-            return <p key={index}>{key + ': ' + element[key]}</p>
+            //return objects inside timeline in watchDog.json
+            return <p key={index}>{key + ': ' + element[key]} </p>
           }
           return element
         }
     });
-
-    console.log(report)
 
     return (
       <div className="report">

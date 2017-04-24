@@ -9773,19 +9773,17 @@ var Report = function (_Component) {
       var report = this.props.userReports.map(function (element, index) {
         if ((typeof element === 'undefined' ? 'undefined' : _typeof(element)) === "object") {
           for (var key in element) {
-            // console.log("key", key)
-            // console.log("el: ", el[key])
+            //return objects inside timeline in watchDog.json
             return _react2.default.createElement(
               'p',
               { key: index },
-              key + ': ' + element[key]
+              key + ': ' + element[key],
+              ' '
             );
           }
           return element;
         }
       });
-
-      console.log(report);
 
       return _react2.default.createElement(
         'div',
