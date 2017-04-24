@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 webpack.config.js
 watchDog.json
+bundle.js.map
+bundle.js
