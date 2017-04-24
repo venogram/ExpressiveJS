@@ -1,10 +1,13 @@
 const express = require('express');
+const getAppMethodArgs = require('./util/getAppMethodArgs.js');
+
 const app = express();
 
 module.exports = () => {
   return {
-    get: (route, devMidware) => {
-      return app.get(route, devMidware);
+    get: (...args) => {
+      const watchDogMidware = getAppMethodArgs(args);
+      return app.get(...watchDogMidware);
     }
   }
 }
