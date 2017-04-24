@@ -1,20 +1,22 @@
 const takeSnapshot = require('./takeSnapshot.js'),
-      reqListeners = require('./reqListeners.js'),
-      resListeners = require('./resListeners.js');
+  reqListeners = require('./reqListeners.js'),
+  resListeners = require('./resListeners.js');
 
 module.exports = (req, res, next) => {
+  const now = Date.now();
+  const initialState = {
+    timestamp: now,
+    req: takeSnapshot(req),
+    res: takeSnapshot(res)
+  };
   res.locals._WD = {
     method: req.route.method,
     route: req.route.path,
-    initialState: {
-      req: takeSnapshot(req),
-      res: takeSnapshot(res)
-    },
-    timeline: [],
-    start: Date.now(),
+    timeline: [initialState],
+    start: now,
     end: null,
     statusCode: null
   }
 
-  //insert listeners for req, res events
+  //insert listeners for req, res, other events
 }
