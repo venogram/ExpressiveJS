@@ -9565,6 +9565,7 @@ var App = function (_Component) {
 
       //our method is get or post (for right now)
       var tempRoute = [];
+      var clearReport = [];
 
       Object.keys(this.state.watchData).map(function (element) {
         if (_this2.state.watchData[element]['method'] === method) {
@@ -9572,7 +9573,8 @@ var App = function (_Component) {
         }
       });
       this.setState({ userRoutes: tempRoute });
-      // console.log('userR', this.state.userRoutes);
+      //clear off timeline text if already populated
+      this.setState({ userReports: clearReport });
     }
   }, {
     key: 'displayReport',
@@ -9595,11 +9597,6 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(
-          'p',
-          null,
-          'I am from app.js'
-        ),
         _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
           displayRoute: this.displayRoute, displayReport: this.displayReport })
       );
@@ -9694,25 +9691,20 @@ var Method = function (_Component) {
           userMethods[_this2.props.watchData[element]['method']] = _this2.props.watchData[element]['method'];
         }
       });
+
       //create method button
       var methodButtons = Object.keys(userMethods).map(function (element, index) {
+        //element is GET and POST for our example.
         return _react2.default.createElement(
-          'span',
-          { key: index },
-          _react2.default.createElement(
-            'button',
-            { key: index, id: element, onClick: function onClick() {
-                return _this2.props.displayRoute(element);
-              } },
-            ' ',
-            element,
-            ' '
-          ),
-          _react2.default.createElement('br', null)
+          'button',
+          { key: index, id: element, onClick: function onClick() {
+              return _this2.props.displayRoute(element);
+            } },
+          ' ',
+          element,
+          ' '
         );
       });
-
-      //let test = document.getElementById('GET')
 
       return _react2.default.createElement(
         'div',
@@ -9789,11 +9781,6 @@ var Report = function (_Component) {
         'div',
         { className: 'report' },
         _react2.default.createElement(
-          'p',
-          null,
-          'i am from report.js'
-        ),
-        _react2.default.createElement(
           'div',
           null,
           report
@@ -9847,10 +9834,6 @@ var Route = function (_Component) {
 
   _createClass(Route, [{
     key: 'render',
-
-    // constructor(props) {
-    //   super(props)
-    // }
     value: function render() {
       var _this2 = this;
 
@@ -9858,31 +9841,21 @@ var Route = function (_Component) {
       //console.log(this.props.userRoutes)
 
       //console.log(this.props.displayReport)
-      var methodRouteButtons = this.props.userRoutes.map(function (element, index, arr) {
+      var methodRouteButtons = this.props.userRoutes.map(function (element, index) {
         return _react2.default.createElement(
-          'span',
-          { key: index },
-          _react2.default.createElement(
-            'button',
-            { key: index, onClick: function onClick() {
-                return _this2.props.displayReport(element);
-              } },
-            ' ',
-            element,
-            ' '
-          ),
-          _react2.default.createElement('br', null)
+          'button',
+          { key: index, onClick: function onClick() {
+              return _this2.props.displayReport(element);
+            } },
+          ' ',
+          element,
+          ' '
         );
       });
 
       return _react2.default.createElement(
         'div',
         { className: 'route' },
-        _react2.default.createElement(
-          'p',
-          null,
-          'i am from route.js'
-        ),
         methodRouteButtons,
         _react2.default.createElement(_report2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes, userReports: this.props.userReports })
       );

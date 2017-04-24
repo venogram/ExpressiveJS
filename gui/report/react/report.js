@@ -16,7 +16,7 @@ class Report extends Component {
 
     return (
       <div className="report">
-        <p>i am from report.js</p>
+        {/*<p>i am from report.js</p>*/}
         <div>{report}</div>
       </div>
     );
