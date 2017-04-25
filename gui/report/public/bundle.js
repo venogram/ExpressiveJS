@@ -6694,7 +6694,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               TODO: put key inside <p> tag in report array
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 var Report = function (_Component) {
   _inherits(Report, _Component);
@@ -6729,9 +6731,7 @@ var Report = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'report flex-item' },
-        report,
-        ' ',
-        _react2.default.createElement('br', null)
+        report
       );
     }
   }]);
@@ -6790,13 +6790,22 @@ var Route = function (_Component) {
       //console.log(this.props.displayReport)
       var methodRouteButtons = this.props.userRoutes.map(function (element, index) {
         return _react2.default.createElement(
-          'button',
-          { key: index, onClick: function onClick() {
-              return _this2.props.displayReport(element);
-            } },
+          'span',
+          { key: index },
           ' ',
-          element,
-          ' '
+          _react2.default.createElement(
+            'button',
+            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored', key: index, onClick: function onClick() {
+                return _this2.props.displayReport(element);
+              } },
+            ' ',
+            element,
+            ' '
+          ),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null)
         );
       });
 
@@ -9743,16 +9752,24 @@ var App = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-
       return _react2.default.createElement(
         'div',
-        { className: 'App flex-container' },
-        _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
-          displayRoute: this.displayRoute, displayReport: this.displayReport }),
-        _react2.default.createElement(_route2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
-          displayRoute: this.displayRoute, displayReport: this.displayReport }),
-        _react2.default.createElement(_report2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
-          displayRoute: this.displayRoute, displayReport: this.displayReport })
+        { className: 'mdl-layout mdl-js-layout' },
+        _react2.default.createElement(
+          'header',
+          { className: 'title mdl-typography--text-center mdl-layout__header mdl-layout--title' },
+          ' Your Server Route Results! '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'App flex-container' },
+          _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
+            displayRoute: this.displayRoute, displayReport: this.displayReport }),
+          _react2.default.createElement(_route2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
+            displayRoute: this.displayRoute, displayReport: this.displayReport }),
+          _react2.default.createElement(_report2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
+            displayRoute: this.displayRoute, displayReport: this.displayReport })
+        )
       );
     }
   }]);
@@ -9850,13 +9867,21 @@ var Method = function (_Component) {
       var methodButtons = Object.keys(userMethods).map(function (element, index) {
         //element is GET and POST for our example.
         return _react2.default.createElement(
-          'button',
-          { key: index, id: element, onClick: function onClick() {
-              return _this2.props.displayRoute(element);
-            } },
+          'span',
+          { key: index },
+          _react2.default.createElement(
+            'button',
+            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored', key: index, id: element, onClick: function onClick() {
+                return _this2.props.displayRoute(element);
+              } },
+            ' ',
+            element,
+            ' '
+          ),
           ' ',
-          element,
-          ' '
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null)
         );
       });
 

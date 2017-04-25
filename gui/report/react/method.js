@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Route from './route';
 
 class Method extends Component {
-
   render() {
     let userMethods = {};
     //gather all route methods with no repeats of same method
@@ -16,14 +15,12 @@ class Method extends Component {
     let methodButtons = Object.keys(userMethods)
     .map((element, index) => {
       //element is GET and POST for our example.
-      return <button key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button>
+      return <span key={index}><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button> <br/> <br/></span>
     });
 
     return (
       <div className="method flex-item">
         {methodButtons}
-        {/*<Route watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
-        displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />*/}
       </div>
     );
   }

@@ -1,3 +1,7 @@
+/*
+TODO: put key inside <p> tag in report array
+*/
+
 import React, { Component } from 'react';
 
 class Report extends Component {
@@ -16,8 +20,7 @@ class Report extends Component {
 
     return (
       <div className="report flex-item">
-        {/*<p>i am from report.js</p>*/}
-        {report} <br/>
+        {report}
       </div>
     );
   }
