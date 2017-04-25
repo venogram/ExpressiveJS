@@ -1,5 +1,11 @@
-// getStateChange accepts the array of snapshots of either the request or response objects
-// and returns an object that holds data on the difference between the last two entries
+/*
+  getStateChange accepts the array of snapshots of either the request or response
+  objects and returns an object that holds data on the difference between the
+  last two entries
+
+  TODO: re-assess format of input to getStateChange (should it take an lhs and rhs
+  instead of a single array?)
+*/
 
 const deepDiff = require('deep-diff').diff;
 
