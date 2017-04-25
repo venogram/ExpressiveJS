@@ -4,6 +4,7 @@
   the snapshots into res.locals._WD.timeline
 
   TODO: fix so that it matches the current format of res.locals._WD
+  TODO: write res.locals._WD to watchDog.json
 */
 
 const takeSnapshot = require('./takeSnapshot.js'),
