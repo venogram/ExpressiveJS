@@ -1,11 +1,12 @@
 const express = require('express');
 const WatchDog = require('./../watchDog.js');
 
-const app = express();
+const app = WatchDog();
 
 app.get('/', (req, res) => {
-  req.on('response', () => {console.log('req emitted response event')});
-  res.end('Server has ended response -- check server log!');
+  console.log('MADE IT TO APP.GET');
+  res.send('hi');
+  console.log('hiya');
 });
 
 app.listen(3000, () => {

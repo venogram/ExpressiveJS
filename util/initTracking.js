@@ -1,4 +1,5 @@
 const takeSnapshot = require('./takeSnapshot.js'),
+  onFinished = require('on-finished');
   reqListeners = require('./reqListeners.js'),
   resListeners = require('./resListeners.js');
 
@@ -15,8 +16,25 @@ module.exports = (req, res, next) => {
     timeline: [initialState],
     start: now,
     end: null,
-    statusCode: null
+    duration: null,
+    statusCode: null,
+    statusMessage: null,
+    error: null
   }
 
-  //insert listeners for req, res, other events
+  onFinished(res, (err, res) => {
+    const now = Date.now();
+    res.locals._WD.end = now;
+    res.locals._WD.duration = res.locals._WD.end - res.locals._WD.start;
+    res.locals._WD.error = err;
+    res.locals._WD.statusCode = res.statusCode;
+    res.locals._WD.statusMessage = res.statusMessage;
+    console.log('_WD:', res.locals._WD);
+  })
+
+  onFinished(req, (err, req) => {
+
+  })
+
+  return next();
 }

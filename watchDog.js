@@ -8,6 +8,10 @@ module.exports = () => {
     get: (...args) => {
       const watchDogMidware = getAppMethodArgs(args);
       return app.get(...watchDogMidware);
+    },
+
+    listen: (...args) => {
+      return app.listen(...args);
     }
   }
 }
