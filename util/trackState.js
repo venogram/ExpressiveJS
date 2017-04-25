@@ -1,7 +1,14 @@
+/*
+  trackState is middleware that is placed in between each of the developers middleware.
+  it takes a snapshot of the current state of the req and res objects and pushes
+  the snapshots into res.locals._WD.timeline
+
+  TODO: fix so that it matches the current format of res.locals._WD
+*/
+
 const takeSnapshot = require('./takeSnapshot.js'),
       getStateChange = require('./getStateChange.js');
 
-//Needs fixing once we make initial middleware (fired at initial request)
 module.exports = (req, res, next) => {
   res.locals._WD_REQ_SNAPS.push(takeSnapshot(req));
   res.locals._WD_RES_SNAPS.push(takeSnapshot(res));
@@ -11,5 +18,4 @@ module.exports = (req, res, next) => {
   const wd = res.locals._WD;
   const stateChangeObj = { reqChanges, resChanges };
   wd.timeline.push(stateChangeObj);
-
 }
