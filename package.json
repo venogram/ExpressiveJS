@@ -21,6 +21,7 @@
   "homepage": "https://github.com/venogram/watch-dog#readme",
   "dependencies": {
     "deep-diff": "^0.3.4",
+    "on-finished": "^2.3.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
