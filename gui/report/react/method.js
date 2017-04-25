@@ -20,10 +20,10 @@ class Method extends Component {
     });
 
     return (
-      <div className="method">
+      <div className="method flex-item">
         {methodButtons}
-        <Route watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
-        displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
+        {/*<Route watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+        displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />*/}
       </div>
     );
   }

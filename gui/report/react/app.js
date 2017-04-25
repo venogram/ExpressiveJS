@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Method from './method';
+import Route from './route';
+import Report from './report';
 const watchData = require('./../../../watchDog.json');
 
 class App extends Component {
@@ -43,9 +45,13 @@ displayReport(route) {
   render() {
 
     return (
-      <div className="App">
+      <div className="App flex-container">
         {/*<p>I am from app.js</p>*/}
         <Method watchData={this.state.watchData} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+        displayRoute={this.displayRoute} displayReport={this.displayReport}/>
+        <Route watchData={this.state.watchData} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+        displayRoute={this.displayRoute} displayReport={this.displayReport}/>
+        <Report watchData={this.state.watchData} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
         displayRoute={this.displayRoute} displayReport={this.displayReport}/>
       </div>
     );

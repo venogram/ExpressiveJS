@@ -9530,6 +9530,14 @@ var _method = __webpack_require__(84);
 
 var _method2 = _interopRequireDefault(_method);
 
+var _route = __webpack_require__(86);
+
+var _route2 = _interopRequireDefault(_route);
+
+var _report = __webpack_require__(85);
+
+var _report2 = _interopRequireDefault(_report);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9596,8 +9604,12 @@ var App = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'App' },
+        { className: 'App flex-container' },
         _react2.default.createElement(_method2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
+          displayRoute: this.displayRoute, displayReport: this.displayReport }),
+        _react2.default.createElement(_route2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
+          displayRoute: this.displayRoute, displayReport: this.displayReport }),
+        _react2.default.createElement(_report2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
           displayRoute: this.displayRoute, displayReport: this.displayReport })
       );
     }
@@ -9708,10 +9720,8 @@ var Method = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'method' },
-        methodButtons,
-        _react2.default.createElement(_route2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes, userReports: this.props.userReports,
-          displayRoute: this.props.displayRoute, displayReport: this.props.displayReport })
+        { className: 'method flex-item' },
+        methodButtons
       );
     }
   }]);
@@ -9779,12 +9789,8 @@ var Report = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'report' },
-        _react2.default.createElement(
-          'div',
-          null,
-          report
-        )
+        { className: 'report flex-item' },
+        report
       );
     }
   }]);
@@ -9855,9 +9861,8 @@ var Route = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'route' },
-        methodRouteButtons,
-        _react2.default.createElement(_report2.default, { watchData: this.props.watchData, userRoutes: this.props.userRoutes, userReports: this.props.userReports })
+        { className: 'route flex-item' },
+        methodRouteButtons
       );
     }
   }]);

@@ -13,10 +13,10 @@ class Route extends Component {
     });
 
     return (
-      <div className="route">
+      <div className="route flex-item">
         {/*<p>i am from route.js</p>*/}
         {methodRouteButtons}
-        <Report watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports} />
+        {/*<Report watchData={this.props.watchData} userRoutes={this.props.userRoutes} userReports={this.props.userReports} />*/}
       </div>
     );
   }

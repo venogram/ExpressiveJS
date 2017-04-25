@@ -15,9 +15,9 @@ class Report extends Component {
     });
 
     return (
-      <div className="report">
+      <div className="report flex-item">
         {/*<p>i am from report.js</p>*/}
-        <div>{report}</div>
+          {report}
       </div>
     );
   }
