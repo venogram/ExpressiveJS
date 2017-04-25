@@ -13,7 +13,7 @@ function takeSnapshot(original, map = new WeakMap()) {
   //Basecase: input is a primitive data type
   if (isPrimitive) return original;
   //Basecase: original has already been cloned
-  if (map.has(original)) return map.get(original);
+  if (map.has(original)) return null//map.get(original);
 
   const copy = Array.isArray(original) ? [] : {};
   //Set map[original] to the copy to avoid recursing infinitely through a circular reference
