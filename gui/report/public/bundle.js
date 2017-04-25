@@ -6682,8 +6682,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(20);
@@ -6712,25 +6710,28 @@ var Report = function (_Component) {
     value: function render() {
       //this.props.userReports === timeline array
       //console.log(this.props.userReports)
-      var report = this.props.userReports.map(function (element, index) {
-        if ((typeof element === 'undefined' ? 'undefined' : _typeof(element)) === "object") {
-          for (var key in element) {
-            //return objects inside timeline in watchDog.json
-            return _react2.default.createElement(
-              'p',
-              { key: index },
-              key + ': ' + element[key],
-              ' '
-            );
-          }
-          return element;
+      var report = [];
+      var filterReport = this.props.userReports.map(function (element, index) {
+        //element is an object
+        //console.log(element)
+        for (var key in element) {
+          //return objects inside timeline in watchDog.json
+          report.push(_react2.default.createElement(
+            'p',
+            null,
+            ' ',
+            key + ': ' + element[key],
+            ' '
+          ));
         }
       });
 
       return _react2.default.createElement(
         'div',
         { className: 'report flex-item' },
-        report
+        report,
+        ' ',
+        _react2.default.createElement('br', null)
       );
     }
   }]);
@@ -22331,58 +22332,70 @@ module.exports = traverseAllChildren;
 
 module.exports = {
 	"GET /route": {
-		"initialState": {
-			"method": "GET",
-			"route": "/route",
-			"statusCode": "200"
-		},
+		"method": "GET",
+		"route": "/route",
 		"timeline": [
 			{
-				"res": "i am get res from /route"
+				"timestamp": "number",
+				"res": "i am get res from /route",
+				"req": "i am get req from /route"
 			},
 			{
+				"timestamp": "number",
+				"res": "i am get res from /route",
 				"req": "i am get req from /route"
 			}
 		],
-		"statusCode": "200",
+		"start": "now(number)",
+		"end": "end(number)",
 		"duration": "500ms",
-		"method": "GET"
+		"statusCode": "200",
+		"statusMessage": "success",
+		"error": "null if none"
 	},
 	"GET /train": {
-		"initialState": {
-			"method": "GET",
-			"route": "/train",
-			"statusCode": "408"
-		},
+		"method": "GET",
+		"route": "/train",
 		"timeline": [
 			{
-				"res": "i am get res from /train"
+				"timestamp": "number",
+				"res": "i am get res from /train",
+				"req": "i am get req from /train"
 			},
 			{
+				"timestamp": "number",
+				"res": "i am get res from /train",
 				"req": "i am get req from /train"
 			}
 		],
-		"statusCode": "408",
-		"duration": "1000ms",
-		"method": "GET"
+		"start": "now(number)",
+		"end": "end(number)",
+		"duration": "800ms",
+		"statusCode": "304",
+		"statusMessage": "not modified",
+		"error": "none"
 	},
 	"POST /train": {
-		"initialState": {
-			"method": "POST",
-			"route": "/train",
-			"statusCode": "222"
-		},
+		"method": "POST",
+		"route": "/train",
 		"timeline": [
 			{
-				"res": "i am post res from /train"
+				"timestamp": "number",
+				"res": "i am 2nd get res from /train",
+				"req": "i am 2nd get req from /train"
 			},
 			{
-				"req": "i am post req from /train"
+				"timestamp": "number",
+				"res": "i am 2nd get res from /train",
+				"req": "i am 2nd get req from /train"
 			}
 		],
-		"statusCode": "222",
-		"duration": "2000ms",
-		"method": "POST"
+		"start": "now(number)",
+		"end": "end(number)",
+		"duration": "1000ms",
+		"statusCode": "200",
+		"statusMessage": "not found",
+		"error": "some error as to why 200"
 	}
 };
 
