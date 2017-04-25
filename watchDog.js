@@ -10,7 +10,7 @@ const getAppMethodArgs = require('./util/getAppMethodArgs.js');
 const app = express();
 
 module.exports = () => {
-  return {
+  const watchDogObj = {
     get: (...args) => {
 
       const watchDogMidware = getAppMethodArgs(args);
@@ -21,4 +21,12 @@ module.exports = () => {
       return app.listen(...args);
     }
   }
+
+  //assign all properties and methods of the express app to the watchDogObj that aren't
+  //explicitly defined
+  Object.keys(app).forEach(key => {
+    if (!watchDogObj.hasOwnProperty(key)) watchDogObj[key] = app[key];
+  });
+
+  return watchDogObj;
 }
