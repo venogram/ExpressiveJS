@@ -9687,7 +9687,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var watchData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./../../../watchDog.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var watchData = __webpack_require__(186);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -22324,6 +22324,67 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"GET /route": {
+		"initialState": {
+			"method": "GET",
+			"route": "/route",
+			"statusCode": "200"
+		},
+		"timeline": [
+			{
+				"res": "i am get res from /route"
+			},
+			{
+				"req": "i am get req from /route"
+			}
+		],
+		"statusCode": "200",
+		"duration": "500ms",
+		"method": "GET"
+	},
+	"GET /train": {
+		"initialState": {
+			"method": "GET",
+			"route": "/train",
+			"statusCode": "408"
+		},
+		"timeline": [
+			{
+				"res": "i am get res from /train"
+			},
+			{
+				"req": "i am get req from /train"
+			}
+		],
+		"statusCode": "408",
+		"duration": "1000ms",
+		"method": "GET"
+	},
+	"POST /train": {
+		"initialState": {
+			"method": "POST",
+			"route": "/train",
+			"statusCode": "222"
+		},
+		"timeline": [
+			{
+				"res": "i am post res from /train"
+			},
+			{
+				"req": "i am post req from /train"
+			}
+		],
+		"statusCode": "222",
+		"duration": "2000ms",
+		"method": "POST"
+	}
+};
 
 /***/ })
 /******/ ]);
