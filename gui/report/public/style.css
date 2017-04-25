@@ -1,3 +1,18 @@
 body {
     background-color: cornflowerblue;
 }
+
+button {
+    display: block;
+}
+
+.flex-container {
+    border: 2px black solid;
+    display: flex;
+    width: auto;
+}
+
+.flex-item {
+    border: 1px black solid;
+    width: 30%;
+}
