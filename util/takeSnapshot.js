@@ -1,7 +1,9 @@
-function takeSnapshot(original, map = new WeakMap()) {
-  //this function returns a deep clone of objects that may contain circular references
-  //the clone DOES NOT include any methods/functions
+/*
+  this function returns a deep clone of objects that may contain circular references
+  the clone DOES NOT include any methods/functions
+*/
 
+function takeSnapshot(original, map = new WeakMap()) {
   const dataTypes = ['object', 'number', 'string', 'boolean', 'undefined'];
   const primitives = ['number', 'string', 'boolean', 'undefined'];
   const isPrimitive = primitives.includes(typeof original) || original === null;
