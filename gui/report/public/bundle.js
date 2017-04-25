@@ -22329,62 +22329,7 @@ module.exports = traverseAllChildren;
 /* 186 */
 /***/ (function(module, exports) {
 
-module.exports = {
-	"GET /route": {
-		"initialState": {
-			"method": "GET",
-			"route": "/route",
-			"statusCode": "200"
-		},
-		"timeline": [
-			{
-				"res": "i am get res from /route"
-			},
-			{
-				"req": "i am get req from /route"
-			}
-		],
-		"statusCode": "200",
-		"duration": "500ms",
-		"method": "GET"
-	},
-	"GET /train": {
-		"initialState": {
-			"method": "GET",
-			"route": "/train",
-			"statusCode": "408"
-		},
-		"timeline": [
-			{
-				"res": "i am get res from /train"
-			},
-			{
-				"req": "i am get req from /train"
-			}
-		],
-		"statusCode": "408",
-		"duration": "1000ms",
-		"method": "GET"
-	},
-	"POST /train": {
-		"initialState": {
-			"method": "POST",
-			"route": "/train",
-			"statusCode": "222"
-		},
-		"timeline": [
-			{
-				"res": "i am post res from /train"
-			},
-			{
-				"req": "i am post req from /train"
-			}
-		],
-		"statusCode": "222",
-		"duration": "2000ms",
-		"method": "POST"
-	}
-};
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/kangseoncho/Documents/project/watch-dog/watchDog.json'\n    at Error (native)");
 
 /***/ })
 /******/ ]);
