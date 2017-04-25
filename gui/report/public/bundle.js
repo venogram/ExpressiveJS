@@ -6790,22 +6790,13 @@ var Route = function (_Component) {
       //console.log(this.props.displayReport)
       var methodRouteButtons = this.props.userRoutes.map(function (element, index) {
         return _react2.default.createElement(
-          'span',
-          { key: index },
+          'button',
+          { key: index, onClick: function onClick() {
+              return _this2.props.displayReport(element);
+            } },
           ' ',
-          _react2.default.createElement(
-            'button',
-            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored', key: index, onClick: function onClick() {
-                return _this2.props.displayReport(element);
-              } },
-            ' ',
-            element,
-            ' '
-          ),
-          ' ',
-          _react2.default.createElement('br', null),
-          ' ',
-          _react2.default.createElement('br', null)
+          element,
+          ' '
         );
       });
 
@@ -9756,8 +9747,8 @@ var App = function (_Component) {
         'div',
         { className: 'mdl-layout mdl-js-layout' },
         _react2.default.createElement(
-          'header',
-          { className: 'title mdl-typography--text-center mdl-layout__header mdl-layout--title' },
+          'div',
+          { className: 'title' },
           ' Your Server Route Results! '
         ),
         _react2.default.createElement(
@@ -9867,21 +9858,13 @@ var Method = function (_Component) {
       var methodButtons = Object.keys(userMethods).map(function (element, index) {
         //element is GET and POST for our example.
         return _react2.default.createElement(
-          'span',
-          { key: index },
-          _react2.default.createElement(
-            'button',
-            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored', key: index, id: element, onClick: function onClick() {
-                return _this2.props.displayRoute(element);
-              } },
-            ' ',
-            element,
-            ' '
-          ),
+          'button',
+          { key: index, id: element, onClick: function onClick() {
+              return _this2.props.displayRoute(element);
+            } },
           ' ',
-          _react2.default.createElement('br', null),
-          ' ',
-          _react2.default.createElement('br', null)
+          element,
+          ' '
         );
       });
 

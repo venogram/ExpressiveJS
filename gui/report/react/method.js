@@ -15,7 +15,7 @@ class Method extends Component {
     let methodButtons = Object.keys(userMethods)
     .map((element, index) => {
       //element is GET and POST for our example.
-      return <span key={index}><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button> <br/> <br/></span>
+      return <button key={index} id={element} onClick={() => this.props.displayRoute(element)}> {element} </button>
     });
 
     return (

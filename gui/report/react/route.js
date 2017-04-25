@@ -8,7 +8,7 @@ class Route extends Component {
 
     //console.log(this.props.displayReport)
     let methodRouteButtons = this.props.userRoutes.map((element, index) => {
-      return <span key={index}> <button className ="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" key={index} onClick={() => this.props.displayReport(element)}> {element} </button> <br /> <br /></span>
+      return <button key={index} onClick={() => this.props.displayReport(element)}> {element} </button>
     });
 
     return (
