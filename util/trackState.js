@@ -12,8 +12,10 @@ const takeSnapshot = require('./takeSnapshot.js'),
       path = require('path');
 
 module.exports = (req, res, next) => {
+  const now = Date.now();
   const wd = res.locals._WD;
   const snapshot = {
+    timestamp: now,
     req: takeSnapshot(req),
     res: takeSnapshot(res)
   }
