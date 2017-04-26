@@ -1,7 +1,8 @@
 /*
-TODO: put key inside <p> tag in report array
+TODO: add hovering arrow between the returned report div.
 */
 import React, { Component } from 'react';
+
 //import in getStateChange from watchDogJSONInterface.js
 import JSONInterface from './../public/watchDogJSONInterface';
 
@@ -10,9 +11,6 @@ class Report extends Component {
     //this.props.userReports === timeline array
     //console.log(this.props.userReports)
     let report = this.props.userReports.map((element, index) => {
-      //element is an object from timeline
-      //console.log("each report from timeline: ", element)
-
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
@@ -22,13 +20,22 @@ class Report extends Component {
         <p><b>timestamp:</b> {element.timestamp}</p>
 
         <p><b>request:</b></p>
-            cookie: {reqObj.headers.cookie} <br/>
-            host: {reqObj.headers.host} <br/>
-            complete: {reqObj.complete.toString()} <br/>
+            cookie: {reqObj.headers.cookie} <br />
+            host: {reqObj.headers.host} <br />
+            complete: {reqObj.complete.toString()} <br />
 
         <p><b>response:</b></p>
-            finished: {resObj.finished.toString()} <br/>
+            finished: {resObj.finished.toString()} <br />
           <br/>
+
+          {/*below are information for arrows*/}
+          <div>
+            <p><b>State Changes:</b></p>
+            kind: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie'].kind} <br />
+            what changed?: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie'].rhs}
+          </div>
+
+          <br />
       </div>
     });
 

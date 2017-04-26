@@ -6699,8 +6699,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               TODO: put key inside <p> tag in report array
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               TODO: add hovering arrow between the returned report div.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
 
 //import in getStateChange from watchDogJSONInterface.js
 
@@ -6717,12 +6718,11 @@ var Report = function (_Component) {
   _createClass(Report, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       //this.props.userReports === timeline array
       //console.log(this.props.userReports)
       var report = this.props.userReports.map(function (element, index) {
-        //element is an object from timeline
-        //console.log("each report from timeline: ", element)
-
         //facilitate pulling information off of req and res object
         var reqObj = element['req'];
         var resObj = element['res'];
@@ -6776,6 +6776,26 @@ var Report = function (_Component) {
           resObj.finished.toString(),
           ' ',
           _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              _react2.default.createElement(
+                'b',
+                null,
+                'State Changes:'
+              )
+            ),
+            'kind: ',
+            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].kind,
+            ' ',
+            _react2.default.createElement('br', null),
+            'what changed?: ',
+            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].rhs
+          ),
           _react2.default.createElement('br', null)
         );
       });
@@ -9741,8 +9761,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var watchData = __webpack_require__(186);
-//console.log(watchData['timeline'][0]['req']['method'])
-console.log(watchData);
+//console.log(watchData)
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -27014,7 +27033,8 @@ var JSONInterface = {
   getHighlights: function getHighlights(wdJSON) {}
 };
 
-console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
+//console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
+
 
 module.exports = JSONInterface;
 

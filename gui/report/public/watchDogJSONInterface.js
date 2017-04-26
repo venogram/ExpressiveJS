@@ -31,7 +31,7 @@ const JSONInterface = {
   }
 };
 
-console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
+//console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
 
 
 module.exports = JSONInterface;
