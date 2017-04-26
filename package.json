@@ -7,7 +7,10 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon test-servers/server-request-listener.js",
+    "start": "node watchDog.js && npm run open",
+    "open": "open ./gui/report/public/index.html"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,9 @@
     "deep-diff": "^0.3.4",
     "on-finished": "^2.3.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "request": "^2.81.0",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
