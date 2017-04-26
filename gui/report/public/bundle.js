@@ -6789,12 +6789,23 @@ var Report = function (_Component) {
                 'State Changes:'
               )
             ),
-            'kind: ',
-            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].kind,
+            'duration: ',
+            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].duration,
             ' ',
             _react2.default.createElement('br', null),
-            'what changed?: ',
-            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].rhs
+            _react2.default.createElement(
+              'p',
+              null,
+              'Response changes: '
+            ),
+            'Kind: ',
+            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'],
+            ' ',
+            _react2.default.createElement('br', null),
+            'What changed?: ',
+            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].DiffNew['rhs'],
+            ' ',
+            _react2.default.createElement('br', null)
           ),
           _react2.default.createElement('br', null)
         );
@@ -27031,7 +27042,7 @@ var JSONInterface = {
 };
 
 //console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
-console.log(JSONInterface.getStateChanges(wdJSON));
+console.log(JSONInterface.getStateChanges(wdJSON)[0]);
 
 module.exports = JSONInterface;
 

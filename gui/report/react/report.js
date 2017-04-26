@@ -31,8 +31,11 @@ class Report extends Component {
           {/*below are information for arrows*/}
           <div>
             <p><b>State Changes:</b></p>
-            kind: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie'].kind} <br />
-            what changed?: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie'].rhs}
+            duration: {JSONInterface.getStateChanges(this.props.watchData)[0].duration} <br />
+            {/*request changes: {JSONInterface.getStateChanges(this.props.watchData)[0].reqDiff} <br />*/}
+            <p>Response changes: </p>
+            Kind: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie']} <br />
+            What changed?: {JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie'].DiffNew['rhs']} <br />
           </div>
 
           <br />
