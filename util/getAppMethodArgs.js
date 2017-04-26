@@ -37,6 +37,7 @@ function collectMethodArgs(...args) {
 function getAppMethodArgs(args) {
   const {path, devMidware} = collectMethodArgs(...args);
   const newMidware = [];
+  //need to move initTracking to server request listener
   if (devMidware.length) newMidware.push(initTracking);
   while (devMidware.length) {
     newMidware.push(devMidware.shift());
