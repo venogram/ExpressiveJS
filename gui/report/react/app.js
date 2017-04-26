@@ -3,7 +3,9 @@ import Method from './method';
 import Route from './route';
 import Report from './report';
 const watchData = require('./../../../watchDog.json');
-//console.log(watchData)
+console.log(watchData)
+import Summaries from './../public/summaries';
+//console.log(Summaries.getSummaries)
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class App extends Component {
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
+    this.responseSummaries = this.responseSummaries.bind(this);
+    this.requestSummaries = this.requestSummaries.bind(this);
   }
 
   displayRoute(method) {
@@ -45,6 +49,14 @@ class App extends Component {
     this.setState({ userReports: tempReport });
   }
 
+responseSummaries(log) {
+  return Summaries.getSummaries(log).resSummaries;
+}
+
+requestSummaries(log) {
+  if(Summaries.getSummaries(log).reqSummaries.length === 0) return "none";
+  return Summaries.getSummaries(log).reqSummaries;
+}
 
 
   render() {
@@ -61,7 +73,7 @@ class App extends Component {
             displayRoute={this.displayRoute} displayReport={this.displayReport} />
 
           <Report watchData={this.state.watchData} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} />
+            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}/>
 
         </div>
       </div>

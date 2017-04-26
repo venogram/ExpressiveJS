@@ -27,6 +27,6 @@ const JSONInterface = {
 };
 
 //console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
-console.log(JSONInterface.getStateChanges(wdJSON)[0]);
+//console.log("i am from wdJSONInterface, ", JSONInterface.getStateChanges(wdJSON));
 
 module.exports = JSONInterface;

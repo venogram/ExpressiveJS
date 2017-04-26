@@ -6722,10 +6722,15 @@ var Report = function (_Component) {
 
       //this.props.userReports === timeline array
       //console.log(this.props.userReports)
+      // console.log( JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie']['rhs'] )
       var report = this.props.userReports.map(function (element, index) {
         //facilitate pulling information off of req and res object
         var reqObj = element['req'];
         var resObj = element['res'];
+
+        //set variable for state changes for clarity... number 0 should be index
+        var stateChangeLogs = _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData);
+        //console.log(stateChangeLogs)
 
         //information we want off of each timeline object
         return _react2.default.createElement(
@@ -6791,19 +6796,14 @@ var Report = function (_Component) {
             ),
             'duration: ',
             _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].duration,
+            ' ms',
+            _react2.default.createElement('br', null),
+            'Request Summaries: ',
+            _this2.props.requestSummaries(stateChangeLogs),
             ' ',
             _react2.default.createElement('br', null),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Response changes: '
-            ),
-            'Kind: ',
-            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'],
-            ' ',
-            _react2.default.createElement('br', null),
-            'What changed?: ',
-            _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].resDiff['._headers.set-cookie'].DiffNew['rhs'],
+            'Response Summaries: ',
+            _this2.props.responseSummaries(stateChangeLogs),
             ' ',
             _react2.default.createElement('br', null)
           ),
@@ -9763,6 +9763,10 @@ var _report = __webpack_require__(51);
 
 var _report2 = _interopRequireDefault(_report);
 
+var _summaries = __webpack_require__(310);
+
+var _summaries2 = _interopRequireDefault(_summaries);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9772,7 +9776,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var watchData = __webpack_require__(186);
-//console.log(watchData)
+console.log(watchData);
+
+//console.log(Summaries.getSummaries)
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -9789,6 +9795,8 @@ var App = function (_Component) {
     };
     _this.displayRoute = _this.displayRoute.bind(_this);
     _this.displayReport = _this.displayReport.bind(_this);
+    _this.responseSummaries = _this.responseSummaries.bind(_this);
+    _this.requestSummaries = _this.requestSummaries.bind(_this);
     return _this;
   }
 
@@ -9823,6 +9831,17 @@ var App = function (_Component) {
       this.setState({ userReports: tempReport });
     }
   }, {
+    key: 'responseSummaries',
+    value: function responseSummaries(log) {
+      return _summaries2.default.getSummaries(log).resSummaries;
+    }
+  }, {
+    key: 'requestSummaries',
+    value: function requestSummaries(log) {
+      if (_summaries2.default.getSummaries(log).reqSummaries.length === 0) return "none";
+      return _summaries2.default.getSummaries(log).reqSummaries;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -9841,7 +9860,7 @@ var App = function (_Component) {
           _react2.default.createElement(_route2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
             displayRoute: this.displayRoute, displayReport: this.displayReport }),
           _react2.default.createElement(_report2.default, { watchData: this.state.watchData, userRoutes: this.state.userRoutes, userReports: this.state.userReports,
-            displayRoute: this.displayRoute, displayReport: this.displayReport })
+            displayRoute: this.displayRoute, displayReport: this.displayReport, responseSummaries: this.responseSummaries, requestSummaries: this.requestSummaries })
         )
       );
     }
@@ -22425,7 +22444,7 @@ module.exports = {
 	"route": "/",
 	"timeline": [
 		{
-			"timestamp": 1493227301183,
+			"timestamp": 1493249670700,
 			"req": {
 				"_readableState": {
 					"objectMode": false,
@@ -22462,7 +22481,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 528,
+						"bytesRead": 502,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -22545,7 +22564,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 3,
+						"_connections": 2,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -22574,7 +22593,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 16,
+								"fd": 15,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -22653,108 +22672,9 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": {
-								"connecting": false,
-								"_hadError": false,
-								"_handle": {
-									"bytesRead": 0,
-									"_externalStream": {},
-									"fd": 15,
-									"reading": true,
-									"owner": null,
-									"onconnection": null,
-									"writeQueueSize": 0
-								},
-								"_parent": null,
-								"_host": null,
-								"_readableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"buffer": {
-										"head": null,
-										"tail": null,
-										"length": 0
-									},
-									"length": 0,
-									"pipes": null,
-									"pipesCount": 0,
-									"flowing": true,
-									"ended": false,
-									"endEmitted": false,
-									"reading": true,
-									"sync": false,
-									"needReadable": true,
-									"emittedReadable": false,
-									"readableListening": false,
-									"resumeScheduled": false,
-									"defaultEncoding": "utf8",
-									"ranOut": false,
-									"awaitDrain": 0,
-									"readingMore": false,
-									"decoder": null,
-									"encoding": null
-								},
-								"readable": true,
-								"domain": null,
-								"_events": {
-									"end": [],
-									"drain": []
-								},
-								"_eventsCount": 10,
-								"_writableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"needDrain": false,
-									"ending": false,
-									"ended": false,
-									"finished": false,
-									"decodeStrings": false,
-									"defaultEncoding": "utf8",
-									"length": 0,
-									"writing": false,
-									"corked": 0,
-									"sync": true,
-									"bufferProcessing": false,
-									"writecb": null,
-									"writelen": 0,
-									"bufferedRequest": null,
-									"lastBufferedRequest": null,
-									"pendingcb": 0,
-									"prefinished": false,
-									"errorEmitted": false,
-									"bufferedRequestCount": 0,
-									"corkedRequestsFree": {
-										"next": null,
-										"entry": null
-									}
-								},
-								"writable": true,
-								"allowHalfOpen": true,
-								"destroyed": false,
-								"_bytesDispatched": 0,
-								"_sockname": null,
-								"_pendingData": null,
-								"_pendingEncoding": "",
-								"server": null,
-								"_server": null,
-								"_idleTimeout": 120000,
-								"_idleNext": null,
-								"_idlePrev": null,
-								"_idleStart": 3810,
-								"parser": {
-									"_headers": [],
-									"_url": "",
-									"_consumed": true,
-									"socket": null,
-									"incoming": null,
-									"outgoing": null,
-									"maxHeaderPairs": 2000
-								},
-								"_paused": false,
-								"_consuming": true
-							},
+							"_idleNext": null,
 							"_idlePrev": null,
-							"_idleStart": 3812,
+							"_idleStart": 6900,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -22775,7 +22695,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 3808,
+					"_idleStart": 6897,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -22829,7 +22749,6 @@ module.exports = {
 				"headers": {
 					"host": "localhost:3000",
 					"connection": "keep-alive",
-					"cache-control": "max-age=0",
 					"upgrade-insecure-requests": "1",
 					"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 					"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -22843,8 +22762,6 @@ module.exports = {
 					"localhost:3000",
 					"Connection",
 					"keep-alive",
-					"Cache-Control",
-					"max-age=0",
 					"Upgrade-Insecure-Requests",
 					"1",
 					"User-Agent",
@@ -22960,7 +22877,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 528,
+						"bytesRead": 502,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -23043,7 +22960,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 3,
+						"_connections": 2,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -23072,7 +22989,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 16,
+								"fd": 15,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -23151,108 +23068,9 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": {
-								"connecting": false,
-								"_hadError": false,
-								"_handle": {
-									"bytesRead": 0,
-									"_externalStream": {},
-									"fd": 15,
-									"reading": true,
-									"owner": null,
-									"onconnection": null,
-									"writeQueueSize": 0
-								},
-								"_parent": null,
-								"_host": null,
-								"_readableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"buffer": {
-										"head": null,
-										"tail": null,
-										"length": 0
-									},
-									"length": 0,
-									"pipes": null,
-									"pipesCount": 0,
-									"flowing": true,
-									"ended": false,
-									"endEmitted": false,
-									"reading": true,
-									"sync": false,
-									"needReadable": true,
-									"emittedReadable": false,
-									"readableListening": false,
-									"resumeScheduled": false,
-									"defaultEncoding": "utf8",
-									"ranOut": false,
-									"awaitDrain": 0,
-									"readingMore": false,
-									"decoder": null,
-									"encoding": null
-								},
-								"readable": true,
-								"domain": null,
-								"_events": {
-									"end": [],
-									"drain": []
-								},
-								"_eventsCount": 10,
-								"_writableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"needDrain": false,
-									"ending": false,
-									"ended": false,
-									"finished": false,
-									"decodeStrings": false,
-									"defaultEncoding": "utf8",
-									"length": 0,
-									"writing": false,
-									"corked": 0,
-									"sync": true,
-									"bufferProcessing": false,
-									"writecb": null,
-									"writelen": 0,
-									"bufferedRequest": null,
-									"lastBufferedRequest": null,
-									"pendingcb": 0,
-									"prefinished": false,
-									"errorEmitted": false,
-									"bufferedRequestCount": 0,
-									"corkedRequestsFree": {
-										"next": null,
-										"entry": null
-									}
-								},
-								"writable": true,
-								"allowHalfOpen": true,
-								"destroyed": false,
-								"_bytesDispatched": 0,
-								"_sockname": null,
-								"_pendingData": null,
-								"_pendingEncoding": "",
-								"server": null,
-								"_server": null,
-								"_idleTimeout": 120000,
-								"_idleNext": null,
-								"_idlePrev": null,
-								"_idleStart": 3810,
-								"parser": {
-									"_headers": [],
-									"_url": "",
-									"_consumed": true,
-									"socket": null,
-									"incoming": null,
-									"outgoing": null,
-									"maxHeaderPairs": 2000
-								},
-								"_paused": false,
-								"_consuming": true
-							},
+							"_idleNext": null,
 							"_idlePrev": null,
-							"_idleStart": 3812,
+							"_idleStart": 6900,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -23273,7 +23091,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 3808,
+					"_idleStart": 6897,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -23320,7 +23138,6 @@ module.exports = {
 							"headers": {
 								"host": "localhost:3000",
 								"connection": "keep-alive",
-								"cache-control": "max-age=0",
 								"upgrade-insecure-requests": "1",
 								"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 								"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -23334,8 +23151,6 @@ module.exports = {
 								"localhost:3000",
 								"Connection",
 								"keep-alive",
-								"Cache-Control",
-								"max-age=0",
 								"Upgrade-Insecure-Requests",
 								"1",
 								"User-Agent",
@@ -23446,7 +23261,7 @@ module.exports = {
 			}
 		},
 		{
-			"timestamp": 1493227301196,
+			"timestamp": 1493249670715,
 			"req": {
 				"_readableState": {
 					"objectMode": false,
@@ -23483,7 +23298,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 528,
+						"bytesRead": 502,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -23567,7 +23382,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 3,
+						"_connections": 2,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -23596,7 +23411,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 16,
+								"fd": 15,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -23675,108 +23490,9 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": {
-								"connecting": false,
-								"_hadError": false,
-								"_handle": {
-									"bytesRead": 0,
-									"_externalStream": {},
-									"fd": 15,
-									"reading": true,
-									"owner": null,
-									"onconnection": null,
-									"writeQueueSize": 0
-								},
-								"_parent": null,
-								"_host": null,
-								"_readableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"buffer": {
-										"head": null,
-										"tail": null,
-										"length": 0
-									},
-									"length": 0,
-									"pipes": null,
-									"pipesCount": 0,
-									"flowing": true,
-									"ended": false,
-									"endEmitted": false,
-									"reading": true,
-									"sync": false,
-									"needReadable": true,
-									"emittedReadable": false,
-									"readableListening": false,
-									"resumeScheduled": false,
-									"defaultEncoding": "utf8",
-									"ranOut": false,
-									"awaitDrain": 0,
-									"readingMore": false,
-									"decoder": null,
-									"encoding": null
-								},
-								"readable": true,
-								"domain": null,
-								"_events": {
-									"end": [],
-									"drain": []
-								},
-								"_eventsCount": 10,
-								"_writableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"needDrain": false,
-									"ending": false,
-									"ended": false,
-									"finished": false,
-									"decodeStrings": false,
-									"defaultEncoding": "utf8",
-									"length": 0,
-									"writing": false,
-									"corked": 0,
-									"sync": true,
-									"bufferProcessing": false,
-									"writecb": null,
-									"writelen": 0,
-									"bufferedRequest": null,
-									"lastBufferedRequest": null,
-									"pendingcb": 0,
-									"prefinished": false,
-									"errorEmitted": false,
-									"bufferedRequestCount": 0,
-									"corkedRequestsFree": {
-										"next": null,
-										"entry": null
-									}
-								},
-								"writable": true,
-								"allowHalfOpen": true,
-								"destroyed": false,
-								"_bytesDispatched": 0,
-								"_sockname": null,
-								"_pendingData": null,
-								"_pendingEncoding": "",
-								"server": null,
-								"_server": null,
-								"_idleTimeout": 120000,
-								"_idleNext": null,
-								"_idlePrev": null,
-								"_idleStart": 3810,
-								"parser": {
-									"_headers": [],
-									"_url": "",
-									"_consumed": true,
-									"socket": null,
-									"incoming": null,
-									"outgoing": null,
-									"maxHeaderPairs": 2000
-								},
-								"_paused": false,
-								"_consuming": true
-							},
+							"_idleNext": null,
 							"_idlePrev": null,
-							"_idleStart": 3812,
+							"_idleStart": 6900,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -23797,7 +23513,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 3808,
+					"_idleStart": 6897,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -23850,7 +23566,7 @@ module.exports = {
 								"route": "/",
 								"timeline": [
 									{
-										"timestamp": 1493227301183,
+										"timestamp": 1493249670700,
 										"req": {
 											"_readableState": {
 												"objectMode": false,
@@ -23887,7 +23603,7 @@ module.exports = {
 												"connecting": false,
 												"_hadError": false,
 												"_handle": {
-													"bytesRead": 528,
+													"bytesRead": 502,
 													"_externalStream": {},
 													"fd": 14,
 													"reading": true,
@@ -23970,7 +23686,7 @@ module.exports = {
 													"domain": null,
 													"_events": {},
 													"_eventsCount": 2,
-													"_connections": 3,
+													"_connections": 2,
 													"_handle": {
 														"bytesRead": 0,
 														"_externalStream": {},
@@ -23999,7 +23715,7 @@ module.exports = {
 														"_handle": {
 															"bytesRead": 0,
 															"_externalStream": {},
-															"fd": 16,
+															"fd": 15,
 															"reading": true,
 															"owner": null,
 															"onconnection": null,
@@ -24078,108 +23794,9 @@ module.exports = {
 														"server": null,
 														"_server": null,
 														"_idleTimeout": 120000,
-														"_idleNext": {
-															"connecting": false,
-															"_hadError": false,
-															"_handle": {
-																"bytesRead": 0,
-																"_externalStream": {},
-																"fd": 15,
-																"reading": true,
-																"owner": null,
-																"onconnection": null,
-																"writeQueueSize": 0
-															},
-															"_parent": null,
-															"_host": null,
-															"_readableState": {
-																"objectMode": false,
-																"highWaterMark": 16384,
-																"buffer": {
-																	"head": null,
-																	"tail": null,
-																	"length": 0
-																},
-																"length": 0,
-																"pipes": null,
-																"pipesCount": 0,
-																"flowing": true,
-																"ended": false,
-																"endEmitted": false,
-																"reading": true,
-																"sync": false,
-																"needReadable": true,
-																"emittedReadable": false,
-																"readableListening": false,
-																"resumeScheduled": false,
-																"defaultEncoding": "utf8",
-																"ranOut": false,
-																"awaitDrain": 0,
-																"readingMore": false,
-																"decoder": null,
-																"encoding": null
-															},
-															"readable": true,
-															"domain": null,
-															"_events": {
-																"end": [],
-																"drain": []
-															},
-															"_eventsCount": 10,
-															"_writableState": {
-																"objectMode": false,
-																"highWaterMark": 16384,
-																"needDrain": false,
-																"ending": false,
-																"ended": false,
-																"finished": false,
-																"decodeStrings": false,
-																"defaultEncoding": "utf8",
-																"length": 0,
-																"writing": false,
-																"corked": 0,
-																"sync": true,
-																"bufferProcessing": false,
-																"writecb": null,
-																"writelen": 0,
-																"bufferedRequest": null,
-																"lastBufferedRequest": null,
-																"pendingcb": 0,
-																"prefinished": false,
-																"errorEmitted": false,
-																"bufferedRequestCount": 0,
-																"corkedRequestsFree": {
-																	"next": null,
-																	"entry": null
-																}
-															},
-															"writable": true,
-															"allowHalfOpen": true,
-															"destroyed": false,
-															"_bytesDispatched": 0,
-															"_sockname": null,
-															"_pendingData": null,
-															"_pendingEncoding": "",
-															"server": null,
-															"_server": null,
-															"_idleTimeout": 120000,
-															"_idleNext": null,
-															"_idlePrev": null,
-															"_idleStart": 3810,
-															"parser": {
-																"_headers": [],
-																"_url": "",
-																"_consumed": true,
-																"socket": null,
-																"incoming": null,
-																"outgoing": null,
-																"maxHeaderPairs": 2000
-															},
-															"_paused": false,
-															"_consuming": true
-														},
+														"_idleNext": null,
 														"_idlePrev": null,
-														"_idleStart": 3812,
+														"_idleStart": 6900,
 														"parser": {
 															"_headers": [],
 															"_url": "",
@@ -24200,7 +23817,7 @@ module.exports = {
 													"msecs": 120000
 												},
 												"_idlePrev": null,
-												"_idleStart": 3808,
+												"_idleStart": 6897,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -24254,7 +23871,6 @@ module.exports = {
 											"headers": {
 												"host": "localhost:3000",
 												"connection": "keep-alive",
-												"cache-control": "max-age=0",
 												"upgrade-insecure-requests": "1",
 												"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 												"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -24268,8 +23884,6 @@ module.exports = {
 												"localhost:3000",
 												"Connection",
 												"keep-alive",
-												"Cache-Control",
-												"max-age=0",
 												"Upgrade-Insecure-Requests",
 												"1",
 												"User-Agent",
@@ -24385,7 +23999,7 @@ module.exports = {
 												"connecting": false,
 												"_hadError": false,
 												"_handle": {
-													"bytesRead": 528,
+													"bytesRead": 502,
 													"_externalStream": {},
 													"fd": 14,
 													"reading": true,
@@ -24468,7 +24082,7 @@ module.exports = {
 													"domain": null,
 													"_events": {},
 													"_eventsCount": 2,
-													"_connections": 3,
+													"_connections": 2,
 													"_handle": {
 														"bytesRead": 0,
 														"_externalStream": {},
@@ -24497,7 +24111,7 @@ module.exports = {
 														"_handle": {
 															"bytesRead": 0,
 															"_externalStream": {},
-															"fd": 16,
+															"fd": 15,
 															"reading": true,
 															"owner": null,
 															"onconnection": null,
@@ -24576,108 +24190,9 @@ module.exports = {
 														"server": null,
 														"_server": null,
 														"_idleTimeout": 120000,
-														"_idleNext": {
-															"connecting": false,
-															"_hadError": false,
-															"_handle": {
-																"bytesRead": 0,
-																"_externalStream": {},
-																"fd": 15,
-																"reading": true,
-																"owner": null,
-																"onconnection": null,
-																"writeQueueSize": 0
-															},
-															"_parent": null,
-															"_host": null,
-															"_readableState": {
-																"objectMode": false,
-																"highWaterMark": 16384,
-																"buffer": {
-																	"head": null,
-																	"tail": null,
-																	"length": 0
-																},
-																"length": 0,
-																"pipes": null,
-																"pipesCount": 0,
-																"flowing": true,
-																"ended": false,
-																"endEmitted": false,
-																"reading": true,
-																"sync": false,
-																"needReadable": true,
-																"emittedReadable": false,
-																"readableListening": false,
-																"resumeScheduled": false,
-																"defaultEncoding": "utf8",
-																"ranOut": false,
-																"awaitDrain": 0,
-																"readingMore": false,
-																"decoder": null,
-																"encoding": null
-															},
-															"readable": true,
-															"domain": null,
-															"_events": {
-																"end": [],
-																"drain": []
-															},
-															"_eventsCount": 10,
-															"_writableState": {
-																"objectMode": false,
-																"highWaterMark": 16384,
-																"needDrain": false,
-																"ending": false,
-																"ended": false,
-																"finished": false,
-																"decodeStrings": false,
-																"defaultEncoding": "utf8",
-																"length": 0,
-																"writing": false,
-																"corked": 0,
-																"sync": true,
-																"bufferProcessing": false,
-																"writecb": null,
-																"writelen": 0,
-																"bufferedRequest": null,
-																"lastBufferedRequest": null,
-																"pendingcb": 0,
-																"prefinished": false,
-																"errorEmitted": false,
-																"bufferedRequestCount": 0,
-																"corkedRequestsFree": {
-																	"next": null,
-																	"entry": null
-																}
-															},
-															"writable": true,
-															"allowHalfOpen": true,
-															"destroyed": false,
-															"_bytesDispatched": 0,
-															"_sockname": null,
-															"_pendingData": null,
-															"_pendingEncoding": "",
-															"server": null,
-															"_server": null,
-															"_idleTimeout": 120000,
-															"_idleNext": null,
-															"_idlePrev": null,
-															"_idleStart": 3810,
-															"parser": {
-																"_headers": [],
-																"_url": "",
-																"_consumed": true,
-																"socket": null,
-																"incoming": null,
-																"outgoing": null,
-																"maxHeaderPairs": 2000
-															},
-															"_paused": false,
-															"_consuming": true
-														},
+														"_idleNext": null,
 														"_idlePrev": null,
-														"_idleStart": 3812,
+														"_idleStart": 6900,
 														"parser": {
 															"_headers": [],
 															"_url": "",
@@ -24698,7 +24213,7 @@ module.exports = {
 													"msecs": 120000
 												},
 												"_idlePrev": null,
-												"_idleStart": 3808,
+												"_idleStart": 6897,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -24745,7 +24260,6 @@ module.exports = {
 														"headers": {
 															"host": "localhost:3000",
 															"connection": "keep-alive",
-															"cache-control": "max-age=0",
 															"upgrade-insecure-requests": "1",
 															"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 															"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -24759,8 +24273,6 @@ module.exports = {
 															"localhost:3000",
 															"Connection",
 															"keep-alive",
-															"Cache-Control",
-															"max-age=0",
 															"Upgrade-Insecure-Requests",
 															"1",
 															"User-Agent",
@@ -24871,7 +24383,7 @@ module.exports = {
 										}
 									}
 								],
-								"start": 1493227301183,
+								"start": 1493249670700,
 								"end": null,
 								"duration": null,
 								"statusCode": null,
@@ -24889,7 +24401,6 @@ module.exports = {
 				"headers": {
 					"host": "localhost:3000",
 					"connection": "keep-alive",
-					"cache-control": "max-age=0",
 					"upgrade-insecure-requests": "1",
 					"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 					"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -24903,8 +24414,6 @@ module.exports = {
 					"localhost:3000",
 					"Connection",
 					"keep-alive",
-					"Cache-Control",
-					"max-age=0",
 					"Upgrade-Insecure-Requests",
 					"1",
 					"User-Agent",
@@ -25022,7 +24531,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 528,
+						"bytesRead": 502,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -25106,7 +24615,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 3,
+						"_connections": 2,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -25135,7 +24644,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 16,
+								"fd": 15,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -25214,108 +24723,9 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": {
-								"connecting": false,
-								"_hadError": false,
-								"_handle": {
-									"bytesRead": 0,
-									"_externalStream": {},
-									"fd": 15,
-									"reading": true,
-									"owner": null,
-									"onconnection": null,
-									"writeQueueSize": 0
-								},
-								"_parent": null,
-								"_host": null,
-								"_readableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"buffer": {
-										"head": null,
-										"tail": null,
-										"length": 0
-									},
-									"length": 0,
-									"pipes": null,
-									"pipesCount": 0,
-									"flowing": true,
-									"ended": false,
-									"endEmitted": false,
-									"reading": true,
-									"sync": false,
-									"needReadable": true,
-									"emittedReadable": false,
-									"readableListening": false,
-									"resumeScheduled": false,
-									"defaultEncoding": "utf8",
-									"ranOut": false,
-									"awaitDrain": 0,
-									"readingMore": false,
-									"decoder": null,
-									"encoding": null
-								},
-								"readable": true,
-								"domain": null,
-								"_events": {
-									"end": [],
-									"drain": []
-								},
-								"_eventsCount": 10,
-								"_writableState": {
-									"objectMode": false,
-									"highWaterMark": 16384,
-									"needDrain": false,
-									"ending": false,
-									"ended": false,
-									"finished": false,
-									"decodeStrings": false,
-									"defaultEncoding": "utf8",
-									"length": 0,
-									"writing": false,
-									"corked": 0,
-									"sync": true,
-									"bufferProcessing": false,
-									"writecb": null,
-									"writelen": 0,
-									"bufferedRequest": null,
-									"lastBufferedRequest": null,
-									"pendingcb": 0,
-									"prefinished": false,
-									"errorEmitted": false,
-									"bufferedRequestCount": 0,
-									"corkedRequestsFree": {
-										"next": null,
-										"entry": null
-									}
-								},
-								"writable": true,
-								"allowHalfOpen": true,
-								"destroyed": false,
-								"_bytesDispatched": 0,
-								"_sockname": null,
-								"_pendingData": null,
-								"_pendingEncoding": "",
-								"server": null,
-								"_server": null,
-								"_idleTimeout": 120000,
-								"_idleNext": null,
-								"_idlePrev": null,
-								"_idleStart": 3810,
-								"parser": {
-									"_headers": [],
-									"_url": "",
-									"_consumed": true,
-									"socket": null,
-									"incoming": null,
-									"outgoing": null,
-									"maxHeaderPairs": 2000
-								},
-								"_paused": false,
-								"_consuming": true
-							},
+							"_idleNext": null,
 							"_idlePrev": null,
-							"_idleStart": 3812,
+							"_idleStart": 6900,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -25336,7 +24746,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 3808,
+					"_idleStart": 6897,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -25383,7 +24793,6 @@ module.exports = {
 							"headers": {
 								"host": "localhost:3000",
 								"connection": "keep-alive",
-								"cache-control": "max-age=0",
 								"upgrade-insecure-requests": "1",
 								"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 								"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -25397,8 +24806,6 @@ module.exports = {
 								"localhost:3000",
 								"Connection",
 								"keep-alive",
-								"Cache-Control",
-								"max-age=0",
 								"Upgrade-Insecure-Requests",
 								"1",
 								"User-Agent",
@@ -25513,7 +24920,7 @@ module.exports = {
 						"route": "/",
 						"timeline": [
 							{
-								"timestamp": 1493227301183,
+								"timestamp": 1493249670700,
 								"req": {
 									"_readableState": {
 										"objectMode": false,
@@ -25550,7 +24957,7 @@ module.exports = {
 										"connecting": false,
 										"_hadError": false,
 										"_handle": {
-											"bytesRead": 528,
+											"bytesRead": 502,
 											"_externalStream": {},
 											"fd": 14,
 											"reading": true,
@@ -25633,7 +25040,7 @@ module.exports = {
 											"domain": null,
 											"_events": {},
 											"_eventsCount": 2,
-											"_connections": 3,
+											"_connections": 2,
 											"_handle": {
 												"bytesRead": 0,
 												"_externalStream": {},
@@ -25662,7 +25069,7 @@ module.exports = {
 												"_handle": {
 													"bytesRead": 0,
 													"_externalStream": {},
-													"fd": 16,
+													"fd": 15,
 													"reading": true,
 													"owner": null,
 													"onconnection": null,
@@ -25741,108 +25148,9 @@ module.exports = {
 												"server": null,
 												"_server": null,
 												"_idleTimeout": 120000,
-												"_idleNext": {
-													"connecting": false,
-													"_hadError": false,
-													"_handle": {
-														"bytesRead": 0,
-														"_externalStream": {},
-														"fd": 15,
-														"reading": true,
-														"owner": null,
-														"onconnection": null,
-														"writeQueueSize": 0
-													},
-													"_parent": null,
-													"_host": null,
-													"_readableState": {
-														"objectMode": false,
-														"highWaterMark": 16384,
-														"buffer": {
-															"head": null,
-															"tail": null,
-															"length": 0
-														},
-														"length": 0,
-														"pipes": null,
-														"pipesCount": 0,
-														"flowing": true,
-														"ended": false,
-														"endEmitted": false,
-														"reading": true,
-														"sync": false,
-														"needReadable": true,
-														"emittedReadable": false,
-														"readableListening": false,
-														"resumeScheduled": false,
-														"defaultEncoding": "utf8",
-														"ranOut": false,
-														"awaitDrain": 0,
-														"readingMore": false,
-														"decoder": null,
-														"encoding": null
-													},
-													"readable": true,
-													"domain": null,
-													"_events": {
-														"end": [],
-														"drain": []
-													},
-													"_eventsCount": 10,
-													"_writableState": {
-														"objectMode": false,
-														"highWaterMark": 16384,
-														"needDrain": false,
-														"ending": false,
-														"ended": false,
-														"finished": false,
-														"decodeStrings": false,
-														"defaultEncoding": "utf8",
-														"length": 0,
-														"writing": false,
-														"corked": 0,
-														"sync": true,
-														"bufferProcessing": false,
-														"writecb": null,
-														"writelen": 0,
-														"bufferedRequest": null,
-														"lastBufferedRequest": null,
-														"pendingcb": 0,
-														"prefinished": false,
-														"errorEmitted": false,
-														"bufferedRequestCount": 0,
-														"corkedRequestsFree": {
-															"next": null,
-															"entry": null
-														}
-													},
-													"writable": true,
-													"allowHalfOpen": true,
-													"destroyed": false,
-													"_bytesDispatched": 0,
-													"_sockname": null,
-													"_pendingData": null,
-													"_pendingEncoding": "",
-													"server": null,
-													"_server": null,
-													"_idleTimeout": 120000,
-													"_idleNext": null,
-													"_idlePrev": null,
-													"_idleStart": 3810,
-													"parser": {
-														"_headers": [],
-														"_url": "",
-														"_consumed": true,
-														"socket": null,
-														"incoming": null,
-														"outgoing": null,
-														"maxHeaderPairs": 2000
-													},
-													"_paused": false,
-													"_consuming": true
-												},
+												"_idleNext": null,
 												"_idlePrev": null,
-												"_idleStart": 3812,
+												"_idleStart": 6900,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -25863,7 +25171,7 @@ module.exports = {
 											"msecs": 120000
 										},
 										"_idlePrev": null,
-										"_idleStart": 3808,
+										"_idleStart": 6897,
 										"parser": {
 											"_headers": [],
 											"_url": "",
@@ -25917,7 +25225,6 @@ module.exports = {
 									"headers": {
 										"host": "localhost:3000",
 										"connection": "keep-alive",
-										"cache-control": "max-age=0",
 										"upgrade-insecure-requests": "1",
 										"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 										"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -25931,8 +25238,6 @@ module.exports = {
 										"localhost:3000",
 										"Connection",
 										"keep-alive",
-										"Cache-Control",
-										"max-age=0",
 										"Upgrade-Insecure-Requests",
 										"1",
 										"User-Agent",
@@ -26048,7 +25353,7 @@ module.exports = {
 										"connecting": false,
 										"_hadError": false,
 										"_handle": {
-											"bytesRead": 528,
+											"bytesRead": 502,
 											"_externalStream": {},
 											"fd": 14,
 											"reading": true,
@@ -26131,7 +25436,7 @@ module.exports = {
 											"domain": null,
 											"_events": {},
 											"_eventsCount": 2,
-											"_connections": 3,
+											"_connections": 2,
 											"_handle": {
 												"bytesRead": 0,
 												"_externalStream": {},
@@ -26160,7 +25465,7 @@ module.exports = {
 												"_handle": {
 													"bytesRead": 0,
 													"_externalStream": {},
-													"fd": 16,
+													"fd": 15,
 													"reading": true,
 													"owner": null,
 													"onconnection": null,
@@ -26239,108 +25544,9 @@ module.exports = {
 												"server": null,
 												"_server": null,
 												"_idleTimeout": 120000,
-												"_idleNext": {
-													"connecting": false,
-													"_hadError": false,
-													"_handle": {
-														"bytesRead": 0,
-														"_externalStream": {},
-														"fd": 15,
-														"reading": true,
-														"owner": null,
-														"onconnection": null,
-														"writeQueueSize": 0
-													},
-													"_parent": null,
-													"_host": null,
-													"_readableState": {
-														"objectMode": false,
-														"highWaterMark": 16384,
-														"buffer": {
-															"head": null,
-															"tail": null,
-															"length": 0
-														},
-														"length": 0,
-														"pipes": null,
-														"pipesCount": 0,
-														"flowing": true,
-														"ended": false,
-														"endEmitted": false,
-														"reading": true,
-														"sync": false,
-														"needReadable": true,
-														"emittedReadable": false,
-														"readableListening": false,
-														"resumeScheduled": false,
-														"defaultEncoding": "utf8",
-														"ranOut": false,
-														"awaitDrain": 0,
-														"readingMore": false,
-														"decoder": null,
-														"encoding": null
-													},
-													"readable": true,
-													"domain": null,
-													"_events": {
-														"end": [],
-														"drain": []
-													},
-													"_eventsCount": 10,
-													"_writableState": {
-														"objectMode": false,
-														"highWaterMark": 16384,
-														"needDrain": false,
-														"ending": false,
-														"ended": false,
-														"finished": false,
-														"decodeStrings": false,
-														"defaultEncoding": "utf8",
-														"length": 0,
-														"writing": false,
-														"corked": 0,
-														"sync": true,
-														"bufferProcessing": false,
-														"writecb": null,
-														"writelen": 0,
-														"bufferedRequest": null,
-														"lastBufferedRequest": null,
-														"pendingcb": 0,
-														"prefinished": false,
-														"errorEmitted": false,
-														"bufferedRequestCount": 0,
-														"corkedRequestsFree": {
-															"next": null,
-															"entry": null
-														}
-													},
-													"writable": true,
-													"allowHalfOpen": true,
-													"destroyed": false,
-													"_bytesDispatched": 0,
-													"_sockname": null,
-													"_pendingData": null,
-													"_pendingEncoding": "",
-													"server": null,
-													"_server": null,
-													"_idleTimeout": 120000,
-													"_idleNext": null,
-													"_idlePrev": null,
-													"_idleStart": 3810,
-													"parser": {
-														"_headers": [],
-														"_url": "",
-														"_consumed": true,
-														"socket": null,
-														"incoming": null,
-														"outgoing": null,
-														"maxHeaderPairs": 2000
-													},
-													"_paused": false,
-													"_consuming": true
-												},
+												"_idleNext": null,
 												"_idlePrev": null,
-												"_idleStart": 3812,
+												"_idleStart": 6900,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -26361,7 +25567,7 @@ module.exports = {
 											"msecs": 120000
 										},
 										"_idlePrev": null,
-										"_idleStart": 3808,
+										"_idleStart": 6897,
 										"parser": {
 											"_headers": [],
 											"_url": "",
@@ -26408,7 +25614,6 @@ module.exports = {
 												"headers": {
 													"host": "localhost:3000",
 													"connection": "keep-alive",
-													"cache-control": "max-age=0",
 													"upgrade-insecure-requests": "1",
 													"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 													"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -26422,8 +25627,6 @@ module.exports = {
 													"localhost:3000",
 													"Connection",
 													"keep-alive",
-													"Cache-Control",
-													"max-age=0",
 													"Upgrade-Insecure-Requests",
 													"1",
 													"User-Agent",
@@ -26534,7 +25737,7 @@ module.exports = {
 								}
 							}
 						],
-						"start": 1493227301183,
+						"start": 1493249670700,
 						"end": null,
 						"duration": null,
 						"statusCode": null,
@@ -26545,7 +25748,7 @@ module.exports = {
 			}
 		}
 	],
-	"start": 1493227301183,
+	"start": 1493249670700,
 	"end": null,
 	"duration": null,
 	"statusCode": null,
@@ -26567,7 +25770,7 @@ module.exports = {
 
 var config = {
   host: 'http://localhost:3000',
-  routes: ['/'],
+  testRoutes: [{ method: "GET", route: "/", body: null }, { method: "GET", route: "/route", body: "" }],
   resWatch: ['._headers'],
   reqWatch: [],
   useDefaults: true,
@@ -27042,7 +26245,7 @@ var JSONInterface = {
 };
 
 //console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
-console.log(JSONInterface.getStateChanges(wdJSON)[0]);
+//console.log("i am from wdJSONInterface, ", JSONInterface.getStateChanges(wdJSON));
 
 module.exports = JSONInterface;
 
@@ -27132,6 +26335,179 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  This file contains methods that turn deepDiff objects into human-readable
+  summaries of the differences.
+*/
+
+var JSONInterface = __webpack_require__(189);
+var wdJSON = __webpack_require__(186);
+
+var summaries = {
+  getSummary: function getSummary(diffObj) {
+    var path = '.' + diffObj.path.join('.');
+    var summary = path;
+
+    if (diffObj.kind === 'E' || diffObj.kind === 'E') {
+      summary += ' changed from ' + diffObj.lhs + ' to ' + diffObj.rhs;
+    } else if (diffObj.kind === 'E') {
+      summary += ' deleted';
+    } else {
+      summary += ' initialized to ' + diffObj.rhs;
+    }
+
+    return summary;
+  },
+
+  getSummaries: function getSummaries(stateChangesArr) {
+    var result = {
+      reqSummaries: [],
+      resSummaries: []
+    };
+    stateChangesArr.forEach(function (stateChange) {
+      Object.keys(stateChange.resDiff).forEach(function (path) {
+        result.resSummaries.push(summaries.getSummary(stateChange.resDiff[path]));
+      });
+      Object.keys(stateChange.reqDiff).forEach(function (path) {
+        result.reqSummaries.push(summaries.getSummary(stateChange.reqDiff[path]));
+      });
+    });
+    return result;
+  }
+};
+
+var stateChangesArr = JSONInterface.getStateChanges(wdJSON);
+var ourSummaries = summaries.getSummaries(stateChangesArr);
+//console.log(ourSummaries.reqSummaries);
+
+
+module.exports = summaries;
 
 /***/ })
 /******/ ]);
