@@ -26,7 +26,7 @@ const JSONInterface = {
 
 };
 
-//console.log(JSONInterface.getStateChanges(wdJSON));
+
 
 
 module.exports = JSONInterface;
