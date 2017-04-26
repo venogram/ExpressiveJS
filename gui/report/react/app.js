@@ -3,7 +3,8 @@ import Method from './method';
 import Route from './route';
 import Report from './report';
 const watchData = require('./../../../watchDog.json');
-console.log(watchData['timeline'][0]['req']['method'])
+//console.log(watchData['timeline'][0]['req']['method'])
+console.log(watchData)
 
 class App extends Component {
   constructor(props) {
