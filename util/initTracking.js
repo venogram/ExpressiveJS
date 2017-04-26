@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
     res: takeSnapshot(res)
   };
   res.locals._WD = {
-    method: req.route.method,
+    method: req.method,
     route: req.route.path,
     timeline: [initialState],
     start: now,
