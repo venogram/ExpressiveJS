@@ -27007,14 +27007,12 @@ module.exports = config;
   to react components
 
   TODO: figure out better names for getStateChange and getStateChanges
-  TODO: throw some airhorn gun fingers in the air and celebrate because life is
-  beautiful
+  TODO: watchDog.json format isn't stable - make sure the functions take relevant input
 */
 
 var deepDiff = __webpack_require__(188).diff;
 var wdJSON = __webpack_require__(186);
 var getStateChange = __webpack_require__(190);
-var config = __webpack_require__(187);
 
 var JSONInterface = {
   getStateChanges: function getStateChanges(wdJSON) {
@@ -27028,13 +27026,12 @@ var JSONInterface = {
       changes.push(getStateChange(past, timeline[ind + 1]));
       return changes;
     }, []);
-  },
+  }
 
-  getHighlights: function getHighlights(wdJSON) {}
 };
 
 //console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
-
+console.log(JSONInterface.getStateChanges(wdJSON));
 
 module.exports = JSONInterface;
 
