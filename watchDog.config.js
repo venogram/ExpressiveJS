@@ -5,7 +5,7 @@
 
 const config = {
   host: 'http://localhost:3000',
-  routes: ['/'],
+  testRoutes: [{method: "GET", route: "/", body: null}, {method: "GET", route:"/route", body:""}],
   resWatch: ['._headers'],
   reqWatch: [],
   useDefaults: true,
