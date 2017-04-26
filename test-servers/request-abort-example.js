@@ -1,6 +1,6 @@
 const express = require('express');
 const WatchDog = require('./../watchDog.js');
-
+const path = require('path');
 const app = WatchDog();
 
 app.get('/', (req, res, next) => {
