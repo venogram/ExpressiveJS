@@ -12,7 +12,7 @@ class Route extends Component {
     });
 
     return (
-      <div className="route flex-item">
+      <div id="routeColumn" className="flex-item">
         {methodRouteButtons}
       </div>
     );

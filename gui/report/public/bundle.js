@@ -6688,6 +6688,10 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _watchDogJSONInterface = __webpack_require__(189);
+
+var _watchDogJSONInterface2 = _interopRequireDefault(_watchDogJSONInterface);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6697,6 +6701,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                TODO: put key inside <p> tag in report array
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+//import in getStateChange from watchDogJSONInterface.js
+
 
 var Report = function (_Component) {
   _inherits(Report, _Component);
@@ -6712,25 +6719,70 @@ var Report = function (_Component) {
     value: function render() {
       //this.props.userReports === timeline array
       //console.log(this.props.userReports)
-      var report = [];
-      var filterReport = this.props.userReports.map(function (element, index) {
-        //element is an object
-        //console.log(element)
-        for (var key in element) {
-          //return objects inside timeline in watchDog.json
-          report.push(_react2.default.createElement(
+      var report = this.props.userReports.map(function (element, index) {
+        //element is an object from timeline
+        //console.log("each report from timeline: ", element)
+
+        //facilitate pulling information off of req and res object
+        var reqObj = element['req'];
+        var resObj = element['res'];
+
+        //information we want off of each timeline object
+        return _react2.default.createElement(
+          'div',
+          { key: index, className: 'report' },
+          _react2.default.createElement(
             'p',
             null,
+            _react2.default.createElement(
+              'b',
+              null,
+              'timestamp:'
+            ),
             ' ',
-            key + ': ' + element[key],
-            ' '
-          ));
-        }
+            element.timestamp
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            _react2.default.createElement(
+              'b',
+              null,
+              'request:'
+            )
+          ),
+          'cookie: ',
+          reqObj.headers.cookie,
+          ' ',
+          _react2.default.createElement('br', null),
+          'host: ',
+          reqObj.headers.host,
+          ' ',
+          _react2.default.createElement('br', null),
+          'complete: ',
+          reqObj.complete.toString(),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'p',
+            null,
+            _react2.default.createElement(
+              'b',
+              null,
+              'response:'
+            )
+          ),
+          'finished: ',
+          resObj.finished.toString(),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null)
+        );
       });
 
       return _react2.default.createElement(
         'div',
-        { className: 'report flex-item' },
+        { id: 'reportColumn', className: 'flex-item' },
         report
       );
     }
@@ -6802,7 +6854,7 @@ var Route = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'route flex-item' },
+        { id: 'routeColumn', className: 'flex-item' },
         methodRouteButtons
       );
     }
@@ -9689,7 +9741,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var watchData = __webpack_require__(186);
-console.log(watchData['timeline'][0]['req']['method']);
+//console.log(watchData['timeline'][0]['req']['method'])
+console.log(watchData);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -9712,17 +9765,16 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'displayRoute',
     value: function displayRoute(method) {
-      var _this2 = this;
-
       //our method is get or post (for right now)
       var tempRoute = [];
       var clearReport = [];
 
-      Object.keys(this.state.watchData).map(function (element) {
-        if (_this2.state.watchData[element]['method'] === method) {
-          tempRoute.push(element);
-        }
-      });
+      // Object.keys(this.state.watchData).map((element) => {
+      //if method match, get route button
+      if (this.state.watchData['method'] === method) {
+        tempRoute.push(this.state.watchData['route']);
+      }
+      // })
       this.setState({ userRoutes: tempRoute });
       //clear off timeline text caused by other buttons
       this.setState({ userReports: clearReport });
@@ -9730,15 +9782,14 @@ var App = function (_Component) {
   }, {
     key: 'displayReport',
     value: function displayReport(route) {
-      var _this3 = this;
-
       var tempReport = [];
-
-      Object.keys(this.state.watchData).map(function (element) {
-        if (element === route) {
-          tempReport = _this3.state.watchData[route]['timeline'];
-        }
-      });
+      // console.log(route)
+      //Object.keys(this.state.watchData).map((element) => {
+      // element is "/"
+      if (this.state.watchData['route'] === route) {
+        tempReport = this.state.watchData['timeline'];
+      }
+      //})
       this.setState({ userReports: tempReport });
     }
   }, {
@@ -9749,7 +9800,7 @@ var App = function (_Component) {
         { className: 'mdl-layout mdl-js-layout' },
         _react2.default.createElement(
           'div',
-          { className: 'title' },
+          { id: 'title' },
           ' Your Server Route Results! '
         ),
         _react2.default.createElement(
@@ -9850,8 +9901,8 @@ var Method = function (_Component) {
       var userMethods = {};
       //gather all route methods with no repeats of same method
       Object.keys(this.props.watchData).map(function (element) {
-        if (!userMethods.hasOwnProperty(_this2.props.watchData[element]['method'])) {
-          userMethods[_this2.props.watchData[element]['method']] = _this2.props.watchData[element]['method'];
+        if (!userMethods.hasOwnProperty(_this2.props.watchData['method'])) {
+          userMethods[_this2.props.watchData['method']] = _this2.props.watchData['method'];
         }
       });
 
@@ -9871,7 +9922,7 @@ var Method = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'method flex-item' },
+        { id: 'methodColumn', className: 'flex-item' },
         methodButtons
       );
     }
@@ -22340,10 +22391,11 @@ module.exports = traverseAllChildren;
 /***/ (function(module, exports) {
 
 module.exports = {
+	"method": "GET",
 	"route": "/",
 	"timeline": [
 		{
-			"timestamp": 1493181584371,
+			"timestamp": 1493227301183,
 			"req": {
 				"_readableState": {
 					"objectMode": false,
@@ -22380,7 +22432,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 429,
+						"bytesRead": 528,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -22463,7 +22515,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 2,
+						"_connections": 3,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -22492,7 +22544,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 15,
+								"fd": 16,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -22571,9 +22623,108 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": null,
+							"_idleNext": {
+								"connecting": false,
+								"_hadError": false,
+								"_handle": {
+									"bytesRead": 0,
+									"_externalStream": {},
+									"fd": 15,
+									"reading": true,
+									"owner": null,
+									"onconnection": null,
+									"writeQueueSize": 0
+								},
+								"_parent": null,
+								"_host": null,
+								"_readableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"buffer": {
+										"head": null,
+										"tail": null,
+										"length": 0
+									},
+									"length": 0,
+									"pipes": null,
+									"pipesCount": 0,
+									"flowing": true,
+									"ended": false,
+									"endEmitted": false,
+									"reading": true,
+									"sync": false,
+									"needReadable": true,
+									"emittedReadable": false,
+									"readableListening": false,
+									"resumeScheduled": false,
+									"defaultEncoding": "utf8",
+									"ranOut": false,
+									"awaitDrain": 0,
+									"readingMore": false,
+									"decoder": null,
+									"encoding": null
+								},
+								"readable": true,
+								"domain": null,
+								"_events": {
+									"end": [],
+									"drain": []
+								},
+								"_eventsCount": 10,
+								"_writableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"needDrain": false,
+									"ending": false,
+									"ended": false,
+									"finished": false,
+									"decodeStrings": false,
+									"defaultEncoding": "utf8",
+									"length": 0,
+									"writing": false,
+									"corked": 0,
+									"sync": true,
+									"bufferProcessing": false,
+									"writecb": null,
+									"writelen": 0,
+									"bufferedRequest": null,
+									"lastBufferedRequest": null,
+									"pendingcb": 0,
+									"prefinished": false,
+									"errorEmitted": false,
+									"bufferedRequestCount": 0,
+									"corkedRequestsFree": {
+										"next": null,
+										"entry": null
+									}
+								},
+								"writable": true,
+								"allowHalfOpen": true,
+								"destroyed": false,
+								"_bytesDispatched": 0,
+								"_sockname": null,
+								"_pendingData": null,
+								"_pendingEncoding": "",
+								"server": null,
+								"_server": null,
+								"_idleTimeout": 120000,
+								"_idleNext": null,
+								"_idlePrev": null,
+								"_idleStart": 3810,
+								"parser": {
+									"_headers": [],
+									"_url": "",
+									"_consumed": true,
+									"socket": null,
+									"incoming": null,
+									"outgoing": null,
+									"maxHeaderPairs": 2000
+								},
+								"_paused": false,
+								"_consuming": true
+							},
 							"_idlePrev": null,
-							"_idleStart": 9568,
+							"_idleStart": 3812,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -22594,7 +22745,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 9565,
+					"_idleStart": 3808,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -22648,18 +22799,22 @@ module.exports = {
 				"headers": {
 					"host": "localhost:3000",
 					"connection": "keep-alive",
+					"cache-control": "max-age=0",
 					"upgrade-insecure-requests": "1",
 					"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 					"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 					"accept-encoding": "gzip, deflate, sdch, br",
 					"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-					"cookie": "visited=true"
+					"cookie": "visited=true; cookie1=hello%20world",
+					"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 				},
 				"rawHeaders": [
 					"Host",
 					"localhost:3000",
 					"Connection",
 					"keep-alive",
+					"Cache-Control",
+					"max-age=0",
 					"Upgrade-Insecure-Requests",
 					"1",
 					"User-Agent",
@@ -22671,7 +22826,9 @@ module.exports = {
 					"Accept-Language",
 					"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 					"Cookie",
-					"visited=true"
+					"visited=true; cookie1=hello%20world",
+					"If-None-Match",
+					"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 				],
 				"trailers": {},
 				"rawTrailers": [],
@@ -22773,7 +22930,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 429,
+						"bytesRead": 528,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -22856,7 +23013,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 2,
+						"_connections": 3,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -22885,7 +23042,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 15,
+								"fd": 16,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -22964,9 +23121,108 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": null,
+							"_idleNext": {
+								"connecting": false,
+								"_hadError": false,
+								"_handle": {
+									"bytesRead": 0,
+									"_externalStream": {},
+									"fd": 15,
+									"reading": true,
+									"owner": null,
+									"onconnection": null,
+									"writeQueueSize": 0
+								},
+								"_parent": null,
+								"_host": null,
+								"_readableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"buffer": {
+										"head": null,
+										"tail": null,
+										"length": 0
+									},
+									"length": 0,
+									"pipes": null,
+									"pipesCount": 0,
+									"flowing": true,
+									"ended": false,
+									"endEmitted": false,
+									"reading": true,
+									"sync": false,
+									"needReadable": true,
+									"emittedReadable": false,
+									"readableListening": false,
+									"resumeScheduled": false,
+									"defaultEncoding": "utf8",
+									"ranOut": false,
+									"awaitDrain": 0,
+									"readingMore": false,
+									"decoder": null,
+									"encoding": null
+								},
+								"readable": true,
+								"domain": null,
+								"_events": {
+									"end": [],
+									"drain": []
+								},
+								"_eventsCount": 10,
+								"_writableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"needDrain": false,
+									"ending": false,
+									"ended": false,
+									"finished": false,
+									"decodeStrings": false,
+									"defaultEncoding": "utf8",
+									"length": 0,
+									"writing": false,
+									"corked": 0,
+									"sync": true,
+									"bufferProcessing": false,
+									"writecb": null,
+									"writelen": 0,
+									"bufferedRequest": null,
+									"lastBufferedRequest": null,
+									"pendingcb": 0,
+									"prefinished": false,
+									"errorEmitted": false,
+									"bufferedRequestCount": 0,
+									"corkedRequestsFree": {
+										"next": null,
+										"entry": null
+									}
+								},
+								"writable": true,
+								"allowHalfOpen": true,
+								"destroyed": false,
+								"_bytesDispatched": 0,
+								"_sockname": null,
+								"_pendingData": null,
+								"_pendingEncoding": "",
+								"server": null,
+								"_server": null,
+								"_idleTimeout": 120000,
+								"_idleNext": null,
+								"_idlePrev": null,
+								"_idleStart": 3810,
+								"parser": {
+									"_headers": [],
+									"_url": "",
+									"_consumed": true,
+									"socket": null,
+									"incoming": null,
+									"outgoing": null,
+									"maxHeaderPairs": 2000
+								},
+								"_paused": false,
+								"_consuming": true
+							},
 							"_idlePrev": null,
-							"_idleStart": 9568,
+							"_idleStart": 3812,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -22987,7 +23243,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 9565,
+					"_idleStart": 3808,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -23034,18 +23290,22 @@ module.exports = {
 							"headers": {
 								"host": "localhost:3000",
 								"connection": "keep-alive",
+								"cache-control": "max-age=0",
 								"upgrade-insecure-requests": "1",
 								"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 								"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 								"accept-encoding": "gzip, deflate, sdch, br",
 								"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-								"cookie": "visited=true"
+								"cookie": "visited=true; cookie1=hello%20world",
+								"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 							},
 							"rawHeaders": [
 								"Host",
 								"localhost:3000",
 								"Connection",
 								"keep-alive",
+								"Cache-Control",
+								"max-age=0",
 								"Upgrade-Insecure-Requests",
 								"1",
 								"User-Agent",
@@ -23057,7 +23317,9 @@ module.exports = {
 								"Accept-Language",
 								"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 								"Cookie",
-								"visited=true"
+								"visited=true; cookie1=hello%20world",
+								"If-None-Match",
+								"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 							],
 							"trailers": {},
 							"rawTrailers": [],
@@ -23154,7 +23416,7 @@ module.exports = {
 			}
 		},
 		{
-			"timestamp": 1493181584388,
+			"timestamp": 1493227301196,
 			"req": {
 				"_readableState": {
 					"objectMode": false,
@@ -23191,7 +23453,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 429,
+						"bytesRead": 528,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -23275,7 +23537,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 2,
+						"_connections": 3,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -23304,7 +23566,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 15,
+								"fd": 16,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -23383,9 +23645,108 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": null,
+							"_idleNext": {
+								"connecting": false,
+								"_hadError": false,
+								"_handle": {
+									"bytesRead": 0,
+									"_externalStream": {},
+									"fd": 15,
+									"reading": true,
+									"owner": null,
+									"onconnection": null,
+									"writeQueueSize": 0
+								},
+								"_parent": null,
+								"_host": null,
+								"_readableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"buffer": {
+										"head": null,
+										"tail": null,
+										"length": 0
+									},
+									"length": 0,
+									"pipes": null,
+									"pipesCount": 0,
+									"flowing": true,
+									"ended": false,
+									"endEmitted": false,
+									"reading": true,
+									"sync": false,
+									"needReadable": true,
+									"emittedReadable": false,
+									"readableListening": false,
+									"resumeScheduled": false,
+									"defaultEncoding": "utf8",
+									"ranOut": false,
+									"awaitDrain": 0,
+									"readingMore": false,
+									"decoder": null,
+									"encoding": null
+								},
+								"readable": true,
+								"domain": null,
+								"_events": {
+									"end": [],
+									"drain": []
+								},
+								"_eventsCount": 10,
+								"_writableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"needDrain": false,
+									"ending": false,
+									"ended": false,
+									"finished": false,
+									"decodeStrings": false,
+									"defaultEncoding": "utf8",
+									"length": 0,
+									"writing": false,
+									"corked": 0,
+									"sync": true,
+									"bufferProcessing": false,
+									"writecb": null,
+									"writelen": 0,
+									"bufferedRequest": null,
+									"lastBufferedRequest": null,
+									"pendingcb": 0,
+									"prefinished": false,
+									"errorEmitted": false,
+									"bufferedRequestCount": 0,
+									"corkedRequestsFree": {
+										"next": null,
+										"entry": null
+									}
+								},
+								"writable": true,
+								"allowHalfOpen": true,
+								"destroyed": false,
+								"_bytesDispatched": 0,
+								"_sockname": null,
+								"_pendingData": null,
+								"_pendingEncoding": "",
+								"server": null,
+								"_server": null,
+								"_idleTimeout": 120000,
+								"_idleNext": null,
+								"_idlePrev": null,
+								"_idleStart": 3810,
+								"parser": {
+									"_headers": [],
+									"_url": "",
+									"_consumed": true,
+									"socket": null,
+									"incoming": null,
+									"outgoing": null,
+									"maxHeaderPairs": 2000
+								},
+								"_paused": false,
+								"_consuming": true
+							},
 							"_idlePrev": null,
-							"_idleStart": 9568,
+							"_idleStart": 3812,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -23406,7 +23767,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 9565,
+					"_idleStart": 3808,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -23455,10 +23816,11 @@ module.exports = {
 						"req": null,
 						"locals": {
 							"_WD": {
+								"method": "GET",
 								"route": "/",
 								"timeline": [
 									{
-										"timestamp": 1493181584371,
+										"timestamp": 1493227301183,
 										"req": {
 											"_readableState": {
 												"objectMode": false,
@@ -23495,7 +23857,7 @@ module.exports = {
 												"connecting": false,
 												"_hadError": false,
 												"_handle": {
-													"bytesRead": 429,
+													"bytesRead": 528,
 													"_externalStream": {},
 													"fd": 14,
 													"reading": true,
@@ -23578,7 +23940,7 @@ module.exports = {
 													"domain": null,
 													"_events": {},
 													"_eventsCount": 2,
-													"_connections": 2,
+													"_connections": 3,
 													"_handle": {
 														"bytesRead": 0,
 														"_externalStream": {},
@@ -23607,7 +23969,7 @@ module.exports = {
 														"_handle": {
 															"bytesRead": 0,
 															"_externalStream": {},
-															"fd": 15,
+															"fd": 16,
 															"reading": true,
 															"owner": null,
 															"onconnection": null,
@@ -23686,9 +24048,108 @@ module.exports = {
 														"server": null,
 														"_server": null,
 														"_idleTimeout": 120000,
-														"_idleNext": null,
+														"_idleNext": {
+															"connecting": false,
+															"_hadError": false,
+															"_handle": {
+																"bytesRead": 0,
+																"_externalStream": {},
+																"fd": 15,
+																"reading": true,
+																"owner": null,
+																"onconnection": null,
+																"writeQueueSize": 0
+															},
+															"_parent": null,
+															"_host": null,
+															"_readableState": {
+																"objectMode": false,
+																"highWaterMark": 16384,
+																"buffer": {
+																	"head": null,
+																	"tail": null,
+																	"length": 0
+																},
+																"length": 0,
+																"pipes": null,
+																"pipesCount": 0,
+																"flowing": true,
+																"ended": false,
+																"endEmitted": false,
+																"reading": true,
+																"sync": false,
+																"needReadable": true,
+																"emittedReadable": false,
+																"readableListening": false,
+																"resumeScheduled": false,
+																"defaultEncoding": "utf8",
+																"ranOut": false,
+																"awaitDrain": 0,
+																"readingMore": false,
+																"decoder": null,
+																"encoding": null
+															},
+															"readable": true,
+															"domain": null,
+															"_events": {
+																"end": [],
+																"drain": []
+															},
+															"_eventsCount": 10,
+															"_writableState": {
+																"objectMode": false,
+																"highWaterMark": 16384,
+																"needDrain": false,
+																"ending": false,
+																"ended": false,
+																"finished": false,
+																"decodeStrings": false,
+																"defaultEncoding": "utf8",
+																"length": 0,
+																"writing": false,
+																"corked": 0,
+																"sync": true,
+																"bufferProcessing": false,
+																"writecb": null,
+																"writelen": 0,
+																"bufferedRequest": null,
+																"lastBufferedRequest": null,
+																"pendingcb": 0,
+																"prefinished": false,
+																"errorEmitted": false,
+																"bufferedRequestCount": 0,
+																"corkedRequestsFree": {
+																	"next": null,
+																	"entry": null
+																}
+															},
+															"writable": true,
+															"allowHalfOpen": true,
+															"destroyed": false,
+															"_bytesDispatched": 0,
+															"_sockname": null,
+															"_pendingData": null,
+															"_pendingEncoding": "",
+															"server": null,
+															"_server": null,
+															"_idleTimeout": 120000,
+															"_idleNext": null,
+															"_idlePrev": null,
+															"_idleStart": 3810,
+															"parser": {
+																"_headers": [],
+																"_url": "",
+																"_consumed": true,
+																"socket": null,
+																"incoming": null,
+																"outgoing": null,
+																"maxHeaderPairs": 2000
+															},
+															"_paused": false,
+															"_consuming": true
+														},
 														"_idlePrev": null,
-														"_idleStart": 9568,
+														"_idleStart": 3812,
 														"parser": {
 															"_headers": [],
 															"_url": "",
@@ -23709,7 +24170,7 @@ module.exports = {
 													"msecs": 120000
 												},
 												"_idlePrev": null,
-												"_idleStart": 9565,
+												"_idleStart": 3808,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -23763,18 +24224,22 @@ module.exports = {
 											"headers": {
 												"host": "localhost:3000",
 												"connection": "keep-alive",
+												"cache-control": "max-age=0",
 												"upgrade-insecure-requests": "1",
 												"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 												"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 												"accept-encoding": "gzip, deflate, sdch, br",
 												"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-												"cookie": "visited=true"
+												"cookie": "visited=true; cookie1=hello%20world",
+												"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 											},
 											"rawHeaders": [
 												"Host",
 												"localhost:3000",
 												"Connection",
 												"keep-alive",
+												"Cache-Control",
+												"max-age=0",
 												"Upgrade-Insecure-Requests",
 												"1",
 												"User-Agent",
@@ -23786,7 +24251,9 @@ module.exports = {
 												"Accept-Language",
 												"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 												"Cookie",
-												"visited=true"
+												"visited=true; cookie1=hello%20world",
+												"If-None-Match",
+												"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 											],
 											"trailers": {},
 											"rawTrailers": [],
@@ -23888,7 +24355,7 @@ module.exports = {
 												"connecting": false,
 												"_hadError": false,
 												"_handle": {
-													"bytesRead": 429,
+													"bytesRead": 528,
 													"_externalStream": {},
 													"fd": 14,
 													"reading": true,
@@ -23971,7 +24438,7 @@ module.exports = {
 													"domain": null,
 													"_events": {},
 													"_eventsCount": 2,
-													"_connections": 2,
+													"_connections": 3,
 													"_handle": {
 														"bytesRead": 0,
 														"_externalStream": {},
@@ -24000,7 +24467,7 @@ module.exports = {
 														"_handle": {
 															"bytesRead": 0,
 															"_externalStream": {},
-															"fd": 15,
+															"fd": 16,
 															"reading": true,
 															"owner": null,
 															"onconnection": null,
@@ -24079,9 +24546,108 @@ module.exports = {
 														"server": null,
 														"_server": null,
 														"_idleTimeout": 120000,
-														"_idleNext": null,
+														"_idleNext": {
+															"connecting": false,
+															"_hadError": false,
+															"_handle": {
+																"bytesRead": 0,
+																"_externalStream": {},
+																"fd": 15,
+																"reading": true,
+																"owner": null,
+																"onconnection": null,
+																"writeQueueSize": 0
+															},
+															"_parent": null,
+															"_host": null,
+															"_readableState": {
+																"objectMode": false,
+																"highWaterMark": 16384,
+																"buffer": {
+																	"head": null,
+																	"tail": null,
+																	"length": 0
+																},
+																"length": 0,
+																"pipes": null,
+																"pipesCount": 0,
+																"flowing": true,
+																"ended": false,
+																"endEmitted": false,
+																"reading": true,
+																"sync": false,
+																"needReadable": true,
+																"emittedReadable": false,
+																"readableListening": false,
+																"resumeScheduled": false,
+																"defaultEncoding": "utf8",
+																"ranOut": false,
+																"awaitDrain": 0,
+																"readingMore": false,
+																"decoder": null,
+																"encoding": null
+															},
+															"readable": true,
+															"domain": null,
+															"_events": {
+																"end": [],
+																"drain": []
+															},
+															"_eventsCount": 10,
+															"_writableState": {
+																"objectMode": false,
+																"highWaterMark": 16384,
+																"needDrain": false,
+																"ending": false,
+																"ended": false,
+																"finished": false,
+																"decodeStrings": false,
+																"defaultEncoding": "utf8",
+																"length": 0,
+																"writing": false,
+																"corked": 0,
+																"sync": true,
+																"bufferProcessing": false,
+																"writecb": null,
+																"writelen": 0,
+																"bufferedRequest": null,
+																"lastBufferedRequest": null,
+																"pendingcb": 0,
+																"prefinished": false,
+																"errorEmitted": false,
+																"bufferedRequestCount": 0,
+																"corkedRequestsFree": {
+																	"next": null,
+																	"entry": null
+																}
+															},
+															"writable": true,
+															"allowHalfOpen": true,
+															"destroyed": false,
+															"_bytesDispatched": 0,
+															"_sockname": null,
+															"_pendingData": null,
+															"_pendingEncoding": "",
+															"server": null,
+															"_server": null,
+															"_idleTimeout": 120000,
+															"_idleNext": null,
+															"_idlePrev": null,
+															"_idleStart": 3810,
+															"parser": {
+																"_headers": [],
+																"_url": "",
+																"_consumed": true,
+																"socket": null,
+																"incoming": null,
+																"outgoing": null,
+																"maxHeaderPairs": 2000
+															},
+															"_paused": false,
+															"_consuming": true
+														},
 														"_idlePrev": null,
-														"_idleStart": 9568,
+														"_idleStart": 3812,
 														"parser": {
 															"_headers": [],
 															"_url": "",
@@ -24102,7 +24668,7 @@ module.exports = {
 													"msecs": 120000
 												},
 												"_idlePrev": null,
-												"_idleStart": 9565,
+												"_idleStart": 3808,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -24149,18 +24715,22 @@ module.exports = {
 														"headers": {
 															"host": "localhost:3000",
 															"connection": "keep-alive",
+															"cache-control": "max-age=0",
 															"upgrade-insecure-requests": "1",
 															"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 															"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 															"accept-encoding": "gzip, deflate, sdch, br",
 															"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-															"cookie": "visited=true"
+															"cookie": "visited=true; cookie1=hello%20world",
+															"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 														},
 														"rawHeaders": [
 															"Host",
 															"localhost:3000",
 															"Connection",
 															"keep-alive",
+															"Cache-Control",
+															"max-age=0",
 															"Upgrade-Insecure-Requests",
 															"1",
 															"User-Agent",
@@ -24172,7 +24742,9 @@ module.exports = {
 															"Accept-Language",
 															"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 															"Cookie",
-															"visited=true"
+															"visited=true; cookie1=hello%20world",
+															"If-None-Match",
+															"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 														],
 														"trailers": {},
 														"rawTrailers": [],
@@ -24269,7 +24841,7 @@ module.exports = {
 										}
 									}
 								],
-								"start": 1493181584371,
+								"start": 1493227301183,
 								"end": null,
 								"duration": null,
 								"statusCode": null,
@@ -24287,18 +24859,22 @@ module.exports = {
 				"headers": {
 					"host": "localhost:3000",
 					"connection": "keep-alive",
+					"cache-control": "max-age=0",
 					"upgrade-insecure-requests": "1",
 					"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 					"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 					"accept-encoding": "gzip, deflate, sdch, br",
 					"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-					"cookie": "visited=true"
+					"cookie": "visited=true; cookie1=hello%20world",
+					"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 				},
 				"rawHeaders": [
 					"Host",
 					"localhost:3000",
 					"Connection",
 					"keep-alive",
+					"Cache-Control",
+					"max-age=0",
 					"Upgrade-Insecure-Requests",
 					"1",
 					"User-Agent",
@@ -24310,7 +24886,9 @@ module.exports = {
 					"Accept-Language",
 					"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 					"Cookie",
-					"visited=true"
+					"visited=true; cookie1=hello%20world",
+					"If-None-Match",
+					"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 				],
 				"trailers": {},
 				"rawTrailers": [],
@@ -24414,7 +24992,7 @@ module.exports = {
 					"connecting": false,
 					"_hadError": false,
 					"_handle": {
-						"bytesRead": 429,
+						"bytesRead": 528,
 						"_externalStream": {},
 						"fd": 14,
 						"reading": true,
@@ -24498,7 +25076,7 @@ module.exports = {
 						"domain": null,
 						"_events": {},
 						"_eventsCount": 2,
-						"_connections": 2,
+						"_connections": 3,
 						"_handle": {
 							"bytesRead": 0,
 							"_externalStream": {},
@@ -24527,7 +25105,7 @@ module.exports = {
 							"_handle": {
 								"bytesRead": 0,
 								"_externalStream": {},
-								"fd": 15,
+								"fd": 16,
 								"reading": true,
 								"owner": null,
 								"onconnection": null,
@@ -24606,9 +25184,108 @@ module.exports = {
 							"server": null,
 							"_server": null,
 							"_idleTimeout": 120000,
-							"_idleNext": null,
+							"_idleNext": {
+								"connecting": false,
+								"_hadError": false,
+								"_handle": {
+									"bytesRead": 0,
+									"_externalStream": {},
+									"fd": 15,
+									"reading": true,
+									"owner": null,
+									"onconnection": null,
+									"writeQueueSize": 0
+								},
+								"_parent": null,
+								"_host": null,
+								"_readableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"buffer": {
+										"head": null,
+										"tail": null,
+										"length": 0
+									},
+									"length": 0,
+									"pipes": null,
+									"pipesCount": 0,
+									"flowing": true,
+									"ended": false,
+									"endEmitted": false,
+									"reading": true,
+									"sync": false,
+									"needReadable": true,
+									"emittedReadable": false,
+									"readableListening": false,
+									"resumeScheduled": false,
+									"defaultEncoding": "utf8",
+									"ranOut": false,
+									"awaitDrain": 0,
+									"readingMore": false,
+									"decoder": null,
+									"encoding": null
+								},
+								"readable": true,
+								"domain": null,
+								"_events": {
+									"end": [],
+									"drain": []
+								},
+								"_eventsCount": 10,
+								"_writableState": {
+									"objectMode": false,
+									"highWaterMark": 16384,
+									"needDrain": false,
+									"ending": false,
+									"ended": false,
+									"finished": false,
+									"decodeStrings": false,
+									"defaultEncoding": "utf8",
+									"length": 0,
+									"writing": false,
+									"corked": 0,
+									"sync": true,
+									"bufferProcessing": false,
+									"writecb": null,
+									"writelen": 0,
+									"bufferedRequest": null,
+									"lastBufferedRequest": null,
+									"pendingcb": 0,
+									"prefinished": false,
+									"errorEmitted": false,
+									"bufferedRequestCount": 0,
+									"corkedRequestsFree": {
+										"next": null,
+										"entry": null
+									}
+								},
+								"writable": true,
+								"allowHalfOpen": true,
+								"destroyed": false,
+								"_bytesDispatched": 0,
+								"_sockname": null,
+								"_pendingData": null,
+								"_pendingEncoding": "",
+								"server": null,
+								"_server": null,
+								"_idleTimeout": 120000,
+								"_idleNext": null,
+								"_idlePrev": null,
+								"_idleStart": 3810,
+								"parser": {
+									"_headers": [],
+									"_url": "",
+									"_consumed": true,
+									"socket": null,
+									"incoming": null,
+									"outgoing": null,
+									"maxHeaderPairs": 2000
+								},
+								"_paused": false,
+								"_consuming": true
+							},
 							"_idlePrev": null,
-							"_idleStart": 9568,
+							"_idleStart": 3812,
 							"parser": {
 								"_headers": [],
 								"_url": "",
@@ -24629,7 +25306,7 @@ module.exports = {
 						"msecs": 120000
 					},
 					"_idlePrev": null,
-					"_idleStart": 9565,
+					"_idleStart": 3808,
 					"parser": {
 						"_headers": [],
 						"_url": "",
@@ -24676,18 +25353,22 @@ module.exports = {
 							"headers": {
 								"host": "localhost:3000",
 								"connection": "keep-alive",
+								"cache-control": "max-age=0",
 								"upgrade-insecure-requests": "1",
 								"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 								"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 								"accept-encoding": "gzip, deflate, sdch, br",
 								"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-								"cookie": "visited=true"
+								"cookie": "visited=true; cookie1=hello%20world",
+								"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 							},
 							"rawHeaders": [
 								"Host",
 								"localhost:3000",
 								"Connection",
 								"keep-alive",
+								"Cache-Control",
+								"max-age=0",
 								"Upgrade-Insecure-Requests",
 								"1",
 								"User-Agent",
@@ -24699,7 +25380,9 @@ module.exports = {
 								"Accept-Language",
 								"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 								"Cookie",
-								"visited=true"
+								"visited=true; cookie1=hello%20world",
+								"If-None-Match",
+								"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 							],
 							"trailers": {},
 							"rawTrailers": [],
@@ -24796,10 +25479,11 @@ module.exports = {
 				"req": null,
 				"locals": {
 					"_WD": {
+						"method": "GET",
 						"route": "/",
 						"timeline": [
 							{
-								"timestamp": 1493181584371,
+								"timestamp": 1493227301183,
 								"req": {
 									"_readableState": {
 										"objectMode": false,
@@ -24836,7 +25520,7 @@ module.exports = {
 										"connecting": false,
 										"_hadError": false,
 										"_handle": {
-											"bytesRead": 429,
+											"bytesRead": 528,
 											"_externalStream": {},
 											"fd": 14,
 											"reading": true,
@@ -24919,7 +25603,7 @@ module.exports = {
 											"domain": null,
 											"_events": {},
 											"_eventsCount": 2,
-											"_connections": 2,
+											"_connections": 3,
 											"_handle": {
 												"bytesRead": 0,
 												"_externalStream": {},
@@ -24948,7 +25632,7 @@ module.exports = {
 												"_handle": {
 													"bytesRead": 0,
 													"_externalStream": {},
-													"fd": 15,
+													"fd": 16,
 													"reading": true,
 													"owner": null,
 													"onconnection": null,
@@ -25027,9 +25711,108 @@ module.exports = {
 												"server": null,
 												"_server": null,
 												"_idleTimeout": 120000,
-												"_idleNext": null,
+												"_idleNext": {
+													"connecting": false,
+													"_hadError": false,
+													"_handle": {
+														"bytesRead": 0,
+														"_externalStream": {},
+														"fd": 15,
+														"reading": true,
+														"owner": null,
+														"onconnection": null,
+														"writeQueueSize": 0
+													},
+													"_parent": null,
+													"_host": null,
+													"_readableState": {
+														"objectMode": false,
+														"highWaterMark": 16384,
+														"buffer": {
+															"head": null,
+															"tail": null,
+															"length": 0
+														},
+														"length": 0,
+														"pipes": null,
+														"pipesCount": 0,
+														"flowing": true,
+														"ended": false,
+														"endEmitted": false,
+														"reading": true,
+														"sync": false,
+														"needReadable": true,
+														"emittedReadable": false,
+														"readableListening": false,
+														"resumeScheduled": false,
+														"defaultEncoding": "utf8",
+														"ranOut": false,
+														"awaitDrain": 0,
+														"readingMore": false,
+														"decoder": null,
+														"encoding": null
+													},
+													"readable": true,
+													"domain": null,
+													"_events": {
+														"end": [],
+														"drain": []
+													},
+													"_eventsCount": 10,
+													"_writableState": {
+														"objectMode": false,
+														"highWaterMark": 16384,
+														"needDrain": false,
+														"ending": false,
+														"ended": false,
+														"finished": false,
+														"decodeStrings": false,
+														"defaultEncoding": "utf8",
+														"length": 0,
+														"writing": false,
+														"corked": 0,
+														"sync": true,
+														"bufferProcessing": false,
+														"writecb": null,
+														"writelen": 0,
+														"bufferedRequest": null,
+														"lastBufferedRequest": null,
+														"pendingcb": 0,
+														"prefinished": false,
+														"errorEmitted": false,
+														"bufferedRequestCount": 0,
+														"corkedRequestsFree": {
+															"next": null,
+															"entry": null
+														}
+													},
+													"writable": true,
+													"allowHalfOpen": true,
+													"destroyed": false,
+													"_bytesDispatched": 0,
+													"_sockname": null,
+													"_pendingData": null,
+													"_pendingEncoding": "",
+													"server": null,
+													"_server": null,
+													"_idleTimeout": 120000,
+													"_idleNext": null,
+													"_idlePrev": null,
+													"_idleStart": 3810,
+													"parser": {
+														"_headers": [],
+														"_url": "",
+														"_consumed": true,
+														"socket": null,
+														"incoming": null,
+														"outgoing": null,
+														"maxHeaderPairs": 2000
+													},
+													"_paused": false,
+													"_consuming": true
+												},
 												"_idlePrev": null,
-												"_idleStart": 9568,
+												"_idleStart": 3812,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -25050,7 +25833,7 @@ module.exports = {
 											"msecs": 120000
 										},
 										"_idlePrev": null,
-										"_idleStart": 9565,
+										"_idleStart": 3808,
 										"parser": {
 											"_headers": [],
 											"_url": "",
@@ -25104,18 +25887,22 @@ module.exports = {
 									"headers": {
 										"host": "localhost:3000",
 										"connection": "keep-alive",
+										"cache-control": "max-age=0",
 										"upgrade-insecure-requests": "1",
 										"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 										"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 										"accept-encoding": "gzip, deflate, sdch, br",
 										"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-										"cookie": "visited=true"
+										"cookie": "visited=true; cookie1=hello%20world",
+										"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 									},
 									"rawHeaders": [
 										"Host",
 										"localhost:3000",
 										"Connection",
 										"keep-alive",
+										"Cache-Control",
+										"max-age=0",
 										"Upgrade-Insecure-Requests",
 										"1",
 										"User-Agent",
@@ -25127,7 +25914,9 @@ module.exports = {
 										"Accept-Language",
 										"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 										"Cookie",
-										"visited=true"
+										"visited=true; cookie1=hello%20world",
+										"If-None-Match",
+										"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 									],
 									"trailers": {},
 									"rawTrailers": [],
@@ -25229,7 +26018,7 @@ module.exports = {
 										"connecting": false,
 										"_hadError": false,
 										"_handle": {
-											"bytesRead": 429,
+											"bytesRead": 528,
 											"_externalStream": {},
 											"fd": 14,
 											"reading": true,
@@ -25312,7 +26101,7 @@ module.exports = {
 											"domain": null,
 											"_events": {},
 											"_eventsCount": 2,
-											"_connections": 2,
+											"_connections": 3,
 											"_handle": {
 												"bytesRead": 0,
 												"_externalStream": {},
@@ -25341,7 +26130,7 @@ module.exports = {
 												"_handle": {
 													"bytesRead": 0,
 													"_externalStream": {},
-													"fd": 15,
+													"fd": 16,
 													"reading": true,
 													"owner": null,
 													"onconnection": null,
@@ -25420,9 +26209,108 @@ module.exports = {
 												"server": null,
 												"_server": null,
 												"_idleTimeout": 120000,
-												"_idleNext": null,
+												"_idleNext": {
+													"connecting": false,
+													"_hadError": false,
+													"_handle": {
+														"bytesRead": 0,
+														"_externalStream": {},
+														"fd": 15,
+														"reading": true,
+														"owner": null,
+														"onconnection": null,
+														"writeQueueSize": 0
+													},
+													"_parent": null,
+													"_host": null,
+													"_readableState": {
+														"objectMode": false,
+														"highWaterMark": 16384,
+														"buffer": {
+															"head": null,
+															"tail": null,
+															"length": 0
+														},
+														"length": 0,
+														"pipes": null,
+														"pipesCount": 0,
+														"flowing": true,
+														"ended": false,
+														"endEmitted": false,
+														"reading": true,
+														"sync": false,
+														"needReadable": true,
+														"emittedReadable": false,
+														"readableListening": false,
+														"resumeScheduled": false,
+														"defaultEncoding": "utf8",
+														"ranOut": false,
+														"awaitDrain": 0,
+														"readingMore": false,
+														"decoder": null,
+														"encoding": null
+													},
+													"readable": true,
+													"domain": null,
+													"_events": {
+														"end": [],
+														"drain": []
+													},
+													"_eventsCount": 10,
+													"_writableState": {
+														"objectMode": false,
+														"highWaterMark": 16384,
+														"needDrain": false,
+														"ending": false,
+														"ended": false,
+														"finished": false,
+														"decodeStrings": false,
+														"defaultEncoding": "utf8",
+														"length": 0,
+														"writing": false,
+														"corked": 0,
+														"sync": true,
+														"bufferProcessing": false,
+														"writecb": null,
+														"writelen": 0,
+														"bufferedRequest": null,
+														"lastBufferedRequest": null,
+														"pendingcb": 0,
+														"prefinished": false,
+														"errorEmitted": false,
+														"bufferedRequestCount": 0,
+														"corkedRequestsFree": {
+															"next": null,
+															"entry": null
+														}
+													},
+													"writable": true,
+													"allowHalfOpen": true,
+													"destroyed": false,
+													"_bytesDispatched": 0,
+													"_sockname": null,
+													"_pendingData": null,
+													"_pendingEncoding": "",
+													"server": null,
+													"_server": null,
+													"_idleTimeout": 120000,
+													"_idleNext": null,
+													"_idlePrev": null,
+													"_idleStart": 3810,
+													"parser": {
+														"_headers": [],
+														"_url": "",
+														"_consumed": true,
+														"socket": null,
+														"incoming": null,
+														"outgoing": null,
+														"maxHeaderPairs": 2000
+													},
+													"_paused": false,
+													"_consuming": true
+												},
 												"_idlePrev": null,
-												"_idleStart": 9568,
+												"_idleStart": 3812,
 												"parser": {
 													"_headers": [],
 													"_url": "",
@@ -25443,7 +26331,7 @@ module.exports = {
 											"msecs": 120000
 										},
 										"_idlePrev": null,
-										"_idleStart": 9565,
+										"_idleStart": 3808,
 										"parser": {
 											"_headers": [],
 											"_url": "",
@@ -25490,18 +26378,22 @@ module.exports = {
 												"headers": {
 													"host": "localhost:3000",
 													"connection": "keep-alive",
+													"cache-control": "max-age=0",
 													"upgrade-insecure-requests": "1",
 													"user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36",
 													"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 													"accept-encoding": "gzip, deflate, sdch, br",
 													"accept-language": "en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
-													"cookie": "visited=true"
+													"cookie": "visited=true; cookie1=hello%20world",
+													"if-none-match": "W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 												},
 												"rawHeaders": [
 													"Host",
 													"localhost:3000",
 													"Connection",
 													"keep-alive",
+													"Cache-Control",
+													"max-age=0",
 													"Upgrade-Insecure-Requests",
 													"1",
 													"User-Agent",
@@ -25513,7 +26405,9 @@ module.exports = {
 													"Accept-Language",
 													"en-US,en;q=0.8,ko;q=0.6,und;q=0.4",
 													"Cookie",
-													"visited=true"
+													"visited=true; cookie1=hello%20world",
+													"If-None-Match",
+													"W/\"e-6Ev58lZX6Yoja5Dcae4P0dHE/xI\""
 												],
 												"trailers": {},
 												"rawTrailers": [],
@@ -25610,7 +26504,7 @@ module.exports = {
 								}
 							}
 						],
-						"start": 1493181584371,
+						"start": 1493227301183,
 						"end": null,
 						"duration": null,
 						"statusCode": null,
@@ -25621,13 +26515,595 @@ module.exports = {
 			}
 		}
 	],
-	"start": 1493181584371,
+	"start": 1493227301183,
 	"end": null,
 	"duration": null,
 	"statusCode": null,
 	"statusMessage": null,
 	"error": null
 };
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  TODO: Should config file control what is written to watchDog.json
+  or should config file control how client parses watchDog.json
+*/
+
+var config = {
+  host: 'http://localhost:3000',
+  routes: ['/'],
+  resWatch: ['._headers'],
+  reqWatch: [],
+  useDefaults: true,
+  outputFile: ''
+};
+
+module.exports = config;
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * deep-diff.
+ * Licensed under the MIT License.
+ */
+;(function(root, factory) {
+  'use strict';
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+      return factory();
+    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.DeepDiff = factory();
+  }
+}(this, function(undefined) {
+  'use strict';
+
+  var $scope, conflict, conflictResolution = [];
+  if (typeof global === 'object' && global) {
+    $scope = global;
+  } else if (typeof window !== 'undefined') {
+    $scope = window;
+  } else {
+    $scope = {};
+  }
+  conflict = $scope.DeepDiff;
+  if (conflict) {
+    conflictResolution.push(
+      function() {
+        if ('undefined' !== typeof conflict && $scope.DeepDiff === accumulateDiff) {
+          $scope.DeepDiff = conflict;
+          conflict = undefined;
+        }
+      });
+  }
+
+  // nodejs compatible on server side and in the browser.
+  function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  }
+
+  function Diff(kind, path) {
+    Object.defineProperty(this, 'kind', {
+      value: kind,
+      enumerable: true
+    });
+    if (path && path.length) {
+      Object.defineProperty(this, 'path', {
+        value: path,
+        enumerable: true
+      });
+    }
+  }
+
+  function DiffEdit(path, origin, value) {
+    DiffEdit.super_.call(this, 'E', path);
+    Object.defineProperty(this, 'lhs', {
+      value: origin,
+      enumerable: true
+    });
+    Object.defineProperty(this, 'rhs', {
+      value: value,
+      enumerable: true
+    });
+  }
+  inherits(DiffEdit, Diff);
+
+  function DiffNew(path, value) {
+    DiffNew.super_.call(this, 'N', path);
+    Object.defineProperty(this, 'rhs', {
+      value: value,
+      enumerable: true
+    });
+  }
+  inherits(DiffNew, Diff);
+
+  function DiffDeleted(path, value) {
+    DiffDeleted.super_.call(this, 'D', path);
+    Object.defineProperty(this, 'lhs', {
+      value: value,
+      enumerable: true
+    });
+  }
+  inherits(DiffDeleted, Diff);
+
+  function DiffArray(path, index, item) {
+    DiffArray.super_.call(this, 'A', path);
+    Object.defineProperty(this, 'index', {
+      value: index,
+      enumerable: true
+    });
+    Object.defineProperty(this, 'item', {
+      value: item,
+      enumerable: true
+    });
+  }
+  inherits(DiffArray, Diff);
+
+  function arrayRemove(arr, from, to) {
+    var rest = arr.slice((to || from) + 1 || arr.length);
+    arr.length = from < 0 ? arr.length + from : from;
+    arr.push.apply(arr, rest);
+    return arr;
+  }
+
+  function realTypeOf(subject) {
+    var type = typeof subject;
+    if (type !== 'object') {
+      return type;
+    }
+
+    if (subject === Math) {
+      return 'math';
+    } else if (subject === null) {
+      return 'null';
+    } else if (Array.isArray(subject)) {
+      return 'array';
+    } else if (Object.prototype.toString.call(subject) === '[object Date]') {
+      return 'date';
+    } else if (typeof subject.toString !== 'undefined' && /^\/.*\//.test(subject.toString())) {
+      return 'regexp';
+    }
+    return 'object';
+  }
+
+  function deepDiff(lhs, rhs, changes, prefilter, path, key, stack) {
+    path = path || [];
+    var currentPath = path.slice(0);
+    if (typeof key !== 'undefined') {
+      if (prefilter) {
+        if (typeof(prefilter) === 'function' && prefilter(currentPath, key)) { return; }
+        else if (typeof(prefilter) === 'object') {
+          if (prefilter.prefilter && prefilter.prefilter(currentPath, key)) { return; }
+          if (prefilter.normalize) {
+            var alt = prefilter.normalize(currentPath, key, lhs, rhs);
+            if (alt) {
+              lhs = alt[0];
+              rhs = alt[1];
+            }
+          }
+        }
+      }
+      currentPath.push(key);
+    }
+
+    // Use string comparison for regexes
+    if (realTypeOf(lhs) === 'regexp' && realTypeOf(rhs) === 'regexp') {
+      lhs = lhs.toString();
+      rhs = rhs.toString();
+    }
+
+    var ltype = typeof lhs;
+    var rtype = typeof rhs;
+    if (ltype === 'undefined') {
+      if (rtype !== 'undefined') {
+        changes(new DiffNew(currentPath, rhs));
+      }
+    } else if (rtype === 'undefined') {
+      changes(new DiffDeleted(currentPath, lhs));
+    } else if (realTypeOf(lhs) !== realTypeOf(rhs)) {
+      changes(new DiffEdit(currentPath, lhs, rhs));
+    } else if (Object.prototype.toString.call(lhs) === '[object Date]' && Object.prototype.toString.call(rhs) === '[object Date]' && ((lhs - rhs) !== 0)) {
+      changes(new DiffEdit(currentPath, lhs, rhs));
+    } else if (ltype === 'object' && lhs !== null && rhs !== null) {
+      stack = stack || [];
+      if (stack.indexOf(lhs) < 0) {
+        stack.push(lhs);
+        if (Array.isArray(lhs)) {
+          var i, len = lhs.length;
+          for (i = 0; i < lhs.length; i++) {
+            if (i >= rhs.length) {
+              changes(new DiffArray(currentPath, i, new DiffDeleted(undefined, lhs[i])));
+            } else {
+              deepDiff(lhs[i], rhs[i], changes, prefilter, currentPath, i, stack);
+            }
+          }
+          while (i < rhs.length) {
+            changes(new DiffArray(currentPath, i, new DiffNew(undefined, rhs[i++])));
+          }
+        } else {
+          var akeys = Object.keys(lhs);
+          var pkeys = Object.keys(rhs);
+          akeys.forEach(function(k, i) {
+            var other = pkeys.indexOf(k);
+            if (other >= 0) {
+              deepDiff(lhs[k], rhs[k], changes, prefilter, currentPath, k, stack);
+              pkeys = arrayRemove(pkeys, other);
+            } else {
+              deepDiff(lhs[k], undefined, changes, prefilter, currentPath, k, stack);
+            }
+          });
+          pkeys.forEach(function(k) {
+            deepDiff(undefined, rhs[k], changes, prefilter, currentPath, k, stack);
+          });
+        }
+        stack.length = stack.length - 1;
+      }
+    } else if (lhs !== rhs) {
+      if (!(ltype === 'number' && isNaN(lhs) && isNaN(rhs))) {
+        changes(new DiffEdit(currentPath, lhs, rhs));
+      }
+    }
+  }
+
+  function accumulateDiff(lhs, rhs, prefilter, accum) {
+    accum = accum || [];
+    deepDiff(lhs, rhs,
+      function(diff) {
+        if (diff) {
+          accum.push(diff);
+        }
+      },
+      prefilter);
+    return (accum.length) ? accum : undefined;
+  }
+
+  function applyArrayChange(arr, index, change) {
+    if (change.path && change.path.length) {
+      var it = arr[index],
+          i, u = change.path.length - 1;
+      for (i = 0; i < u; i++) {
+        it = it[change.path[i]];
+      }
+      switch (change.kind) {
+        case 'A':
+          applyArrayChange(it[change.path[i]], change.index, change.item);
+          break;
+        case 'D':
+          delete it[change.path[i]];
+          break;
+        case 'E':
+        case 'N':
+          it[change.path[i]] = change.rhs;
+          break;
+      }
+    } else {
+      switch (change.kind) {
+        case 'A':
+          applyArrayChange(arr[index], change.index, change.item);
+          break;
+        case 'D':
+          arr = arrayRemove(arr, index);
+          break;
+        case 'E':
+        case 'N':
+          arr[index] = change.rhs;
+          break;
+      }
+    }
+    return arr;
+  }
+
+  function applyChange(target, source, change) {
+    if (target && source && change && change.kind) {
+      var it = target,
+          i = -1,
+          last = change.path ? change.path.length - 1 : 0;
+      while (++i < last) {
+        if (typeof it[change.path[i]] === 'undefined') {
+          it[change.path[i]] = (typeof change.path[i] === 'number') ? [] : {};
+        }
+        it = it[change.path[i]];
+      }
+      switch (change.kind) {
+        case 'A':
+          applyArrayChange(change.path ? it[change.path[i]] : it, change.index, change.item);
+          break;
+        case 'D':
+          delete it[change.path[i]];
+          break;
+        case 'E':
+        case 'N':
+          it[change.path[i]] = change.rhs;
+          break;
+      }
+    }
+  }
+
+  function revertArrayChange(arr, index, change) {
+    if (change.path && change.path.length) {
+      // the structure of the object at the index has changed...
+      var it = arr[index],
+          i, u = change.path.length - 1;
+      for (i = 0; i < u; i++) {
+        it = it[change.path[i]];
+      }
+      switch (change.kind) {
+        case 'A':
+          revertArrayChange(it[change.path[i]], change.index, change.item);
+          break;
+        case 'D':
+          it[change.path[i]] = change.lhs;
+          break;
+        case 'E':
+          it[change.path[i]] = change.lhs;
+          break;
+        case 'N':
+          delete it[change.path[i]];
+          break;
+      }
+    } else {
+      // the array item is different...
+      switch (change.kind) {
+        case 'A':
+          revertArrayChange(arr[index], change.index, change.item);
+          break;
+        case 'D':
+          arr[index] = change.lhs;
+          break;
+        case 'E':
+          arr[index] = change.lhs;
+          break;
+        case 'N':
+          arr = arrayRemove(arr, index);
+          break;
+      }
+    }
+    return arr;
+  }
+
+  function revertChange(target, source, change) {
+    if (target && source && change && change.kind) {
+      var it = target,
+          i, u;
+      u = change.path.length - 1;
+      for (i = 0; i < u; i++) {
+        if (typeof it[change.path[i]] === 'undefined') {
+          it[change.path[i]] = {};
+        }
+        it = it[change.path[i]];
+      }
+      switch (change.kind) {
+        case 'A':
+          // Array was modified...
+          // it will be an array...
+          revertArrayChange(it[change.path[i]], change.index, change.item);
+          break;
+        case 'D':
+          // Item was deleted...
+          it[change.path[i]] = change.lhs;
+          break;
+        case 'E':
+          // Item was edited...
+          it[change.path[i]] = change.lhs;
+          break;
+        case 'N':
+          // Item is new...
+          delete it[change.path[i]];
+          break;
+      }
+    }
+  }
+
+  function applyDiff(target, source, filter) {
+    if (target && source) {
+      var onChange = function(change) {
+        if (!filter || filter(target, source, change)) {
+          applyChange(target, source, change);
+        }
+      };
+      deepDiff(target, source, onChange);
+    }
+  }
+
+  Object.defineProperties(accumulateDiff, {
+
+    diff: {
+      value: accumulateDiff,
+      enumerable: true
+    },
+    observableDiff: {
+      value: deepDiff,
+      enumerable: true
+    },
+    applyDiff: {
+      value: applyDiff,
+      enumerable: true
+    },
+    applyChange: {
+      value: applyChange,
+      enumerable: true
+    },
+    revertChange: {
+      value: revertChange,
+      enumerable: true
+    },
+    isConflict: {
+      value: function() {
+        return 'undefined' !== typeof conflict;
+      },
+      enumerable: true
+    },
+    noConflict: {
+      value: function() {
+        if (conflictResolution) {
+          conflictResolution.forEach(function(it) {
+            it();
+          });
+          conflictResolution = null;
+        }
+        return accumulateDiff;
+      },
+      enumerable: true
+    }
+  });
+
+  return accumulateDiff;
+}));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(191)))
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  Client-side utilities for parsing watchDog.json into manageable chucks to hand
+  to react components
+
+  TODO: figure out better names for getStateChange and getStateChanges
+  TODO: throw some airhorn gun fingers in the air and celebrate because life is
+  beautiful
+*/
+
+var deepDiff = __webpack_require__(188).diff;
+var wdJSON = __webpack_require__(186);
+var getStateChange = __webpack_require__(190);
+var config = __webpack_require__(187);
+
+var JSONInterface = {
+  getStateChanges: function getStateChanges(wdJSON) {
+    var timeline = wdJSON.timeline;
+
+    if (!Array.isArray(timeline)) throw new Error('getStateChanges received unexpected input');
+    if (timeline.length < 2) return [];
+
+    return timeline.reduce(function (changes, past, ind) {
+      if (ind === timeline.length - 1) return changes;
+      changes.push(getStateChange(past, timeline[ind + 1]));
+      return changes;
+    }, []);
+  },
+
+  getHighlights: function getHighlights(wdJSON) {}
+};
+
+console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
+
+module.exports = JSONInterface;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  getStateChange accepts the array of snapshots of either the request or response
+  objects and returns an object that holds data on the difference between the
+  last two entries
+
+  TODO: RIGHT NOW, getStateChanges only gets the changes for things listed in the
+  config file. do we want getStateChanges to do this filtering, or the client side
+  JSONInterface ???
+  TODO: as stands, the getStateChange(lhs, rhs).duration counts the time it takes for
+  our middleware to write a new json file.
+*/
+
+var deepDiff = __webpack_require__(188).diff;
+var config = __webpack_require__(187);
+
+function getStateChange(lhs, rhs) {
+  var start = lhs.timestamp;
+  var end = rhs.timestamp;
+  var duration = end - start;
+  var reqDiff = deepDiff(lhs.req, rhs.req).reduce(function (result, diff) {
+    var path = diff.path.join('.');
+
+    var inConfig = config.reqWatch.reduce(function (boolean, configPath) {
+      return boolean ? true : path.search(configPath) > -1;
+    }, false);
+
+    if (inConfig) result[path] = diff;
+
+    return result;
+  }, {});
+  var resDiff = deepDiff(lhs.res, rhs.res).reduce(function (result, diff) {
+    var path = '.' + diff.path.join('.');
+
+    //does config.resWatch contain a string that matches the beginning of path
+    var inConfig = config.resWatch.reduce(function (boolean, configPath) {
+      return boolean ? true : path.search(configPath) > -1;
+    }, false);
+
+    if (inConfig) result[path] = diff;
+    return result;
+  }, {});
+
+  return {
+    start: start,
+    end: end,
+    duration: duration,
+    reqDiff: reqDiff,
+    resDiff: resDiff
+  };
+}
+
+module.exports = getStateChange;
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);

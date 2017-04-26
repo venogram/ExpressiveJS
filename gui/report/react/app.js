@@ -23,11 +23,12 @@ class App extends Component {
     let tempRoute = [];
     const clearReport = [];
 
-    Object.keys(this.state.watchData).map((element) => {
-      if (this.state.watchData[element]['method'] === method) {
-        tempRoute.push(element)
+    // Object.keys(this.state.watchData).map((element) => {
+      //if method match, get route button
+      if (this.state.watchData['method'] === method) {
+        tempRoute.push(this.state.watchData['route'])
       }
-    })
+    // })
     this.setState({ userRoutes: tempRoute });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
@@ -35,19 +36,22 @@ class App extends Component {
 
   displayReport(route) {
     let tempReport = [];
-
-    Object.keys(this.state.watchData).map((element) => {
-      if (element === route) {
-        tempReport = (this.state.watchData[route]['timeline'])
+    // console.log(route)
+    //Object.keys(this.state.watchData).map((element) => {
+      // element is "/"
+      if (this.state.watchData['route'] === route) {
+        tempReport = (this.state.watchData['timeline'])
       }
-    })
+    //})
     this.setState({ userReports: tempReport });
   }
+
+
 
   render() {
     return (
       <div className="mdl-layout mdl-js-layout">
-        <div className="title"> Your Server Route Results! </div>
+        <div id="title"> Your Server Route Results! </div>
 
         <div className="App flex-container">
 

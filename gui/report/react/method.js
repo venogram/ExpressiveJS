@@ -6,8 +6,8 @@ class Method extends Component {
     let userMethods = {};
     //gather all route methods with no repeats of same method
     Object.keys(this.props.watchData).map((element) => {
-      if(!userMethods.hasOwnProperty(this.props.watchData[element]['method'])) {
-        userMethods[this.props.watchData[element]['method']] = this.props.watchData[element]['method']
+      if(!userMethods.hasOwnProperty(this.props.watchData['method'])) {
+        userMethods[this.props.watchData['method']] = this.props.watchData['method']
       }
     })
 
@@ -19,7 +19,7 @@ class Method extends Component {
     });
 
     return (
-      <div className="method flex-item">
+      <div id="methodColumn" className="flex-item">
         {methodButtons}
       </div>
     );
