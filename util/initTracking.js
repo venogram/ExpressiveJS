@@ -1,5 +1,13 @@
+/*
+  initTracking is middleware that is run once when the server receives a new http request.
+  it sets up res.locals._WD and places listeners on the response and request objects.
+
+  TODO: run initTracking on app.listen instead of on individual
+    -> Implicated File: ./getAppMethodArgs.js
+*/
+
 const takeSnapshot = require('./takeSnapshot.js'),
-  onFinished = require('on-finished');
+  onFinished = require('on-finished'),
   reqListeners = require('./reqListeners.js'),
   resListeners = require('./resListeners.js');
 

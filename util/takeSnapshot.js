@@ -1,7 +1,9 @@
-function takeSnapshot(original, map = new WeakMap()) {
-  //this function returns a deep clone of objects that may contain circular references
-  //the clone DOES NOT include any methods/functions
+/*
+  this function returns a deep clone of objects that may contain circular references
+  the clone DOES NOT include any methods/functions
+*/
 
+function takeSnapshot(original, map = new WeakMap()) {
   const dataTypes = ['object', 'number', 'string', 'boolean', 'undefined'];
   const primitives = ['number', 'string', 'boolean', 'undefined'];
   const isPrimitive = primitives.includes(typeof original) || original === null;
@@ -11,7 +13,7 @@ function takeSnapshot(original, map = new WeakMap()) {
   //Basecase: input is a primitive data type
   if (isPrimitive) return original;
   //Basecase: original has already been cloned
-  if (map.has(original)) return map.get(original);
+  if (map.has(original)) return null//map.get(original);
 
   const copy = Array.isArray(original) ? [] : {};
   //Set map[original] to the copy to avoid recursing infinitely through a circular reference

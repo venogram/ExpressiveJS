@@ -3,10 +3,13 @@ const WatchDog = require('./../watchDog.js');
 
 const app = WatchDog();
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   console.log('MADE IT TO APP.GET');
-  res.send('hi');
-  console.log('hiya');
+  res.cookie('cookie1', 'hello world');
+  console.log('middleware 1');
+  return next();
+}, (req, res, next) => {
+  res.send('response sent!');
 });
 
 app.listen(3000, () => {
