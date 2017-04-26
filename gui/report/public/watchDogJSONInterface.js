@@ -24,10 +24,14 @@ const JSONInterface = {
       changes.push(getStateChange(past, timeline[ind + 1]));
       return changes;
     },[])
+  },
+
+  getHighlights: (wdJSON) => {
+
   }
 };
 
-console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
+console.log(JSONInterface.getStateChanges(wdJSON)[0].reqDiff);
 
 
 module.exports = JSONInterface;

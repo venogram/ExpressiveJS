@@ -1,3 +1,41 @@
 body {
-    background-color: cornflowerblue;
+    padding: 0;
+    margin: 0;
+}
+
+.title {
+    text-align: center;
+    /*vertical-align: middle;*/
+    padding-bottom: 5%;
+    padding-top:  5%;
+    font-size: 26px;
+    background-color: #3F51B5;
+    color: white;
+    font-family: roboto;
+}
+
+button {
+    position: relative;
+    display: block;
+    /*padding-bottom: 10px;*/
+    margin-bottom: 10px;
+    background-color: #3F51B5;
+    font-family: roboto;
+    border: none;
+    size: 26px;
+    color: white;
+}
+
+.flex-container {
+    display: flex;
+    width: auto;
+    /*border: 1px black solid;*/
+    margin: auto;
+    width: 90%;
+}
+
+.flex-item {
+    border: 1px black solid;
+    width: 33%;
+
 }
