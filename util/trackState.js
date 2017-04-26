@@ -20,6 +20,7 @@ module.exports = (req, res, next) => {
     res: takeSnapshot(res)
   }
   wd.timeline.push(snapshot);
+  console.log(wd);
   fs.writeFile(path.join(__dirname, './../watchDog.json'), JSON.stringify(wd), (err) => {
     if (err) throw err;
     console.log('wrote file!!');
