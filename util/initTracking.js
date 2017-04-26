@@ -7,18 +7,26 @@
 */
 
 const takeSnapshot = require('./takeSnapshot.js'),
-  onFinished = require('on-finished'),
-  reqListeners = require('./reqListeners.js'),
-  resListeners = require('./resListeners.js');
+      onFinished = require('on-finished'),
+      reqListeners = require('./reqListeners.js'),
+      resListeners = require('./resListeners.js'),
+      jsonController = require('./jsonController.js'),
+      fs = require('fs');
+
 
 module.exports = (req, res, next) => {
+  const parsed = jsonController.getAndParse();
+  
   const now = Date.now();
   const initialState = {
     timestamp: now,
     req: takeSnapshot(req),
     res: takeSnapshot(res)
   };
-  res.locals._WD = {
+
+  const methodRoute = req.method + ' ' + req.route.path;
+  
+  res.locals._WD[methodRoute] = {
     method: req.method,
     route: req.route.path,
     timeline: [initialState],
@@ -30,11 +38,14 @@ module.exports = (req, res, next) => {
     error: null
   }
 
+
   onFinished(res, resListeners.finish)
 
   onFinished(req, (err, req) => {
-
+    //Need to fill in...
   })
+
+  jsonController.overwrite(res.locals._WD);
 
   return next();
 }
