@@ -22343,16 +22343,6 @@ module.exports = {
 				"timestamp": "number",
 				"res": "i am get res from /route",
 				"req": "i am get req from /route"
-			},
-			{
-				"timestamp": "number",
-				"res": "i am get res from /route",
-				"req": "i am get req from /route"
-			},
-			{
-				"timestamp": "number",
-				"res": "i am get res from /route",
-				"req": "i am get req from /route"
 			}
 		],
 		"start": "now(number)",
