@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const supertest = require("supertest")
 
 const listener = app.listen(3000, () => {
   console.log("Listening on PORT 3000");
@@ -10,6 +11,7 @@ app.use(express.static(path.join(__dirname, './../testHtml')))
 
 
 app.get('/', (req, res) => {
+  console.log("Making get request to  / ")
   res.sendFile(path.resolve(__dirname + '/../testHtml/listenerTest.html'));
 })
 
@@ -37,3 +39,4 @@ listener.on('request', (incMsg, serverResp) => console.log("request heard!\n\n\n
 
 
 
+module.exports = app; 

@@ -12,6 +12,11 @@ app.get('/', (req, res, next) => {
   res.send('response sent!');
 });
 
+app.get('/route', (req, res) => {
+  console.log('gettin dat route route');
+  res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 })
