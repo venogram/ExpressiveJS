@@ -3,14 +3,12 @@
   to react components
 
   TODO: figure out better names for getStateChange and getStateChanges
-  TODO: throw some airhorn gun fingers in the air and celebrate because life is
-  beautiful
+  TODO: watchDog.json format isn't stable - make sure the functions take relevant input
 */
 
 const deepDiff = require('deep-diff').diff;
 const wdJSON = require('./../../../watchDog.json');
 const getStateChange = require('./../../../util/getStateChange.js');
-const config = require('./../../../watchDog.config.js');
 
 const JSONInterface = {
   getStateChanges: (wdJSON) => {
@@ -26,12 +24,9 @@ const JSONInterface = {
     },[])
   },
 
-  getHighlights: (wdJSON) => {
-
-  }
 };
 
-console.log(JSONInterface.getStateChanges(wdJSON)[0].reqDiff);
+//console.log(JSONInterface.getStateChanges(wdJSON));
 
 
 module.exports = JSONInterface;
