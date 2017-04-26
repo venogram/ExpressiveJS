@@ -39,6 +39,7 @@ function getStateChange(lhs, rhs) {
     if (inConfig) result[path] = diff;
     return result;
   }, {});
+  
   return {
     start,
     end,

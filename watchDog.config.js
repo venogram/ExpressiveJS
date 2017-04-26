@@ -4,9 +4,12 @@
 */
 
 const config = {
+  host: 'http://localhost:3000',
   routes: ['/'],
   resWatch: ['._headers'],
-  reqWatch: []
+  reqWatch: [],
+  useDefaults: true,
+  outputFile: ''
 }
 
 module.exports = config;
