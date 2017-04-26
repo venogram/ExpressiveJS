@@ -7,7 +7,7 @@
 */
 
 const takeSnapshot = require('./takeSnapshot.js'),
-  onFinished = require('on-finished');
+  onFinished = require('on-finished'),
   reqListeners = require('./reqListeners.js'),
   resListeners = require('./resListeners.js');
 

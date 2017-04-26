@@ -3,23 +3,26 @@
   objects and returns an object that holds data on the difference between the
   last two entries
 
-  TODO: re-assess format of input to getStateChange (should it take an lhs and rhs
-  instead of a single array?)
+  TODO: filter out changes where the path array ENDS WITH ['locals', '_WD'];
+  TODO: as stands, the getStateChange(lhs, rhs).duration counts the time it takes for
+  our middleware to write a new json file.
 */
 
 const deepDiff = require('deep-diff').diff;
 
-function getStateChange(snapshots) {
-  // Only compare if there are at least two snapshots!
-  if (snapshots.length < 2) throw new Error('Not enough snapshots to compare!');
-
-  const timestamp = Date.now();
-  const allChanges = deepDiff(snapshots[snapshots.length - 2], snapshots[snapshots.length - 1]);
-  const changes = allChanges.filter(diffObj => diffObj.path[0] !== 'locals' || diffObj.path[1].indexOf('_WD') !== 0);
+function getStateChange(lhs, rhs) {
+  const start = lhs.timestamp;
+  const end = rhs.timestamp;
+  const duration = start - end;
+  const reqDiff = deepDiff(lhs.req, rhs.req).filter(diffObj => diffObj.path[0] !== 'locals' || diffObj.path[1].indexOf('_WD') !== 0);
+  const resDiff = deepDiff(lhs.res, rhs.res).filter(diffObj => diffObj.path[0] !== 'locals' || diffObj.path[1].indexOf('_WD') !== 0);
 
   return {
-    timestamp,
-    changes
+    start,
+    end,
+    duration,
+    reqDiff,
+    resDiff
   }
 }
 
