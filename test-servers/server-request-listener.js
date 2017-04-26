@@ -25,11 +25,13 @@ app.get('/close', () => {
 
 // listener.on('connect', (e,x) => console.log('connected!',e,x));
 
-listener.on('request', (incMsg, serverResp) => console.log("request heard!\n\n\n\n\n\n\n\n\n\n",incMsg, '\n\n\n\n\n\n\n\n\n\n', serverResp, '\n\n\n\n\n\n\n\n\n\n'));
+listener.on('request', (req, res) => {
+  console.log("Path:", req.path);
+})
 
 // listener.on('finish', (e,x) => console.log("finished!",e,x));
 
-// listener.on('close', (e,x) => console.log("closed!",e,x));
+// listener.on('close', (e,x) => console.log("closed!\n\n\n\n\n\n",e,'\n\n\n\n\n',x,'\n\n\n\n\n'));
 
 // listener.on('checkContinue', (e,x) => console.log("checking continue...",e,x));
 

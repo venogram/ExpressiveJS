@@ -13,7 +13,7 @@ $('#myButton').on('click', () => {
 })
 
 $('#closeButton').on('click', () => {
-  $.get('/close', () => {
+  $.get('/fakeRoute', () => {
     console.log("i done got done");
   });
 })
