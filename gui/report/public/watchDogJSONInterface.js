@@ -17,8 +17,10 @@ const JSONInterface = {
   },
 
   getHighlights: (wdJSON) => {
-    
+
   }
 };
+
+console.log(JSONInterface.getStateChanges(wdJSON)[0].reqDiff);
 
 module.exports = JSONInterface;

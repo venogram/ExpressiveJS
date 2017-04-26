@@ -3,6 +3,7 @@ import Method from './method';
 import Route from './route';
 import Report from './report';
 const watchData = require('./../../../watchDog.json');
+console.log(watchData['timeline'][0]['req']['method'])
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
   displayRoute(method) {
     //our method is get or post (for right now)
     let tempRoute = [];
-    const clearReport = []
+    const clearReport = [];
 
     Object.keys(this.state.watchData).map((element) => {
       if (this.state.watchData[element]['method'] === method) {
@@ -27,7 +28,7 @@ class App extends Component {
       }
     })
     this.setState({ userRoutes: tempRoute });
-    //clear off timeline text if already populated
+    //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
   }
 
