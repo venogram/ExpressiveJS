@@ -16,11 +16,13 @@ const takeSnapshot = require('./takeSnapshot.js'),
       jsonController = require('./jsonController.js'),
       fs = require('fs');
 
-const initTracking = (req, res, next) => {
+const initTracking = (req, res) => {
+
   const parsed = jsonController.getAndParse();
   const methodRoute = req.method + ' ' + req.route.path;
   res.locals._WD = parsed;
   res.locals._WD.currentRoute = methodRoute;
+
 
   //this is where we check redirect count! For now we assume redirect count is 0;
 
@@ -45,11 +47,9 @@ const initTracking = (req, res, next) => {
 
 
   onFinished(res, resListeners.finish)
-  onFinished(req, (err, req) => {
-    //Need to fill in...
-  })
 
-  return next();
+
+  jsonController.overwrite(res.locals._WD);
 }
 
 

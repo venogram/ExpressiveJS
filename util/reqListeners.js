@@ -2,7 +2,7 @@
   stores listeners to be placed on the request object
 */
 
-module.exports = {
+const reqListeners = {
   abort: () => {},
   aborted:() => {},
   connect: () => {},
@@ -10,4 +10,10 @@ module.exports = {
   response: () => {},
   socket: () => {},
   upgrade: () => {},
+  //for onFinish? may not need
+  finish: (err, req) => {
+
+  }
 }
+
+module.exports = reqListeners;
