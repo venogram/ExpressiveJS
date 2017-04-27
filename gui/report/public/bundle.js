@@ -6737,63 +6737,51 @@ var Report = function (_Component) {
           'div',
           { key: index, className: 'report' },
           _react2.default.createElement(
-            'p',
-            null,
-            _react2.default.createElement(
-              'b',
-              null,
-              'timestamp:'
-            ),
-            ' ',
-            element.timestamp
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
+            'div',
+            { className: 'currentState' },
             _react2.default.createElement(
               'b',
               null,
               'request:'
-            )
-          ),
-          'cookie: ',
-          reqObj.headers.cookie,
-          ' ',
-          _react2.default.createElement('br', null),
-          'host: ',
-          reqObj.headers.host,
-          ' ',
-          _react2.default.createElement('br', null),
-          'complete: ',
-          reqObj.complete.toString(),
-          ' ',
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'p',
-            null,
+            ),
+            ' ',
+            _react2.default.createElement('br', null),
+            'cookie: ',
+            reqObj.headers.cookie,
+            ' ',
+            _react2.default.createElement('br', null),
+            'host: ',
+            reqObj.headers.host,
+            ' ',
+            _react2.default.createElement('br', null),
+            'complete: ',
+            reqObj.complete.toString(),
+            ' ',
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
               'b',
               null,
               'response:'
-            )
+            ),
+            ' ',
+            _react2.default.createElement('br', null),
+            'finished: ',
+            resObj.finished.toString(),
+            ' ',
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
           ),
-          'finished: ',
-          resObj.finished.toString(),
-          ' ',
-          _react2.default.createElement('br', null),
-          _react2.default.createElement('br', null),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'stateChanges' },
             _react2.default.createElement(
-              'p',
+              'b',
               null,
-              _react2.default.createElement(
-                'b',
-                null,
-                'State Changes:'
-              )
+              'State Changes:'
             ),
+            ' ',
+            _react2.default.createElement('br', null),
             'duration: ',
             _watchDogJSONInterface2.default.getStateChanges(_this2.props.watchData)[0].duration,
             ' ms',
