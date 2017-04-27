@@ -9,11 +9,8 @@ const serverListeners = {
   close: (/*accepts no params*/) => {},
   //connect, connection are socket-related
   connect: () => {
-    process.send('gotcha');
-    console.log('=========connect event!==========');
   },
   connection: () => {
-    console.log('=========connectION event!==========');
   },
   request: (req, res) => {
     initTracking(req, res);
