@@ -3,22 +3,12 @@ TODO: add hovering arrow between the returned report div.
 */
 import React, { Component } from 'react';
 
-//import in getStateChange from watchDogJSONInterface.js
-import JSONInterface from './../public/watchDogJSONInterface';
-
-
 class Report extends Component {
   render() {
-    console.log("reportToGet from report.js: ", this.props.reportToGet)
-
-    //console.log("USER REPORTS", this.props.userReports)
     let report = this.props.userReports.map((element, index) => {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-
-      let stateChangeLogs = JSONInterface.getStateChanges(this.props.json[this.props.reportToGet])
-      //console.log("i am stateChangeLogs",stateChangeLogs)
 
       //information we want off of each timeline object
       return <div key={index} className="report">
@@ -42,9 +32,9 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            duration: {JSONInterface.getStateChanges(this.props.json)[0].duration} ms<br />
-            Request Summaries: {this.props.requestSummaries(stateChangeLogs)} <br />
-            Response Summaries: {this.props.responseSummaries(stateChangeLogs)} <br />
+            duration: {this.props.stateChangeLogs[0].duration} ms<br />
+            Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
+            Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>
         </div>
 

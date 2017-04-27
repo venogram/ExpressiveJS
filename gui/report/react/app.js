@@ -7,6 +7,8 @@ const json = require('./../../../watchDog.json');
 import Summaries from './../public/summaries';
 //console.log(Summaries.getSummaries)
 
+import JSONInterface from './../public/watchDogJSONInterface';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class App extends Component {
       json,
       userRoutes: [],
       userReports: [],
-      reportToGet: ""
+      stateChangeLogs: []
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -47,16 +49,16 @@ class App extends Component {
   }
 
   displayReport(route, index) {
-    let tempReport = [];
     // element is "GET /"
-    let toRetrieve = '';
+    let tempReport = [];
+    //pull timeline of only the matching method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
-      toRetrieve = route;
     }
-
+    //change state according to match
     this.setState({ userReports: tempReport });
-    this.setState({ reportToGet: toRetrieve });
+    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[tempRetrive]) });
+    //change button color
     this.highlightMethod(index);
   }
 
@@ -83,7 +85,7 @@ class App extends Component {
           <Route json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             displayRoute={this.displayRoute} displayReport={this.displayReport} />
 
-          <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} reportToGet={this.state.reportToGet}
+          <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
 
         </div>
