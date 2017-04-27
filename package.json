@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/venogram/watch-dog#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "deep-diff": "^0.3.4",
     "on-finished": "^2.3.0",
     "react": "^15.5.4",
