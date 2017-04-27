@@ -32,7 +32,7 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            duration: {this.props.stateChangeLogs[0].duration} ms<br />
+            {/*duration: {this.props.stateChangeLogs[0].duration} ms<br />*/}
             Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>
