@@ -57,7 +57,7 @@ class App extends Component {
     }
     //change state according to match
     this.setState({ userReports: tempReport });
-    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[tempRetrive]) });
+    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
     //change button color
     this.highlightMethod(index);
   }
