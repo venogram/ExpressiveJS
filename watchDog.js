@@ -38,7 +38,6 @@ const watchDog = () => {
 
       //
       process.send('listening');
-
       return server;
     }
   }

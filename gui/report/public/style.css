@@ -45,7 +45,7 @@ button {
 .currentState {
     /*border: 1px white solid;*/
     width: 85%;
-    margin: 0; 
+    margin: 0;
     margin-left: 5%;
 }
 
@@ -76,9 +76,13 @@ button {
 #methodColumn {
     width: 10%;
     border-right: transparent;
-    
+
 }
 #reportColumn {
     width: 70%;
+}
+
+b {
+    font-size: 20px;
 }
 
