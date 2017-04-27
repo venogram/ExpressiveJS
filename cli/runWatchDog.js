@@ -23,5 +23,5 @@ const serverPath = path.join(__dirname, './../', entry);
 //starts server as a child_process
 const serv = fork(serverPath);
 
-
+console.log(host)
 //serv.kill('SIGINT');

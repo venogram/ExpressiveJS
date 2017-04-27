@@ -9,17 +9,16 @@ import JSONInterface from './../public/watchDogJSONInterface';
 
 class Report extends Component {
   render() {
-    //this.props.userReports === timeline array
-    //console.log(this.props.userReports)
-    // console.log( JSONInterface.getStateChanges(this.props.watchData)[0].resDiff['._headers.set-cookie']['rhs'] )
+    console.log("reportToGet from report.js: ", this.props.reportToGet)
+
+    //console.log("USER REPORTS", this.props.userReports)
     let report = this.props.userReports.map((element, index) => {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
 
-      //set variable for state changes for clarity... number 0 should be index
-      let stateChangeLogs = JSONInterface.getStateChanges(this.props.watchData)
-      //console.log(stateChangeLogs)
+      let stateChangeLogs = JSONInterface.getStateChanges(this.props.json[this.props.reportToGet])
+      //console.log("i am stateChangeLogs",stateChangeLogs)
 
       //information we want off of each timeline object
       return <div key={index} className="report">
@@ -43,7 +42,7 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            duration: {JSONInterface.getStateChanges(this.props.watchData)[0].duration} ms<br />
+            duration: {JSONInterface.getStateChanges(this.props.json)[0].duration} ms<br />
             Request Summaries: {this.props.requestSummaries(stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(stateChangeLogs)} <br />
           </div>
