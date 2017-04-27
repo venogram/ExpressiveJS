@@ -23,24 +23,24 @@ class Report extends Component {
 
       //information we want off of each timeline object
       return <div key={index} className="report">
-        <p><b>timestamp:</b> {element.timestamp}</p>
-
-        <p><b>request:</b></p>
+        <div className="currentState">
+          <b>request:</b> <br />
             cookie: {reqObj.headers.cookie} <br />
             host: {reqObj.headers.host} <br />
             complete: {reqObj.complete.toString()} <br />
 
-        <p><b>response:</b></p>
+        <br />
+
+          <b>response:</b> <br />
             finished: {resObj.finished.toString()} <br />
           <br/>
-
+        </div>
           {/*below are information for arrows*/}
-          <div>
-            <p><b>State Changes:</b></p>
+          <div className="stateChanges">
+            <b>State Changes:</b> <br />
             duration: {JSONInterface.getStateChanges(this.props.watchData)[0].duration} ms<br />
             Request Summaries: {this.props.requestSummaries(stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(stateChangeLogs)} <br />
-
           </div>
 
           <br />
