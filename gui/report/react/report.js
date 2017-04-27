@@ -37,6 +37,7 @@ class Report extends Component {
         </div>
           {/*below are information for arrows*/}
           <div className="stateChanges">
+
             <b>State Changes:</b> <br />
             duration: {JSONInterface.getStateChanges(this.props.watchData)[0].duration} ms<br />
             Request Summaries: {this.props.requestSummaries(stateChangeLogs)} <br />
