@@ -6,48 +6,51 @@ TODO: test all methods in this file
 
 
 const fs = require('fs');
+const path = require('path');
 
-module.exports = {
+const jsonController = {
 
   //Returns parsed JSON file
   getAndParse: () => {
-    const json = fs.readFileSync('./../watchDog.json'),
-    return JSON.parse(json);   
+    const json = fs.readFileSync(path.join(__dirname, './../watchDog.json'));
+    return JSON.parse(json);
   },
 
   //Creates skeleton JSON file
   createJSON: () => {
     const skeleton = {
-        routes: { get: [], post: [], put: [], delete: [] }
+        routes: { GET: [], POST: [], PUT: [], DELETE: [] }
       }
-    this.overwrite(skeleton);
+    jsonController.overwrite(skeleton);
   },
 
   //Stores a route and request method that the server is listening for
   addRoute: (method, route) => {
-    const parsed = this.getAndParse();
+    const parsed = jsonController.getAndParse();
     parsed.routes[method].push(route);
-    this.overwrite(parsed);
+    jsonController.overwrite(parsed);
   },
 
   //Returns a boolean for whether a given route is stored under a given method in JSON file
   containsRoute: (method, route) => {
-    const parsed = this.getAndParse();
+    const parsed = jsonController.getAndParse();
     return parsed.routes[method].includes(route);
   },
 
   //Overwrites existing JSON file or creates a new one with a new JSON object
   overwrite: (obj) => {
-    fs.writeFileSync('./../watchDog.json', JSON.stringify(obj));
+    fs.writeFileSync(path.join(__dirname, './../watchDog.json'), JSON.stringify(obj, null, '  '));
   },
 
-  // Updates a value for a key in the JSON file found with provided path
+  //sets json at path to val
+  // path is an array
   update: (path, val) => {
-    const parsed = this.getAndParse();
+    const parsed = jsonController.getAndParse();
     let curr = parsed;
-    path.map((step) => curr = curr[step] );
-    curr = val;
-    this.overwrite(parsed);
+    eval('parsed["'+path.join('"]["')+'"] = val');
+    jsonController.overwrite(parsed);
   }
 
 }
+
+module.exports = jsonController;
