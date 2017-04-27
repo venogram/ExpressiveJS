@@ -1,15 +1,20 @@
 /*
   stores listeners to be placed on the response object
+
+  TODO: Should resListeners.finish write to the JSON ?
 */
 
-module.exports = {
+const resListeners = {
   finish: (err, res) => {
     const now = Date.now();
-    res.locals._WD.end = now;
-    res.locals._WD.duration = res.locals._WD.end - res.locals._WD.start;
-    res.locals._WD.error = err;
-    res.locals._WD.statusCode = res.statusCode;
-    res.locals._WD.statusMessage = res.statusMessage;
-    console.log('_WD:', res.locals._WD);
+    const methodRoute = res.locals._WD.currentRoute;
+    const report = res.locals._WD[methodRoute];
+    report.end = now;
+    report.duration = report.end - report.start;
+    report.error = err;
+    report.statusCode = res.statusCode;
+    report.statusMessage = res.statusMessage;
   }
 }
+
+module.exports = resListeners;
