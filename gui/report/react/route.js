@@ -8,7 +8,7 @@ class Route extends Component {
 
     //console.log(this.props.displayReport)
     let methodRouteButtons = this.props.userRoutes.map((element, index) => {
-      return <button key={index} onClick={() => this.props.displayReport(element)}> {element} </button>
+      return <button key={index} id = {element} onClick={() => this.props.displayReport(element)}> {element} </button>
     });
 
     return (
