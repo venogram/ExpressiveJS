@@ -10,7 +10,7 @@ app.get('/', (req, res, next) => {
   res.send('response sent!');
 });
 
-app.get('/route', (req, res) => {
+app.put('/', (req, res) => {
   console.log('gettin dat route route');
   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
 })
