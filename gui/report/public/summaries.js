@@ -39,6 +39,9 @@ const summaries = {
   }
 }
 
+const stateChangesArr = JSONInterface.getStateChanges(wdJSON);
+const ourSummaries = summaries.getSummaries(stateChangesArr);
+//console.log(ourSummaries.reqSummaries);
 
 
 module.exports = summaries;
