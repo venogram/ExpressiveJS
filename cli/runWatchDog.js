@@ -12,15 +12,16 @@
 */
 
 const request = require('request');
+const Promise = require('bluebird');
 const path = require('path');
 const jsonController = require('./../util/jsonController.js');
-const json = require('./../watchDog.json');
 const config = require('./../watchDog.config.js');
+const fork = require('child_process').fork;
+
 const entry = config.entry;
+const serverPath = path.join(__dirname, './../', entry);
 const host = config.host;
 const testRoutes = config.testRoutes;
-const fork = require('child_process').fork;
-const serverPath = path.join(__dirname, './../', entry);
 
 //initialize json file
 jsonController.createJSON();
@@ -28,10 +29,11 @@ jsonController.createJSON();
 //starts server as a child_process
 const serv = fork(serverPath);
 
+
 serv.on('message', (message) => {
+  request('http://localhost:3000/');
   if (message === 'listening') {
     // FIRE REQUESTS!
-    request(host+'/');
   }
 })
 
