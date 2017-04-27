@@ -12,6 +12,9 @@
     "start": "node watchDog.js && npm run open",
     "open": "open ./gui/report/public/index.html"
   },
+  "bin": {
+    "wd": "cli/runWatchDog.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/venogram/watch-dog.git"

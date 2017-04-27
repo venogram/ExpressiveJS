@@ -1,9 +1,8 @@
 /*
   stores listeners to be placed on the response object
 
-  TODO: Should resListeners.finish write to the JSON ?
 */
-
+const jsonController = require('./jsonCOntroller');
 
 const resListeners = {
   finish: (err, res) => {
@@ -15,6 +14,7 @@ const resListeners = {
     report.error = err;
     report.statusCode = res.statusCode;
     report.statusMessage = res.statusMessage;
+    jsonController.overwrite(res.locals._WD);
   }
 }
 

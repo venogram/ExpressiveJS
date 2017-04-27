@@ -29,7 +29,7 @@ function takeSnapshot(original, map = new WeakMap()) {
   Object.keys(original).forEach(key => {
     if (Array.isArray(copy) && dataTypes.includes(typeof original[key])) {
       copy.push(takeSnapshot(original[key], map));
-    } else if (dataTypes.includes(typeof original[key])) {
+    } else if (dataTypes.includes(typeof original[key]) && key !== '_WD') {
       copy[key] = takeSnapshot(original[key], map);
     }
   });

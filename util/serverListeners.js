@@ -8,13 +8,18 @@ const serverListeners = {
   clientError: () => {},
   close: (/*accepts no params*/) => {},
   //connect, connection are socket-related
-  connect: () => {},
-  connection: () => {},
+  connect: () => {
+    process.send('gotcha');
+    console.log('=========connect event!==========');
+  },
+  connection: () => {
+    console.log('=========connectION event!==========');
+  },
   request: (req, res) => {
     initTracking(req, res);
   },
   upgrade: () => {}
 }
 
-
 module.exports = serverListeners;
+
