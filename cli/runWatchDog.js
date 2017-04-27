@@ -29,7 +29,7 @@ jsonController.createJSON();
 const serv = fork(serverPath);
 
 serv.on('message', (message) => {
-  if (message = 'listening') {
+  if (message === 'listening') {
     // FIRE REQUESTS!
     request(host+'/');
   }
