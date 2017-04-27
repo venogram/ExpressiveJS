@@ -1,7 +1,7 @@
 /*
   stores listeners to be placed on the response object
 */
-
+const jsonController = require("./jsonController.js");
 module.exports = {
   finish: (err, res) => {
     const now = Date.now();
@@ -10,6 +10,6 @@ module.exports = {
     res.locals._WD.error = err;
     res.locals._WD.statusCode = res.statusCode;
     res.locals._WD.statusMessage = res.statusMessage;
-    console.log('_WD:', res.locals._WD);
+    jsonController.overwrite(res.locals._WD);
   }
 }
