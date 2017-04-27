@@ -2,11 +2,9 @@
 used in app.METHOD to collect paramaters in a unified format and intersperse
 watch-dog middleware.
 
-TODO: run initTracking on app.listen instead of on individual
-  -> Implicated File: ./initTracking.js
+
 */
 
-const initTracking = require('./initTracking.js');
 const trackState = require('./trackState.js');
 
 //flattens a multi-dimensional array to a one-dimensional array
@@ -37,11 +35,10 @@ function collectMethodArgs(...args) {
 function getAppMethodArgs(args) {
   const {path, devMidware} = collectMethodArgs(...args);
   const newMidware = [];
-  //need to move initTracking to server request listener
-  if (devMidware.length) newMidware.push(initTracking);
+
   while (devMidware.length) {
     newMidware.push(devMidware.shift());
-    if (devMidware.length) newMidware.push(trackState);
+    newMidware.push(trackState);
   }
   return [path, ...newMidware];
 }
