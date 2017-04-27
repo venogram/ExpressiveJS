@@ -1,7 +1,13 @@
 /*
   this function returns a deep clone of objects that may contain circular references
   the clone DOES NOT include any methods/functions
+
+  TODO: use config file to only snapshot the relevant info
+  NOTE: config file isn't stable and we may need to change how we use it!
+  PROCEED WITH CAUTION
 */
+
+const config = require('./../watchDog.config.js');
 
 function takeSnapshot(original, map = new WeakMap()) {
   const dataTypes = ['object', 'number', 'string', 'boolean', 'undefined'];
@@ -22,9 +28,9 @@ function takeSnapshot(original, map = new WeakMap()) {
   //loop through the original to build the copy
   Object.keys(original).forEach(key => {
     if (Array.isArray(copy) && dataTypes.includes(typeof original[key])) {
-        copy.push(takeSnapshot(original[key], map));
+      copy.push(takeSnapshot(original[key], map));
     } else if (dataTypes.includes(typeof original[key])) {
-        copy[key] = takeSnapshot(original[key], map);
+      copy[key] = takeSnapshot(original[key], map);
     }
   });
   return copy;

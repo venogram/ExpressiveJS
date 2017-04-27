@@ -4,9 +4,7 @@ const path = require('path');
 const app = WatchDog();
 
 app.get('/', (req, res, next) => {
-  console.log('MADE IT TO APP.GET');
   res.cookie('cookie1', 'hello world');
-  console.log('middleware 1');
   return next();
 }, (req, res, next) => {
   res.send('response sent!');
