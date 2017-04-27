@@ -24,7 +24,7 @@ class Report extends Component {
       //information we want off of each timeline object
       return <div key={index} className="report">
         <div className="currentState">
-          <h3> State #{index + 1} </h3> <hr />
+          <hr /><h3> State #{index + 1} </h3> <hr />
           <b>request:</b> <br />
           cookie: {reqObj.headers.cookie} <br />
           host: {reqObj.headers.host} <br />

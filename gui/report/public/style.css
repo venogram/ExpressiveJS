@@ -1,9 +1,13 @@
 /*google indigo = #3F51B5*/
-
+/*not quite dark black color #191816*/
+/*Alex's second pick for text color : 42A5F5*/
+/*Marys pick for color: 00BCD4*/
 body {
     font-family: roboto;
     padding: 0;
     margin: 0;
+    background-color:#191816;
+    color:#00BCD4;
 }
 
 #title {
@@ -12,16 +16,16 @@ body {
     padding-bottom: 1%;
     padding-top:  1%;
     font-size: 26px;
-    background-color: #3F51B5;
     color: white;
 }
 
 button {
     position: relative;
     display: block;
-    background-color: #3F51B5;
+    background-color: white;
     font-size: 26px;
-    color: white;
+    color: #191816;
+    border-radius: 5px;
     border: none;
 }
 
@@ -35,11 +39,11 @@ button {
 }
 
 .flex-item {
-    border: 1px black solid;
+    /*border: 1px white solid;*/
 }
 
 .currentState {
-    border: 1px black solid;
+    /*border: 1px white solid;*/
     width: 85%;
     margin: 0; 
     margin-left: 5%;
@@ -61,14 +65,18 @@ button {
 }
 
 .changeLogs {
-    padding-top: 10%;
+    padding-top: 5%;
 }
 
 #routeColumn {
-    width: 15%;
+    width: 10%;
+    border-left: transparent;
+    border-right: transparent;
 }
 #methodColumn {
-    width: 15%;
+    width: 10%;
+    border-right: transparent;
+    
 }
 #reportColumn {
     width: 70%;

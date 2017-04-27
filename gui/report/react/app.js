@@ -28,10 +28,10 @@ class App extends Component {
     const clearReport = [];
 
     // Object.keys(this.state.watchData).map((element) => {
-      //if method match, get route button
-      if (this.state.watchData['method'] === method) {
-        tempRoute.push(this.state.watchData['route'])
-      }
+    //if method match, get route button
+    if (this.state.watchData['method'] === method) {
+      tempRoute.push(this.state.watchData['route'])
+    }
     // })
     this.setState({ userRoutes: tempRoute });
     //clear off timeline text caused by other buttons
@@ -39,31 +39,34 @@ class App extends Component {
     this.highlightMethod(method);
   }
 
-  highlightMethod(method){
+  highlightMethod(method) {
     //method is equal to GET
-    document.getElementById(method).style.backgroundColor = "black";
+    document.getElementById(method).style.backgroundColor = "#191816";
+    document.getElementById(method).style.color = "white";
+
   }
 
   displayReport(route) {
     let tempReport = [];
     // console.log(route)
     //Object.keys(this.state.watchData).map((element) => {
-      // element is "/"
-      if (this.state.watchData['route'] === route) {
-        tempReport = (this.state.watchData['timeline'])
-      }
+    // element is "/"
+    if (this.state.watchData['route'] === route) {
+      tempReport = (this.state.watchData['timeline'])
+    }
     //})
     this.setState({ userReports: tempReport });
+    this.highlightMethod(route)
   }
 
-responseSummaries(log) {
-  return Summaries.getSummaries(log).resSummaries;
-}
+  responseSummaries(log) {
+    return Summaries.getSummaries(log).resSummaries;
+  }
 
-requestSummaries(log) {
-  if(Summaries.getSummaries(log).reqSummaries.length === 0) return "none";
-  return Summaries.getSummaries(log).reqSummaries;
-}
+  requestSummaries(log) {
+    if (Summaries.getSummaries(log).reqSummaries.length === 0) return "none";
+    return Summaries.getSummaries(log).reqSummaries;
+  }
 
 
   render() {
@@ -80,7 +83,7 @@ requestSummaries(log) {
             displayRoute={this.displayRoute} displayReport={this.displayReport} />
 
           <Report watchData={this.state.watchData} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}/>
+            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
 
         </div>
       </div>
