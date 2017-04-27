@@ -2,7 +2,7 @@ const trackState = require('./trackState.js'),
       initTracking = require('./initTracking.js'),
       jsonController = require('./jsonController.js');
 
-module.exports = {
+const serverListeners = {
   checkContinue: () => {},
   checkExpectation: () => {},
   clientError: () => {},
@@ -15,3 +15,6 @@ module.exports = {
   },
   upgrade: () => {}
 }
+
+
+module.exports = serverListeners;
