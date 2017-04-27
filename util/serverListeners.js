@@ -1,5 +1,6 @@
 const trackState = require('./trackState.js'),
-      initTracking = require('./initTracking.js');
+      initTracking = require('./initTracking.js'),
+      jsonController = require('./jsonController.js');
 
 module.exports = {
   checkContinue: () => {},
@@ -10,11 +11,7 @@ module.exports = {
   connect: () => {},
   connection: () => {},
   request: (req, res) => {
-    if (/*req.path matches an existing path*/) {
-      initTracking(req, res);
-    } else {
-      //register 404 error?
-    }
+    initTracking(req, res);
   },
   upgrade: () => {}
 }
