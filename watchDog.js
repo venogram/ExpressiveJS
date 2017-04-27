@@ -7,7 +7,8 @@
 const express = require('express'),
       app = express(),
       getAppMethodArgs = require('./util/getAppMethodArgs.js'),
-      jsonController = require('./util/jsonController.js');
+      jsonController = require('./util/jsonController.js'),
+      serverListeners = require('./util/serverListeners.js');
 
 function set(method, ...args) {
   const route = args[0];
@@ -16,7 +17,7 @@ function set(method, ...args) {
   return app[method.toLowerCase()](...watchDogMidware);
 }
 
-module.exports = () => {
+const watchDog = () => {
   //EVENTUALLY THIS LINE WILL RUN ONCE WHEN WE RUN WATCHDOG FROM THE COMMAND
   // (I.E. MOVE THIS TO CLI DIRECTORY)
   jsonController.createJSON();
@@ -32,8 +33,11 @@ module.exports = () => {
     delete: (...args) => set('DELETE', ...args),
 
     listen: (...args) => {
-      //Need to add server listeners
-      return app.listen(...args);
+      const server = app.listen(...args);
+      Object.keys(serverListeners).map(event => {
+        server.on(event, serverListeners[event]);
+      })
+      return server;
     }
 
   }
@@ -46,3 +50,7 @@ module.exports = () => {
 
   return watchDogObj;
 }
+
+
+
+module.exports = watchDog;
