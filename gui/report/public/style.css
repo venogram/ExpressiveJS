@@ -1,9 +1,11 @@
+/*google indigo = #3F51B5*/
+
 body {
     padding: 0;
     margin: 0;
 }
 
-.title {
+#title {
     text-align: center;
     /*vertical-align: middle;*/
     padding-bottom: 5%;
@@ -21,12 +23,13 @@ button {
     margin-bottom: 10px;
     background-color: #3F51B5;
     font-family: roboto;
-    border: none;
-    size: 26px;
+    font-size: 26px;
     color: white;
+    border: none;
 }
 
 .flex-container {
+    padding-top: 5%;
     display: flex;
     width: auto;
     /*border: 1px black solid;*/
@@ -36,6 +39,16 @@ button {
 
 .flex-item {
     border: 1px black solid;
-    width: 33%;
+}
 
+#routeColumn {
+    width: 15%;
+}
+
+#methodColumn {
+    width: 15%;
+}
+
+#reportColumn {
+    width: 70%;
 }
