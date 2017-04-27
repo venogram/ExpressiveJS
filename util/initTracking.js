@@ -2,8 +2,11 @@
   initTracking is middleware that is run once when the server receives a new http request.
   it sets up res.locals._WD and places listeners on the response and request objects.
 
+  NOTE: watchDog.json must already be configured in order for this to function properly!
+
   TODO: run initTracking on app.listen instead of on individual app.METHOD
     -> Implicated File: ./getAppMethodArgs.js
+  TODO: take redirects into account! see line 25.
 */
 
 const takeSnapshot = require('./takeSnapshot.js'),
@@ -13,10 +16,14 @@ const takeSnapshot = require('./takeSnapshot.js'),
       jsonController = require('./jsonController.js'),
       fs = require('fs');
 
-
-module.exports = (req, res, next) => {
+const initTracking = (req, res, next) => {
   const parsed = jsonController.getAndParse();
-  
+  const methodRoute = req.method + ' ' + req.route.path;
+  res.locals._WD = parsed;
+  res.locals._WD.currentRoute = methodRoute;
+
+  //this is where we check redirect count! For now we assume redirect count is 0;
+
   const now = Date.now();
   const initialState = {
     timestamp: now,
@@ -24,8 +31,6 @@ module.exports = (req, res, next) => {
     res: takeSnapshot(res)
   };
 
-  const methodRoute = req.method + ' ' + req.route.path;
-  
   res.locals._WD[methodRoute] = {
     method: req.method,
     route: req.route.path,
@@ -40,12 +45,13 @@ module.exports = (req, res, next) => {
 
 
   onFinished(res, resListeners.finish)
-
   onFinished(req, (err, req) => {
     //Need to fill in...
   })
 
-  jsonController.overwrite(res.locals._WD);
-
   return next();
 }
+
+
+
+module.exports = initTracking;
