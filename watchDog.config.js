@@ -4,6 +4,7 @@
 */
 
 const config = {
+  entry: './test-servers/ryan-server.js',
   host: 'http://localhost:3000',
   testRoutes: [{method: "GET", route: "/", body: null}, {method: "GET", route:"/route", body:""}],
   resWatch: ['._headers'],
