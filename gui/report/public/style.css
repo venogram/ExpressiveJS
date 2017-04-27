@@ -1,6 +1,7 @@
 /*google indigo = #3F51B5*/
 
 body {
+    font-family: roboto;
     padding: 0;
     margin: 0;
 }
@@ -8,21 +9,17 @@ body {
 #title {
     text-align: center;
     /*vertical-align: middle;*/
-    padding-bottom: 5%;
-    padding-top:  5%;
+    padding-bottom: 1%;
+    padding-top:  1%;
     font-size: 26px;
     background-color: #3F51B5;
     color: white;
-    font-family: roboto;
 }
 
 button {
     position: relative;
     display: block;
-    /*padding-bottom: 10px;*/
-    margin-bottom: 10px;
     background-color: #3F51B5;
-    font-family: roboto;
     font-size: 26px;
     color: white;
     border: none;
@@ -41,14 +38,39 @@ button {
     border: 1px black solid;
 }
 
+.currentState {
+    border: 1px black solid;
+    width: 85%;
+    margin: 0; 
+    margin-left: 5%;
+}
+
+.currentState h3 {
+    text-align:center;
+
+}
+
+.state-container {
+    display: flex;
+    width: 90%;
+    padding-top: 5%;
+}
+
+.state-item {
+    padding-left: 5%;
+}
+
+.changeLogs {
+    padding-top: 10%;
+}
+
 #routeColumn {
     width: 15%;
 }
-
 #methodColumn {
     width: 15%;
 }
-
 #reportColumn {
     width: 70%;
 }
+

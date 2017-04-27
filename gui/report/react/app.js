@@ -19,6 +19,7 @@ class App extends Component {
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
+    this.highlightMethod = this.highlightMethod.bind(this);
   }
 
   displayRoute(method) {
@@ -35,6 +36,12 @@ class App extends Component {
     this.setState({ userRoutes: tempRoute });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
+    this.highlightMethod(method);
+  }
+
+  highlightMethod(method){
+    //method is equal to GET
+    document.getElementById(method).style.backgroundColor = "black";
   }
 
   displayReport(route) {
