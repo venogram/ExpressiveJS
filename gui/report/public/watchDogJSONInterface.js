@@ -7,11 +7,12 @@
 */
 
 const deepDiff = require('deep-diff').diff;
-const wdJSON = require('./../../../watchDog.json');
+//const ourJSON = require('./../../../watchDog.json');
 const getStateChange = require('./../../../util/getStateChange.js');
 
 const JSONInterface = {
   getStateChanges: (wdJSON) => {
+    console.log("from report passing in vals",wdJSON)
     const timeline = wdJSON.timeline;
 
     if (!Array.isArray(timeline)) throw new Error('getStateChanges received unexpected input');
