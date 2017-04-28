@@ -34,20 +34,18 @@ const serv = fork(serverPath);
 serv.on('message', (message) => {
   if (message === 'listening') {
     // FIRE REQUESTS!
-    const myReq = new Promise((resolve, reject) => {
-      request('http://localhost:3000/', (err, res) => {
-        if (err) reject(err);
-        else resolve(res);
-      });
-    });
+    const reqRoutes = testRoutes
+      .filter(routeInfo => routeInfo.method === 'GET')
+      .map(routeInfo => routeInfo.route);
 
-    myReq
-      .then((res) => {
-        console.log('request complete! Now I will kill the server.... mwahahah');
-        serv.kill('SIGINT');
+    const initPromise = new Promise((resolve, reject) => resolve());
+    reqRoutes.reduce((prevPromise, nextRoute) => {
+      return prevPromise.then(() => {
+        return request(host + nextRoute);
       })
+    }, initPromise);
   }
-})
+});
 
 
 //serv.kill('SIGINT');
