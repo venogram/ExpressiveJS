@@ -2,7 +2,7 @@
   "name": "watch-dog",
   "version": "1.0.0",
   "description": "End to end server route tracking for express.js",
-  "main": "watchDog.js",
+  "main": "./gui/report/public/electron.js",
   "directories": {
     "example": "examples"
   },
@@ -14,7 +14,7 @@
   },
   "bin": {
     "wd": "cli/runWatchDog.js",
-    "build": "cli/buildVisual.js", 
+    "build": "cli/buildVisual.js",
     "display": "cli/displayElectron.js"
   },
   "repository": {
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/venogram/watch-dog#readme",
   "dependencies": {
     "deep-diff": "^0.3.4",
+    "electron": "^1.6.6",
     "on-finished": "^2.3.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
