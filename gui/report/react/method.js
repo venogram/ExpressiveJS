@@ -17,6 +17,7 @@ class Method extends Component {
       }
     })
 
+    console.log(Object.keys(userMethods))
     //create method button
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
@@ -26,7 +27,7 @@ class Method extends Component {
 
         //else render only p tag
       });
-
+      console.log(methodButtons)
     return (
       <div id="methodColumn" className="flex-item">
         {methodButtons}

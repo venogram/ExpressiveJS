@@ -16,13 +16,18 @@ class App extends Component {
       userRoutes: [],
       userReports: [],
       stateChangeLogs: [],
-      currMethod: ""
+      currMethod: "",
+      methodAndRoutes: []
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
   }
+  
+
+
+
 
   //fill state to populate routes
   displayRoute(arrRoutes, method) {
