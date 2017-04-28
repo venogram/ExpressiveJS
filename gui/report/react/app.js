@@ -6,7 +6,7 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
-//console.log("this.state", json)
+//console.log("this.state.json", json)
 
 class App extends Component {
   constructor(props) {
@@ -15,36 +15,37 @@ class App extends Component {
       json,
       userRoutes: [],
       userReports: [],
-      stateChangeLogs: []
+      stateChangeLogs: [],
+      currMethod: ""
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
-    this.highlightMethod = this.highlightMethod.bind(this);
   }
 
+  //fill state to populate routes
   displayRoute(arrRoutes, method) {
     //arrRoutes has GET / (for right now)
     //our method is GET (for right now)
+    console.log('arrROutes:', arrRoutes)
+    console.log('method: ', method)
+
     let tempRoute = [];
+    let tempCurrMethod = '';
     const clearReport = [];
 
     arrRoutes.map(element => {
-      if (element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+      if (element.includes(method)) {
+        tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+        tempCurrMethod = method;
+      }
     });
 
     this.setState({ userRoutes: tempRoute });
+    this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
-    this.highlightMethod(method);
-  }
-
-  highlightMethod(method) {
-    //method is equal to GET
-    document.getElementById(method).style.backgroundColor = "#191816";
-    document.getElementById(method).style.color = "#00BCD4";
-
   }
 
   displayReport(route, index) {
@@ -57,8 +58,6 @@ class App extends Component {
     //change state according to match
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
-    //change button color
-    this.highlightMethod(index);
   }
 
   responseSummaries(log) {
@@ -74,20 +73,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="mdl-layout mdl-js-layout">
+      <div>
         <div id="title"> Your Server Route Results! </div>
 
         <div className="App flex-container">
-
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} />
-
-          <Route json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+            currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport} />
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
-
         </div>
       </div>
     );

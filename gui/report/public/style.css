@@ -12,47 +12,37 @@ body {
 
 #title {
     text-align: center;
-    /*vertical-align: middle;*/
     padding-bottom: 1%;
     padding-top:  2%;
     font-size: 26px;
     color: white;
 }
 
-button {
-    position: relative;
-    display: block;
-    background-color: white;
-    font-size: 26px;
-    color: #191816;
-    border-radius: 5px;
-    border: none;
-    font-family: 'courier new';
+#GET {
+    font-size: 24px;
 }
 
 .flex-container {
     padding-top: 5%;
     display: flex;
     width: auto;
-    /*border: 1px black solid;*/
     margin: auto;
     width: 90%;
 }
 
-.flex-item {
-    /*border: 1px white solid;*/
-}
-
 .currentState {
-    /*border: 1px white solid;*/
     width: 85%;
     margin: 0;
     margin-left: 5%;
 }
 
 .currentState h2 {
-    text-align: center;
+    text-align: left;
 
+}
+
+b {
+    font-size: 22px;
 }
 
 .state-container {
@@ -67,27 +57,30 @@ button {
 
 .changeLogs {
     padding-top: 5%;
+    /*moving state change paragraph independent of picture*/
+    margin-left: 5%;
 }
 
-#routeColumn {
-    /*increased width to account for longer route name*/
+/*#routeColumn {
+    increased width to account for longer route name
     width: 20%;
     border-left: transparent;
     border-right: transparent;
-}
+}*/
 #methodColumn {
-    width: 10%;
-    border-right: transparent;
-
+    width: 20%;
+    border-right: 1px white solid;
 }
 #reportColumn {
-    width: 60%;
+    width: 70%;
     /*will move report towards rightside*/
     /*margin-left: 10%;*/
+    /*border-left: 1px white solid;*/
 }
 
-b {
-    font-size: 20px;
+.indent {
+    text-indent: 20px;
+    /*margin-left: 3%;*/
 }
 
 
