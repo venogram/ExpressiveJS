@@ -1,6 +1,3 @@
-/*
-TODO: add hovering arrow between the returned report div.
-*/
 import React, { Component } from 'react';
 
 class Report extends Component {

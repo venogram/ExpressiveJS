@@ -4,11 +4,11 @@ import Report from './Report';
 class Route extends Component {
   render() {
     let methodRouteButtons = this.props.userRoutes.map((element, index) => {
-      return <button key={index} id={index} onClick={() => this.props.displayReport(element, index)}> {element} </button>
+      return <p key={index} className="indent" id={index} onClick={() => this.props.displayReport(element, index)}> {element} </p>
     });
 
     return (
-      <div id="routeColumn" className="flex-item">
+      <div id="routeColumn">
         {methodRouteButtons}
       </div>
     );

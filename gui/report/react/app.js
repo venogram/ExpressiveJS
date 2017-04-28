@@ -15,7 +15,8 @@ class App extends Component {
       json,
       userRoutes: [],
       userReports: [],
-      stateChangeLogs: []
+      stateChangeLogs: [],
+      currMethod: "GET"
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -24,6 +25,7 @@ class App extends Component {
     this.highlightMethod = this.highlightMethod.bind(this);
   }
 
+  //fill state to populate routes
   displayRoute(arrRoutes, method) {
     //arrRoutes has GET / (for right now)
     //our method is GET (for right now)
@@ -74,20 +76,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="mdl-layout mdl-js-layout">
+      <div>
         <div id="title"> Your Server Route Results! </div>
 
         <div className="App flex-container">
-
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} />
-
-          <Route json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+            currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport} />
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
-
         </div>
       </div>
     );
