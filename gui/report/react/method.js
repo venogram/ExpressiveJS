@@ -24,11 +24,16 @@ class Method extends Component {
         return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
       });
 
+    //
     let subButtons = methodButtons.map((element, index) => {
+      console.log(element)
       if(element.props.id === this.props.currMethod) {
-        return  element, <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+        return  <span key={index}>
+        {element}
+        <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
             currMethod={this.props.currMethod}
             displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
+        </span>
       } else {
         return element
       }
@@ -37,7 +42,6 @@ class Method extends Component {
     return (
       <div id="methodColumn" className="flex-item">
         {subButtons}
-
       </div>
     );
   }

@@ -21,6 +21,9 @@ body {
 #GET {
     font-size: 24px;
 }
+#POST {
+    font-size: 24px;
+}
 
 .flex-container {
     padding-top: 5%;
