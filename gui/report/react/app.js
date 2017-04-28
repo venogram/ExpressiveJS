@@ -32,7 +32,7 @@ class App extends Component {
     const clearReport = [];
 
     arrRoutes.map(element => {
-      if(element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+      if (element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
     });
 
     this.setState({ userRoutes: tempRoute });
@@ -57,12 +57,13 @@ class App extends Component {
     }
     //change state according to match
     this.setState({ userReports: tempReport });
-    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[tempRetrive]) });
+    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
     //change button color
     this.highlightMethod(index);
   }
 
   responseSummaries(log) {
+    if (Summaries.getSummaries(log).resSummaries.length === 0) return "none";
     return Summaries.getSummaries(log).resSummaries;
   }
 

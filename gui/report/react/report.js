@@ -9,7 +9,7 @@ class Report extends Component {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-
+      console.log("element in the loop", element)
       //information we want off of each timeline object
       return <div key={index} className="report">
         <div className="currentState">
@@ -32,7 +32,7 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            duration: {this.props.stateChangeLogs[0].duration} ms<br />
+            {/*duration: {this.props.stateChangeLogs[0].duration} ms<br />*/}
             Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>
