@@ -21,17 +21,22 @@ class Method extends Component {
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
         //element is GET and POST for our example.
-        return <span key={index}>
-          <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
-          <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+        return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
+      });
+
+    let subButtons = methodButtons.map((element, index) => {
+      if(element.props.id === this.props.currMethod) {
+        return  element, <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
             currMethod={this.props.currMethod}
             displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
-            </span>
-      });
+      } else {
+        return element
+      }
+    })
 
     return (
       <div id="methodColumn" className="flex-item">
-        {methodButtons}
+        {subButtons}
 
       </div>
     );
