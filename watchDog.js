@@ -39,7 +39,7 @@ const watchDog = () => {
       })
       //sends message to parent process, so that parent process knows it may start
       //firing requests!
-      process.send('listening');
+      // process.send('listening');
       return server;
     },
     use: (...args) => insertWatchDogMidware('use', ...args),
