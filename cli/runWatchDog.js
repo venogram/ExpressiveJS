@@ -32,9 +32,20 @@ const serv = fork(serverPath);
 
 
 serv.on('message', (message) => {
-  request('http://localhost:3000/');
   if (message === 'listening') {
     // FIRE REQUESTS!
+    const myReq = new Promise((resolve, reject) => {
+      request('http://localhost:3000/', (err, res) => {
+        if (err) reject(err);
+        else resolve(res);
+      });
+    });
+
+    myReq
+      .then((res) => {
+        console.log('request complete! Now I will kill the server.... mwahahah');
+        serv.kill('SIGINT');
+      })
   }
 })
 
