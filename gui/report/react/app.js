@@ -3,11 +3,10 @@ import Method from './Method';
 import Route from './Route';
 import Report from './Report';
 const json = require('./../../../watchDog.json');
-//console.log(json)
-import Summaries from './../public/summaries';
-//console.log(Summaries.getSummaries)
-
 import JSONInterface from './../public/watchDogJSONInterface';
+import Summaries from './../public/summaries';
+
+//console.log("this.state", json)
 
 class App extends Component {
   constructor(props) {
@@ -44,7 +43,7 @@ class App extends Component {
   highlightMethod(method) {
     //method is equal to GET
     document.getElementById(method).style.backgroundColor = "#191816";
-    document.getElementById(method).style.color = "white";
+    document.getElementById(method).style.color = "#00BCD4";
 
   }
 
