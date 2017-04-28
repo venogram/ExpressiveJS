@@ -15,7 +15,7 @@ class Report extends Component {
         <div className="currentState">
           <h3> State #{index + 1} </h3> <hr />
           <b>request:</b> <br />
-          cookie: {reqObj.headers.cookie} <br />
+          cookie: {reqObj.headers['set-cookie']} <br />
           host: {reqObj.headers.host} <br />
           complete: {reqObj.complete.toString()} <br />
 
@@ -28,7 +28,7 @@ class Report extends Component {
         {/*below are information for arrows*/}
         <div className="stateChanges state-container">
           <div className = "arrow state-item">
-            <img src = "http://placekitten.com/g/200/250" />
+            <img src = "http://placekitten.com/g/175/175" />
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />

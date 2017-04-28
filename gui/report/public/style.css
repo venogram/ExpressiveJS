@@ -69,7 +69,8 @@ button {
 }
 
 #routeColumn {
-    width: 10%;
+    /*increased width to account for longer route name*/
+    width: 20%;
     border-left: transparent;
     border-right: transparent;
 }
@@ -79,7 +80,9 @@ button {
 
 }
 #reportColumn {
-    width: 70%;
+    width: 60%;
+    /*will move report towards rightside*/
+    /*margin-left: 10%;*/
 }
 
 b {

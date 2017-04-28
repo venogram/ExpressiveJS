@@ -2,5 +2,5 @@
 
 const exec = require('child_process').exec;
 const path = require('path'); 
-const guiHTML = path.join(__dirname, "../gui/report/public/index.html"); 
-exec(`open ${guiHTML}`)
+const guiHTML = path.join(__dirname, "../node_modules/.bin/electron"); 
+exec(`${guiHTML} .`)
