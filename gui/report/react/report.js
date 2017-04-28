@@ -9,12 +9,11 @@ class Report extends Component {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-      //console.log("element in the loop", element)
-      //information we want off of each timeline object
+      console.log("element in the loop", element)
 
       return <div key={index} className="report">
         <div className="currentState">
-          <h3> State #{index + 1} </h3> <hr />
+          <h2> State #{index + 1} </h2> <hr />
           <b>request:</b> <br />
           cookie: {reqObj.socket._httpMessage._headers['set-cookie']} <br />
           host: {reqObj.headers.host} <br />
@@ -23,6 +22,7 @@ class Report extends Component {
           <br />
 
           <b>response:</b> <br />
+          cookie: {resObj._headers['set-cookie']} <br />
           finished: {resObj.finished.toString()} <br />
           <br />
         </div>
@@ -33,7 +33,9 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            {/*duration: {this.props.stateChangeLogs[0].duration} ms<br />*/}
+            duration of Request and Response: {this.props.json[this.props.userRoutes].duration} ms<br />
+            Status Code: {this.props.json[this.props.userRoutes].statusCode}<br />
+            Status Message: {this.props.json[this.props.userRoutes].statusMessage}<br />
             Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>

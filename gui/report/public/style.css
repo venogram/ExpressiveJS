@@ -3,7 +3,7 @@
 /*Alex's second pick for text color : 42A5F5*/
 /*Marys pick for color: 00BCD4*/
 body {
-    font-family: roboto;
+    font-family: 'courier new';
     padding: 0;
     margin: 0;
     background-color:#191816;
@@ -14,7 +14,7 @@ body {
     text-align: center;
     /*vertical-align: middle;*/
     padding-bottom: 1%;
-    padding-top:  1%;
+    padding-top:  2%;
     font-size: 26px;
     color: white;
 }
@@ -27,6 +27,7 @@ button {
     color: #191816;
     border-radius: 5px;
     border: none;
+    font-family: 'courier new';
 }
 
 .flex-container {
@@ -49,8 +50,8 @@ button {
     margin-left: 5%;
 }
 
-.currentState h3 {
-    text-align:center;
+.currentState h2 {
+    text-align: center;
 
 }
 
@@ -88,4 +89,5 @@ button {
 b {
     font-size: 20px;
 }
+
 
