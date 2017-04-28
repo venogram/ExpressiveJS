@@ -63,6 +63,7 @@ class App extends Component {
   }
 
   responseSummaries(log) {
+    if (Summaries.getSummaries(log).resSummaries.length === 0) return "none";
     return Summaries.getSummaries(log).resSummaries;
   }
 
