@@ -32,7 +32,7 @@ class App extends Component {
     const clearReport = [];
 
     arrRoutes.map(element => {
-      if(element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+      if (element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
     });
 
     this.setState({ userRoutes: tempRoute });
