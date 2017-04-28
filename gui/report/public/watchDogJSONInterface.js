@@ -14,6 +14,8 @@ const JSONInterface = {
   getStateChanges: (wdJSON) => {
     const timeline = wdJSON.timeline;
 
+    console.log("timeline from JSON Interface", timeline)
+
     if (!Array.isArray(timeline)) throw new Error('getStateChanges received unexpected input');
     if (timeline.length < 2) return [];
 
