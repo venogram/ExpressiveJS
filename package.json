@@ -13,8 +13,9 @@
     "open": "open ./gui/report/public/index.html"
   },
   "bin": {
-    "wd": "cli/runWatchDog.js", 
-    "build": "cli/buildVisual.js"
+    "wd": "cli/runWatchDog.js",
+    "build": "cli/buildVisual.js", 
+    "display": "cli/displayElectron.js"
   },
   "repository": {
     "type": "git",
