@@ -24,7 +24,7 @@ class Method extends Component {
         return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
       });
 
-    //
+    //add route button according the the pressed method button
     let subButtons = methodButtons.map((element, index) => {
       console.log(element)
       if(element.props.id === this.props.currMethod) {
