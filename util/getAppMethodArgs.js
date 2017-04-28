@@ -5,7 +5,7 @@ watch-dog middleware.
 
 */
 
-const trackState = require('./trackState.js');
+const trackingMidware = require('./trackingMidware.js');
 
 //flattens a multi-dimensional array to a one-dimensional array
 function flatten(array) {
@@ -34,10 +34,10 @@ function collectMethodArgs(...args) {
 // and intersperses the watch-dog midware
 function getAppMethodArgs(args) {
   const { path, devMidware } = collectMethodArgs(...args);
-  const newMidware = [];
+  const newMidware = [trackingMidware];
   while (devMidware.length) {
     newMidware.push(devMidware.shift());
-    newMidware.push(trackState);
+    newMidware.push(trackingMidware);
   }
   return path === null ? [...newMidware] : [path, ...newMidware];
 }
