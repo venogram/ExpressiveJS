@@ -16,13 +16,12 @@ class App extends Component {
       userRoutes: [],
       userReports: [],
       stateChangeLogs: [],
-      currMethod: "GET"
+      currMethod: ""
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
-    this.highlightMethod = this.highlightMethod.bind(this);
   }
 
   //fill state to populate routes
@@ -33,23 +32,20 @@ class App extends Component {
     console.log('method: ', method)
 
     let tempRoute = [];
+    let tempCurrMethod = '';
     const clearReport = [];
 
     arrRoutes.map(element => {
-      if (element.includes(method)) tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+      if (element.includes(method)) {
+        tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+        tempCurrMethod = method;
+      }
     });
 
     this.setState({ userRoutes: tempRoute });
+    this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
-    this.highlightMethod(method);
-  }
-
-  highlightMethod(method) {
-    //method is equal to GET
-    document.getElementById(method).style.backgroundColor = "#191816";
-    document.getElementById(method).style.color = "#00BCD4";
-
   }
 
   displayReport(route, index) {
@@ -62,8 +58,6 @@ class App extends Component {
     //change state according to match
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
-    //change button color
-    this.highlightMethod(index);
   }
 
   responseSummaries(log) {
