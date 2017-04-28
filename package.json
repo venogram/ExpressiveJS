@@ -15,7 +15,8 @@
   "bin": {
     "wd": "cli/runWatchDog.js",
     "build": "cli/buildVisual.js",
-    "display": "cli/displayElectron.js"
+    "display": "cli/displayElectron.js",
+    "test-routes": "cli/test-routes.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   },
   "homepage": "https://github.com/venogram/watch-dog#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "deep-diff": "^0.3.4",
     "electron": "^1.6.6",
     "on-finished": "^2.3.0",
