@@ -21,8 +21,5 @@ module.exports = (req, res, next) => {
   }
   report.timeline.push(snapshot);
   jsonController.overwrite(res.locals._WD);
-  // fs.writeFile(path.join(__dirname, './../watchDog.json'), JSON.stringify(wd), (err) => {
-  //   if (err) throw err;
-  // });
   if (next) next();
 }
