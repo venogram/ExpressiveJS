@@ -17,30 +17,46 @@ const express = require('express'),
 function set(method, ...args) {
   const route = args[0];
   jsonController.addRoute(method, route);
+  return insertWatchDogMidware(method, ...args);
+}
+
+function insertWatchDogMidware(method, ...args) {
   const watchDogMidware = getAppMethodArgs(args);
   return app[method.toLowerCase()](...watchDogMidware);
 }
 
 const watchDog = () => {
   const watchDogObj = {
-    get: (...args) => set('GET', ...args),
+    get: (...args) => {
+      if (args.length === 1) return app.get(...args);
+      return set('GET', ...args)
+    },
     post: (...args) => set('POST', ...args),
     put: (...args) => set('PUT', ...args),
     delete: (...args) => set('DELETE', ...args),
-
     listen: (...args) => {
       const server = app.listen(...args);
-
       //set up server listeners!
       Object.keys(serverListeners).map(event => {
         server.on(event, serverListeners[event]);
       })
-
       //
       process.send('listening');
-
       return server;
-    }
+    },
+    use: (...args) => insertWatchDogMidware('use', ...args),
+    // all: () => {},
+    // disable: () => {},
+    // disabled: () => {},
+    // enable: () => {},
+    // enabled: () => {},
+    // engine: () => {},
+    // METHOD: () => {},
+    // param: () => {},
+    // path: () => {},
+    // render: () => {},
+    // route: () => {},
+    // set: () => {}
   }
 
   //assign all properties and methods of the express app to the watchDogObj that
