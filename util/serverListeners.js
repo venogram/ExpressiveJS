@@ -13,10 +13,10 @@ const serverListeners = {
   connection: () => {
   },
   request: (req, res) => {
+    console.log('request event!');
     initTracking(req, res);
   },
   upgrade: () => {}
 }
 
 module.exports = serverListeners;
-

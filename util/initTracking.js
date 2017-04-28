@@ -17,11 +17,12 @@ const takeSnapshot = require('./takeSnapshot.js'),
       fs = require('fs');
 
 const initTracking = (req, res) => {
-
+  console.log('INIT TRACKING WAS CALLED');
   const parsed = jsonController.getAndParse();
   const methodRoute = req.method + ' ' + req.route.path;
   res.locals._WD = parsed;
   res.locals._WD.currentRoute = methodRoute;
+  console.log(res.locals._WD);
 
 
   //this is where we check redirect count! For now we assume redirect count is 0;
