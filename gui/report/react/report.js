@@ -9,7 +9,7 @@ class Report extends Component {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-
+      console.log("element in the loop", element)
       //information we want off of each timeline object
       return <div key={index} className="report">
         <div className="currentState">
