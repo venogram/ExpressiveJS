@@ -18,6 +18,7 @@ app.get('/redirect', (req, res) => {
 })
 
 app.get('/route', (req, res) => {
+  console.log('===========/ROUTE========');
   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
 })
 

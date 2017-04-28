@@ -44,22 +44,23 @@ class Report {
 }
 
 function wrapRedirect(res) {
-  // const original = res.redirect;
-  // console.log(original);
-  // const newRedirect = (...args) => {
-  //   res.locals._WD.redirectCount += 1;
-  //   return original(...args);
-  // }
-  // res.redirect = newRedirect;
+  const clone = res.redirect.bind(res);
+  function newRedirect(...args) {
+    res.locals._WD[res.locals._WD.currentRoute[0]].isRedirect = true;
+    jsonController.overwrite(res.locals._WD);
+    return clone(...args);
+  }
+  res.redirect = newRedirect;
 }
 
 
 function initTracking(req, res, next) {
   const parsed = jsonController.getAndParse();
   const methodRoute = req.method + ' ' + req.url;
+  console.log('running initTracking on', methodRoute);
   parsed.currentRoute = [methodRoute];
   parsed[methodRoute] = new Report(req, res);
-  parsed.redirectCount = 0;
+  parsed[methodRoute].isRedirect = false;
   wrapRedirect(res);
   jsonController.overwrite(parsed);
   res.locals._WD = parsed;
@@ -77,28 +78,32 @@ function trackState(req, res, next) {
 
 
 function initRedirect(req, res, next) {
-  const wd = jsonController.getAndParse();
+  console.log('running initRedirect');
+  const parsed = jsonController.getAndParse();
   //updates current route
-  wd.currentRoute.push['redirect'];
-  wd.redirectCount += 1;
-  wrapRedirect(res);
+  parsed.currentRoute.push('redirect');
+  parsed[parsed.currentRoute[0]].isRedirect = false;
+  // console.log(parsed.currentRoute);
+  // console.log('parsed["' + parsed.currentRoute.join('"]["') + '"]');
   //currentRoute is an array that tracks redirect history
-  eval('wd["' + wd.currentRoute.join('"]["') + '"] = new Report(req, res))');
-  jsonController.overwrite(wd);
+  eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res)');
+  wrapRedirect(res);
+  res.locals._WD = parsed;
+  jsonController.overwrite(parsed);
   return next();
 }
 
-function isRedirect(req) {
-  //return boolean value to determine if request is a redirect
-}
 
-//may need some fixing
 function trackingMidware(req, res, next) {
-  if (res.locals._WD) {
-    // if (isRedirect(req)) return initRedirect(req, res, next);
-    return trackState(req, res, next);
-  }
-  return initTracking(req, res, next);
+  // console.log('trackingMidware isRedirect check:', parsed[parsed.currentRoute[0]].isRedirect)
+  const parsed = jsonController.getAndParse();
+  if (!res.locals._WD) {
+    if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
+      return initRedirect(req, res, next);
+    }
+    return initTracking(req, res, next);
+  } 
+  return trackState(req, res, next);
 }
 
 

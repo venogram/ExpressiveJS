@@ -6,8 +6,9 @@ const jsonController = require('./jsonController');
 
 const resListeners = {
   finish: (err, res) => {
+    console.log('firing res onFinish');
     const now = Date.now();
-    const methodRoute = res.locals._WD.currentRoute;
+    const methodRoute = res.locals._WD.currentRoute[0];
     const report = res.locals._WD[methodRoute];
     report.end = now;
     report.duration = report.end - report.start;

@@ -23,13 +23,19 @@ function addCookie(req, res, next) {
 // app.use('/route', addCookie);
 
 app.get('/', (req, res) => {
+  const wd = res.locals._WD;
   console.log('getting /');
-  res.redirect('/route');
+  res.redirect('/route1');
 })
 
-app.get('/route', addCookie, (req, res) => {
-  console.log('getting /route');
-  // console.log('redirect Count:', res.locals._WD.redirectCount);
+app.get('/route1', (req, res) => {
+  console.log('getting /route1');
+  res.redirect('/route2');
+})
+
+app.get('/route2', addCookie, (req, res) => {
+  const wd = res.locals._WD;
+  console.log('getting /route2');
   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
 })
 
