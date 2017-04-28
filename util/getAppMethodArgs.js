@@ -22,7 +22,7 @@ function flatten(array) {
 // flattened array with the devMidware
 // USED IN getAppMethodArgs
 function collectMethodArgs(...args) {
-  const path = typeof args[0] === 'string' ? args[0] : null;
+  const path = typeof args[0] !== 'function' ? args[0] : null;
   const devMidware = path === null ? flatten(args) : flatten(args.slice(1));
   return {
     path,
