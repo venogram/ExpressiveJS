@@ -29,6 +29,9 @@ class App extends Component {
   displayRoute(arrRoutes, method) {
     //arrRoutes has GET / (for right now)
     //our method is GET (for right now)
+    console.log('arrROutes:', arrRoutes)
+    console.log('method: ', method)
+
     let tempRoute = [];
     const clearReport = [];
 

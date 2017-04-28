@@ -18,17 +18,9 @@ body {
     color: white;
 }
 
-/*button {
-    position: relative;
-    display: block;
-    background-color: white;
-    font-size: 28px;
-    color: #191816;
-    border-radius: 5px;
-    border: none;
-    changing font in body does not change button font family
-    font-family: 'courier new';
-}*/
+#GET {
+    font-size: 24px;
+}
 
 .flex-container {
     padding-top: 5%;

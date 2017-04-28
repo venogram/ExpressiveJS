@@ -8,7 +8,7 @@ class Route extends Component {
     });
 
     return (
-      <div id="routeColumn">
+      <div >
         {methodRouteButtons}
       </div>
     );
