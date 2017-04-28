@@ -21,11 +21,12 @@ class Method extends Component {
     let methodButtons = Object.keys(userMethods)
     .map((element, index) => {
       //element is GET and POST for our example.
-      //get element by id which is element param
-      //then
-
-      //return <span> with <p> AND route embedded???
-      return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
+      return <span key={index}>
+        <p id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
+        <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+            currMethod={this.props.currMethod}
+            displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
+      </span>
     });
 
     return (

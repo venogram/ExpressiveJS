@@ -45,7 +45,7 @@ body {
 }
 
 .currentState h2 {
-    text-align: center;
+    text-align: left;
 
 }
 
@@ -65,27 +65,29 @@ b {
 
 .changeLogs {
     padding-top: 5%;
+    /*moving state change paragraph independent of picture*/
+    margin-left: 5%;
 }
 
-#routeColumn {
-    /*increased width to account for longer route name*/
+/*#routeColumn {
+    increased width to account for longer route name
     width: 20%;
     border-left: transparent;
     border-right: transparent;
-}
+}*/
 #methodColumn {
     width: 20%;
-    border-right: transparent;
-
+    border-right: 1px white solid;
 }
 #reportColumn {
     width: 70%;
     /*will move report towards rightside*/
     /*margin-left: 10%;*/
+    /*border-left: 1px white solid;*/
 }
 
 .indent {
-    text-indent: 30px;
+    text-indent: 20px;
     /*margin-left: 3%;*/
 }
 
