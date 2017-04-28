@@ -12,8 +12,6 @@ class Report extends Component {
       //console.log("element in the loop", element)
       //information we want off of each timeline object
 
-      console.log(reqObj.socket._httpMessage._headers['set-cookie'])
-
       return <div key={index} className="report">
         <div className="currentState">
           <h3> State #{index + 1} </h3> <hr />
