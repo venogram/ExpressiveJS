@@ -1,7 +1,8 @@
 const express = require('express');
 const WatchDog = require('./../watchDog.js');
 const path = require('path');
-const app = WatchDog();
+// const app = WatchDog();
+const app = express();
 
 console.log('hello from glenn server');
 
@@ -12,6 +13,14 @@ console.log('hello from glenn server');
 // }, (req, res, next) => {
 //   res.send('response sent!');
 // });
+
+function addCookie(req, res, next) {
+  console.log('mmm cookies...');
+  res.cookie('cookies', 'are tasty');
+  return next();
+}
+
+app.use('/route', addCookie);
 
 app.get('/', (req, res) => {
   console.log('getting /');
