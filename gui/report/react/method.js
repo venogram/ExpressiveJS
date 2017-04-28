@@ -26,7 +26,6 @@ class Method extends Component {
 
     //add route button according the the pressed method button
     let subButtons = methodButtons.map((element, index) => {
-      console.log(element)
       if(element.props.id === this.props.currMethod) {
         return  <span key={index}>
         {element}

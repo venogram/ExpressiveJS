@@ -16,12 +16,15 @@ class App extends Component {
       userRoutes: [],
       userReports: [],
       stateChangeLogs: [],
-      currMethod: ""
+      currMethod: "",
+      openTabs:[]
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
+
+    this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
   }
 
   //fill state to populate routes
@@ -53,13 +56,45 @@ class App extends Component {
   displayReport(route, index) {
     // element is "GET /"
     let tempReport = [];
+    let tempOpenTabs = this.state.openTabs;
+
     //pull timeline of only the matching method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
+
+    //add to list of new tabs if not already there
+    if(!this.state.openTabs.includes(route)) {
+      tempOpenTabs.push(route);
+    }
     //change state according to match
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+
+    //new list of open tabs
+    this.setState({ openTabs: tempOpenTabs });
+  }
+
+  displayReportFromTabs(route, index) {
+    // element is "GET /"
+    let tempReport = [];
+    let tempOpenTabs = this.state.openTabs;
+
+    //pull timeline of only the matching method and route
+    if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
+      tempReport = (this.state.json[route]['timeline'])
+    }
+
+    //add to list of new tabs if not already there
+    if(!this.state.openTabs.includes(route)) {
+      tempOpenTabs.push(route);
+    }
+    //change state according to match
+    this.setState({ userReports: tempReport });
+    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+
+    //new list of open tabs
+    this.setState({ openTabs: tempOpenTabs });
   }
 
   responseSummaries(log) {
@@ -81,10 +116,12 @@ class App extends Component {
         <div className="App flex-container">
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} />
+            displayRoute={this.displayRoute} displayReport={this.displayReport}
+            openTabs={this.state.openTabs}/>
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
+            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
+            openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}/>
         </div>
       </div>
     );

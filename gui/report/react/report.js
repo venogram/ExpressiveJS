@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 class Report extends Component {
   render() {
+    //render tabs into the tab div
+    let tabs = this.props.openTabs.map((element, index) => {
+      console.log("element from tabs",element)
+      return <button key={index} onClick={() => this.props.displayReportFromTabs(element, index)} > {element} </button>
+    });
+
+
     let report = this.props.userReports.map((element, index) => {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
@@ -44,6 +51,7 @@ class Report extends Component {
 
     return (
       <div id="reportColumn" className="flex-item">
+        <div id="tabsMenu">{tabs}</div>
         {report}
       </div>
     );
