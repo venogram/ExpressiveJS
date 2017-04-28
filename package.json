@@ -15,7 +15,8 @@
   "bin": {
     "wd": "cli/runWatchDog.js",
     "build": "cli/buildVisual.js",
-    "display": "cli/displayElectron.js"
+    "display": "cli/displayElectron.js",
+    "test-routes": "cli/test-routes.js"
   },
   "repository": {
     "type": "git",

@@ -7,5 +7,5 @@ const guiHTML = path.join(__dirname, "../node_modules/.bin/electron");
 //console.log(__dirname)
 
 exec(`${guiHTML} .`, () => {
-    //console.log(guiHTML)
+
 })
