@@ -21,18 +21,18 @@ class Method extends Component {
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
         //element is GET and POST for our example.
-        return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
-        //if method matches, render both p tags and Route
-
-        //else render only p tag
+        return <span key={index}>
+          <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
+          <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+            currMethod={this.props.currMethod}
+            displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
+            </span>
       });
 
     return (
       <div id="methodColumn" className="flex-item">
         {methodButtons}
-        <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
-          currMethod={this.props.currMethod}
-          displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
+
       </div>
     );
   }

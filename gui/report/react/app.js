@@ -46,6 +46,10 @@ class App extends Component {
     this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
+
+    <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
+          currMethod={this.props.currMethod}
+          displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
   }
 
   displayReport(route, index) {
