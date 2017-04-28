@@ -6,7 +6,7 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
-//console.log("this.state", json)
+//console.log("this.state.json", json)
 
 class App extends Component {
   constructor(props) {

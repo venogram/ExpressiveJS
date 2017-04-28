@@ -12,7 +12,6 @@ body {
 
 #title {
     text-align: center;
-    /*vertical-align: middle;*/
     padding-bottom: 1%;
     padding-top:  2%;
     font-size: 26px;
@@ -23,10 +22,11 @@ button {
     position: relative;
     display: block;
     background-color: white;
-    font-size: 26px;
+    font-size: 28px;
     color: #191816;
     border-radius: 5px;
     border: none;
+    /*changing font in body does not change button font family*/
     font-family: 'courier new';
 }
 
@@ -34,17 +34,11 @@ button {
     padding-top: 5%;
     display: flex;
     width: auto;
-    /*border: 1px black solid;*/
     margin: auto;
     width: 90%;
 }
 
-.flex-item {
-    /*border: 1px white solid;*/
-}
-
 .currentState {
-    /*border: 1px white solid;*/
     width: 85%;
     margin: 0;
     margin-left: 5%;
@@ -54,6 +48,14 @@ button {
     text-align: center;
 
 }
+
+b {
+    font-size: 22px;
+}
+
+/*.currentState span {
+    font-size: 20px;
+}*/
 
 .state-container {
     display: flex;
@@ -81,13 +83,11 @@ button {
 
 }
 #reportColumn {
-    width: 60%;
+    width: 70%;
     /*will move report towards rightside*/
     /*margin-left: 10%;*/
 }
 
-b {
-    font-size: 20px;
-}
+
 
 

@@ -9,13 +9,13 @@ class Report extends Component {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-      console.log("element in the loop", element)
+      //console.log("element in the loop", element)
 
       return <div key={index} className="report">
         <div className="currentState">
           <h2> State #{index + 1} </h2> <hr />
           <b>request:</b> <br />
-          cookie: {reqObj.socket._httpMessage._headers['set-cookie']} <br />
+          <span>cookie:</span> {reqObj.socket._httpMessage._headers['set-cookie']} <br />
           host: {reqObj.headers.host} <br />
           complete: {reqObj.complete.toString()} <br />
 
