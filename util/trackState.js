@@ -22,6 +22,5 @@ module.exports = (req, res, next) => {
   }
   report.timeline.push(snapshot);
   jsonController.overwrite(res.locals._WD);
-
   if (next) next();
 }

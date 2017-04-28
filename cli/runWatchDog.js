@@ -15,6 +15,7 @@ const request = require('request');
 const Promise = require('bluebird');
 const path = require('path');
 const jsonController = require('./../util/jsonController.js');
+//const json = require('./../watchDog.json');
 const config = require('./../watchDog.config.js');
 const fork = require('child_process').fork;
 
