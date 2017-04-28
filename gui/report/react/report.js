@@ -9,13 +9,16 @@ class Report extends Component {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-      console.log("element in the loop", element)
+      //console.log("element in the loop", element)
       //information we want off of each timeline object
+
+      console.log(reqObj.socket._httpMessage._headers['set-cookie'])
+
       return <div key={index} className="report">
         <div className="currentState">
           <h3> State #{index + 1} </h3> <hr />
           <b>request:</b> <br />
-          cookie: {reqObj.headers.cookie} <br />
+          cookie: {reqObj.socket._httpMessage._headers['set-cookie']} <br />
           host: {reqObj.headers.host} <br />
           complete: {reqObj.complete.toString()} <br />
 
@@ -28,7 +31,7 @@ class Report extends Component {
         {/*below are information for arrows*/}
         <div className="stateChanges state-container">
           <div className = "arrow state-item">
-            <img src = "http://placekitten.com/g/200/250" />
+            <img src = "http://placekitten.com/g/175/175" />
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
