@@ -1,6 +1,4 @@
-const trackState = require('./trackState.js'),
-      initTracking = require('./initTracking.js'),
-      jsonController = require('./jsonController.js');
+const jsonController = require('./jsonController.js');
 
 const serverListeners = {
   checkContinue: () => {},
@@ -15,9 +13,7 @@ const serverListeners = {
   connection: () => {
     console.log('=========connectION event!==========');
   },
-  request: (req, res) => {
-    initTracking(req, res);
-  },
+  request: (req, res) => {},
   upgrade: () => {}
 }
 

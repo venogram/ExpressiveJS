@@ -3,19 +3,12 @@
   response and client request objects change as they travel through the developer's
   middleware.
 
-  TODO: figure out where and when to reset the JSON file. right now, the set
-  function assumes JSON file is configured
+  TODO: express.static
   TODO: test ALL the things!
-  TODO: research other routing methods supported by express 
-    see: https://expressjs.com/en/api.html#routing-methods
   TODO: figure out how to handle multiple app.method calls for the same method.
   currently it will not be tracked when it goes past the first one.
-  TODO: reconfigure listen method for all possible sets and configurations
-    of listen arguments
-    either (port, [hostname], [backlog], [callback]) or (path, [callback])
-  TODO: reconfigure use similarly to above..
-  TODO: generally check for need to reconfigure methods in accordance with variety 
-    of possible argument arrangements (especially PATH);
+  TODO: reconfigure listen method for all possible sets and configurations of listen
+   arguments: (port, [hostname], [backlog], [callback]) or (path, [callback])
 */
 
 const express = require('express'),
@@ -35,9 +28,6 @@ function insertWatchDogMidware(method, ...args) {
   return app[method.toLowerCase()](...watchDogMidware);
 }
 
-const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE', 
-    'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
-    'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
 
 const watchDog = () => {
   const watchDogObj = {
@@ -65,10 +55,15 @@ const watchDog = () => {
     // set: () => {}
   }
 
+  const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE', 
+      'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
+      'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
+
   //assigns app.METHOD for all methods 
   requestMethods.forEach(method => {
     watchDogObj[method.toLowerCase()] = (...args) => set(method, ...args);
   });
+  
   //assign all properties and methods of the express app to the watchDogObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {

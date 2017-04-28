@@ -2,7 +2,7 @@
   stores listeners to be placed on the response object
 
 */
-const jsonController = require('./jsonCOntroller');
+const jsonController = require('./jsonController');
 
 const resListeners = {
   finish: (err, res) => {
