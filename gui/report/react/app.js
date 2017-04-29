@@ -25,6 +25,7 @@ class App extends Component {
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
     this.highlightTab = this.highlightTab.bind(this);
+    this.closeTab = this.closeTab.bind(this);
   }
 
   //update state to populate routes
@@ -126,6 +127,17 @@ class App extends Component {
     }
   }
 
+  closeTab(index){
+    let emptiness =[];
+    console.log(this.state.openTabs)
+    let tempOpenTabs=this.state.openTabs;
+    tempOpenTabs.splice(index,1);
+    this.setState({ openTabs: tempOpenTabs });
+
+    if(tempOpenTabs.length !== 0) this.displayReportFromTabs(tempOpenTabs[index])
+    else this.setState({ userReports: emptiness })
+  }
+
   render() {
     return (
       <div>
@@ -141,7 +153,7 @@ class App extends Component {
             selected={this.state.selected}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab} highlightTab={this.highlightTab}/>
+            currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab}/>
         </div>
       </div>
     );
