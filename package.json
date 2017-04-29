@@ -1,6 +1,6 @@
 {
   "name": "expressivejs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "End to end server route tracking for express.js",
   "main": "./gui/report/public/electron.js",
   "directories": {
