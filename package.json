@@ -1,5 +1,5 @@
 {
-  "name": "watch-dog",
+  "name": "expressivejs",
   "version": "1.0.0",
   "description": "End to end server route tracking for express.js",
   "main": "./gui/report/public/electron.js",
@@ -13,11 +13,11 @@
     "open": "open ./gui/report/public/index.html"
   },
   "bin": {
-    "wd": "cli/runWatchDog.js",
-    "build": "cli/buildVisual.js",
-    "display": "cli/displayElectron.js",
-    "test-routes": "cli/test-routes.js",
-    "refresh-json": "cli/refresh-json.js"
+    "xpr-test": "cli/runWatchDog.js",
+    "xpr-build": "cli/buildVisual.js",
+    "xpr-display": "cli/displayElectron.js",
+    "xpr": "cli/test-routes.js",
+    "xpr-reset-json": "cli/refresh-json.js"
   },
   "repository": {
     "type": "git",
