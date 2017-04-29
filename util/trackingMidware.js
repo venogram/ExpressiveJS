@@ -31,7 +31,7 @@ class Snapshot {
 class Report {
   constructor(req, res, now = Date.now()) {
     this.method = req.method;
-    this.route = req.url;
+    this.route = req.originalUrl;
     this.start = now;
     this.end = null;
     this.duration = null;
@@ -56,7 +56,7 @@ function wrapRedirect(res) {
 
 function initTracking(req, res, next) {
   const parsed = jsonController.getAndParse();
-  const methodRoute = req.method + ' ' + req.url;
+  const methodRoute = req.method + ' ' + req.originalUrl;
   parsed.currentRoute = [methodRoute];
   parsed[methodRoute] = new Report(req, res);
   parsed[methodRoute].isRedirect = false;
