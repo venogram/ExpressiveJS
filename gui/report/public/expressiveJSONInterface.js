@@ -1,18 +1,18 @@
 /*
-  Client-side utilities for parsing watchDog.json into manageable chucks to hand
+  Client-side utilities for parsing expressive.json into manageable chucks to hand
   to react components
 
   TODO: figure out better names for getStateChange and getStateChanges
-  TODO: watchDog.json format isn't stable - make sure the functions take relevant input
+  TODO: expressive.json format isn't stable - make sure the functions take relevant input
 */
 
 const deepDiff = require('deep-diff').diff;
-//const ourJSON = require('./../../../watchDog.json');
+//const ourJSON = require('./../../../expressive.json');
 const getStateChange = require('./../../../util/getStateChange.js');
 
 const JSONInterface = {
-  getStateChanges: (wdJSON) => {
-    const timeline = wdJSON.timeline;
+  getStateChanges: (xprJSON) => {
+    const timeline = xprJSON.timeline;
 
     //console.log("timeline from JSON Interface", timeline)
 
@@ -27,9 +27,6 @@ const JSONInterface = {
   },
 
 };
-
-//console.log(JSONInterface.getStateChanges(wdJSON)[0].resDiff);
-//console.log("i am from wdJSONInterface, ", JSONInterface.getStateChanges(wdJSON));
 
 
 module.exports = JSONInterface;
