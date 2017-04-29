@@ -9,7 +9,7 @@ const Promise = require('bluebird');
 const exec = require('child_process').exec;
 
 const runExpressive = new Promise((resolve, reject) => {
-  exec("wd", (err) => {
+  exec("xpr-test", (err) => {
     if (err) reject(err);
     else resolve();
   });
@@ -17,11 +17,12 @@ const runExpressive = new Promise((resolve, reject) => {
 
 runExpressive
   .then(() => {
-    exec("build")
+    exec("xpr-build")
   })
   .then(() => {
-    exec("display");
+    exec("xpr-display");
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     console.log('there was an error in the promise chain');
   });
