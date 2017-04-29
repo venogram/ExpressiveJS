@@ -3,7 +3,7 @@ import Method from './Method';
 import Route from './Route';
 import Report from './Report';
 const json = require('./../../../expressive.json');
-import JSONInterface from './../public/watchDogJSONInterface';
+import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 class App extends Component {

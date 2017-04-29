@@ -7,13 +7,13 @@
 
 const fs = require('fs');
 const path = require('path');
-//const json = require('./../watchDog.json');
+//const json = require('./../expressive.json');
 
 const jsonController = {
 
   //Returns parsed JSON file
   getAndParse: () => {
-    const json = fs.readFileSync(path.join(__dirname, './../watchDog.json'));
+    const json = fs.readFileSync(path.join(__dirname, './../expressive.json'));
     return JSON.parse(json);
   },
 
@@ -43,7 +43,7 @@ const jsonController = {
 
   //Overwrites existing JSON file or creates a new one with a new JSON object
   overwrite: (obj) => {
-    fs.writeFileSync(path.join(__dirname, './../watchDog.json'), JSON.stringify(obj, null, '  '));
+    fs.writeFileSync(path.join(__dirname, './../expressive.json'), JSON.stringify(obj, null, '  '));
   },
 
   //sets json at path to val
