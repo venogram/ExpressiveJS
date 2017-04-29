@@ -90,12 +90,12 @@ b {
 
 .tabs {
     background-color: #353533;
-    font-size:1.5em; 
+    font-size:1.5em;
     border: none;
     color:white;
+    margin-right: 1%;
 }
 
 .selected{
-    background-color:pink; 
+    background-color:#191816;
 }
-

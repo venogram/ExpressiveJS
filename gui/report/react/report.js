@@ -4,15 +4,15 @@ class Report extends Component {
   render() {
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
-      //console.log("element from tabs",element)
-      return <button key={index} id = {"" + index + index} className = "tabs" onClick={() => {this.props.displayReportFromTabs(element, index); this.props.highlightDiv()}} > {element} </button>
+      return <button key={index} id={index} className={"tabs " + this.props.selected[index]} onClick={() => {this.props.displayReportFromTabs(element); this.props.highlightTab(index)}}>{element}</button>
     });
 
+    //generate report based on userReports
     let report = this.props.userReports.map((element, index) => {
-      //facilitate pulling information off of req and res object
+      //access req and res object
       let reqObj = element['req'];
       let resObj = element['res'];
-      //console.log("element in the loop", element)
+
       return <div key={index} className="report">
         <div className="currentState">
           <h2> State #{index + 1} </h2> <hr />
@@ -28,7 +28,7 @@ class Report extends Component {
           finished: {resObj.finished.toString()} <br />
           <br />
         </div>
-        {/*below are information for arrows*/}
+        {/*state change information*/}
         <div className="stateChanges state-container">
           <div className = "arrow state-item">
             <img src = "http://placekitten.com/g/175/175" />
