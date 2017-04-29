@@ -40,7 +40,7 @@ const watchDog = () => {
       })
       //sends message to parent process, so that parent process knows it may start
       //firing requests!
-      // process.send('listening');
+      //process.send('listening');
       return server;
     },
     use: (...args) => insertWatchDogMidware('use', ...args),
@@ -57,10 +57,11 @@ const watchDog = () => {
   }
 
   const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE',
-    'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
-    'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
+      'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
+      'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
 
-  //assigns app.METHOD for all methods 
+
+  //assigns app.METHOD for all methods
   requestMethods.forEach(method => {
     watchDogObj[method.toLowerCase()] = (...args) => set(method, ...args);
   });
