@@ -1,5 +1,4 @@
 /*not quite dark black color #191816*/
-/*Marys pick for color: 00BCD4*/
 body {
     font-family: 'courier new';
     padding: 0;
@@ -62,26 +61,16 @@ b {
     margin-left: 5%;
 }
 
-/*#routeColumn {
-    increased width to account for longer route name
-    width: 20%;
-    border-left: transparent;
-    border-right: transparent;
-}*/
 #methodColumn {
     width: 20%;
     border-right: 1px white solid;
 }
 #reportColumn {
     width: 70%;
-    /*will move report towards rightside*/
-    /*margin-left: 10%;*/
-    /*border-left: 1px white solid;*/
 }
 
 .indent {
     text-indent: 20px;
-    /*margin-left: 3%;*/
 }
 
 .tabs {
