@@ -141,7 +141,7 @@ class App extends Component {
             selected={this.state.selected}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab} highlightTab={this.highlightTab}/>
+            currTab={this.state.currTab} highlightTab={this.highlightTab} />
         </div>
       </div>
     );
