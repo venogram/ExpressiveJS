@@ -1,5 +1,5 @@
 {
-  "name": "watch-dog",
+  "name": "expressivejs",
   "version": "1.0.0",
   "description": "End to end server route tracking for express.js",
   "main": "./gui/report/public/electron.js",

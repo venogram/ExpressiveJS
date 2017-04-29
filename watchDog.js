@@ -1,5 +1,5 @@
 /*
-  watchDog.js wraps express, inserting middleware to track how the server
+  expressive.js wraps express, inserting middleware to track how the server
   response and client request objects change as they travel through the developer's
   middleware.
 
@@ -19,9 +19,9 @@ const express = require('express'),
 
 //wrapper for app.METHOD
 //intersperses tracking midware between developer midware
-function insertWatchDogMidware(method, ...args) {
-  let watchDogMidware = getAppMethodArgs(args);
-  return app[method.toLowerCase()](...watchDogMidware);
+function insertExpressiveMidware(method, ...args) {
+  let expressiveMidware = getAppMethodArgs(args);
+  return app[method.toLowerCase()](...expressiveMidware);
 }
 
 //stores route and method in json object for creation of default config file
@@ -29,14 +29,14 @@ function insertWatchDogMidware(method, ...args) {
 function set(method, ...args) {
   const route = args[0];
   jsonController.addRoute(method, route);
-  return insertWatchDogMidware(method, ...args);
+  return insertExpressiveMidware(method, ...args);
 }
 
 
 
 
-const watchDog = () => {
-  const watchDogObj = {
+const expressive = () => {
+  const expressiveObj = {
     listen: (...args) => {
       const server = app.listen(...args);
       //set up server listeners!
@@ -48,7 +48,7 @@ const watchDog = () => {
       //process.send('listening');
       return server;
     },
-    use: (...args) => insertWatchDogMidware('use', ...args),
+    use: (...args) => insertExpressiveMidware('use', ...args),
     // disable: () => {},
     // disabled: () => {},
     // enable: () => {},
@@ -68,18 +68,18 @@ const watchDog = () => {
 
   //assigns app.METHOD for all request methods
   requestMethods.forEach(method => {
-    watchDogObj[method.toLowerCase()] = (...args) => set(method, ...args);
+    expressiveObj[method.toLowerCase()] = (...args) => set(method, ...args);
   });
 
-  //assign all properties and methods of the express app to the watchDogObj that
+  //assign all properties and methods of the express app to the expressiveObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {
-    if (!watchDogObj.hasOwnProperty(key)) watchDogObj[key] = app[key];
+    if (!expressiveObj.hasOwnProperty(key)) expressiveObj[key] = app[key];
   });
 
-  return watchDogObj;
+  return expressiveObj;
 }
 
 
 
-module.exports = watchDog;
+module.exports = expressive;
