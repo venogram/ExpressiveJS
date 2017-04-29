@@ -5,7 +5,7 @@ class Report extends Component {
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
       //console.log("element from tabs",element)
-      return <button key={index} id = {"" + index + index} className = "tabs" onClick={() => this.props.displayReportFromTabs(element, index)} > {element} </button>
+      return <button key={index} id = {"" + index + index} className = "tabs" onClick={() => {this.props.displayReportFromTabs(element, index); this.props.highlightDiv()}} > {element} </button>
     });
 
     let report = this.props.userReports.map((element, index) => {

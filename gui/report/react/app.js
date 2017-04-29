@@ -25,6 +25,7 @@ class App extends Component {
     this.requestSummaries = this.requestSummaries.bind(this);
 
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
+    this.highlightDiv = this.highlightDiv.bind(this);
   }
   
 
@@ -82,13 +83,6 @@ class App extends Component {
 
   displayReportFromTabs(route, index) {
     // route is "GET /"
-    let currElement = "" + index + index; 
-
-    console.log(document.getElementById(currElement))
-    // document.getElementsByClassName('tabs').classList.remove("selected")
-    
-    document.getElementById(currElement).classList.add("selected")
-
     let emptiness = []
     let tempReport = [];
     let tempCurrTab = route;
@@ -119,6 +113,9 @@ class App extends Component {
     return Summaries.getSummaries(log).reqSummaries;
   }
 
+  highlightDiv() {
+    console.log('hi')
+  }
 
   render() {
     return (
@@ -134,7 +131,7 @@ class App extends Component {
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab}/>
+            currTab={this.state.currTab} highlightDiv={this.highlightDiv}/>
         </div>
       </div>
     );
