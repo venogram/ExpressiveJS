@@ -1,9 +1,12 @@
 ---------------------------------------
 
-setup a watchDog.log to keep track of what watchDog does and how it's performing?
 
-BUG: app.use changes req.path for some reason.  This causes mislabeling of keys in 
-json object
+setup a expressive.log to keep track of what expressive does and how it's performing?
+
+
+TODO: Handle multiple servers (i.e. multiple app.listen instances)
+
+setup a expressive.log to keep track of what expressive does and how it's performing?
 
 
 NOTE:  Can get info on middleware functions using 
