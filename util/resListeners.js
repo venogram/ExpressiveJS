@@ -2,20 +2,32 @@
   stores listeners to be placed on the response object
 
 */
-const jsonController = require('./jsonController');
+const jsonController = require('./jsonController'),
+      takeSnapshot = require('./takeSnapshot.js');
+
+class Snapshot {
+  constructor(req, res, now = Date.now()) {
+    this.timestamp = now;
+    this.req = takeSnapshot(req);
+    this.res = takeSnapshot(res);
+  }
+}
 
 const resListeners = {
   finish: (err, res) => {
-    console.log('firing res onFinish');
+    const wd = res.locals._WD;
     const now = Date.now();
-    const methodRoute = res.locals._WD.currentRoute[0];
-    const report = res.locals._WD[methodRoute];
-    report.end = now;
-    report.duration = report.end - report.start;
-    report.error = err;
-    report.statusCode = res.statusCode;
-    report.statusMessage = res.statusMessage;
-    jsonController.overwrite(res.locals._WD);
+    const routeLocation = eval('wd["' + wd.currentRoute.join('"]["') + '"]');
+    routeLocation.timeline.push(new Snapshot(res.req, res, now));
+    routeLocation.end = now;
+    routeLocation.duration = routeLocation.end - routeLocation.start;
+    routeLocation.error = err;
+    routeLocation.statusCode = res.statusCode;
+    routeLocation.statusMessage = res.statusMessage;
+    wd[wd.currentRoute[0]].hasOwnProperty('totalDuration') ?
+      wd[wd.currentRoute[0]].totalDuration += routeLocation.duration :
+      wd[wd.currentRoute[0]].totalDuration = routeLocation.duration;
+    jsonController.overwrite(wd);
   }
 }
 
