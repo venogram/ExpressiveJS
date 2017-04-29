@@ -95,3 +95,8 @@ b {
 .selected{
     background-color:#191816;
 }
+
+.hover:hover {
+    cursor: pointer;
+    background-color: #353533;
+}
