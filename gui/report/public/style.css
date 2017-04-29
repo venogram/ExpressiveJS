@@ -26,7 +26,9 @@ b {
     margin: auto;
     width: 90%;
 }
+
 /*LEFT SIDE COLUMN*/
+
 #methodColumn {
     width: 20%;
     border-right: 1px white solid;
@@ -71,7 +73,6 @@ b {
 
 .currentState h2 {
     text-align: left;
-
 }
 
 .changeLogs {
@@ -81,6 +82,7 @@ b {
 }
 
 /*TABS*/
+
 .tabs {
     background-color: #353533;
     font-size:1.5em;
