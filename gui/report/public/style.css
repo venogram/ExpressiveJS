@@ -1,10 +1,14 @@
-/*not quite dark black color #191816*/
+/*BODY ELEMENTS*/
 body {
     font-family: 'courier new';
     padding: 0;
     margin: 0;
     background-color:#191816;
     color:#00BCD4;
+}
+
+b {
+    font-size: 22px;
 }
 
 #title {
@@ -15,6 +19,19 @@ body {
     color: white;
 }
 
+.flex-container {
+    padding-top: 5%;
+    display: flex;
+    width: auto;
+    margin: auto;
+    width: 90%;
+}
+/*LEFT SIDE COLUMN*/
+#methodColumn {
+    width: 20%;
+    border-right: 1px white solid;
+}
+
 #GET {
     font-size: 24px;
 }
@@ -22,12 +39,28 @@ body {
     font-size: 24px;
 }
 
-.flex-container {
-    padding-top: 5%;
+.hover:hover {
+    cursor: pointer;
+    background-color: #353533;
+}
+
+.indent {
+    text-indent: 20px;
+}
+
+/*STATE CHANGES*/
+#reportColumn {
+    width: 70%;
+}
+
+.state-container {
     display: flex;
-    width: auto;
-    margin: auto;
     width: 90%;
+    padding-top: 5%;
+}
+
+.state-item {
+    padding-left: 5%;
 }
 
 .currentState {
@@ -41,38 +74,13 @@ body {
 
 }
 
-b {
-    font-size: 22px;
-}
-
-.state-container {
-    display: flex;
-    width: 90%;
-    padding-top: 5%;
-}
-
-.state-item {
-    padding-left: 5%;
-}
-
 .changeLogs {
     padding-top: 5%;
     /*moving state change paragraph independent of picture*/
     margin-left: 5%;
 }
 
-#methodColumn {
-    width: 20%;
-    border-right: 1px white solid;
-}
-#reportColumn {
-    width: 70%;
-}
-
-.indent {
-    text-indent: 20px;
-}
-
+/*TABS*/
 .tabs {
     background-color: #353533;
     font-size:1.5em;
@@ -83,9 +91,4 @@ b {
 
 .selected{
     background-color:#191816;
-}
-
-.hover:hover {
-    cursor: pointer;
-    background-color: #353533;
 }
