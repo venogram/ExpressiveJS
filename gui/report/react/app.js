@@ -23,16 +23,12 @@ class App extends Component {
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
-
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
-    this.highlightDiv = this.highlightDiv.bind(this);
+    this.highlightTab = this.highlightTab.bind(this);
   }
 
-  //fill state to populate routes
+  //update state to populate routes
   displayRoute(arrRoutes, method) {
-    //arrRoutes has GET / (for right now)
-    //our method is GET (for right now)
-
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
@@ -51,76 +47,79 @@ class App extends Component {
 
   }
 
+  //display report according to the selected route
   displayReport(route) {
-    // element is "GET /"
     let tempReport = [];
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = route;
 
-    //pull timeline of only the matching method and route
+    //find timeline of only the selected method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
 
-    //add to list of new tabs if not already there
+    //create new tabs, excludes duplicates
     if(!this.state.openTabs.includes(route)) {
       tempOpenTabs.push(route);
     }
-    //change state according to match
+    //change state according to selected method and route
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
-    //new list of open tabs
+    //update list of open tabs
     this.setState({ openTabs: tempOpenTabs });
 
-    //change the state view with currTab
+    //update current selected tab
     this.setState({ currTab: tempCurrTab });
   }
 
+  //display report according to the selected tab
   displayReportFromTabs(route) {
-    // route is "GET /"
     let emptiness = []
     let tempReport = [];
     let tempCurrTab = route;
 
-    //clear off existing state of userReports
+    //empties userReports
     this.setState({ userReports: emptiness });
 
-    //pull timeline of only the matching method and route
+    //find timeline of only the selected method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
 
-    //change state according to match
+    //change state according to selected method and route
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
-    //the tab you are currently on
+    //update current selected tab
      this.setState({ currTab: tempCurrTab })
   }
 
+  //generate summary lines for req and res objects
   responseSummaries(log) {
     if (Summaries.getSummaries(log).resSummaries.length === 0) return "none";
     return Summaries.getSummaries(log).resSummaries;
   }
-
   requestSummaries(log) {
     if (Summaries.getSummaries(log).reqSummaries.length === 0) return "none";
     return Summaries.getSummaries(log).reqSummaries;
   }
 
-  highlightDiv(index) {
+  //highlight selected tab
+  highlightTab(index) {
     let tempSelected = this.state.selected;
-    let tempAntiDiv = 'notSelected';
+    let notSelected = 'notSelected';
 
+    //change all tabs class to notSelected
+    //give class selcted to the clicked tab
     if(this.state.selected[index] === undefined) {
       for(let i = 0; i < tempSelected.length; i += 1) {
-        if(tempSelected[i] === 'selected') tempSelected[i] = tempAntiDiv;
+        if(tempSelected[i] === 'selected') tempSelected[i] = notSelected;
       }
       tempSelected.push('selected');
-    } else if(this.state.selected[index] === tempAntiDiv) {
+    } else if(this.state.selected[index] === notSelected) {
       for(let i = 0; i < tempSelected.length; i += 1) {
-        if(tempSelected[i] === 'selected') tempSelected[i] = tempAntiDiv;
+        if(tempSelected[i] === 'selected') tempSelected[i] = notSelected;
       }
       tempSelected[index] = 'selected';
       this.setState({ selected: tempSelected })
@@ -128,7 +127,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.selected)
     return (
       <div>
         <div id="title"> Your Server Route Results! </div>
@@ -143,7 +141,7 @@ class App extends Component {
             selected={this.state.selected}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab} highlightDiv={this.highlightDiv}/>
+            currTab={this.state.currTab} highlightTab={this.highlightTab}/>
         </div>
       </div>
     );

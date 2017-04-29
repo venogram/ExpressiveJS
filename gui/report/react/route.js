@@ -3,8 +3,8 @@ import Report from './Report';
 
 class Route extends Component {
   render() {
+    //generate route buttons that will show report on click
     let methodRouteButtons = this.props.userRoutes.map((element, index) => {
-      //console.log("element from route.js", element)
       return <p key={index} className="indent" onClick={() => this.props.displayReport(element)}> {element} </p>
     });
 

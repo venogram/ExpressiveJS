@@ -12,7 +12,6 @@ class Method extends Component {
     //gather all route methods with no repeats of same method
     allRoutes.map((element) => {
       if (!userMethods.hasOwnProperty(this.props.json[element]['method'])) {
-        //console.log(this.props.json[element]['method'])
         userMethods[this.props.json[element]['method']] = this.props.json[element]['method'];
       }
     })
@@ -20,12 +19,10 @@ class Method extends Component {
     //create method button
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
-        //element is GET and POST for our example.
         return <p key={index} id={element} onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
       });
 
-
-    //add route button according the the pressed method button
+    //add route buttons according to the pressed method button
     let subButtons = methodButtons.map((element, index) => {
       if(element.props.id === this.props.currMethod) {
         return  <span key={index}>
