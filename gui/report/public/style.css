@@ -12,7 +12,7 @@ b {
 }
 
 #title {
-    text-align: center;
+    /*text-align: center;*/
     padding-bottom: 1%;
     padding-top:  2%;
     font-size: 26px;
@@ -52,7 +52,7 @@ b {
 
 /*STATE CHANGES*/
 #reportColumn {
-    width: 70%;
+    width: 80%;
 }
 
 .state-container {
@@ -62,7 +62,7 @@ b {
 }
 
 .state-item {
-    padding-left: 5%;
+    /*padding-left: 5%;*/
 }
 
 .currentState {
