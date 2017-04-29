@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Method from './Method';
 import Route from './Route';
 import Report from './Report';
-const json = require('./../../../watchDog.json');
-import JSONInterface from './../public/watchDogJSONInterface';
+const json = require('./../../../expressive.json');
+import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 class App extends Component {

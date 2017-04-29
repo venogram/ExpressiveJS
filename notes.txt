@@ -1,0 +1,13 @@
+---------------------------------------
+
+
+setup a expressive.log to keep track of what expressive does and how it's performing?
+
+
+TODO: Handle multiple servers (i.e. multiple app.listen instances)
+
+setup a expressive.log to keep track of what expressive does and how it's performing?
+
+
+NOTE:  Can get info on middleware functions using 
+  res.socket.parser.incoming.route.stack

@@ -7,7 +7,7 @@
   PROCEED WITH CAUTION
 */
 
-const config = require('./../watchDog.config.js');
+const config = require('./../expressive.config.js');
 
 function takeSnapshot(original, map = new WeakMap()) {
   const dataTypes = ['object', 'number', 'string', 'boolean', 'undefined'];
@@ -29,7 +29,7 @@ function takeSnapshot(original, map = new WeakMap()) {
   Object.keys(original).forEach(key => {
     if (Array.isArray(copy) && dataTypes.includes(typeof original[key])) {
       copy.push(takeSnapshot(original[key], map));
-    } else if (dataTypes.includes(typeof original[key]) && key !== '_WD') {
+    } else if (dataTypes.includes(typeof original[key]) && key !== '_XPR') {
       copy[key] = takeSnapshot(original[key], map);
     }
   });
