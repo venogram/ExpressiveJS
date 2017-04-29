@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class Report extends Component {
   render() {
+    //render tabs into the tab div
+    let tabs = this.props.openTabs.map((element, index) => {
+      //console.log("element from tabs",element)
+      return <button key={index} id={""+ index + index} onClick={() => this.props.displayReportFromTabs(element, index)} > {element} </button>
+    });
+
     let report = this.props.userReports.map((element, index) => {
       //facilitate pulling information off of req and res object
       let reqObj = element['req'];
@@ -30,9 +36,9 @@ class Report extends Component {
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
-            duration of Request and Response: {this.props.json[this.props.userRoutes].duration} ms<br />
-            Status Code: {this.props.json[this.props.userRoutes].statusCode}<br />
-            Status Message: {this.props.json[this.props.userRoutes].statusMessage}<br />
+            duration of Request and Response: {this.props.json[this.props.currTab].duration} ms<br />
+            Status Code: {this.props.json[this.props.currTab].statusCode}<br />
+            Status Message: {this.props.json[this.props.currTab].statusMessage}<br />
             Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>
@@ -44,6 +50,7 @@ class Report extends Component {
 
     return (
       <div id="reportColumn" className="flex-item">
+        <div id="tabsMenu">{tabs}</div>
         {report}
       </div>
     );

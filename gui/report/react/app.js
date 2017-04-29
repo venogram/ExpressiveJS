@@ -6,8 +6,6 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
-//console.log("this.state.json", json)
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,12 +15,19 @@ class App extends Component {
       userReports: [],
       stateChangeLogs: [],
       currMethod: "",
+<<<<<<< HEAD
       methodAndRoutes: []
+=======
+      currTab: "",
+      openTabs:[]
+>>>>>>> fc56149d77faa38a2e5902874cc930b974b93e30
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
+
+    this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
   }
   
 
@@ -33,8 +38,6 @@ class App extends Component {
   displayRoute(arrRoutes, method) {
     //arrRoutes has GET / (for right now)
     //our method is GET (for right now)
-    console.log('arrROutes:', arrRoutes)
-    console.log('method: ', method)
 
     let tempRoute = [];
     let tempCurrMethod = '';
@@ -51,18 +54,55 @@ class App extends Component {
     this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
+
   }
 
   displayReport(route, index) {
     // element is "GET /"
     let tempReport = [];
+    let tempOpenTabs = this.state.openTabs;
+    let tempCurrTab = route;
+
     //pull timeline of only the matching method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
+
+    //add to list of new tabs if not already there
+    if(!this.state.openTabs.includes(route)) {
+      tempOpenTabs.push(route);
+    }
     //change state according to match
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+
+    //new list of open tabs
+    this.setState({ openTabs: tempOpenTabs });
+
+    //change the state view with currTab
+    this.setState({ currTab: tempCurrTab });
+  }
+
+  displayReportFromTabs(route, index) {
+    // route is "GET /"
+    let emptiness = []
+    let tempReport = [];
+    let tempCurrTab = route;
+
+    //clear off existing state of userReports
+    this.setState({ userReports: emptiness });
+
+    //pull timeline of only the matching method and route
+    if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
+      tempReport = (this.state.json[route]['timeline'])
+    }
+
+    //change state according to match
+    this.setState({ userReports: tempReport });
+    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+
+    //the tab you are currently on
+     this.setState({ currTab: tempCurrTab })
   }
 
   responseSummaries(log) {
@@ -84,10 +124,13 @@ class App extends Component {
         <div className="App flex-container">
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} />
+            displayRoute={this.displayRoute} displayReport={this.displayReport}
+            openTabs={this.state.openTabs}/>
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries} />
+            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
+            openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
+            currTab={this.state.currTab}/>
         </div>
       </div>
     );
