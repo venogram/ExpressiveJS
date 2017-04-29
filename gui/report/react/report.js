@@ -6,7 +6,7 @@ class Report extends Component {
     let tabs = this.props.openTabs.map((element, index) => {
       //console.log("element from tabs",element)
 
-      return <button key={index} id = {"" + index + index} className = "tabs" onClick={() => {this.props.displayReportFromTabs(element, index); this.props.highlightDiv()}} > {element} </button>
+      return <button key={index} id={index} className={"tabs " + this.props.selected[index]} onClick={() => {this.props.displayReportFromTabs(element); this.props.highlightDiv(index)}}>{element}</button>
     });
 
     let report = this.props.userReports.map((element, index) => {

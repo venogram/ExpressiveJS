@@ -16,7 +16,8 @@ class App extends Component {
       stateChangeLogs: [],
       currMethod: "",
       currTab: "",
-      openTabs:[]
+      openTabs: [],
+      selected: []
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -26,10 +27,6 @@ class App extends Component {
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
     this.highlightDiv = this.highlightDiv.bind(this);
   }
-
-
-
-
 
   //fill state to populate routes
   displayRoute(arrRoutes, method) {
@@ -54,7 +51,7 @@ class App extends Component {
 
   }
 
-  displayReport(route, index) {
+  displayReport(route) {
     // element is "GET /"
     let tempReport = [];
     let tempOpenTabs = this.state.openTabs;
@@ -80,7 +77,7 @@ class App extends Component {
     this.setState({ currTab: tempCurrTab });
   }
 
-  displayReportFromTabs(route, index) {
+  displayReportFromTabs(route) {
     // route is "GET /"
     let emptiness = []
     let tempReport = [];
@@ -112,11 +109,26 @@ class App extends Component {
     return Summaries.getSummaries(log).reqSummaries;
   }
 
-  highlightDiv() {
-    console.log('hi')
+  highlightDiv(index) {
+    let tempSelected = this.state.selected;
+    let tempAntiDiv = 'notSelected';
+
+    if(this.state.selected[index] === undefined) {
+      for(let i = 0; i < tempSelected.length; i += 1) {
+        if(tempSelected[i] === 'selected') tempSelected[i] = tempAntiDiv;
+      }
+      tempSelected.push('selected');
+    } else if(this.state.selected[index] === tempAntiDiv) {
+      for(let i = 0; i < tempSelected.length; i += 1) {
+        if(tempSelected[i] === 'selected') tempSelected[i] = tempAntiDiv;
+      }
+      tempSelected[index] = 'selected';
+      this.setState({ selected: tempSelected })
+    }
   }
 
   render() {
+    console.log(this.state.selected)
     return (
       <div>
         <div id="title"> Your Server Route Results! </div>
@@ -128,6 +140,7 @@ class App extends Component {
             openTabs={this.state.openTabs}/>
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
+            selected={this.state.selected}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
             currTab={this.state.currTab} highlightDiv={this.highlightDiv}/>
