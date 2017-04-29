@@ -17,28 +17,33 @@ console.log('hello from glenn server');
 function addCookie(req, res, next) {
   console.log('mmm cookies...');
   res.cookie('cookies', 'are tasty');
+  // console.log('originalUrl', req.originalUrl);
   return next();
 }
 
-// app.use('/route', addCookie);
+app.use('/', addCookie);
+// app.use('/', (req, res, next) => {
+//   console.log('firing app.use("/")');
+//   return next();
+// });
+
 
 app.get('/', (req, res) => {
-  const wd = res.locals._WD;
-  console.log('getting /');
+  console.log('getting /\n');
   res.redirect('/route1');
 })
 
 app.get('/route1', (req, res) => {
-  console.log('getting /route1');
+  console.log('getting /route1\n');
+  // console.log('route 1 req.url:', req.url, '\n');
   res.redirect('/route2');
 })
 
-app.get('/route2', addCookie, (req, res) => {
-  const wd = res.locals._WD;
-  console.log('getting /route2');
+app.get('/route2', (req, res) => {
+  console.log('getting /route2\n');
   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
 })
 
 const server = app.listen(3000, () => {
-  console.log('Listening on port 3000');
+  console.log('Listening on port 3000\n');
 })

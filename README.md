@@ -11,3 +11,5 @@ BUG: app.use changes req.path for some reason.  This causes mislabeling of keys 
 json object
 
 
+NOTE:  Can get info on middleware functions using 
+  res.socket.parser.incoming.route.stack

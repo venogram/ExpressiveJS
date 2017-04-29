@@ -31,14 +31,14 @@ class Snapshot {
 class Report {
   constructor(req, res, now = Date.now()) {
     this.method = req.method;
-    this.route = req.url;
-    this.timeline = [new Snapshot(req, res, now)];
+    this.route = req.originalUrl;
     this.start = now;
     this.end = null;
     this.duration = null;
     this.statusCode = null;
     this.statusMessage = null;
     this.error = null;
+    this.timeline = [new Snapshot(req, res, now)];
     this.redirect = null;
   }
 }
@@ -56,8 +56,7 @@ function wrapRedirect(res) {
 
 function initTracking(req, res, next) {
   const parsed = jsonController.getAndParse();
-  const methodRoute = req.method + ' ' + req.url;
-  console.log('running initTracking on', methodRoute);
+  const methodRoute = req.method + ' ' + req.originalUrl;
   parsed.currentRoute = [methodRoute];
   parsed[methodRoute] = new Report(req, res);
   parsed[methodRoute].isRedirect = false;
@@ -78,24 +77,21 @@ function trackState(req, res, next) {
 
 
 function initRedirect(req, res, next) {
-  console.log('running initRedirect');
   const parsed = jsonController.getAndParse();
   //updates current route
   parsed.currentRoute.push('redirect');
   parsed[parsed.currentRoute[0]].isRedirect = false;
-  // console.log(parsed.currentRoute);
-  // console.log('parsed["' + parsed.currentRoute.join('"]["') + '"]');
   //currentRoute is an array that tracks redirect history
   eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res)');
   wrapRedirect(res);
   res.locals._WD = parsed;
   jsonController.overwrite(parsed);
+  onFinished(res, resListeners.finish)
   return next();
 }
 
 
 function trackingMidware(req, res, next) {
-  // console.log('trackingMidware isRedirect check:', parsed[parsed.currentRoute[0]].isRedirect)
   const parsed = jsonController.getAndParse();
   if (!res.locals._WD) {
     if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {

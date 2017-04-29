@@ -1,6 +1,4 @@
-/*google indigo = #3F51B5*/
 /*not quite dark black color #191816*/
-/*Alex's second pick for text color : 42A5F5*/
 /*Marys pick for color: 00BCD4*/
 body {
     font-family: 'courier new';
@@ -19,6 +17,9 @@ body {
 }
 
 #GET {
+    font-size: 24px;
+}
+#POST {
     font-size: 24px;
 }
 
@@ -83,4 +84,18 @@ b {
     /*margin-left: 3%;*/
 }
 
+#tabsMenu {
+    /*border-bottom: 1px solid white;*/
+}
+
+.tabs {
+    background-color: #353533;
+    font-size:1.5em; 
+    border: none;
+    color:white;
+}
+
+.selected{
+    background-color:pink; 
+}
 
