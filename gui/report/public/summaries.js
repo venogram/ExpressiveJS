@@ -3,8 +3,8 @@
   summaries of the differences.
 */
 
-const JSONInterface = require('./watchDogJSONInterface.js');
-const wdJSON = require('./../../../watchDog.json');
+const JSONInterface = require('./expressiveJSONInterface.js');
+const xprJSON = require('./../../../expressive.json');
 
 const summaries = {
   getSummary: (diffObj) => {
@@ -39,7 +39,7 @@ const summaries = {
   }
 }
 
-//const stateChangesArr = JSONInterface.getStateChanges(wdJSON);
+//const stateChangesArr = JSONInterface.getStateChanges(xprJSON);
 //const ourSummaries = summaries.getSummaries(stateChangesArr);
 //console.log(ourSummaries.reqSummaries);
 
