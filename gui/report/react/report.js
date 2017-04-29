@@ -50,13 +50,11 @@ class Report extends Component {
         {/*state change information*/}
         <div className="stateChanges state-container">
           <div className="arrow state-item">
-            <img src="http://placekitten.com/g/175/175" />
+            <img src="./../white-arrow.png" />
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
             duration of Request and Response: {this.props.json[this.props.currTab].duration} ms<br />
-            {/*Status Code: {this.props.json[this.props.currTab].statusCode}<br />*/}
-            {/*Status Message: {this.props.json[this.props.currTab].statusMessage}<br />*/}
             Request Summaries: {this.props.requestSummaries(this.props.stateChangeLogs)} <br />
             Response Summaries: {this.props.responseSummaries(this.props.stateChangeLogs)} <br />
           </div>
