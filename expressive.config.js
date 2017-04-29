@@ -1,6 +1,6 @@
 /*
-  TODO: Should config file control what is written to watchDog.json
-  or should config file control how client parses watchDog.json
+  TODO: Should config file control what is written to expressive.json
+  or should config file control how client parses expressive.json
 */
 
 const config = {
