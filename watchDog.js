@@ -4,7 +4,7 @@
   middleware.
 
   TODO: express.static
-  TODO: test ALL the things!
+  TODO: wrap response methods?
   TODO: figure out how to handle multiple app.method calls for the same method.
   currently it will not be tracked when it goes past the first one.
   TODO: reconfigure listen method for all possible sets and configurations of listen
