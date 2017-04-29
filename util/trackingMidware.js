@@ -1,13 +1,13 @@
 /*
   initTracking is middleware that is run once when the server receives a new http request.
-  it sets up res.locals._WD and places listeners on the response and request objects.
+  it sets up res.locals._XPR and places listeners on the response and request objects.
 
-  NOTE: watchDog.json must already be configured in order for this to function properly!
+  NOTE: expressive.json must already be configured in order for this to function properly!
   TODO: Filter tracking in accordance with config file here
     -> Implicated File: filterSnapshot.js
   TODO: Track redirect path so any additional redirects get added there,
-    rather than writing over existing redirect of res.locals._WD
-    -> Maybe be more specific with wd.currentRoute?  Specify a path?
+    rather than writing over existing redirect of res.locals._XPR
+    -> Maybe be more specific with xpr.currentRoute?  Specify a path?
   TODO: Handle cases where server requests resource from itself
 */
 
@@ -49,15 +49,15 @@ function wrapRedirect(res) {
   const clone = res.redirect.bind(res);
   function newRedirect(...args) {
     //isRedirect property is stored at top-level report for current methodRoute key
-    res.locals._WD[res.locals._WD.currentRoute[0]].isRedirect = true;
-    jsonController.overwrite(res.locals._WD);
+    res.locals._XPR[res.locals._XPR.currentRoute[0]].isRedirect = true;
+    jsonController.overwrite(res.locals._XPR);
     return clone(...args);
   }
   res.redirect = newRedirect;
 }
 
 //fired before first devMiddleware upon a non-redirected client request
-//creates a report in json object and in res.locals._WD
+//creates a report in json object and in res.locals._XPR
 function initTracking(req, res, next) {
   const parsed = jsonController.getAndParse();
   const methodRoute = req.method + ' ' + req.originalUrl;
@@ -66,7 +66,7 @@ function initTracking(req, res, next) {
   parsed[methodRoute].isRedirect = false;
   wrapRedirect(res);
   jsonController.overwrite(parsed);
-  res.locals._WD = parsed;
+  res.locals._XPR = parsed;
   onFinished(res, resListeners.finish)
   return next();
 }
@@ -74,14 +74,14 @@ function initTracking(req, res, next) {
 //fired after each devMiddleware
 //updates report timeline with current state of request and response objects
 function trackState(req, res, next) {
-  const wd = res.locals._WD;
-  eval('wd["' + wd.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res))');
-  jsonController.overwrite(wd);
+  const xpr = res.locals._XPR;
+  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res))');
+  jsonController.overwrite(xpr);
   return next();
 }
 
 //fired before first devMiddleware upon a redirected client request
-//creates a report in json object and in res.locals._WD
+//creates a report in json object and in res.locals._XPR
 function initRedirect(req, res, next) {
   const parsed = jsonController.getAndParse();
   //updates currentRoute -- an array in the json object storing redirect history
@@ -92,7 +92,7 @@ function initRedirect(req, res, next) {
   //assigns redirect property of current report to a new nested report
   eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res)');
   wrapRedirect(res);
-  res.locals._WD = parsed;
+  res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
   onFinished(res, resListeners.finish)
   return next();
@@ -101,8 +101,8 @@ function initRedirect(req, res, next) {
 //parent middleware interspersed between each of the developer's midware
 //determines which child tracking midware to fire based on state of json object
 function trackingMidware(req, res, next) {
-  //if res.locals has no _WD property, we know this is a fresh request to app.METHOD
-  if (!res.locals._WD) {
+  //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
+  if (!res.locals._XPR) {
     const parsed = jsonController.getAndParse();
     //isRedirect property in json current report tells us if fresh request is a redirect
     if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {

@@ -1,7 +1,7 @@
 const express = require('express');
-const WatchDog = require('./../watchDog.js');
+const Expressive = require('./../expressive.js');
 const path = require('path');
-const app = WatchDog();
+const app = Expressive();
 
 console.log('hi from ryan');
 

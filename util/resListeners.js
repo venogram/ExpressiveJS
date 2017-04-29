@@ -16,11 +16,11 @@ class Snapshot {
 const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
-    const wd = res.locals._WD;
+    const xpr = res.locals._XPR;
     const now = Date.now();
 
     //follows linked list of nested reports to find current report
-    const routeLocation = eval('wd["' + wd.currentRoute.join('"]["') + '"]');
+    const routeLocation = eval('xpr["' + xpr.currentRoute.join('"]["') + '"]');
 
     //updates current report with completion information
     routeLocation.timeline.push(new Snapshot(res.req, res, now));
@@ -31,11 +31,11 @@ const resListeners = {
     routeLocation.statusMessage = res.statusMessage;
 
     //increments totalDuration in initial report with duration of current report
-    wd[wd.currentRoute[0]].hasOwnProperty('totalDuration') ?
-      wd[wd.currentRoute[0]].totalDuration += routeLocation.duration :
-      wd[wd.currentRoute[0]].totalDuration = routeLocation.duration;
+    xpr[xpr.currentRoute[0]].hasOwnProperty('totalDuration') ?
+      xpr[xpr.currentRoute[0]].totalDuration += routeLocation.duration :
+      xpr[xpr.currentRoute[0]].totalDuration = routeLocation.duration;
 
-    jsonController.overwrite(wd);
+    jsonController.overwrite(xpr);
   }
 }
 
