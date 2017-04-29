@@ -6,8 +6,6 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
-console.log(json)
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +24,12 @@ class App extends Component {
     this.requestSummaries = this.requestSummaries.bind(this);
 
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
+    this.highlightDiv = this.highlightDiv.bind(this);
   }
+
+
+
+
 
   //fill state to populate routes
   displayRoute(arrRoutes, method) {
@@ -109,6 +112,9 @@ class App extends Component {
     return Summaries.getSummaries(log).reqSummaries;
   }
 
+  highlightDiv() {
+    console.log('hi')
+  }
 
   render() {
     return (
@@ -124,7 +130,7 @@ class App extends Component {
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab}/>
+            currTab={this.state.currTab} highlightDiv={this.highlightDiv}/>
         </div>
       </div>
     );
