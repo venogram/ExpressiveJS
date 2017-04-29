@@ -6,8 +6,6 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
-//console.log("this.state.json", json)
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +15,7 @@ class App extends Component {
       userReports: [],
       stateChangeLogs: [],
       currMethod: "",
+      currTab: "",
       openTabs:[]
     };
     this.displayRoute = this.displayRoute.bind(this);
@@ -48,15 +47,13 @@ class App extends Component {
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
 
-    <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
-          currMethod={this.props.currMethod}
-          displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} />
   }
 
   displayReport(route, index) {
     // element is "GET /"
     let tempReport = [];
     let tempOpenTabs = this.state.openTabs;
+    let tempCurrTab = route;
 
     //pull timeline of only the matching method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
@@ -73,28 +70,31 @@ class App extends Component {
 
     //new list of open tabs
     this.setState({ openTabs: tempOpenTabs });
+
+    //change the state view with currTab
+    this.setState({ currTab: tempCurrTab });
   }
 
   displayReportFromTabs(route, index) {
-    // element is "GET /"
+    // route is "GET /"
+    let emptiness = []
     let tempReport = [];
-    let tempOpenTabs = this.state.openTabs;
+    let tempCurrTab = route;
+
+    //clear off existing state of userReports
+    this.setState({ userReports: emptiness });
 
     //pull timeline of only the matching method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
 
-    //add to list of new tabs if not already there
-    if(!this.state.openTabs.includes(route)) {
-      tempOpenTabs.push(route);
-    }
     //change state according to match
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
-    //new list of open tabs
-    this.setState({ openTabs: tempOpenTabs });
+    //the tab you are currently on
+     this.setState({ currTab: tempCurrTab })
   }
 
   responseSummaries(log) {
@@ -121,7 +121,8 @@ class App extends Component {
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
-            openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}/>
+            openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
+            currTab={this.state.currTab}/>
         </div>
       </div>
     );
