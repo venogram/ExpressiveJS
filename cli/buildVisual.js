@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-//Runs Webpack to Update Visualization on Changesß
+//Runs Webpack to Update Visualization on Changes
 
 const exec = require('child_process').exec;
 const path = require('path'); 
