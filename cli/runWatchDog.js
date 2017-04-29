@@ -38,14 +38,15 @@ serv.on('message', (message) => {
       .filter(routeInfo => routeInfo.method === 'GET')
       .map(routeInfo => routeInfo.route);
 
+    console.log('reqRoutes', reqRoutes);
+
     const initPromise = new Promise((resolve, reject) => resolve());
-    reqRoutes.reduce((prevPromise, nextRoute) => {
-      return prevPromise.then(() => {
+    const finalPromise = reqRoutes.reduce((prevPromise, nextRoute, ind) => {
+      let newProm = prevPromise.then(() => {
         return request(host + nextRoute);
       })
+      return newProm;
     }, initPromise);
+
   }
 });
-
-
-//serv.kill('SIGINT');
