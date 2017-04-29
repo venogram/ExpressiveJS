@@ -15,12 +15,9 @@ class App extends Component {
       userReports: [],
       stateChangeLogs: [],
       currMethod: "",
-<<<<<<< HEAD
-      methodAndRoutes: []
-=======
+
       currTab: "",
       openTabs:[]
->>>>>>> fc56149d77faa38a2e5902874cc930b974b93e30
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
