@@ -85,7 +85,17 @@ b {
 }
 
 #tabsMenu {
-    border: 1px white solid;
+    /*border-bottom: 1px solid white;*/
 }
 
+.tabs {
+    background-color: #353533;
+    font-size:1.5em; 
+    border: none;
+    color:white;
+}
+
+.selected{
+    background-color:pink; 
+}
 

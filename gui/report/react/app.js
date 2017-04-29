@@ -6,6 +6,7 @@ const json = require('./../../../watchDog.json');
 import JSONInterface from './../public/watchDogJSONInterface';
 import Summaries from './../public/summaries';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,6 @@ class App extends Component {
       userReports: [],
       stateChangeLogs: [],
       currMethod: "",
-
       currTab: "",
       openTabs:[]
     };
@@ -82,6 +82,13 @@ class App extends Component {
 
   displayReportFromTabs(route, index) {
     // route is "GET /"
+    let currElement = "" + index + index; 
+
+    console.log(document.getElementById(currElement))
+    // document.getElementsByClassName('tabs').classList.remove("selected")
+    
+    document.getElementById(currElement).classList.add("selected")
+
     let emptiness = []
     let tempReport = [];
     let tempCurrTab = route;

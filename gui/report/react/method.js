@@ -17,7 +17,6 @@ class Method extends Component {
       }
     })
 
-    console.log(Object.keys(userMethods))
     //create method button
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
