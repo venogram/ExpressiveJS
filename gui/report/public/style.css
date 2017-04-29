@@ -88,4 +88,6 @@ b {
     border: 1px white solid;
 }
 
-
+.selected {
+    background-color: pink;
+}
