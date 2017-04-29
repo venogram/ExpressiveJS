@@ -129,13 +129,15 @@ class App extends Component {
 
   closeTab(index){
     let emptiness =[];
-    console.log(this.state.openTabs)
+    console.log("openTabs from closeTab", this.state.openTabs)
     let tempOpenTabs=this.state.openTabs;
     tempOpenTabs.splice(index,1);
     this.setState({ openTabs: tempOpenTabs });
 
-    if(tempOpenTabs.length !== 0) this.displayReportFromTabs(tempOpenTabs[index])
-    else this.setState({ userReports: emptiness })
+    console.log("should run displayReport from this?", tempOpenTabs[index])
+
+    this.displayReport(tempOpenTabs[index])
+    if(tempOpenTabs.length === 0) this.setState({ userReports: emptiness })
   }
 
   render() {
