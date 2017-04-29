@@ -7,6 +7,7 @@ TODO: test all methods in this file
 
 const fs = require('fs');
 const path = require('path');
+const json = require('./../watchDog.json');
 
 const jsonController = {
 
@@ -52,10 +53,18 @@ const jsonController = {
     let curr = parsed;
     eval('parsed["'+path.join('"]["')+'"] = val');
     jsonController.overwrite(parsed);
+  },
+
+  scrub: (obj) => {
+    delete obj.currentRoute;
+    Object.keys(obj).forEach((key) => {
+      if (key !== 'routes') delete obj[key].isRedirect;
+    })
+    jsonController.overwrite(obj);
   }
 
 }
 
 module.exports = jsonController;
 
-jsonController.createJSON();
+jsonController.scrub(json);
