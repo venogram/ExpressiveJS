@@ -5,7 +5,7 @@ class Report extends Component {
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
       //console.log("element from tabs",element)
-      return <button key={index} id={""+ index + index} onClick={() => this.props.displayReportFromTabs(element, index)} > {element} </button>
+      return <button key={index} id = {"" + index + index} className = "tabs" onClick={() => {this.props.displayReportFromTabs(element, index); this.props.highlightDiv()}} > {element} </button>
     });
 
     let report = this.props.userReports.map((element, index) => {
@@ -13,12 +13,11 @@ class Report extends Component {
       let reqObj = element['req'];
       let resObj = element['res'];
       //console.log("element in the loop", element)
-
       return <div key={index} className="report">
         <div className="currentState">
           <h2> State #{index + 1} </h2> <hr />
           <b>request:</b> <br />
-          <span>cookie:</span> {reqObj.socket._httpMessage._headers['set-cookie']} <br />
+          <span>cookie:</span> {reqObj.headers.cookie} <br />
           host: {reqObj.headers.host} <br />
           complete: {reqObj.complete.toString()} <br />
 
