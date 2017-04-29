@@ -12,10 +12,10 @@
 */
 
 const express = require('express'),
-      app = express(),
-      getAppMethodArgs = require('./util/getAppMethodArgs.js'),
-      jsonController = require('./util/jsonController.js'),
-      serverListeners = require('./util/serverListeners.js');
+  app = express(),
+  getAppMethodArgs = require('./util/getAppMethodArgs.js'),
+  jsonController = require('./util/jsonController.js'),
+  serverListeners = require('./util/serverListeners.js');
 
 function set(method, ...args) {
   const route = args[0];
@@ -23,8 +23,9 @@ function set(method, ...args) {
   return insertWatchDogMidware(method, ...args);
 }
 
+
 function insertWatchDogMidware(method, ...args) {
-  const watchDogMidware = getAppMethodArgs(args);
+  let watchDogMidware = getAppMethodArgs(args);
   return app[method.toLowerCase()](...watchDogMidware);
 }
 
@@ -55,15 +56,15 @@ const watchDog = () => {
     // set: () => {}
   }
 
-  const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE', 
-      'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
-      'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
+  const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE',
+    'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
+    'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
 
   //assigns app.METHOD for all methods 
   requestMethods.forEach(method => {
     watchDogObj[method.toLowerCase()] = (...args) => set(method, ...args);
   });
-  
+
   //assign all properties and methods of the express app to the watchDogObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {
