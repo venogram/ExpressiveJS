@@ -1,5 +1,5 @@
 /*
-TODO: test all methods in this file
+  contains methods that retrieve and/or alter the json file
 
 
 */
@@ -55,6 +55,7 @@ const jsonController = {
     jsonController.overwrite(parsed);
   },
 
+  //removes keys in json object not useful to developer nor for visualization.
   scrub: (obj) => {
     delete obj.currentRoute;
     Object.keys(obj).forEach((key) => {

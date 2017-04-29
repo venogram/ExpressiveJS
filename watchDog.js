@@ -17,6 +17,15 @@ const express = require('express'),
   jsonController = require('./util/jsonController.js'),
   serverListeners = require('./util/serverListeners.js');
 
+//wrapper for app.METHOD
+//intersperses tracking midware between developer midware
+function insertWatchDogMidware(method, ...args) {
+  let watchDogMidware = getAppMethodArgs(args);
+  return app[method.toLowerCase()](...watchDogMidware);
+}
+
+//stores route and method in json object for creation of default config file
+//then wraps app.METHOD
 function set(method, ...args) {
   const route = args[0];
   jsonController.addRoute(method, route);
@@ -24,10 +33,6 @@ function set(method, ...args) {
 }
 
 
-function insertWatchDogMidware(method, ...args) {
-  let watchDogMidware = getAppMethodArgs(args);
-  return app[method.toLowerCase()](...watchDogMidware);
-}
 
 
 const watchDog = () => {
@@ -61,7 +66,7 @@ const watchDog = () => {
       'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
 
 
-  //assigns app.METHOD for all methods
+  //assigns app.METHOD for all request methods
   requestMethods.forEach(method => {
     watchDogObj[method.toLowerCase()] = (...args) => set(method, ...args);
   });
