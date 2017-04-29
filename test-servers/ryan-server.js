@@ -10,11 +10,13 @@ app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
-  res.send('response sent!');
+  res.redirect('/redirect');
 });
 
 app.get('/redirect', (req, res) => {
-  res.send('you were redirected!');
+  console.log('hit /redirect');
+  res.status(308);
+  res.redirect('/route');
 })
 
 app.get('/route', (req, res) => {

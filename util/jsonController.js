@@ -7,7 +7,7 @@ TODO: test all methods in this file
 
 const fs = require('fs');
 const path = require('path');
-const json = require('./../watchDog.json');
+//const json = require('./../watchDog.json');
 
 const jsonController = {
 
@@ -66,5 +66,3 @@ const jsonController = {
 }
 
 module.exports = jsonController;
-
-jsonController.scrub(json);
