@@ -46,7 +46,6 @@ class App extends Component {
     this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
-
   }
 
   //display report according to the selected route
