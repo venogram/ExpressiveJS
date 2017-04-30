@@ -1,3 +1,4 @@
+![alt text](https://raw.githubusercontent.com/venogram/ExpressiveJS/master/expr.png)
 # ExpressiveJS
 
 

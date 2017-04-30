@@ -6,6 +6,8 @@ const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
+console.log('json', json)
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +131,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div id="title"> Your Server Route Results! </div>
+        <div id="title"> <img src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/expr.png"/> </div>
 
         <div className="App flex-container">
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
