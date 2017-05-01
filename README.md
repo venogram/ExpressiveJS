@@ -45,17 +45,12 @@ TBD
 ## Testing Server Routes
 
 ### Command Line Scripts
-__```
-$ xpr-test
-```: Test your server routes__.  Sends http requests to your Express server using request methods, routes, and bodies specified either by your __expressive.config.js__ configuration file or by Expressive's default settings.  This will create an __expressive.json__ file in your application's root directory where information on request and response states is stored.
 
-__```
-$ xpr-display
-```: Render a visualization__ of your server routes based on the __expressive.json__ file created from the *xpr-test* command.
+__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server using request methods, routes, and bodies specified either by your __expressive.config.js__ configuration file or by Expressive's default settings.  This will create an __expressive.json__ file in your application's root directory where information on request and response states is stored.
 
-__```
-$ xpr
-```: Test your server routes__ and then __render a visualization__.  Equivalent to running *xpr-test* followed by *xpr-display*.
+__```$ xpr-display```: Render a visualization__ of your server routes based on the __expressive.json__ file created from the *xpr-test* command.
+
+__```$ xpr```: Test your server routes__ and then __render a visualization__.  Equivalent to running *xpr-test* followed by *xpr-display*.
 
 
 
