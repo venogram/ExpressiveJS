@@ -4,7 +4,9 @@ body {
     padding: 0;
     margin: 0;
     background-color:#191816;
-    color:#00BCD4;
+    /*color:#00BCD4;*/
+    /*color that alex plays around with for terminal look. refer to normal color above*/
+    color:#0bdc0b;
 }
 
 b {
@@ -12,7 +14,6 @@ b {
 }
 
 #title {
-    /*text-align: center;*/
     padding-bottom: 1%;
     padding-top:  2%;
     font-size: 26px;
@@ -31,7 +32,7 @@ b {
 
 #methodColumn {
     width: 20%;
-    border-right: 1px white solid;
+    /*border-right: 1px white solid;*/
 }
 
 #GET {
@@ -84,7 +85,8 @@ b {
 /*TABS*/
 
 .tabs {
-    background-color: #353533;
+    /*background-color: #353533;*/
+    background-color: transparent;
     font-size:1.5em;
     border: none;
     color:white;
@@ -93,4 +95,26 @@ b {
 
 .selected{
     background-color:#191816;
+}
+
+button {
+    display: inline;
+    white-space: nowrap;
+}
+
+#tabsMenu {
+    display: flex;
+    /*changing background-color here will do seemless tabs and have .flex-tab have changing class*/
+    background-color: #232321;
+}
+
+.flex-tab {
+    display: flex;
+    margin-left: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.x {
+    /*margin-left: 5%;*/
 }
