@@ -1,31 +1,22 @@
 ![ExpressiveJS Logo](https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png)
 
 
-
 # ExpressiveJS
 > End to end server route tracking for [Express](https://expressjs.com/) applications.
 
 
 
 ## Install
-```
-$ npm install expressivejs --save-dev
-```
+```$ npm install expressivejs --save-dev```
 
 
 
 ## Basic Setup
 
 ### 1) Modify Express server files
-Replace all instances of 
-```
-var express = require('express');
-```
+Replace all instances of  ```var express = require('express');```
 
-with
-```
-var express = require('expressivejs');
-```
+with ```var express = require('expressivejs');```
 
 This will enable Expressive to progressively document the state of client requests and server responses.
 
@@ -60,4 +51,4 @@ __```$ xpr```: Test your server routes__ and then __render a visualization__.  E
 Any server middleware that alters __res.locals._XPR__ will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
 ### Expressive is not for use in production
-Be sure to change all instances of ```var express = require('expressive');``` back to ```var express = require('express');``` before using your server file for non-testing purposes.
+Be sure to change all instances of ```var express = require('expressive');```
