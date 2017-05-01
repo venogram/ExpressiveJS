@@ -31,12 +31,16 @@
   "homepage": "https://github.com/venogram/watch-dog#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "css-loader": "^0.27.3",
     "deep-diff": "^0.3.4",
     "electron": "^1.6.6",
+    "node-sass": "^4.5.1",
     "on-finished": "^2.3.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "request": "^2.81.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.0",
     "supertest": "^3.0.0"
   },
   "devDependencies": {
