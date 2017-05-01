@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 
 class Report extends Component {
+    tabColoring(element, index) {
+    let notSelected;
+      console.log(this.props.selected)
+      if (this.props.selected.length === 0) notSelected = "notSelected"
+      else notSelected = this.props.selected[index]
+      return notSelected
+    }
   render() {
     //render tabs into the tab div
+
     let tabs = this.props.openTabs.map((element, index) => {
-      return <div key={index} className={"flex-tab " + this.props.selected[index]}>
-        <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png"/>
+      return <div key={index} className={"flex-tab " + this.tabColoring(element, index)}>
+        <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
         <button id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index) }}>{element}</button>
-        <span className={"tabs hover"} onClick={()=>this.props.closeTab(index)}>x</span>
+        <span className={"tabs hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
       </div>
     });
 
@@ -18,17 +26,17 @@ class Report extends Component {
       let resObj = element['res'];
       let redirectObj = this.props.json[this.props.currTab];
 
-    //get name of all middlewares
-    let totalRedirect = reqObj.route.stack.map((element, index, array) => {
-      if (index !== array.length - 1) return element.name + ' -> ';
-      return element.name;
-    });
+      //get name of all middlewares
+      let totalRedirect = reqObj.route.stack.map((element, index, array) => {
+        if (index !== array.length - 1) return element.name + ' -> ';
+        return element.name;
+      });
 
-    //function will get duration and status code of redirect if route has redirect
-    let redirectDurationAndStatusCode = (redirectObj) => {
-      if(!redirectObj.redirect) return 'No Redirects';
-      else return redirectObj.redirect.duration + ' ms/' + redirectObj.redirect.statusCode;
-    };
+      //function will get duration and status code of redirect if route has redirect
+      let redirectDurationAndStatusCode = (redirectObj) => {
+        if (!redirectObj.redirect) return 'No Redirects';
+        else return redirectObj.redirect.duration + ' ms/' + redirectObj.redirect.statusCode;
+      };
 
       return <div key={index} className="report">
         <div className="currentState">

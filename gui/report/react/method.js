@@ -19,7 +19,7 @@ class Method extends Component {
     //create method button
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
-        return <div key={index} id={element} className="hover" onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</div>
+        return <div key={index} id={element} className="hover method" onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</div>
       });
 
     //add route buttons according to the pressed method button
