@@ -4,8 +4,10 @@ class Report extends Component {
   render() {
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
-      return <div key={index} className={"flex-tab "+ this.props.selected[index]}> <button key={index} id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index) }}>{element}</button>
-      <span className={"x tabs hover"} onClick={()=>this.props.closeTab(index)}>x</span>
+      return <div key={index} className={"flex-tab " + this.props.selected[index]}>
+        <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png"/>
+        <button id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index) }}>{element}</button>
+        <span className={"tabs hover"} onClick={()=>this.props.closeTab(index)}>x</span>
       </div>
     });
 

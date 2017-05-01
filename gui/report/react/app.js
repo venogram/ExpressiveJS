@@ -133,28 +133,23 @@ class App extends Component {
   closeTab(index) {
     let emptiness = [];
     let tempOpenTabs = this.state.openTabs;
-    console.log("list of tabs before clicking x", this.state.openTabs)
     tempOpenTabs.splice(index, 1);
     this.setState({ openTabs: tempOpenTabs });
-    console.log("list of tabs after closing:", this.state.openTabs);
 
     //clear the list?
     this.setState({ userReports: emptiness })
-    console.log("userReport state after clicking x", this.state.userReports)
   }
 
   render() {
     return (
-      <div>
-
-        <div id="title"> <img src="./../whiteLogo.png"/> </div>
-
-
         <div className="App flex-container">
+
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport}
             openTabs={this.state.openTabs} />
+
+          <div id="toggleView">...</div>
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             selected={this.state.selected}
@@ -162,7 +157,6 @@ class App extends Component {
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
             currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab} />
         </div>
-      </div>
     );
   }
 }

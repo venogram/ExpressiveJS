@@ -2,4 +2,99 @@
 
 body {
   background-color: $bgcolor;
+  color: $defaultFontColor;
+  font: {
+    family: $vsCodeFont;
+    }
+  margin: {
+    top: 4%;
+    bottom: 4%;
+    left: 8%;
+    right: 8%;
+  }
+}
+
+#mainLogo {
+  width: 150px;
+  height: 75px;
+  padding: {
+    left: 5%;
+    right: 5%;
+  }
+}
+
+.flex-container {
+  display: flex;
+}
+
+#methodColumn {
+
+  background-color: $methodDirBGColor;
+  #xpr span {
+    .hover {
+     &:hover {
+        cursor: pointer;
+        background-color: #353533;
+      }
+    }
+
+    .routes{
+      font-size: 15px;
+      text-indent: $routeIndentation;
+    }
+  }
+
+}
+
+#toggleView {
+  background-color: $toggleViewBGColor;
+}
+
+#reportColumn {
+  background-color: $mainDisplayBGColor;
+}
+
+
+/*TABS*/
+.selected{
+  background-color: $mainDisplayBGColor;
+}
+.notSelected {
+  background-color: $unfocusedTabColor;
+}
+
+#tabsMenu {
+  display: flex;
+  background-color: $bgcolor;
+
+  .flex-tab {
+    display: flex;
+    margin-left: 2%;
+    padding: {
+      left: 1%;
+      right: 1%;
+    }
+
+    .tabs {
+      background-color: transparent;
+      font-size:1.5em;
+      border: none;
+      margin-right: 1%;
+    }
+
+    button {
+      display: inline;
+      white-space: nowrap;
+    }
+
+    .tabLogo {
+      width: 30px;
+      height: 40px;
+      padding: {
+        top: 5%;
+        bottom: 5%;
+      }
+    }
+  }
+
 }
