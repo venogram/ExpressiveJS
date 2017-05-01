@@ -1,4 +1,4 @@
-<p align="center"><a href='http://expressivejs.io/'><img alt="expressive" src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png" height="60%" width="60%"></a></p>
+<p align="center"><a href='http://expressivejs.io/'><img alt="expressive" src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png" height="20%" width="20%"></a></p>
 
 
 
