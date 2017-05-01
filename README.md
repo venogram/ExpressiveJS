@@ -1,4 +1,4 @@
-![ExpressiveJS Logo](https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png)
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png" /></div>
 
 
 # ExpressiveJS
@@ -21,7 +21,7 @@ with ```var express = require('expressivejs');```
 This will enable Expressive to progressively document the state of client requests and server responses.
 
 
-### 2) *(Optional)* Create a configuration file 
+### 2) *(Optional)* Create a configuration file
 
 This file should be called __expressive.config.js__ and be located in your application's root directory.
 
