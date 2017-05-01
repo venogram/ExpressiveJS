@@ -9,7 +9,7 @@ class Route extends Component {
     });
 
     return (
-      <div >
+      <div className="routes">
         {methodRouteButtons}
       </div>
     );

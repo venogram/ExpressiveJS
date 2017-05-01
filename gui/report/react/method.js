@@ -19,7 +19,7 @@ class Method extends Component {
     //create method button
     let methodButtons = Object.keys(userMethods)
       .map((element, index) => {
-        return <p key={index} id={element} className="hover" onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</p>
+        return <div key={index} id={element} className="hover" onClick={() => this.props.displayRoute(allRoutes, element)}>{element}</div>
       });
 
     //add route buttons according to the pressed method button
@@ -38,7 +38,14 @@ class Method extends Component {
 
     return (
       <div id="methodColumn" className="flex-item">
+        <div id="xpr">
+         <img id="mainLogo" src="./../public/images/whiteEXPRLogo@2x.png"/>
         {subButtons}
+        </div>
+        {/*<div id="setting">
+          column for implementing 'Setting' tab
+          will need to switch between setting and xpr onClick
+        </div>*/}
       </div>
     );
   }
