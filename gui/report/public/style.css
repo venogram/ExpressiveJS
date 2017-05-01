@@ -4,7 +4,9 @@ body {
     padding: 0;
     margin: 0;
     background-color:#191816;
-    color:#00BCD4;
+    /*color:#00BCD4;*/
+    /*color that alex plays around with for terminal look. refer to normal color above*/
+    color:#0bdc0b;
 }
 
 b {
@@ -30,7 +32,7 @@ b {
 
 #methodColumn {
     width: 20%;
-    border-right: 1px white solid;
+    /*border-right: 1px white solid;*/
 }
 
 #GET {
