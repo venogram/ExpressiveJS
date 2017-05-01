@@ -1,6 +1,7 @@
 @import '_variables';
 
 body {
+  
   background-color: $bgcolor;
   color: $defaultFontColor;
   font: {
@@ -57,6 +58,9 @@ body {
 
 #reportColumn {
   background-color: $mainDisplayBGColor;
+  height: 100vh;
+  width:100%;
+  overflow:scroll;
 }
 
 
@@ -70,7 +74,6 @@ body {
 
 #tabsMenu {
   display: flex;
-  background-color: $bgcolor;
 
   .flex-tab {
     display: flex;
@@ -100,6 +103,14 @@ body {
         bottom: 5%;
       }
     }
+
+    .cancel{
+      font-size:15px;
+      &:hover {
+        cursor: pointer;
+        }
+    }
+
   }
 
 }
