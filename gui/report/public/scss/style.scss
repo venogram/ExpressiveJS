@@ -1,6 +1,7 @@
 @import '_variables';
 
 body {
+  
   background-color: $bgcolor;
   color: $defaultFontColor;
   font: {
@@ -15,11 +16,13 @@ body {
 }
 
 #mainLogo {
-  width: 150px;
-  height: 75px;
+  width: 100px;
+  height: 40px;
   padding: {
-    left: 5%;
-    right: 5%;
+    left: 8%;
+    right: 8%;
+    top: 5%;
+    bottom:5%;
   }
 }
 
@@ -28,7 +31,8 @@ body {
 }
 
 #methodColumn {
-
+  
+  height: 100vh;
   background-color: $methodDirBGColor;
   #xpr span {
     .hover {
@@ -37,13 +41,15 @@ body {
         background-color: #353533;
       }
     }
-
+    
     .routes{
-      font-size: 15px;
+      font-size: 12px;
       text-indent: $routeIndentation;
     }
   }
-
+  .method{
+    font-size:20px;
+  }
 }
 
 #toggleView {
@@ -52,6 +58,9 @@ body {
 
 #reportColumn {
   background-color: $mainDisplayBGColor;
+  height: 100vh;
+  width:100%;
+  overflow:scroll;
 }
 
 
@@ -65,7 +74,6 @@ body {
 
 #tabsMenu {
   display: flex;
-  background-color: $bgcolor;
 
   .flex-tab {
     display: flex;
@@ -95,6 +103,14 @@ body {
         bottom: 5%;
       }
     }
+
+    .cancel{
+      font-size:15px;
+      &:hover {
+        cursor: pointer;
+        }
+    }
+
   }
 
 }
