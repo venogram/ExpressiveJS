@@ -149,7 +149,7 @@ class App extends Component {
             displayRoute={this.displayRoute} displayReport={this.displayReport}
             openTabs={this.state.openTabs} />
 
-          <div id="toggleView">+ or -</div>
+          <div id="toggleView">...</div>
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             selected={this.state.selected}
