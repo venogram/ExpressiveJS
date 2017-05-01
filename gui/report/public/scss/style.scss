@@ -15,11 +15,13 @@ body {
 }
 
 #mainLogo {
-  width: 150px;
-  height: 75px;
+  width: 100px;
+  height: 40px;
   padding: {
-    left: 5%;
-    right: 5%;
+    left: 8%;
+    right: 8%;
+    top: 5%;
+    bottom:5%;
   }
 }
 
@@ -28,7 +30,8 @@ body {
 }
 
 #methodColumn {
-
+  
+  height: 100vh;
   background-color: $methodDirBGColor;
   #xpr span {
     .hover {
@@ -37,13 +40,15 @@ body {
         background-color: #353533;
       }
     }
-
+    
     .routes{
-      font-size: 15px;
+      font-size: 12px;
       text-indent: $routeIndentation;
     }
   }
-
+  .method{
+    font-size:20px;
+  }
 }
 
 #toggleView {
