@@ -6,6 +6,8 @@ const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
+import style from './../public/scss/style.scss';
+
 //console.log('json', json)
 
 class App extends Component {
