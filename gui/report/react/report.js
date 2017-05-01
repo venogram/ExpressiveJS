@@ -52,7 +52,9 @@ class Report extends Component {
         {/*state change information*/}
         <div className="stateChanges state-container">
           <div className="arrow state-item">
+
             <img src="./../arrow.png" />
+
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
