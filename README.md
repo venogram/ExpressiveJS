@@ -53,4 +53,4 @@ __```$ xpr```: Test your server routes__ and then __render a visualization__.  E
 Any server middleware that alters __res.locals._XPR__ will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
 ### Expressive is not for use in production
-Be sure to change all instances of ```var express = require('expressive');``` back to ```var express = require('express');``` before running your application for non-testing purposes.
+Be sure to change all instances of ```var express = require('expressivejs');``` back to ```var express = require('express');``` before running your application for non-testing purposes.
