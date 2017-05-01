@@ -4,7 +4,9 @@ class Report extends Component {
   render() {
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
-      return <button key={index} id={index} className={"tabs " + this.props.selected[index]} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index) }}>{element}</button>
+      return <div key={index} className={"flex-tab "+ this.props.selected[index]}> <button key={index} id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index) }}>{element}</button>
+      <span className={"x tabs hover"} onClick={()=>this.props.closeTab(index)}>x</span>
+      </div>
     });
 
     //generate report based on userReports
@@ -14,7 +16,7 @@ class Report extends Component {
       let resObj = element['res'];
       let redirectObj = this.props.json[this.props.currTab];
 
-    //get name of all redirects
+    //get name of all middlewares
     let totalRedirect = reqObj.route.stack.map((element, index, array) => {
       if (index !== array.length - 1) return element.name + ' -> ';
       return element.name;
@@ -43,15 +45,16 @@ class Report extends Component {
           <b>response:</b> <br />
           cookie: {resObj._headers['set-cookie']} <br />
           Status Code: {resObj.statusCode} <br />
-          location: {resObj._headers.location} <br />
+          Redirected location: {resObj._headers.location} <br />
           finished: {resObj.finished.toString()} <br />
           <br />
         </div>
         {/*state change information*/}
         <div className="stateChanges state-container">
           <div className="arrow state-item">
-            <img src="./../whiteLogo.png" />
-            // <img src="./../white-arrow.png" />
+
+            <img src="./../arrow.png" />
+
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />

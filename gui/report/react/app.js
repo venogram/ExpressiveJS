@@ -6,7 +6,7 @@ const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
-console.log('json', json)
+//console.log('json', json)
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +27,7 @@ class App extends Component {
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
     this.highlightTab = this.highlightTab.bind(this);
+    this.closeTab = this.closeTab.bind(this);
   }
 
   //update state to populate routes
@@ -46,7 +47,6 @@ class App extends Component {
     this.setState({ currMethod: tempCurrMethod });
     //clear off timeline text caused by other buttons
     this.setState({ userReports: clearReport });
-
   }
 
   //display report according to the selected route
@@ -61,7 +61,7 @@ class App extends Component {
     }
 
     //create new tabs, excludes duplicates
-    if(!this.state.openTabs.includes(route)) {
+    if (!this.state.openTabs.includes(route)) {
       tempOpenTabs.push(route);
     }
     //change state according to selected method and route
@@ -94,7 +94,7 @@ class App extends Component {
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
     //update current selected tab
-     this.setState({ currTab: tempCurrTab })
+    this.setState({ currTab: tempCurrTab })
   }
 
   //generate summary lines for req and res objects
@@ -114,36 +114,51 @@ class App extends Component {
 
     //change all tabs class to notSelected
     //give class selcted to the clicked tab
-    if(this.state.selected[index] === undefined) {
-      for(let i = 0; i < tempSelected.length; i += 1) {
-        if(tempSelected[i] === 'selected') tempSelected[i] = notSelected;
+    if (this.state.selected[index] === undefined) {
+      for (let i = 0; i < tempSelected.length; i += 1) {
+        if (tempSelected[i] === 'selected') tempSelected[i] = notSelected;
       }
       tempSelected.push('selected');
-    } else if(this.state.selected[index] === notSelected) {
-      for(let i = 0; i < tempSelected.length; i += 1) {
-        if(tempSelected[i] === 'selected') tempSelected[i] = notSelected;
+    } else if (this.state.selected[index] === notSelected) {
+      for (let i = 0; i < tempSelected.length; i += 1) {
+        if (tempSelected[i] === 'selected') tempSelected[i] = notSelected;
       }
       tempSelected[index] = 'selected';
       this.setState({ selected: tempSelected })
     }
   }
 
+  closeTab(index) {
+    let emptiness = [];
+    let tempOpenTabs = this.state.openTabs;
+    console.log("list of tabs before clicking x", this.state.openTabs)
+    tempOpenTabs.splice(index, 1);
+    this.setState({ openTabs: tempOpenTabs });
+    console.log("list of tabs after closing:", this.state.openTabs);
+
+    //clear the list?
+    this.setState({ userReports: emptiness })
+    console.log("userReport state after clicking x", this.state.userReports)
+  }
+
   render() {
     return (
       <div>
+
         <div id="title"> <img src="./../whiteLogo.png"/> </div>
+
 
         <div className="App flex-container">
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport}
-            openTabs={this.state.openTabs}/>
+            openTabs={this.state.openTabs} />
 
           <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
             selected={this.state.selected}
             displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
             openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab} highlightTab={this.highlightTab} />
+            currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab} />
         </div>
       </div>
     );
