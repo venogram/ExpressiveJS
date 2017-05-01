@@ -131,7 +131,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div id="title"> <img src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/expr.png"/> </div>
+        <div id="title"> <img src="./../whiteLogo.png"/> </div>
 
         <div className="App flex-container">
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
