@@ -10,7 +10,7 @@ const config = {
 
   testRoutes: [
     {method: "GET", route:"/", body:""},
-    {method: "GET", route:"/route", body:""}
+    {method: "GET", route:"/redirect", body:""}
   ],
 
   resWatch: ['._headers'],

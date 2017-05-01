@@ -36,6 +36,7 @@ const resListeners = {
       xpr[xpr.currentRoute[0]].totalDuration = routeLocation.duration;
 
     jsonController.overwrite(xpr);
+    if (!xpr[xpr.currentRoute[0]].isRedirect) process.send('next');
   }
 }
 

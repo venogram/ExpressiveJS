@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/venogram/watch-dog.git"
+    "url": "git+https://github.com/venogram/ExpressiveJS.git"
   },
   "author": "Venogram",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/venogram/watch-dog/issues"
+    "url": "https://github.com/venogram/ExpressiveJS/issues"
   },
-  "homepage": "https://github.com/venogram/watch-dog#readme",
+  "homepage": "https://github.com/venogram/ExpressiveJS#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
     "css-loader": "^0.27.3",

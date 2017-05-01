@@ -1,6 +1,8 @@
 const express = require('express');
 const Expressive = require('./../expressive.js');
 const path = require('path');
+
+
 const app = Expressive();
 
 console.log('hi from ryan');
@@ -12,18 +14,17 @@ app.get('/', (req, res, next) => {
 }, (req, res, next) => {
   res.redirect('/redirect');
 });
-
+//
 app.get('/redirect', (req, res) => {
   console.log('hit /redirect');
-  res.status(308);
-  res.redirect('/route');
+  res.send('hi');
 })
-
-app.get('/route', (req, res) => {
-  console.log('===========/ROUTE========');
-  res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
-})
-
+//
+// app.get('/route', (req, res) => {
+//   console.log('===========/ROUTE========');
+//   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
+// })
+//
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 })

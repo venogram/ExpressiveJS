@@ -12,7 +12,6 @@
 */
 
 const request = require('request');
-const Promise = require('bluebird');
 const path = require('path');
 const jsonController = require('./../util/jsonController.js');
 const config = require('./../expressive.config.js');
@@ -29,23 +28,25 @@ jsonController.createJSON();
 //starts server as a child_process
 const serv = fork(serverPath);
 
+const reqRoutes = testRoutes
+  .filter(routeInfo => routeInfo.method === 'GET')
+  .map(routeInfo => routeInfo.route);
+
+const numOfReqs = reqRoutes.length;
+let completedReqs = 0;
 
 serv.on('message', (message) => {
   if (message === 'listening') {
-    // FIRE REQUESTS!
-    const reqRoutes = testRoutes
-      .filter(routeInfo => routeInfo.method === 'GET')
-      .map(routeInfo => routeInfo.route);
-
-    console.log('reqRoutes', reqRoutes);
-
-    const initPromise = new Promise((resolve, reject) => resolve());
-    const finalPromise = reqRoutes.reduce((prevPromise, nextRoute, ind) => {
-      let newProm = prevPromise.then(() => {
-        return request(host + nextRoute);
-      })
-      return newProm;
-    }, initPromise);
-
+    // FIRE First Request!
+    request(host + reqRoutes[0]);
+    completedReqs += 1;
+  } else if (message === 'next' && completedReqs < numOfReqs) {
+    //A request finished -- fire the next request if necessary!
+    request(host + reqRoutes[completedReqs]);
+    completedReqs += 1;
+  } else if (message === 'next') {
+    const json = jsonController.getAndParse();
+    jsonController.scrub(json);
+    serv.kill('SIGINT');
   }
 });
