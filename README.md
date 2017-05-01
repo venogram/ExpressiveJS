@@ -3,12 +3,11 @@
 
 
 
-# ExpressiveJS
-> End to end server route tracking for [Express](https://expressjs.com/) applications.
+## ExpressiveJS performs end to end server route tracking for [Express](https://expressjs.com/) applications.
 
 
 
-## Install
+### Install
 ```$ npm install expressivejs --save-dev```
 
 
