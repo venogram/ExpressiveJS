@@ -13,7 +13,7 @@
 
 
 
-## Basic Setup
+## Setup
 
 ### 1) Modify Express server files
 Replace all instances of  ```var express = require('express');```
