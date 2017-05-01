@@ -1,12 +1,14 @@
-![ExpressiveJS Logo](https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png)
+<p align="center"><a href='http://expressivejs.io/'><img alt="expressive" src="https://raw.githubusercontent.com/venogram/ExpressiveJS/master/gui/report/public/images/blackEXPRLogo@2x.png" height="20%" width="20%"></a></p>
 
 
-# ExpressiveJS
+
+
+# Expressive.js
 > End to end server route tracking for [Express](https://expressjs.com/) applications.
 
 
 
-## Install
+### Install
 ```$ npm install expressivejs --save-dev```
 
 
@@ -21,7 +23,7 @@ with ```var express = require('expressivejs');```
 This will enable Expressive to progressively document the state of client requests and server responses.
 
 
-### 2) *(Optional)* Create a configuration file 
+### 2) *(Optional)* Create a configuration file
 
 This file should be called __expressive.config.js__ and be located in your application's root directory.
 
