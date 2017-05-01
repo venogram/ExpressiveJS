@@ -30,7 +30,6 @@ class Report extends Component {
       else return redirectObj.redirect.duration + ' ms/' + redirectObj.redirect.statusCode;
     };
 
-
       return <div key={index} className="report">
         <div className="currentState">
           <h2> State #{index + 1} </h2> <hr />
