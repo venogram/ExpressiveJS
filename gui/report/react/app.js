@@ -28,6 +28,7 @@ class App extends Component {
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
+    this.initialTab = this.initialTab.bind(this);
     this.highlightTab = this.highlightTab.bind(this);
     this.closeTab = this.closeTab.bind(this);
   }
@@ -54,21 +55,24 @@ class App extends Component {
   //display report according to the selected route
   displayReport(route) {
     let tempReport = [];
-    let tempOpenTabs = this.state.openTabs;
-    let tempCurrTab = route;
 
     //find timeline of only the selected method and route
     if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
       tempReport = (this.state.json[route]['timeline'])
     }
-
-    //create new tabs, excludes duplicates
-    if (!this.state.openTabs.includes(route)) {
-      tempOpenTabs.push(route);
-    }
     //change state according to selected method and route
     this.setState({ userReports: tempReport });
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+  }
+
+  initialTab(element) {
+    let tempOpenTabs = this.state.openTabs;
+    let tempCurrTab = element;
+     //create new tabs, excludes duplicates
+    if (!this.state.openTabs.includes(element)) {
+      tempOpenTabs.push(element);
+      //above should be tempOpenTabs.push({element: 'selected'});
+    }
 
     //update list of open tabs
     this.setState({ openTabs: tempOpenTabs });
@@ -110,7 +114,7 @@ class App extends Component {
   }
 
   //highlight selected tab
-  highlightTab(index) {
+  highlightTab(index,element) {
     let tempSelected = this.state.selected;
     let notSelected = 'notSelected';
 
@@ -147,7 +151,7 @@ class App extends Component {
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport}
-            openTabs={this.state.openTabs} />
+            openTabs={this.state.openTabs} initialTab={this.initialTab}/>
 
           <div id="toggleView">...</div>
 
