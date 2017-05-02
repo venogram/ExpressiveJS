@@ -9,15 +9,15 @@ body {
     }
   margin: {
     top: 4%;
-    bottom: 4%;
+    bottom: 0%;
     left: 8%;
     right: 8%;
   }
 }
 
 #mainLogo {
-  width: 100px;
-  height: 40px;
+  width: 70px;
+  height: 32px;
   padding: {
     left: 8%;
     right: 8%;
@@ -31,7 +31,8 @@ body {
 }
 
 #methodColumn {
-  height: 100vh;
+  height: 96vh;
+  width: 200px;
   background-color: $methodDirBGColor;
   #xpr span {
     .hover {
@@ -61,10 +62,10 @@ body {
 
 #reportColumn {
   background-color: $mainDisplayBGColor;
-  height: 100vh;
+  height: 96vh;
   width:100%;
   overflow:scroll;
-  padding-left: 5px;
+  padding-left: 0px;
 }
 
 

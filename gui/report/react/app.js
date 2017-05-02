@@ -80,7 +80,7 @@ class App extends Component {
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
 
-    //highlight matching tab 
+    //highlight matching tab
     if(this.state.openTabs.includes(this.state.currTab)){
 
     }
