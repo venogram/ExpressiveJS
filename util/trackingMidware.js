@@ -11,40 +11,17 @@
   TODO: Handle cases where server requests resource from itself
 */
 
-const takeSnapshot = require('./takeSnapshot.js'),
-      onFinished = require('on-finished'),
-      reqListeners = require('./reqListeners.js'),
-      resListeners = require('./resListeners.js'),
-      jsonController = require('./jsonController.js'),
-      fs = require('fs'),
-      path = require('path');
+const takeSnapshot = require('./takeSnapshot.js');
+const onFinished = require('on-finished');
+const reqListeners = require('./reqListeners.js');
+const resListeners = require('./resListeners.js');
+const jsonController = require('./jsonController.js');
+const fs = require('fs');
+const path = require('path');
+const Classes = require('./Classes.js');
+const Snapshot = Classes.Snapshot;
+const Report = Classes.Report;
 
-//captures state of client request and server response at a given time
-class Snapshot {
-  constructor(req, res, funcName, now = Date.now()) {
-    this.prevFunc = funcName;
-    this.timestamp = now;
-    this.req = takeSnapshot(req);
-    this.res = takeSnapshot(res);
-  }
-}
-
-//stores information on the life of a request including subsequent redirects
-class Report {
-  constructor(req, res, funcName, now = Date.now()) {
-    this.method = req.method;
-    this.route = req.originalUrl;
-    this.start = now;
-    this.end = null;
-    this.duration = null;
-    this.statusCode = null;
-    this.statusMessage = null;
-    this.error = null;
-    this.midware = [funcName];
-    this.timeline = [new Snapshot(req, res, 'initial state', now)];
-    this.redirect = null;
-  }
-}
 
 //wraps red.redirect method to write to the json file that a redirect just occurred
 function wrapRedirect(res) {
@@ -88,7 +65,7 @@ function initRedirect(req, res, funcName) {
   const parsed = jsonController.getAndParse();
   //updates currentRoute -- an array in the json object storing redirect history
   parsed.currentRoute.push('redirect');
-  //We only want to fire initRedirect once per redirected request, 
+  //We only want to fire initRedirect once per redirected request,
   //so we set isRedirect back to false to avoid repeated calls for same redirect
   parsed[parsed.currentRoute[0]].isRedirect = false;
   //assigns redirect property of current report to a new nested report
