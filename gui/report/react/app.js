@@ -103,6 +103,14 @@ class App extends Component {
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
+<<<<<<< HEAD
+=======
+
+    //highlight matching tab
+    if(this.state.openTabs.includes(this.state.currTab)){
+
+    }
+>>>>>>> 83a14b743d175cb6fbc4c316ed40b40113bcf8b3
   }
 
   //display report according to the selected tab
