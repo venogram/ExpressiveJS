@@ -2,16 +2,12 @@
   stores listeners to be placed on the response object
 
 */
-const jsonController = require('./jsonController'),
-      takeSnapshot = require('./takeSnapshot.js');
+const jsonController = require('./jsonController');
+const takeSnapshot = require('./takeSnapshot.js');
+const Classes = require('./Classes.js');
+const Snapshot = Classes.Snapshot;
+const Report = Classes.Report;
 
-class Snapshot {
-  constructor(req, res, now = Date.now()) {
-    this.timestamp = now;
-    this.req = takeSnapshot(req);
-    this.res = takeSnapshot(res);
-  }
-}
 
 const resListeners = {
   //passed as callback into onFinish
@@ -23,7 +19,7 @@ const resListeners = {
     const routeLocation = eval('xpr["' + xpr.currentRoute.join('"]["') + '"]');
 
     //updates current report with completion information
-    routeLocation.timeline.push(new Snapshot(res.req, res, now));
+    routeLocation.timeline.push(new Snapshot(res.req, res, routeLocation.midware[routeLocation.midware.length - 1], now));
     routeLocation.end = now;
     routeLocation.duration = routeLocation.end - routeLocation.start;
     routeLocation.error = err;
