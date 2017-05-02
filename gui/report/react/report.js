@@ -14,7 +14,7 @@ class Report extends Component {
     //render tabs into the tab div
 
     let tabs = this.props.openTabs.map((element, index) => {
-      return <div key={index} className={"flex-tab " + this.tabColoring(element, index)}>
+      return <div key={index} className={"flex-tab " + this.tabColoring(element, index) /*+ this.props.selected[i][element]*/}>
         <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
         <button id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(element, index) }}>{element}</button>
         <span className={"tabs hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
