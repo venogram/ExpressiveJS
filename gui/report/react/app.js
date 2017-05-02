@@ -68,6 +68,7 @@ class App extends Component {
   initialTab(element) {
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = element;
+
      //create new tabs, excludes duplicates
     if (!this.state.openTabs.includes(element)) {
       tempOpenTabs.push(element);
@@ -80,10 +81,6 @@ class App extends Component {
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
 
-    //highlight matching tab
-    if(this.state.openTabs.includes(this.state.currTab)){
-
-    }
   }
 
   //display report according to the selected tab
@@ -123,25 +120,22 @@ class App extends Component {
   highlightTab(element, index) {
     let tempSelected = this.state.selected;
     let notSelected = 'notSelected';
-
     //change all tabs class to notSelected
     //give class selcted to the clicked tab
     if (this.state.selected[index] === undefined) {
       for (let i = 0; i < tempSelected.length; i += 1) {
-        if (tempSelected[i] === 'selected') tempSelected[i] = notSelected;
+        if (tempSelected[i][element] === 'selected') tempSelected[i][element] = notSelected;
       }
-      tempSelected.push('selected');
-    } else if (this.state.selected[index] === notSelected) {
+      let newObj = {};
+      newObj[element] = 'selected'
+      tempSelected.push(newObj);
+    } else if (this.state.selected[index][element] === 'selected') {
       for (let i = 0; i < tempSelected.length; i += 1) {
         if (tempSelected[i] === 'selected') tempSelected[i] = notSelected;
       }
       tempSelected[index] = 'selected';
       this.setState({ selected: tempSelected })
     }
-    // if (openTabs.includes(currMenthod)){
-    //   let index = openTabs.indexOf(currMethod)
-    //   tabColoring(currMethod, index);
-    // }
   }
 
   closeTab(index) {
