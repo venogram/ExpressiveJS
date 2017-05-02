@@ -11,6 +11,8 @@
   TODO: right now we only fire get requests
 */
 
+console.log('hi from xpr-test');
+
 const request = require('request');
 const path = require('path');
 const jsonController = require('./../util/jsonController.js');
