@@ -5,8 +5,6 @@
   NOTE: expressive.json must already be configured in order for this to function properly!
   TODO: Filter tracking in accordance with config file here
     -> Implicated File: filterSnapshot.js
-  TODO: Track redirect path so any additional redirects get added there,
-    rather than writing over existing redirect of res.locals._XPR
     -> Maybe be more specific with xpr.currentRoute?  Specify a path?
   TODO: Handle cases where server requests resource from itself
 */
@@ -76,25 +74,13 @@ function initRedirect(req, res, funcName) {
   onFinished(res, resListeners.finish);
 }
 
-// //called as part of execution of expressMidware, which wraps developer's midware
-// //determines which child tracking midware to fire based on state of json object
-// function trackingMidware(req, res, prevFuncName) {
-//   console.log
-//   //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
-//   if (!res.locals._XPR) {
-//     const parsed = jsonController.getAndParse();
-//     //isRedirect property in json current report tells us if fresh request is a redirect
-//     if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
-//       return initRedirect(req, res, prevFun);
-//     }
-//     return initTracking(req, res, prevFuncName);
-//   }
-//   return trackState(req, res, prevFuncName);
-// }
 
+//Wraps developer's midware and determines which child tracking midware
+// to fire based on state of json object
 function expressiveMidware(func) {
   const funcName = func.name ? func.name : '<anonymous>';
   function midware(req, res, next) {
+    //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
     //isRedirect property in json current report tells us if fresh request is a redirect
