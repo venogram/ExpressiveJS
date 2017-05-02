@@ -80,7 +80,7 @@ class App extends Component {
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
 
-    //highlight matching tab 
+    //highlight matching tab
     if(this.state.openTabs.includes(this.state.currTab)){
 
     }
@@ -120,7 +120,7 @@ class App extends Component {
 
 
   //highlight selected tab
-  highlightTab(index,element) {
+  highlightTab(element, index) {
     let tempSelected = this.state.selected;
     let notSelected = 'notSelected';
 
@@ -138,10 +138,10 @@ class App extends Component {
       tempSelected[index] = 'selected';
       this.setState({ selected: tempSelected })
     }
-    if (openTabs.includes(currMenthod)){
-      let index = openTabs.indexOf(currMethod)
-      tabColoring(currMethod, index);
-    }
+    // if (openTabs.includes(currMenthod)){
+    //   let index = openTabs.indexOf(currMethod)
+    //   tabColoring(currMethod, index);
+    // }
   }
 
   closeTab(index) {
