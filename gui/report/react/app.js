@@ -79,38 +79,34 @@ class App extends Component {
       this.setState({ openTabs: tempOpenTabs })
     } else {
       for (let i = 0; i < this.state.openTabs.length; i += 1) {
+        if (this.state.openTabs[i][Object.keys(this.state.openTabs[i])] === 'selected') {
+          //console.log(tempOpenTabs[i], i/*[Object.keys(tempOpenTabs[i])]*/)
+          //line below is not changing the class!!!
+          tempOpenTabs[i][Object.keys(tempOpenTabs[i])] = 'notSelected';
+        }
+        //change the target one to selected
+        if(tempOpenTabs[i][element] === "notSelected") tempOpenTabs[i][element] = 'selected';
+      }
+
+      //tempOpenTab after class change?
+      //console.log("tempOpenTabs", tempOpenTabs)
+
+      for (let i = 0; i < this.state.openTabs.length; i += 1) {
         //check if the button already exists
         if (Object.keys(this.state.openTabs[i])[0] === element) include = true;
       }
-      //since no existing tab was found, create a new tab
+      //since no same name tab was found, create a new tab
       if (include === false) {
         let newObj = {};
         newObj[element] = 'selected';
         tempOpenTabs.push(newObj);
       }
 
-      for (let i = 0; i < this.state.openTabs.length; i += 1) {
-        if (this.state.openTabs[i][Object.keys(this.state.openTabs[i])] === 'selected') {
-          console.log(tempOpenTabs)
-          //console.log(tempOpenTabs[i], i/*[Object.keys(tempOpenTabs[i])]*/)
-          tempOpenTabs[i][Object.keys(tempOpenTabs[i])] === 'notSelected';
-        }
-      }
-      //console.log('tempOpenTabs:',tempOpenTabs)
-
       this.setState({ openTabs: tempOpenTabs });
     } //else statement ends here
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
-<<<<<<< HEAD
-=======
-
-    //highlight matching tab
-    if(this.state.openTabs.includes(this.state.currTab)){
-
-    }
->>>>>>> 83a14b743d175cb6fbc4c316ed40b40113bcf8b3
   }
 
   //display report according to the selected tab
@@ -147,7 +143,7 @@ class App extends Component {
   }
 
 
-  //highlight selected tab
+  //highlight selected tab from tab
   highlightTab(element, index) {
     let tempOpenTabs = this.state.openTabs;
     let notSelected = 'notSelected';
