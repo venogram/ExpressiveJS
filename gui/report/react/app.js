@@ -28,7 +28,7 @@ class App extends Component {
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
-    this.initialTab = this.initialTab.bind(this);
+    this.initTab = this.initTab.bind(this);
     this.highlightTab = this.highlightTab.bind(this);
     this.closeTab = this.closeTab.bind(this);
   }
@@ -65,7 +65,8 @@ class App extends Component {
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
   }
 
-  initialTab(element) {
+  //create a new tab
+  initTab(element) {
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = element;
 
@@ -103,6 +104,7 @@ class App extends Component {
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab })
+
   }
 
   //generate summary lines for req and res objects
@@ -124,16 +126,21 @@ class App extends Component {
     //give class selcted to the clicked tab
     if (this.state.selected[index] === undefined) {
       for (let i = 0; i < tempSelected.length; i += 1) {
-        if (tempSelected[i][element] === 'selected') tempSelected[i][element] = notSelected;
+        if (tempSelected[i][Object.keys(tempSelected[i])[0]] === 'selected') {
+          tempSelected[i][Object.keys(tempSelected[i])[0]] = notSelected;
+        }
       }
       let newObj = {};
       newObj[element] = 'selected'
       tempSelected.push(newObj);
-    } else if (this.state.selected[index][element] === 'selected') {
+    } else if (this.state.selected[index][element] === notSelected) {
       for (let i = 0; i < tempSelected.length; i += 1) {
-        if (tempSelected[i] === 'selected') tempSelected[i] = notSelected;
+        //console.log("complicated shit:", tempSelected[i][Object.keys(tempSelected[i])[0]])
+        if (tempSelected[i][Object.keys(tempSelected[i])[0]] === 'selected') {
+          tempSelected[i][Object.keys(tempSelected[i])[0]] = notSelected;
+        }
       }
-      tempSelected[index] = 'selected';
+      tempSelected[index][element] = 'selected';
       this.setState({ selected: tempSelected })
     }
   }
@@ -155,7 +162,7 @@ class App extends Component {
           <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
             currMethod={this.state.currMethod}
             displayRoute={this.displayRoute} displayReport={this.displayReport}
-            openTabs={this.state.openTabs} initialTab={this.initialTab}/>
+            openTabs={this.state.openTabs} initTab={this.initTab}/>
 
           <div id="toggleView">...</div>
 

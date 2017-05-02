@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
 class Report extends Component {
+
+  initClassName(element,index) {
+    if(this.props.selected[index] === undefined) return 'selected';
+    else return this.props.selected[index][element]
+  }
+
   render() {
-  //console.log("this.props.selected from report: ",this.props.selected)
     //render tabs into the tab div
     let tabs = this.props.openTabs.map((element, index) => {
-      console.log("getTab from Report: ", this.props.selected[element])
-      return <div key={index} className={"flex-tab " + this.props.selected[element]}>
+      return <div key={index} className={"flex-tab " + this.initClassName(element,index)}>
         <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
         <button id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(element, index) }}>{element}</button>
         <span className={"tabs hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
