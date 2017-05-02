@@ -2,10 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    //do webpack stuff here
-    entry: path.join(__dirname, 'report', 'react', 'index.js'),
+    entry: path.join(__dirname, 'report', 'react', 'index.js'), //files to input for bundling
     output: {
-        path: path.resolve('report/public'), //determines where the file is going (?)
+        path: path.resolve('report/public'), //determines where the file is going
         filename: 'bundle.js',
     },
     devtool: 'source-map',

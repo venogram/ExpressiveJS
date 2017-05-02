@@ -1,7 +1,7 @@
 @import '_variables';
 
 body {
-  
+
   background-color: $bgcolor;
   color: $defaultFontColor;
   font: {
@@ -31,7 +31,6 @@ body {
 }
 
 #methodColumn {
-  
   height: 100vh;
   background-color: $methodDirBGColor;
   #xpr span {
@@ -41,7 +40,7 @@ body {
         background-color: #353533;
       }
     }
-    
+
     .routes{
       font-size: 12px;
       text-indent: $routeIndentation;
@@ -49,10 +48,14 @@ body {
   }
   .method{
     font-size:20px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
 #toggleView {
+  margin-top: 50px;
   background-color: $toggleViewBGColor;
 }
 
@@ -75,8 +78,15 @@ body {
 
 #tabsMenu {
   display: flex;
+  background-color: $bgcolor;
+  height: 50px;
 
   .flex-tab {
+    border: {
+      top: 1px white solid;
+      left: 1px white solid;
+      right: 1px white solid;
+    }
     display: flex;
     margin-left: 2%;
     padding: {

@@ -11,38 +11,17 @@
   TODO: Handle cases where server requests resource from itself
 */
 
-const takeSnapshot = require('./takeSnapshot.js'),
-      onFinished = require('on-finished'),
-      reqListeners = require('./reqListeners.js'),
-      resListeners = require('./resListeners.js'),
-      jsonController = require('./jsonController.js'),
-      fs = require('fs'),
-      path = require('path');
+const takeSnapshot = require('./takeSnapshot.js');
+const onFinished = require('on-finished');
+const reqListeners = require('./reqListeners.js');
+const resListeners = require('./resListeners.js');
+const jsonController = require('./jsonController.js');
+const fs = require('fs');
+const path = require('path');
+const Classes = require('./Classes.js');
+const Snapshot = Classes.Snapshot;
+const Report = Classes.Report;
 
-//captures state of client request and server response at a given time
-class Snapshot {
-  constructor(req, res, now = Date.now()) {
-    this.timestamp = now;
-    this.req = takeSnapshot(req);
-    this.res = takeSnapshot(res);
-  }
-}
-
-//stores information on the life of a request including subsequent redirects
-class Report {
-  constructor(req, res, now = Date.now()) {
-    this.method = req.method;
-    this.route = req.originalUrl;
-    this.start = now;
-    this.end = null;
-    this.duration = null;
-    this.statusCode = null;
-    this.statusMessage = null;
-    this.error = null;
-    this.timeline = [new Snapshot(req, res, now)];
-    this.redirect = null;
-  }
-}
 
 //wraps red.redirect method to write to the json file that a redirect just occurred
 function wrapRedirect(res) {
@@ -58,60 +37,77 @@ function wrapRedirect(res) {
 
 //fired before first devMiddleware upon a non-redirected client request
 //creates a report in json object and in res.locals._XPR
-function initTracking(req, res, next) {
+function initTracking(req, res, funcName) {
   const parsed = jsonController.getAndParse();
   const methodRoute = req.method + ' ' + req.originalUrl;
   parsed.currentRoute = [methodRoute];
-  parsed[methodRoute] = new Report(req, res);
+  parsed[methodRoute] = new Report(req, res, funcName);
   parsed[methodRoute].isRedirect = false;
   wrapRedirect(res);
   jsonController.overwrite(parsed);
   res.locals._XPR = parsed;
-  onFinished(res, resListeners.finish)
-  return next();
+  onFinished(res, resListeners.finish);
 }
 
 //fired after each devMiddleware
 //updates report timeline with current state of request and response objects
-function trackState(req, res, next) {
+function trackState(req, res, funcName) {
   const xpr = res.locals._XPR;
-  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res))');
+  const calledArr = eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware');
+  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res, calledArr[calledArr.length - 1]))');
+  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware.push(funcName)');
   jsonController.overwrite(xpr);
-  return next();
 }
 
 //fired before first devMiddleware upon a redirected client request
 //creates a report in json object and in res.locals._XPR
-function initRedirect(req, res, next) {
+function initRedirect(req, res, funcName) {
   const parsed = jsonController.getAndParse();
   //updates currentRoute -- an array in the json object storing redirect history
   parsed.currentRoute.push('redirect');
-  //We only want to fire initRedirect once per redirected request, 
+  //We only want to fire initRedirect once per redirected request,
   //so we set isRedirect back to false to avoid repeated calls for same redirect
   parsed[parsed.currentRoute[0]].isRedirect = false;
   //assigns redirect property of current report to a new nested report
-  eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res)');
+  eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res, funcName)');
   wrapRedirect(res);
   res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
-  onFinished(res, resListeners.finish)
-  return next();
+  onFinished(res, resListeners.finish);
 }
 
-//parent middleware interspersed between each of the developer's midware
-//determines which child tracking midware to fire based on state of json object
-function trackingMidware(req, res, next) {
-  //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
-  if (!res.locals._XPR) {
-    const parsed = jsonController.getAndParse();
+// //called as part of execution of expressMidware, which wraps developer's midware
+// //determines which child tracking midware to fire based on state of json object
+// function trackingMidware(req, res, prevFuncName) {
+//   console.log
+//   //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
+//   if (!res.locals._XPR) {
+//     const parsed = jsonController.getAndParse();
+//     //isRedirect property in json current report tells us if fresh request is a redirect
+//     if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
+//       return initRedirect(req, res, prevFun);
+//     }
+//     return initTracking(req, res, prevFuncName);
+//   }
+//   return trackState(req, res, prevFuncName);
+// }
+
+function expressiveMidware(func) {
+  const funcName = func.name ? func.name : '<anonymous>';
+  function midware(req, res, next) {
+    if (!res.locals._XPR) {
+      const parsed = jsonController.getAndParse();
     //isRedirect property in json current report tells us if fresh request is a redirect
-    if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
-      return initRedirect(req, res, next);
+      if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
+        initRedirect(req, res, funcName);
+      } else initTracking(req, res, funcName);
+    } else {
+      trackState(req, res, funcName);
     }
-    return initTracking(req, res, next);
+    return func(req, res, next);
   }
-  return trackState(req, res, next);
+  return midware;
 }
 
 
-module.exports = trackingMidware;
+module.exports = expressiveMidware;

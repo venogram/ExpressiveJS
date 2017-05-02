@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Report extends Component {
     tabColoring(element, index) {
     let notSelected;
+
       if (this.props.selected.length === 0) notSelected = "notSelected"
       else notSelected = this.props.selected[index]
       return notSelected
@@ -36,7 +37,6 @@ class Report extends Component {
         if (!redirectObj.redirect) return 'No Redirects';
         else return redirectObj.redirect.duration + ' ms/' + redirectObj.redirect.statusCode;
       };
-
 
       return <div key={index} className="report">
         <div className="currentState">
