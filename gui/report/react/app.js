@@ -81,7 +81,6 @@ class App extends Component {
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
-
   }
 
   //display report according to the selected tab
