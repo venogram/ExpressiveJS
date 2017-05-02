@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 
 class Report extends Component {
-    tabColoring(element, index) {
-    let notSelected;
 
-      if (this.props.selected.length === 0) notSelected = "notSelected"
-      else notSelected = this.props.selected[index]
-      return notSelected
-    }
+  initClassName(element,index) {
+    if(this.props.openTabs[index].length === 0) return undefined;
+    else return this.props.openTabs[index][element]
+  }
+
   render() {
     //render tabs into the tab div
-
     let tabs = this.props.openTabs.map((element, index) => {
-      return <div key={index} className={"flex-tab " + this.tabColoring(element, index)}>
+      return <div key={index} className={"flex-tab " + this.initClassName(Object.keys(element)[0],index)}>
         <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
-        <button id={index} className={"tabs"} onClick={() => { this.props.displayReportFromTabs(element); this.props.highlightTab(index, element) }}>{element}</button>
+        <button id={index} className={"tabs"} onClick={ () => { this.props.displayReportFromTabs(Object.keys(element)[0]); this.props.highlightTab(Object.keys(element)[0], index) }}>{Object.keys(element)[0]}</button>
         <span className={"tabs hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
       </div>
     });
