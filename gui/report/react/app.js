@@ -21,7 +21,6 @@ class App extends Component {
       currMethod: "",
       currTab: "",
       openTabs: [],
-      selected: []
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -69,15 +68,42 @@ class App extends Component {
   initTab(element) {
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = element;
+    //a variable to tell if element exist in the openTab state.
+    let include = false;
 
-     //create new tabs, excludes duplicates
-    if (!this.state.openTabs.includes(element)) {
-      tempOpenTabs.push(element);
-      //above should be tempOpenTabs.push({element: 'selected'});
-    }
+    //create new tabs if none already else add new tab
+    if (this.state.openTabs.length === 0) {
+      let newObj = {};
+      newObj[element] = 'selected';
+      tempOpenTabs.push(newObj);
+      this.setState({ openTabs: tempOpenTabs })
+    } else {
+      for (let i = 0; i < this.state.openTabs.length; i += 1) {
+        if (this.state.openTabs[i][Object.keys(this.state.openTabs[i])] === 'selected') {
+          //console.log(tempOpenTabs[i], i/*[Object.keys(tempOpenTabs[i])]*/)
+          //line below is not changing the class!!!
+          tempOpenTabs[i][Object.keys(tempOpenTabs[i])] = 'notSelected';
+        }
+        //change the target one to selected
+        if(tempOpenTabs[i][element] === "notSelected") tempOpenTabs[i][element] = 'selected';
+      }
 
-    //update list of open tabs
-    this.setState({ openTabs: tempOpenTabs });
+      //tempOpenTab after class change?
+      //console.log("tempOpenTabs", tempOpenTabs)
+
+      for (let i = 0; i < this.state.openTabs.length; i += 1) {
+        //check if the button already exists
+        if (Object.keys(this.state.openTabs[i])[0] === element) include = true;
+      }
+      //since no same name tab was found, create a new tab
+      if (include === false) {
+        let newObj = {};
+        newObj[element] = 'selected';
+        tempOpenTabs.push(newObj);
+      }
+
+      this.setState({ openTabs: tempOpenTabs });
+    } //else statement ends here
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
@@ -85,7 +111,7 @@ class App extends Component {
 
   //display report according to the selected tab
   displayReportFromTabs(route) {
-    let emptiness = []
+    let emptiness = [];
     let tempReport = [];
     let tempCurrTab = route;
 
@@ -117,30 +143,32 @@ class App extends Component {
   }
 
 
-  //highlight selected tab
+  //highlight selected tab from tab
   highlightTab(element, index) {
-    let tempSelected = this.state.selected;
+    let tempOpenTabs = this.state.openTabs;
     let notSelected = 'notSelected';
     //change all tabs class to notSelected
     //give class selcted to the clicked tab
-    if (this.state.selected[index] === undefined) {
-      for (let i = 0; i < tempSelected.length; i += 1) {
-        if (tempSelected[i][Object.keys(tempSelected[i])[0]] === 'selected') {
-          tempSelected[i][Object.keys(tempSelected[i])[0]] = notSelected;
+
+    //console.log("tempOpenTabs from app.js", tempOpenTabs)
+    if (this.state.openTabs[index] === undefined) {
+      for (let i = 0; i < tempOpenTabs.length; i += 1) {
+        if (tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] === 'selected') {
+          tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] = notSelected;
         }
       }
       let newObj = {};
       newObj[element] = 'selected'
-      tempSelected.push(newObj);
-    } else if (this.state.selected[index][element] === notSelected) {
-      for (let i = 0; i < tempSelected.length; i += 1) {
-        //console.log("complicated shit:", tempSelected[i][Object.keys(tempSelected[i])[0]])
-        if (tempSelected[i][Object.keys(tempSelected[i])[0]] === 'selected') {
-          tempSelected[i][Object.keys(tempSelected[i])[0]] = notSelected;
+      tempOpenTabs.push(newObj);
+    } else if (this.state.openTabs[index][element] === notSelected || this.state.openTabs[index][element] === 'selected') {
+      for (let i = 0; i < tempOpenTabs.length; i += 1) {
+        //console.log("complicated shit:", tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]])
+        if (tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] === 'selected') {
+          tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] = notSelected;
         }
       }
-      tempSelected[index][element] = 'selected';
-      this.setState({ selected: tempSelected })
+      tempOpenTabs[index][element] = 'selected';
+      this.setState({ selected: tempOpenTabs })
     }
   }
 
@@ -156,21 +184,20 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App flex-container">
+      <div className="App flex-container">
 
-          <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
-            currMethod={this.state.currMethod}
-            displayRoute={this.displayRoute} displayReport={this.displayReport}
-            openTabs={this.state.openTabs} initTab={this.initTab}/>
+        <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+          currMethod={this.state.currMethod}
+          displayRoute={this.displayRoute} displayReport={this.displayReport}
+          openTabs={this.state.openTabs} initTab={this.initTab} />
 
-          <div id="toggleView">...</div>
+        <div id="toggleView">...</div>
 
-          <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
-            selected={this.state.selected}
-            displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
-            openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-            currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab} />
-        </div>
+        <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
+          displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
+          openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
+          currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab} />
+      </div>
     );
   }
 }
