@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Report extends Component {
     tabColoring(element, index) {
     let notSelected;
-      console.log("this.props.selected", this.props.selected)
+
       if (this.props.selected.length === 0) notSelected = "notSelected"
       else notSelected = this.props.selected[index]
       return notSelected

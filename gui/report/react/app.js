@@ -79,6 +79,11 @@ class App extends Component {
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
+
+    //highlight matching tab 
+    if(this.state.openTabs.includes(this.state.currTab)){
+
+    }
   }
 
   //display report according to the selected tab
@@ -113,6 +118,7 @@ class App extends Component {
     return Summaries.getSummaries(log).reqSummaries;
   }
 
+
   //highlight selected tab
   highlightTab(index,element) {
     let tempSelected = this.state.selected;
@@ -131,6 +137,10 @@ class App extends Component {
       }
       tempSelected[index] = 'selected';
       this.setState({ selected: tempSelected })
+    }
+    if (openTabs.includes(currMenthod)){
+      let index = openTabs.indexOf(currMethod)
+      tabColoring(currMethod, index);
     }
   }
 
