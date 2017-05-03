@@ -18,7 +18,7 @@ app.get('/', function midware1(req, res, next) {
   return next();
 }, function midware3(req, res) {
   console.log('request hit developer midware 3');
-  res.redirect('/redirect');
+  res.redirect('/fakeRoute');
 });
 
 app.get('/redirect', function midware4(req, res) {
