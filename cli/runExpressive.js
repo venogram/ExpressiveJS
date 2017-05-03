@@ -65,6 +65,8 @@ serv.on('message', (message) => {
     const json = jsonController.getAndParse();
     jsonController.scrub(json);
     serv.kill('SIGINT');
+  } else if (message === 'abandonReq') {
+    console.log('request abandoned - surpassed abandonReq time limit');
   }
 });
 
