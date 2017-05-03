@@ -12,9 +12,19 @@ const Report = Classes.Report;
 const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
-    const xpr = res.locals._XPR;
     const now = Date.now();
-
+    let xpr = res.locals._XPR;
+    //no xpr means this is either a fresh client request or a redirect
+    if (!xpr) {
+      const parsed = jsonController.getAndParse();
+      //No current route means this is a fresh client request
+      if (!parsed.currentRoute) {
+        const methodRoute = res.req.method + ' ' + res.req.originalUrl;
+        parsed.currentRoute = [methodRoute];
+        parsed[methodRoute] = new Report(res.req, res, 'initial state', now);
+      }
+      xpr = parsed;
+    }
     //follows linked list of nested reports to find current report
     const routeLocation = eval('xpr["' + xpr.currentRoute.join('"]["') + '"]');
 

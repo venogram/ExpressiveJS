@@ -44,7 +44,7 @@ function initTracking(req, res, funcName) {
   wrapRedirect(res);
   jsonController.overwrite(parsed);
   res.locals._XPR = parsed;
-  onFinished(res, resListeners.finish);
+  // onFinished(res, resListeners.finish);
 }
 
 //fired after each devMiddleware
@@ -71,7 +71,7 @@ function initRedirect(req, res, funcName) {
   wrapRedirect(res);
   res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
-  onFinished(res, resListeners.finish);
+  // onFinished(res, resListeners.finish);
 }
 
 
