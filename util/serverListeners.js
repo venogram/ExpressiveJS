@@ -1,7 +1,7 @@
 const jsonController = require('./jsonController.js'),
-      expressiveMidware = require('./trackingMidware.js'),
-      onFinished = require('on-finished'),
-      resListeners = require('./resListeners');
+  expressiveMidware = require('./trackingMidware.js'),
+  onFinished = require('on-finished'),
+  resListeners = require('./resListeners');
 
 const serverListeners = {
   // checkContinue: () => {},
@@ -11,7 +11,11 @@ const serverListeners = {
   // //connect, connection are socket-related
   // connect: () => {},
   // connection: () => {},
-  // request: (req, res) => {},
+  request: (req, res) => {
+    if (!res.locals._XPR) {
+      onFinished(res, resListeners.finish);
+    }
+  },
   // upgrade: () => {}
 }
 
