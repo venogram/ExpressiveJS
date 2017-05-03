@@ -12,9 +12,8 @@ const Report = Classes.Report;
 const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
-    const xpr = res.locals._XPR;
     const now = Date.now();
-
+    const xpr = res.locals._XPR;
     //follows linked list of nested reports to find current report
     const routeLocation = eval('xpr["' + xpr.currentRoute.join('"]["') + '"]');
 
