@@ -4,10 +4,10 @@
 */
 
 const config = {
-  entry: './test-servers/ryan-server.js',
+  entry: './test-servers/glenn-server.js',
   host: 'http://localhost:3000',
   testRoutes: [
-    {method: "GET", uri:"/redirect"}
+    {method: "GET", uri:"/"}
   ],
   watch: [],
   abandonTime: 10,
