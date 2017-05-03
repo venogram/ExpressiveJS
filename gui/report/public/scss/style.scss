@@ -31,8 +31,8 @@ body {
 }
 
 #methodColumn {
-  height: 96vh;
-  width: 200px;
+  height: 90.2vh;
+  width: auto;
   background-color: $methodDirBGColor;
   #xpr span {
     .hover {
@@ -55,20 +55,6 @@ body {
   }
 }
 
-#toggleView {
-  margin-top: 50px;
-  background-color: $toggleViewBGColor;
-}
-
-#reportColumn {
-  background-color: $mainDisplayBGColor;
-  height: 96vh;
-  width:100%;
-  padding-left: 0px;
-  overflow:scroll;
-  display: flex;
-}
-
 /*TABS*/
 .selected{
   background-color: $mainDisplayBGColor;
@@ -77,62 +63,57 @@ body {
   background-color: $unfocusedTabColor;
 }
 
-#tabsMenu {
-  background-color: $bgcolor;
-  height: 50px;
+.reportColumn {
+  background-color: $mainDisplayBGColor;
 
-  .flex-tab {
-    border: {
-      top: 1px white solid;
-      left: 1px white solid;
-      right: 1px white solid;
-    }
-    margin-left: 2%;
-    padding: {
-      left: 1%;
-      right: 1%;
-    }
-
-    .tabs {
-      background-color: transparent;
-      font-size:1.5em;
-      border: none;
-      margin-right: 1%;
-    }
-
-    button {
-      display: inline;
-      white-space: nowrap;
-    }
-
-    .tabLogo {
-      width: 30px;
-      height: 40px;
-      padding: {
-        top: 5%;
-        bottom: 5%;
-      }
-    }
-
-    .cancel{
-      font-size:15px;
-      &:hover {
-        cursor: pointer;
-        }
-    }
-
+  #tabsMenu {
+    background-color: $bgcolor;
+    height: 50px;
   }
 
+  #reportSummary {
+    width: 77vw;
+    display: flex;
+    overflow: scroll;
+
+    #toggleView {
+      background-color: $toggleViewBGColor;
+      height: 74vmax;
+    }
+
+    .report {
+      height: 74vmax;
+    }
+  }
 }
 
+.flex-tab {
+  display: inline-flex;
+  margin: {
+    left: 2.7%;
+  }
+  padding: {
+    left: 2%;
+    right: 2%;
+  }
 
+  .tabLogo {
+      width: 30px;
+      height: 40px;
+  }
 
-.report {
-  position: absolute;
-}
-#tabMenu {
-  position: absolute;
-}
-.flex-item {
-  display: flex;
+  button {
+    height: 50px;
+    font-size: 20px;
+    outline: 0;
+    background: none;
+    white-space: nowrap;
+    border: none;
+  }
+
+  .cancel {
+    padding: {
+    left: 7%;
+    }
+  }
 }

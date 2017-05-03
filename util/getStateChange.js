@@ -17,7 +17,7 @@ function getConfigDiffs(diffArr) {
   return diffArr.reduce((result, diff) => {
     let path = diff.path.join('.');
 
-    const inConfig = config.reqWatch.reduce((boolean, configPath) => {
+    const inConfig = config.watch.reduce((boolean, configPath) => {
       return boolean ? true : path.search(configPath) > -1;
     },false);
 
