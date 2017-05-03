@@ -11,7 +11,11 @@ const serverListeners = {
   // //connect, connection are socket-related
   // connect: () => {},
   // connection: () => {},
-  // request: (req, res) => {},
+  // request: (req, res) => {
+  //   if (!res.locals._XPR) {
+
+  //   }
+  // },
   // upgrade: () => {}
 }
 
