@@ -46,7 +46,7 @@ function getConfig(directory, dirQueue = []) {
 
 //FIND CONFIG FILE
 const cwd = process.cwd();
-getConfig(cwd);
+const userConfig = getConfig(cwd);
 
 /*
 cases:
