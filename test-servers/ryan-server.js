@@ -1,10 +1,12 @@
 const express = require('./../expressive.js');
+//const express = require('express');
+const request = require('request');
 const path = require('path');
-
 
 const app = express();
 
 app.get('/', (req, res, next) => {
+  console.log('hit home route!');
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
