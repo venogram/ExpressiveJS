@@ -7,7 +7,7 @@
   PROCEED WITH CAUTION
 */
 
-const config = require('./../expressive.config.js');
+const config = require('./../default.config.js');
 
 function takeSnapshot(original, map = new WeakMap()) {
   const dataTypes = ['object', 'number', 'string', 'boolean', 'undefined'];
