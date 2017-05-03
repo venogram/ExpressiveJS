@@ -40,9 +40,9 @@ const expressive = () => {
     listen: (...args) => {
       const server = app.listen(...args);
       //set up server listeners!
-      Object.keys(serverListeners).map(event => {
+      Object.keys(serverListeners).forEach(event => {
         server.on(event, serverListeners[event]);
-      })
+      });
       //sends message to parent process, so that parent process knows it may start
       //firing requests!
       process.send('listening');
