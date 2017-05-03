@@ -6,7 +6,6 @@ const path = require('path');
 const app = express();
 
 app.get('/', (req, res, next) => {
-  console.log('hit home route!');
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
@@ -16,12 +15,16 @@ app.get('/', (req, res, next) => {
 app.get('/redirect', (req, res) => {
   res.send('hi');
 })
-//
-// app.get('/route', (req, res) => {
-//   console.log('===========/ROUTE========');
-//   res.sendFile(path.resolve(__dirname + '/../testHtml/destination.html'));
-// })
-//
+
+app.post('/', (req, res) => {
+  let body = '';
+  req.on('data', data => {body += data});
+  req.on('end', () => {
+    res.send('server response to post request');
+  });
+
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 })
