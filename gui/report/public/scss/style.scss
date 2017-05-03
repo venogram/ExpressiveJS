@@ -8,8 +8,6 @@ body {
     family: $vsCodeFont;
     }
   margin: {
-    top: 4%;
-    bottom: 0%;
     left: 8%;
     right: 8%;
   }
@@ -78,19 +76,21 @@ body {
 
     #toggleView {
       background-color: $toggleViewBGColor;
-      height: 74vmax;
+      height: 100%;
     }
-
     .report {
-      height: 74vmax;
+      height: 75vh;
     }
   }
 }
 
 .flex-tab {
+  &:hover {
+      cursor: pointer;
+    }
   display: inline-flex;
   margin: {
-    left: 2.7%;
+    left: 2.1%;
   }
   padding: {
     left: 2%;
@@ -103,6 +103,9 @@ body {
   }
 
   button {
+    &:hover {
+      cursor: pointer;
+    }
     height: 50px;
     font-size: 20px;
     outline: 0;
@@ -115,5 +118,7 @@ body {
     padding: {
     left: 7%;
     }
+    color: $toggleViewBGColor;
   }
+
 }
