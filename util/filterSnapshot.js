@@ -5,7 +5,7 @@
   TODO: make sure this function is being used in initTracking & trackState
 */
 
-const config = require('./../expressive.config.js');
+const config = require('./../default.config.js');
 
 function filterSnapshot(snapshot, reX) {
   if (reX !== 'req' && reX !== 'res') throw new Error('bad input in filterSnapshot');
