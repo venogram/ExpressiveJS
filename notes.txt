@@ -1,13 +1,29 @@
 ---------------------------------------
 
-
-setup a expressive.log to keep track of what expressive does and how it's performing?
-
-
-TODO: Handle multiple servers (i.e. multiple app.listen instances)
-
-setup a expressive.log to keep track of what expressive does and how it's performing?
+TESTING
+- testing!!!! a test directory
+- setup a expressive.log to keep track of what expressive does and how it's performing
 
 
-NOTE:  Can get info on middleware functions using 
-  res.socket.parser.incoming.route.stack
+COMMAND LINE
+- xpr-test should incorporate config settings
+- rename files!!!!
+- ensure commands have proper system permisions
+- ensure commands are installed
+- command arguments/options/flags
+- xpr init
+
+EXPRESS WRAPPING FUNCTIONALITY
+- app.router!!!
+- Handle multiple servers (i.e. multiple app.listen instances)
+- socket tracking ?
+
+FRONT END
+stretch goal: when you click to expand 'state changes' the window that pops up
+  is resizable and moveable (a free floating window that appears by default in line w the editor)
+
+FOR LAUNCH
+- write docs
+- make website
+
+- investigate ways to announce launch
