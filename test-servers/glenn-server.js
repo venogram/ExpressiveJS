@@ -6,8 +6,12 @@ const app = Expressive();
 
 console.log('hello from glenn server');
 
-app.get('/', (req, res) => {
-  res.redirect('/fakeRoute');
+app.get('/', function midware1(req, res) {
+  res.redirect('/redirect');
+})
+
+app.get('/redirect', function midware2(req, res){
+  res.send('yipee');
 })
 
 const server = app.listen(3000, () => {

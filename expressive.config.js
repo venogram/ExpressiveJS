@@ -5,19 +5,14 @@
 
 const config = {
   entry: './test-servers/glenn-server.js',
-
   host: 'http://localhost:3000',
-
   testRoutes: [
-    {method: "GET", route:"/", body:""},
-    // {method: "GET", route:"/fakeRoute", body:""}
+    {method: "GET", uri:"/"}
+    // {method: "GET", uri:"/fakeRoute"}
   ],
-
-  resWatch: ['._headers'],
-  reqWatch: [],
-
+  watch: [],
+  abandonTime: 10,
   useDefaults: true,
-  outputFile: ''
 }
 
 module.exports = config;

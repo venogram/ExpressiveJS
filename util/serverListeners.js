@@ -11,9 +11,7 @@ const serverListeners = {
   // //connect, connection are socket-related
   // connect: () => {},
   // connection: () => {},
-  request: (req, res) => {
-    onFinished(res, resListeners.finish);
-  },
+  // request: (req, res) => {},
   // upgrade: () => {}
 }
 

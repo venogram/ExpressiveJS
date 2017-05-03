@@ -1,14 +1,12 @@
-const express = require('express');
-const Expressive = require('./../expressive.js');
+const express = require('./../expressive.js');
+//const express = require('express');
+const request = require('request');
 const path = require('path');
 
-
-const app = Expressive();
-
-console.log('hi from ryan');
+const app = express();
 
 app.get('/', (req, res, next) => {
-  console.log('======GET /=====');
+  console.log('hit home route!');
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
@@ -16,7 +14,6 @@ app.get('/', (req, res, next) => {
 });
 //
 app.get('/redirect', (req, res) => {
-  console.log('hit /redirect');
   res.send('hi');
 })
 //
