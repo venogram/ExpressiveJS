@@ -5,19 +5,14 @@
 
 const config = {
   entry: './test-servers/ryan-server.js',
-
   host: 'http://localhost:3000',
-
   testRoutes: [
-    {method: "GET", route:"/", body:""},
-    {method: "GET", route:"/redirect", body:""}
+    {method: "GET", uri:"/"},
+    {method: "GET", uri:"/redirect"}
   ],
-
-  resWatch: ['._headers'],
-  reqWatch: [],
-
+  watch: [],
+  abandonTime: 10,
   useDefaults: true,
-  outputFile: ''
 }
 
 module.exports = config;

@@ -9,9 +9,8 @@
     -> do we have to wait for one to complete to start the next?
 
   TODO: right now we only fire get requests
+  TODO: build final form of config object
 */
-
-console.log('hi from xpr-test');
 
 const request = require('request');
 const path = require('path');
@@ -30,21 +29,23 @@ jsonController.createJSON();
 //starts server as a child_process
 const serv = fork(serverPath);
 
-const reqRoutes = testRoutes
-  .filter(routeInfo => routeInfo.method === 'GET')
-  .map(routeInfo => routeInfo.route);
-
-const numOfReqs = reqRoutes.length;
+testRoutes.forEach(options => {
+  options.uri = host + options.uri;
+});
+const numOfReqs = testRoutes.length;
 let completedReqs = 0;
 
 serv.on('message', (message) => {
   if (message === 'listening') {
     // FIRE First Request!
-    request(host + reqRoutes[0]);
+    console.log('first route options:', testRoutes[0])
+    request(testRoutes[0]);
     completedReqs += 1;
   } else if (message === 'next' && completedReqs < numOfReqs) {
     //A request finished -- fire the next request if necessary!
-    request(host + reqRoutes[completedReqs]);
+    const json = jsonController.getAndParse();
+    jsonController.scrub(json);
+    request(testRoutes[completedReqs]);
     completedReqs += 1;
   } else if (message === 'next') {
     const json = jsonController.getAndParse();
