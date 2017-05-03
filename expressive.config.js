@@ -8,7 +8,6 @@ const config = {
   host: 'http://localhost:3000',
   testRoutes: [
     {method: "GET", uri:"/"}
-    // {method: "GET", uri:"/fakeRoute"}
   ],
   watch: [],
   abandonTime: 10,
