@@ -64,10 +64,10 @@ body {
   background-color: $mainDisplayBGColor;
   height: 96vh;
   width:100%;
-  overflow:scroll;
   padding-left: 0px;
+  overflow:scroll;
+  display: flex;
 }
-
 
 /*TABS*/
 .selected{
@@ -78,7 +78,6 @@ body {
 }
 
 #tabsMenu {
-  display: flex;
   background-color: $bgcolor;
   height: 50px;
 
@@ -88,7 +87,6 @@ body {
       left: 1px white solid;
       right: 1px white solid;
     }
-    display: flex;
     margin-left: 2%;
     padding: {
       left: 1%;
@@ -125,4 +123,16 @@ body {
 
   }
 
+}
+
+
+
+.report {
+  position: absolute;
+}
+#tabMenu {
+  position: absolute;
+}
+.flex-item {
+  display: flex;
 }

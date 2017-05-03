@@ -80,16 +80,11 @@ class App extends Component {
     } else {
       for (let i = 0; i < this.state.openTabs.length; i += 1) {
         if (this.state.openTabs[i][Object.keys(this.state.openTabs[i])] === 'selected') {
-          //console.log(tempOpenTabs[i], i/*[Object.keys(tempOpenTabs[i])]*/)
-          //line below is not changing the class!!!
           tempOpenTabs[i][Object.keys(tempOpenTabs[i])] = 'notSelected';
         }
         //change the target one to selected
         if(tempOpenTabs[i][element] === "notSelected") tempOpenTabs[i][element] = 'selected';
       }
-
-      //tempOpenTab after class change?
-      //console.log("tempOpenTabs", tempOpenTabs)
 
       for (let i = 0; i < this.state.openTabs.length; i += 1) {
         //check if the button already exists
@@ -103,7 +98,7 @@ class App extends Component {
       }
 
       this.setState({ openTabs: tempOpenTabs });
-    } //else statement ends here
+    }
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
@@ -190,8 +185,6 @@ class App extends Component {
           currMethod={this.state.currMethod}
           displayRoute={this.displayRoute} displayReport={this.displayReport}
           openTabs={this.state.openTabs} initTab={this.initTab} />
-
-        <div id="toggleView">...</div>
 
         <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
           displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
