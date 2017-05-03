@@ -16,45 +16,20 @@ const path = require('path');
 const fs = require('fs');
 const jsonController = require('./../util/jsonController.js');
 const fork = require('child_process').fork;
-const config = require('./../default.config.js');
+
+const defaultConfig = require('./../default.config.js');
+const cwd = process.cwd();
+const userConfig = getConfig(cwd);
+
+let config;
+if (userConfig && userConfig.useDefaults === false) config = userConfig;
+else if (userConfig) config = Object.assign(defaultConfig, userConfig);
+else config = defaultConfig;
+
 const entry = config.entry;
 const serverPath = path.join(__dirname, './../', entry);
 const host = config.host;
 const testRoutes = config.testRoutes;
-
-function getConfig(directory, dirQueue = []) {
-  const allFiles = fs.readdirSync(directory);
-
-  const files = [];
-  allFiles.forEach(fileName => {
-    const absPath = path.join(directory, fileName);
-    fs.lstatSync(absPath).isDirectory() ? dirQueue.push(absPath) : files.push(absPath);
-  });
-
-  let config = null;
-  files.forEach(path => {
-    if (path.slice(-20) === 'expressive.config.js') config = require(path);
-  });
-
-  if (!dirQueue.length || config) return config;
-
-  const nextDir = dirQueue.shift();
-  return getConfig(nextDir, dirQueue);
-}
-
-
-
-//FIND CONFIG FILE
-const cwd = process.cwd();
-const userConfig = getConfig(cwd);
-
-/*
-cases:
-  no config file
-  config file specifies no defaults
-  config file doesn't specify no defaults
-*/
-
 
 //initialize json file
 jsonController.createJSON();
@@ -85,3 +60,23 @@ serv.on('message', (message) => {
     serv.kill('SIGINT');
   }
 });
+
+function getConfig(directory, dirQueue = []) {
+  const allFiles = fs.readdirSync(directory);
+
+  const files = [];
+  allFiles.forEach(fileName => {
+    const absPath = path.join(directory, fileName);
+    fs.lstatSync(absPath).isDirectory() ? dirQueue.push(absPath) : files.push(absPath);
+  });
+
+  let config = null;
+  files.forEach(path => {
+    if (path.slice(-20) === 'expressive.config.js') config = require(path);
+  });
+
+  if (!dirQueue.length || config) return config;
+
+  const nextDir = dirQueue.shift();
+  return getConfig(nextDir, dirQueue);
+}
