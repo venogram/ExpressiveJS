@@ -97,6 +97,7 @@ const expressive = () => {
     requestMethods.forEach(method => {
       router[method.toLowerCase()] = (...args) => set(method, ...args);
     })
+    //router.param = () => {};
     return router;
   };
 
