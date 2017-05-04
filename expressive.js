@@ -101,6 +101,8 @@ const expressive = () => {
     return router;
   };
 
+  expressive.static = (...args) => express.static(...args);
+
   //assign all properties and methods of the express app to the expressiveObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {

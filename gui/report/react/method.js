@@ -38,14 +38,7 @@ class Method extends Component {
 
     return (
       <div id="methodColumn" className="flex-item">
-        <div id="xpr">
-         <img id="mainLogo" src="./../public/images/whiteEXPRLogo@2x.png"/>
         {subButtons}
-        </div>
-        {/*<div id="setting">
-          column for implementing 'Setting' tab
-          will need to switch between setting and xpr onClick
-        </div>*/}
       </div>
     );
   }
