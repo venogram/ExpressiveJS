@@ -7,7 +7,8 @@
 */
 
 const deepDiff = require('deep-diff').diff;
-const config = require('./../expressive.config.js');
+const config = require('./../default.config.js');
+
 
 //getConfigDiffs accepts an array of diff objects and returns an object
 //  -> getConfigDiffs filters out diffs that the config file doesn't specify we should watch

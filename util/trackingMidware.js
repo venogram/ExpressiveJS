@@ -80,6 +80,7 @@ function initRedirect(req, res, funcName) {
 function expressiveMidware(func) {
   const funcName = func.name ? func.name : '<anonymous>';
   function midware(req, res, next) {
+    console.log('request hit expressive middleware')
     //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
@@ -90,7 +91,8 @@ function expressiveMidware(func) {
     } else {
       trackState(req, res, funcName);
     }
-    return func(req, res, next);
+    // return func(req, res, next);
+    return setTimeout(() => func(req, res, next), 0);
   }
   return midware;
 }
