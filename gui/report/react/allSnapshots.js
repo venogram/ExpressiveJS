@@ -9,12 +9,13 @@ class AllSnapshots extends Component {
       //access req,res object, and redirect Object (if any)
       let reqObj = element['req'];
       let resObj = element['res'];
+      console.log(element)
 
       if(index === array.length - 1) {
         return <div key={index}>
       <div className="snapshot">
         <p>{this.props.currTab}</p>
-        <p>{element.prevFunc}</p>
+        <p>{element['prevFunc']}</p>
         {/*should have onClick to show component with more information on respective click*/}
         <p>request state</p>
         <p>response state</p>

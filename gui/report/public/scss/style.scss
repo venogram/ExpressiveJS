@@ -78,15 +78,21 @@ body {
   #reportSummary {
     width: 84vw;
     display: flex;
-    overflow: scroll;
+    height: 92vh;
+
+    #snapshotChain {
+      width: 84vw;
+      overflow: scroll;
+    }
 
     #toggleView {
       background-color: $toggleViewBGColor;
-      height: 92vh;
+      height: 92.5vh;
     }
     .snapshot {
       border: 1px $toggleViewBGColor solid;
       height: auto;
+      width: 200px;
       background-color: $unfocusedTabColor;
       margin: {
         //control each snapshot's spacing in the main display area
