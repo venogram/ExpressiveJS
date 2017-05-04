@@ -39,12 +39,17 @@ body {
         background-color: #353533;
       }
     }
-
+  }
+  span {
     .routes{
-      font-size: 12px;
+      font-size: 15px;
       text-indent: $routeIndentation;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
+
   .method{
     font-size:20px;
     &:hover {
@@ -84,6 +89,12 @@ body {
   }
 }
 
+#settingsTab {
+  height: 90.2vh;
+  width: auto;
+  background-color: $methodDirBGColor;
+}
+
 .flex-tab {
   &:hover {
       cursor: pointer;
@@ -106,7 +117,7 @@ body {
     &:hover {
       cursor: pointer;
     }
-    height: 50px;
+    height: $buttonHeight;
     font-size: 20px;
     outline: 0;
     background: none;
@@ -121,4 +132,26 @@ body {
     color: $toggleViewBGColor;
   }
 
+}
+
+#xprColumn {
+  width: 20%;
+}
+  .xprSelected {
+    background-color: $methodDirBGColor;
+  }
+
+.mainTab {
+  display: flex;
+
+    button {
+    &:hover {
+      cursor: pointer;
+    }
+    height: $buttonHeight;
+    font-size: 20px;
+    outline: 0;
+    white-space: nowrap;
+    border: none;
+  }
 }
