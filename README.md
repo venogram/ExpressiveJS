@@ -17,7 +17,7 @@
 ## Setup
 
 ### 1) Modify Express server files
-Replace all instances of  ```var express = require('express');``` with ```var express = require('expressivejs');```
+Replace all instances of  ```require('express')``` with ```require('expressivejs')```
 
 This will enable Expressive to progressively document the state of client requests and server responses.
 
