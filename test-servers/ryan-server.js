@@ -11,7 +11,7 @@ app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
-  setTimeout(() => {res.redirect('/redirect')}, 3000);
+  setTimeout(() => {res.redirect('/redirect')}, 1000);
 });
 //
 app.get('/redirect', (req, res) => {

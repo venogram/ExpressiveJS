@@ -6,7 +6,7 @@ class Method extends Component {
     let userMethods = {};
 
     let allRoutes = Object.keys(this.props.json).filter(element => {
-      return element !== "routes" && element !== 'currentRoute'
+      return element !== "routes" && element !== 'currentRoute' && element !== 'completedReqs'
     })
 
     //gather all route methods with no repeats of same method
