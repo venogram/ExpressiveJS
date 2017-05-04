@@ -33,7 +33,14 @@ function wrapRedirect(res) {
 //creates a report in json object and in res.locals._XPR
 function initTracking(req, res, funcName) {
   const parsed = jsonController.getAndParse();
-  const methodRoute = req.method + ' ' + req.originalUrl;
+  let methodRoute = req.method + ' ' + req.originalUrl;
+  if (parsed[methodRoute]) {
+    let newMethodRoute = methodRoute
+    for (let i = 1; parsed[newMethodRoute]; i += 1) {
+      newMethodRoute = methodRoute + ' ' + i;
+    }
+    methodRoute = newMethodRoute;
+  }
   parsed.currentRoute = [methodRoute];
   parsed[methodRoute] = new Report(req, res, funcName);
   parsed[methodRoute].isRedirect = false;

@@ -2,7 +2,7 @@ const express = require('express');
 const Expressive = require('./../expressive.js');
 const path = require('path');
 const app = Expressive();
-// const app = express();
+const blog = Expressive();
 const router = Expressive.Router()
 
 console.log('hello from glenn server');
