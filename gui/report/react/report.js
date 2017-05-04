@@ -63,7 +63,7 @@ class Report extends Component {
       <div className='reportColumn' >
 
         <MethodAndRouteTabs displayReport={this.displayReport} displayReportFromTabs={this.props.displayReportFromTabs}
-          openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} />
+          openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} initTab={this.props.initTab}/>
 
         <div id="reportSummary" className="flex-item">
           <div id="toggleView">..</div>
