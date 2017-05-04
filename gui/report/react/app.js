@@ -6,7 +6,7 @@ import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
-console.log(json)
+//console.log(json)
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class App extends Component {
       currMethod: "",
       currTab: "",
       openTabs: [],
-      xprSettingsTab: [{"xpr":"xprSelected"},{"settings":"notSelected"}]
+      xprSettingsTab: [{"xpr":"xprSelected"},{"Settings":"xprNotSelected"}]
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -152,13 +152,13 @@ class App extends Component {
 
     tempXprSettingsTab = tempXprSettingsTab.map((tab, index) => {
       if(tab[Object.keys(tab)[0]] === 'xprSelected') {
-         tab[Object.keys(tab)[0]] = 'notSelected';
+         tab[Object.keys(tab)[0]] = 'xprNotSelected';
          return tab;
       }
       return tab;
     })
     tempXprSettingsTab = tempXprSettingsTab.map(tab => {
-       if(tab[Object.keys(tab)[0]] === 'notSelected' && Object.keys(tab)[0] === element) {
+       if(tab[Object.keys(tab)[0]] === 'xprNotSelected' && Object.keys(tab)[0] === element) {
         tab[Object.keys(tab)[0]] = 'xprSelected';
         return tab;
        }
