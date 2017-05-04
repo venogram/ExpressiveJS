@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import Method from './Method';
-import Route from './Route';
+import XprAndSettingsTab from './xprAndSettingsTab';
 import Report from './Report';
 const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
-
-//console.log('json', json)
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +18,7 @@ class App extends Component {
       currMethod: "",
       currTab: "",
       openTabs: [],
+      xprSettingsTab: [{"xpr":"xprSelected"},{"settings":"notSelected"}]
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -30,6 +28,7 @@ class App extends Component {
     this.initTab = this.initTab.bind(this);
     this.highlightTab = this.highlightTab.bind(this);
     this.closeTab = this.closeTab.bind(this);
+    this.toggleXprTab = this.toggleXprTab.bind(this);
   }
 
   //update state to populate routes
@@ -167,24 +166,48 @@ class App extends Component {
     }
   }
 
+  //remove an open tab
   closeTab(index) {
     let emptiness = [];
     let tempOpenTabs = this.state.openTabs;
     tempOpenTabs.splice(index, 1);
     this.setState({ openTabs: tempOpenTabs });
 
-    //clear the list?
+    //clear the list
     this.setState({ userReports: emptiness })
+  }
+
+  //function that will change class (xprSelected/notSelected) and what gets displayed to side bar
+  toggleXprTab(element) {
+    let tempXprSettingsTab = this.state.xprSettingsTab;
+
+    tempXprSettingsTab = tempXprSettingsTab.map((tab, index) => {
+      if(tab[Object.keys(tab)[0]] === 'xprSelected') {
+         tab[Object.keys(tab)[0]] = 'notSelected';
+         return tab;
+      }
+      return tab;
+    })
+    tempXprSettingsTab = tempXprSettingsTab.map(tab => {
+       if(tab[Object.keys(tab)[0]] === 'notSelected' && Object.keys(tab)[0] === element) {
+        tab[Object.keys(tab)[0]] = 'xprSelected';
+        return tab;
+       }
+       return tab;
+    })
+    //change state after class change
+    this.setState({ xprSettingsTab:tempXprSettingsTab })
   }
 
   render() {
     return (
       <div className="App flex-container">
 
-        <Method json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
+        <XprAndSettingsTab json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
           currMethod={this.state.currMethod}
           displayRoute={this.displayRoute} displayReport={this.displayReport}
-          openTabs={this.state.openTabs} initTab={this.initTab} />
+          openTabs={this.state.openTabs} initTab={this.initTab}
+          xprSettingsTab={this.state.xprSettingsTab} toggleXprTab={this.toggleXprTab}/>
 
         <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
           displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}

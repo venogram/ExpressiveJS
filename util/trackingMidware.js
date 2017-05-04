@@ -90,8 +90,7 @@ function expressiveMidware(func) {
     } else {
       trackState(req, res, funcName);
     }
-    // return func(req, res, next);
-    return setTimeout(() => func(req, res, next), 0);
+    return process.nextTick(() => func(req, res, next));
   }
   return midware;
 }
