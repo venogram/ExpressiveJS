@@ -6,7 +6,7 @@ import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
-
+console.log(json)
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,6 @@ class App extends Component {
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
     this.initTab = this.initTab.bind(this);
-    this.highlightTab = this.highlightTab.bind(this);
     this.closeTab = this.closeTab.bind(this);
     this.toggleXprTab = this.toggleXprTab.bind(this);
   }
@@ -63,7 +62,7 @@ class App extends Component {
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
   }
 
-  //create a new tab
+  //create a new tab and tell what tab is selected
   initTab(element) {
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = element;
@@ -136,36 +135,6 @@ class App extends Component {
     return Summaries.getSummaries(log).reqSummaries;
   }
 
-
-  //highlight selected tab from tab
-  highlightTab(element, index) {
-    let tempOpenTabs = this.state.openTabs;
-    let notSelected = 'notSelected';
-    //change all tabs class to notSelected
-    //give class selcted to the clicked tab
-
-    //console.log("tempOpenTabs from app.js", tempOpenTabs)
-    if (this.state.openTabs[index] === undefined) {
-      for (let i = 0; i < tempOpenTabs.length; i += 1) {
-        if (tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] === 'selected') {
-          tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] = notSelected;
-        }
-      }
-      let newObj = {};
-      newObj[element] = 'selected'
-      tempOpenTabs.push(newObj);
-    } else if (this.state.openTabs[index][element] === notSelected || this.state.openTabs[index][element] === 'selected') {
-      for (let i = 0; i < tempOpenTabs.length; i += 1) {
-        //console.log("complicated shit:", tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]])
-        if (tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] === 'selected') {
-          tempOpenTabs[i][Object.keys(tempOpenTabs[i])[0]] = notSelected;
-        }
-      }
-      tempOpenTabs[index][element] = 'selected';
-      this.setState({ selected: tempOpenTabs })
-    }
-  }
-
   //remove an open tab
   closeTab(index) {
     let emptiness = [];
@@ -211,8 +180,8 @@ class App extends Component {
 
         <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
           displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
-          openTabs={this.state.openTabs} displayReportFromTabs={this.displayReportFromTabs}
-          currTab={this.state.currTab} highlightTab={this.highlightTab} closeTab={this.closeTab} />
+          displayReportFromTabs={this.displayReportFromTabs} openTabs={this.state.openTabs}
+          currTab={this.state.currTab} closeTab={this.closeTab} initTab={this.initTab}/>
       </div>
     );
   }
