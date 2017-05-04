@@ -19,7 +19,7 @@ class XprAndSettingsTab extends Component {
 
     //conditional rendering depending on what was clicked
     let sideBar = this.props.xprSettingsTab.map((element, index) => {
-      if (element[Object.keys(element)[0]] === 'xprSelected' && Object.keys(element)[0] === 'settings') {
+      if (element[Object.keys(element)[0]] === 'xprSelected' && Object.keys(element)[0] === 'Settings') {
         return <span key={index} >
           <div id="settingsTab">setting coming soon!</div>
         </span>
