@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
+import MethodAndRouteTabs from './methodAndRouteTabs'
 
 class Report extends Component {
-
-  initClassName(element, index) {
-    if (this.props.openTabs[index].length === 0) return undefined;
-    else return this.props.openTabs[index][element]
-  }
-
   render() {
-    //render tabs into the tab div
-    let tabs = this.props.openTabs.map((element, index) => {
-      return <div key={index} className={"flex-tab " + this.initClassName(Object.keys(element)[0], index)}>
-        <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
-        <button id={index} className="tabs" onClick={() => { this.props.displayReportFromTabs(Object.keys(element)[0]); this.props.highlightTab(Object.keys(element)[0], index) }}>{Object.keys(element)[0]}</button>
-        <span className={"tabs hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
-      </div>
-    });
-
     //generate report based on userReports
     let report = this.props.userReports.map((element, index) => {
       //access req,res object, and redirect Object (if any)
@@ -59,9 +45,7 @@ class Report extends Component {
         {/*state change information*/}
         <div className="stateChanges state-container">
           <div className="arrow state-item">
-
             <img src="./../arrow.png" />
-
           </div>
           <div className="changeLogs state-item">
             <b>State Changes:</b> <br />
@@ -77,11 +61,15 @@ class Report extends Component {
 
     return (
       <div className='reportColumn' >
-        <div id="tabsMenu">{tabs}</div>
+
+        <MethodAndRouteTabs displayReport={this.displayReport} displayReportFromTabs={this.props.displayReportFromTabs}
+          openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} />
+
         <div id="reportSummary" className="flex-item">
           <div id="toggleView">..</div>
           {report}
         </div>
+
       </div>
     );
   }
