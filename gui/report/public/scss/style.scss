@@ -76,7 +76,7 @@ body {
   }
 
   #reportSummary {
-    width: 80vw;
+    width: 84vw;
     display: flex;
     overflow: scroll;
 
@@ -84,8 +84,16 @@ body {
       background-color: $toggleViewBGColor;
       height: 92vh;
     }
-    .report {
-      height: $reportHeight;
+    .snapshot {
+      border: 1px $toggleViewBGColor solid;
+      height: auto;
+      background-color: $unfocusedTabColor;
+      margin: {
+        //control each snapshot's spacing in the main display area
+        // bottom: 30px;
+        // top: 20px;
+        left: 20px;
+      }
     }
   }
 }
@@ -102,9 +110,6 @@ body {
     }
 
   display: inline-flex;
-  margin: {
-    // left: 2.1%;
-  }
   padding: {
     left: 8px;
     right: 5px;
@@ -113,7 +118,6 @@ body {
   .tabLogo {
      margin: {
        top: 10px;
-      //  left: -5px;
      }
       width: 20px;
       height: 30px;
@@ -165,5 +169,11 @@ body {
     outline: 0;
     white-space: nowrap;
     border: none;
+  }
+}
+
+.chain {
+  margin: {
+    left: 50px;
   }
 }
