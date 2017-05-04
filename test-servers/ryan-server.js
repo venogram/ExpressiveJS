@@ -5,15 +5,18 @@ const path = require('path');
 
 const app = express();
 
+
+
 app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
-  res.redirect('/redirect');
+  setTimeout(() => {res.redirect('/redirect')}, 3000);
 });
 //
 app.get('/redirect', (req, res) => {
-  res.send('hi');
+  console.log('========/REDIRECT=======');
+  setTimeout(() => {res.send('hi')}, 800);
 })
 
 app.post('/', (req, res) => {
@@ -27,4 +30,4 @@ app.post('/', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
-})
+});
