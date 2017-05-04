@@ -3,8 +3,6 @@
   response and client request objects change as they travel through the developer's
   middleware.
 
-  TODO: figure out how to handle multiple requests to the same methodRoute
-  TODO: app.param, Router.param, 
 */
 
 const express = require('express');
