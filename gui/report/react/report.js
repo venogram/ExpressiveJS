@@ -66,7 +66,7 @@ class Report extends Component {
           openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} initTab={this.props.initTab}/>
 
         <div id="reportSummary" className="flex-item">
-          <div id="toggleView">..</div>
+          <div id="toggleView">..</div> {/* going to becoming a react component */}
           {report}
         </div>
 
