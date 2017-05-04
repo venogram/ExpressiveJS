@@ -3,10 +3,6 @@
   it sets up res.locals._XPR and places listeners on the response and request objects.
 
   NOTE: expressive.json must already be configured in order for this to function properly!
-  TODO: Filter tracking in accordance with config file here
-    -> Implicated File: filterSnapshot.js
-    -> Maybe be more specific with xpr.currentRoute?  Specify a path?
-  TODO: Handle cases where server requests resource from itself
 */
 
 const takeSnapshot = require('./takeSnapshot.js');
@@ -79,20 +75,31 @@ function initRedirect(req, res, funcName) {
 // to fire based on state of json object
 function expressiveMidware(func) {
   const funcName = func.name ? func.name : '<anonymous>';
-  function midware(req, res, next) {
+  function trackingMidware(req, res, next) {
+    const startTime = Date.now();
     //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
     //isRedirect property in json current report tells us if fresh request is a redirect
       if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
         initRedirect(req, res, funcName);
-      } else initTracking(req, res, funcName);
+      } else {
+        initTracking(req, res, funcName);
+      }
     } else {
       trackState(req, res, funcName);
     }
-    return process.nextTick(() => func(req, res, next));
+    //waits for server to possibly respond to request event
+    //then subtracts expressMidware time from totalDuration for current route being tested
+    return process.nextTick(() => {
+      const updated = jsonController.getAndParse();
+      let exists = updated[updated.currentRoute[0]].totalDuration !== undefined;
+      exists ? exists -= (Date.now() - startTime) : updated[updated.currentRoute[0]].totalDuration = (-1 * (Date.now() - startTime));
+      jsonController.overwrite(updated);
+      return func(req, res, next);
+    });
   }
-  return midware;
+  return trackingMidware;
 }
 
 

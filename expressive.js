@@ -3,12 +3,6 @@
   response and client request objects change as they travel through the developer's
   middleware.
 
-  TODO: express.static
-  TODO: wrap response methods?
-  TODO: figure out how to handle multiple app.method calls for the same method.
-  currently it will not be tracked when it goes past the first one.
-  TODO: reconfigure listen method for all possible sets and configurations of listen
-   arguments: (port, [hostname], [backlog], [callback]) or (path, [callback])
 */
 
 const express = require('express');
