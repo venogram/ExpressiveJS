@@ -12,7 +12,6 @@ const Report = Classes.Report;
 const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
-    console.log(' in resListeners finish for :', res.req.originalUrl)
     const now = Date.now();
     let xpr = res.locals._XPR;
     let validRequest = true;
