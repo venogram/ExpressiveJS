@@ -19,7 +19,10 @@ const jsonController = {
 
   //Creates skeleton JSON file
   createJSON: () => {
-    const skeleton = { routes: {} };
+    const skeleton = {
+      routes: {},
+      completedReqs: 0 
+    };
     jsonController.overwrite(skeleton);
   },
 
