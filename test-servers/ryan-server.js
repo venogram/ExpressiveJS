@@ -11,11 +11,12 @@ app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
-  setTimeout(() => {res.redirect('/redirect')}, 3100)
+  setTimeout(() => {res.redirect('/redirect')}, 3000);
 });
 //
 app.get('/redirect', (req, res) => {
-  res.send('hi');
+  console.log('========/REDIRECT=======');
+  setTimeout(() => {res.send('hi')}, 800);
 })
 
 app.post('/', (req, res) => {
@@ -29,10 +30,4 @@ app.post('/', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
-}).on('request', (req, res) => {
-  setTimeout(() => {
-    process.send('abandonReq');
-    res.end();
-    process.send('next');
-  }, 3000)
 });

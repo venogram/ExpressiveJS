@@ -12,14 +12,13 @@ const Report = Classes.Report;
 const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
-    console.log(' in resListeners finish for :', res.req.originalUrl)
     const now = Date.now();
     let xpr = res.locals._XPR;
     let validRequest = true;
     // no xpr means this is a request to an invalid route i.e. 404 error
     if (!xpr) {
       const parsed = jsonController.getAndParse();
-      // if there is a currentRoute then this is a redirect 
+      // if there is a currentRoute then this is a redirect
       if (parsed.currentRoute) {
         eval('parsed["' + parsed.currentRoute.join('"]["') + '"].redirect = new Report(res.req, res, "initial state", now)');
         parsed.currentRoute.push('redirect');
@@ -31,6 +30,8 @@ const resListeners = {
       validRequest = false;
       xpr = parsed;
     }
+
+
 
     //follows linked list of nested reports to find current report
     const routeLocation = eval('xpr["' + xpr.currentRoute.join('"]["') + '"]');
@@ -48,6 +49,7 @@ const resListeners = {
       xpr[xpr.currentRoute[0]].totalDuration += routeLocation.duration :
       xpr[xpr.currentRoute[0]].totalDuration = routeLocation.duration;
 
+    if (!xpr[xpr.currentRoute[0]].isRedirect) xpr.completedReqs += 1;
     jsonController.overwrite(xpr);
     if (!xpr[xpr.currentRoute[0]].isRedirect || !validRequest) process.send('next');
   }

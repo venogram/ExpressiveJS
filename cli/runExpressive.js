@@ -32,12 +32,17 @@ const entry = config.entry;
 const serverPath = path.join(__dirname, './../', entry);
 const host = config.host;
 const testRoutes = config.testRoutes;
+const abandonReq = config.abandonRequest;
+
+// warning messages for unspecified config SETTINGS
+const abandonReqWarning = 'No abandonReq property found in expressive.config.js. Please define abandonReq or set useDefaults to true. Otherwise expressive testing will stall if the server fails to respond to a request.'
+if (!abandonReq) process.emitWarning(abandonReqWarning);
 
 //initialize json file
 jsonController.createJSON();
 
 // start server as a child_process
-const serv = fork(serverPath);
+const serv = fork(serverPath, {env: {ABANDON_REQ: abandonReq}});
 
 // set uri's for sending requests
 testRoutes.forEach(options => {
@@ -70,6 +75,7 @@ serv.on('message', (message) => {
   }
 });
 
+// finds user config file via breadth first search -- returns null if it doesn't exist
 function getConfig(directory, dirQueue = []) {
   const allFiles = fs.readdirSync(directory);
 
