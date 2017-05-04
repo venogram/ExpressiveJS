@@ -44,10 +44,11 @@ const resListeners = {
     routeLocation.statusCode = res.statusCode;
     routeLocation.statusMessage = res.statusMessage;
 
+    const finishDuration = Date.now() - now;
     //increments totalDuration in initial report with duration of current report
     xpr[xpr.currentRoute[0]].hasOwnProperty('totalDuration') ?
-      xpr[xpr.currentRoute[0]].totalDuration += routeLocation.duration :
-      xpr[xpr.currentRoute[0]].totalDuration = routeLocation.duration;
+      xpr[xpr.currentRoute[0]].totalDuration += routeLocation.duration - finishDuration :
+      xpr[xpr.currentRoute[0]].totalDuration = routeLocation.duration - finishDuration;
 
     if (!xpr[xpr.currentRoute[0]].isRedirect) xpr.completedReqs += 1;
     jsonController.overwrite(xpr);
