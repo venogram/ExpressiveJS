@@ -79,20 +79,30 @@ function initRedirect(req, res, funcName) {
 // to fire based on state of json object
 function expressiveMidware(func) {
   const funcName = func.name ? func.name : '<anonymous>';
-  function midware(req, res, next) {
+  function trackingMidware(req, res, next) {
+    const startTime = Date.now();
     //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
     //isRedirect property in json current report tells us if fresh request is a redirect
       if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
         initRedirect(req, res, funcName);
-      } else initTracking(req, res, funcName);
+      } else {
+        initTracking(req, res, funcName);
+      }
     } else {
       trackState(req, res, funcName);
     }
-    return process.nextTick(() => func(req, res, next));
+    
+    return process.nextTick(() => {
+      const updated = jsonController.getAndParse();
+      let exists = updated[updated.currentRoute[0]].totalDuration !== undefined;
+      exists ? exists -= (Date.now() - startTime) : updated[updated.currentRoute[0]].totalDuration = (-1 * (Date.now() - startTime));
+      jsonController.overwrite(updated);
+      return func(req, res, next);
+    });
   }
-  return midware;
+  return trackingMidware;
 }
 
 
