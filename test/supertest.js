@@ -1,8 +1,8 @@
 const request = require('supertest');
 const path = require('path');
-const express = require('./../expressive.js');
+// const express = require('./../expressive.js');
+const express = require('express')
 const app = express(); 
-const expect = require ('expect')
 
 describe('Get/', function(){
   it('respond with json', function(done){
@@ -11,5 +11,6 @@ describe('Get/', function(){
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
+      done();
   });
 });
