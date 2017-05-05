@@ -13,14 +13,15 @@ COMMAND LINE
 - command arguments/options/flags
 - xpr init
 
-EXPRESS WRAPPING FUNCTIONALITY
-- app.router!!!
-- Handle multiple servers (i.e. multiple app.listen instances)
-- socket tracking ?
-
 FRONT END
 stretch goal: when you click to expand 'state changes' the window that pops up
   is resizable and moveable (a free floating window that appears by default in line w the editor)
+
+Back END
+- GAMA needs testing for routers or apps passed into app.methods
+- Handle multiple servers (i.e. multiple app.listen instances)
+- socket tracking ?
+
 
 FOR LAUNCH
 - write docs

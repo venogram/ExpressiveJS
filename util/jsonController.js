@@ -7,7 +7,6 @@
 
 const fs = require('fs');
 const path = require('path');
-//const json = require('./../expressive.json');
 
 const jsonController = {
 
@@ -21,7 +20,7 @@ const jsonController = {
   createJSON: () => {
     const skeleton = {
       routes: {},
-      completedReqs: 0 
+      completedReqs: 0
     };
     jsonController.overwrite(skeleton);
   },
@@ -41,21 +40,12 @@ const jsonController = {
   //Returns a boolean for whether a given route is stored under a given method in JSON file
   containsRoute: (method, route) => {
     const parsed = jsonController.getAndParse();
-    return parsed.routes[method].includes(route) || parsed.routes.ALL.includes(route);
+    return (parsed.routes[method] && parsed.routes[method].includes(route)) || parsed.routes.all && parsed.routes.all.includes(route);
   },
 
   //Overwrites existing JSON file or creates a new one with a new JSON object
   overwrite: (obj) => {
     fs.writeFileSync(path.join(__dirname, './../expressive.json'), JSON.stringify(obj, null, '  '));
-  },
-
-  //sets json at path to val
-  // path is an array
-  update: (path, val) => {
-    const parsed = jsonController.getAndParse();
-    let curr = parsed;
-    eval('parsed["'+path.join('"]["')+'"] = val');
-    jsonController.overwrite(parsed);
   },
 
   //removes keys in json object not useful to developer nor for visualization.
@@ -65,6 +55,13 @@ const jsonController = {
       if (key !== 'routes') delete obj[key].isRedirect;
     })
     jsonController.overwrite(obj);
+  },
+
+  //follows redirects to find current report, then passes it to the callback
+  updateCurrentReport: (parsed, callback) => {
+    let curr = parsed.currentRoute[0];
+    while (curr.redirect) curr = curr.redirect;
+    return callback(curr);
   }
 
 }
