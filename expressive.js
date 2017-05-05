@@ -15,7 +15,7 @@ const serverListeners = require('./util/serverListeners.js');
 //intersperses tracking midware between developer midware
 function insertExpressiveMidware(method, ...args) {
   let expressiveMidware = getAppMethodArgs(args);
-  return app[method.toLowerCase()](...expressiveMidware);
+  return app[method](...expressiveMidware);
 }
 
 //stores route and method in json object for creation of default config file
@@ -26,9 +26,9 @@ function set(method, ...args) {
   return insertExpressiveMidware(method, ...args);
 }
 
-const requestMethods = ['ALL', 'CHECKOUT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'MERGE',
-  'MKACTIVITY', 'MKCOL', 'MOVE', 'M-SEARCH', 'NOTIFY', 'OPTIONS', 'PATCH', 'POST',
-  'PURGE', 'PUT', 'REPORT', 'SEARCH', 'SUBSCRIBE', 'TRACE', 'UNLOCK', 'UNSUBSCRIBE'];
+const requestMethods = ['all', 'checkout', 'copy', 'delete', 'get', 'head', 'lock', 'merge',
+  'mkactivity', 'mkcol', 'move', 'm-search', 'notify', 'options', 'patch', 'post',
+  'purge', 'put', 'report', 'search', 'subscribe', 'trace', 'unlock', 'unsubscribe'];
 
 const expressive = () => {
   const expressiveObj = {
@@ -49,7 +49,7 @@ const expressive = () => {
     route: (path) => {
       const returnedRoute = app.route(path);
       requestMethods.forEach(method => {
-        returnedRoute[method.toLowerCase()] = (...args) => set(method, path, ...args);
+        returnedRoute[method] = (...args) => set(method, path, ...args);
       });
       returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
       return returnedRoute;
@@ -70,7 +70,7 @@ const expressive = () => {
 
   //assigns app.METHOD for all request methods
   requestMethods.forEach(method => {
-    expressiveObj[method.toLowerCase()] = (...args) => set(method, ...args);
+    expressiveObj[method] = (...args) => set(method, ...args);
   });
 
 
@@ -83,7 +83,7 @@ const expressive = () => {
       const returnedRoute = newRouteFunc(path);
       //assign all app.METHODS to the route instance
       requestMethods.forEach(method => {
-        returnedRoute[method.toLowerCase()] = (...args) => set(method, path, ...args);
+        returnedRoute[method] = (...args) => set(method, path, ...args);
       });
       returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
       return returnedRoute;
@@ -91,7 +91,7 @@ const expressive = () => {
     //assign all app.METHODS to the router instance
     router.use = (...args) => insertExpressiveMidware('use', ...args);
     requestMethods.forEach(method => {
-      router[method.toLowerCase()] = (...args) => set(method, ...args);
+      router[method] = (...args) => set(method, ...args);
     })
     router.param = (...args) =>  insertExpressiveMidware('param', ...args);
     return router;
