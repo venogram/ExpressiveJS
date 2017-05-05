@@ -3,12 +3,6 @@
   response and client request objects change as they travel through the developer's
   middleware.
 
-  TODO: express.static
-  TODO: wrap response methods?
-  TODO: figure out how to handle multiple app.method calls for the same method.
-  currently it will not be tracked when it goes past the first one.
-  TODO: reconfigure listen method for all possible sets and configurations of listen
-   arguments: (port, [hostname], [backlog], [callback]) or (path, [callback])
 */
 
 const express = require('express');
@@ -60,13 +54,15 @@ const expressive = () => {
       returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
       return returnedRoute;
     },
-
+     param: (...args) => insertExpressiveMidware('param', ...args),
+    
+    // These do not alter the request and response 
+    // Therefore we don't need to track them
     // disable: () => {},
     // disabled: () => {},
     // enable: () => {},
     // enabled: () => {},
-    // engine: () => {},
-    // param: () => {},
+    // engine: () => {},  
     // path: () => {},
     // render: () => {},
     // set: () => {},
@@ -97,6 +93,7 @@ const expressive = () => {
     requestMethods.forEach(method => {
       router[method.toLowerCase()] = (...args) => set(method, ...args);
     })
+    router.param = (...args) =>  insertExpressiveMidware('param', ...args);
     return router;
   };
 

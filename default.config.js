@@ -4,7 +4,7 @@
 */
 
 const config = {
-  entry: './test-servers/ryan-server.js', //relative path to server file to test
+  entry: './test-servers/glenn-server.js', //relative path to server file to test
   host: 'http://localhost:3000', // port the dev server listens to
   testRoutes: [
     {method: "GET", uri:"/"},
@@ -16,7 +16,7 @@ const config = {
 
   // YET TO IMPLEMENT CONFIG SETTINGS
   watch: ['headers', 'response body', 'request data'], // flag certain things in req/res objects to follow
-  abandonRequest: 3, // time (per request) to wait before abandoning the request
+  abandonRequest: 5, // time (per request) to wait before abandoning the request
   silentServer: true, // if false, xpr command will log server's log statements
   wipeCookies: false, // if true, cookies are cleared in between each request
   overwriteTest: true, // if false, a second test will not override first test
