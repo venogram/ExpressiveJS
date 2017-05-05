@@ -30,7 +30,7 @@ function wrapRedirect(res) {
 }
 
 //fired before first devMiddleware upon a non-redirected client request
-//creates a report in json object and in res.locals._XPR
+//creates a report in res.locals._XPR and in json object
 function initTracking(req, res, funcName) {
   const parsed = jsonController.getAndParse();
   let methodRoute = req.method + ' ' + req.originalUrl;
@@ -54,9 +54,10 @@ function initTracking(req, res, funcName) {
 //updates report timeline with current state of request and response objects
 function trackState(req, res, funcName) {
   const xpr = res.locals._XPR;
-  const calledArr = eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware');
-  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res, calledArr[calledArr.length - 1]))');
-  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware.push(funcName)');
+  jsonController.updateCurrentReport(xpr, (report) => {
+    report.timeline.push(new Snapshot(req, res, report.midware[report.midware.length - 1]));
+    report.midware.push(funcName);
+  });
   jsonController.overwrite(xpr);
 }
 
@@ -64,13 +65,15 @@ function trackState(req, res, funcName) {
 //creates a report in json object and in res.locals._XPR
 function initRedirect(req, res, funcName) {
   const parsed = jsonController.getAndParse();
-  //updates currentRoute -- an array in the json object storing redirect history
-  parsed.currentRoute.push('redirect');
-  //We only want to fire initRedirect once per redirected request,
-  //so we set isRedirect back to false to avoid repeated calls for same redirect
+  //InitRedirect should only fire once per redirected request,
+  //so isRedirect is set back to false to avoid repeated initRedirect calls for same redirect
   parsed[parsed.currentRoute[0]].isRedirect = false;
   //assigns redirect property of current report to a new nested report
-  eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res, funcName)');
+  jsonController.updateCurrentReport(parsed, (report) => {
+    report.redirect = new Report(req, res, funcName);
+  })
+  //updates currentRoute -- an array in the json object storing redirect history
+  parsed.currentRoute.push('redirect');
   wrapRedirect(res);
   res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
