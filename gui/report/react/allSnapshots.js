@@ -9,16 +9,15 @@ class AllSnapshots extends Component {
       //access req,res object, and redirect Object (if any)
       let reqObj = element['req'];
       let resObj = element['res'];
-      console.log(element)
 
       if(index === array.length - 1) {
         return <div key={index}>
       <div className="snapshot">
-        <p>{this.props.currTab}</p>
-        <p>{element['prevFunc']}</p>
+        <span className="">{this.props.currTab}</span> <br />
+        <span className="">{element['prevFunc']}</span> <br /><br />
         {/*should have onClick to show component with more information on respective click*/}
-        <p>request state</p>
-        <p>response state</p>
+        <span>request state</span> <br />
+        <span>response state</span>
       </div>
 
       </div>
@@ -26,13 +25,13 @@ class AllSnapshots extends Component {
 
       return <div key={index}>
       <div className="snapshot">
-        <p>{this.props.currTab}</p>
-        <p>{element.prevFunc}</p>
+        <span>{this.props.currTab}</span> <br />
+        <span>{element.prevFunc}</span> <br /><br />
         {/*should have onClick to show component with more information on respective click*/}
-        <p>request state</p>
-        <p>response state</p>
+        <span>request state</span> <br />
+        <span>response state</span>
       </div>
-        <img className="chain" src="./../yellowLine.png" />
+        <img className="chain" src="./../public/images/yellowLine.png" />
       </div>
     });
 

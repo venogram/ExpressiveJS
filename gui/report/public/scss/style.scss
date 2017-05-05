@@ -26,6 +26,7 @@ body {
 }
 
 #methodColumn {
+  overflow: scroll;
   padding: {
     left: 10px;
     top: 20px;
@@ -61,10 +62,12 @@ body {
 
 /*TABS*/
 .selected{
+  color: $defaultFontColor;
   background-color: $mainDisplayBGColor;
 }
 .notSelected {
-  background-color: $unfocusedTabColor;
+  color: $toggleViewBGColor;
+  background-color: $settingNoFocused;
 }
 
 .reportColumn {
@@ -81,15 +84,25 @@ body {
     height: 92vh;
 
     #snapshotChain {
+      padding: {
+        //adjust where the snapshot chain appears
+        top: 30px;
+        left: 20px;
+      }
       width: 84vw;
       overflow: scroll;
     }
 
     #toggleView {
       background-color: $toggleViewBGColor;
-      height: 92.5vh;
+      height: 92vh;
     }
     .snapshot {
+      padding: {
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+      }
       border: 1px $toggleViewBGColor solid;
       height: auto;
       width: 200px;
@@ -98,7 +111,7 @@ body {
         //control each snapshot's spacing in the main display area
         // bottom: 30px;
         // top: 20px;
-        left: 20px;
+        left: 30px;
       }
     }
   }
@@ -114,6 +127,10 @@ body {
   &:hover {
       cursor: pointer;
     }
+
+  border: {
+      left: 1px $bgcolor solid;
+  }
 
   display: inline-flex;
   padding: {
@@ -134,7 +151,7 @@ body {
       cursor: pointer;
     }
     letter-spacing: $buttonLetterSpacing;
-    color: $defaultFontColor;
+    // color: $toggleViewBGColor;
     height: $buttonHeight;
     font-size: 20px;
     outline: 0;
@@ -148,6 +165,10 @@ body {
     color: $toggleViewBGColor;
   }
 
+}
+
+#Settings {
+  border-left: 1px $bgcolor solid;
 }
 
 #xprColumn {
@@ -180,6 +201,6 @@ body {
 
 .chain {
   margin: {
-    left: 50px;
+    left: 80px;
   }
 }
