@@ -1,0 +1,5047 @@
+{
+  "routes": {
+    "GET": [
+      "/",
+      "/redirect"
+    ],
+    "POST": [
+      "/"
+    ]
+  },
+  "completedReqs": 3,
+  "GET /": {
+    "method": "GET",
+    "route": "/",
+    "start": 1493950796281,
+    "end": 1493950797319,
+    "duration": 1038,
+    "statusCode": 302,
+    "statusMessage": "Found",
+    "error": null,
+    "midware": [
+      "<anonymous>",
+      "<anonymous>"
+    ],
+    "timeline": [
+      {
+        "prevFunc": "initial state",
+        "timestamp": 1493950796281,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": null,
+            "ended": false,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": false,
+            "readableListening": false,
+            "resumeScheduled": false,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 59,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 606,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": {
+              "domain": null,
+              "_events": {},
+              "_eventsCount": 1,
+              "output": [],
+              "outputEncodings": [],
+              "outputCallbacks": [],
+              "outputSize": 0,
+              "writable": true,
+              "_last": false,
+              "upgrading": false,
+              "chunkedEncoding": false,
+              "shouldKeepAlive": false,
+              "useChunkedEncodingByDefault": true,
+              "sendDate": true,
+              "_removedHeader": {},
+              "_contentLength": null,
+              "_hasBody": true,
+              "_trailer": "",
+              "finished": false,
+              "_headerSent": false,
+              "socket": null,
+              "connection": null,
+              "_header": null,
+              "_headers": {
+                "x-powered-by": "Express"
+              },
+              "_headerNames": {
+                "x-powered-by": "X-Powered-By"
+              },
+              "req": null,
+              "locals": {}
+            }
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": false,
+          "headers": {
+            "host": "localhost:3000",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/",
+          "method": "GET",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": false,
+          "baseUrl": "",
+          "originalUrl": "/",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/",
+            "path": "/",
+            "href": "/",
+            "_raw": "/"
+          },
+          "params": {},
+          "query": {},
+          "res": null,
+          "route": {
+            "path": "/",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              },
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              }
+            ],
+            "methods": {
+              "get": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": false,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {},
+          "_contentLength": null,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": false,
+          "_headerSent": false,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 59,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 606,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": {
+                "_readableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "buffer": {
+                    "head": null,
+                    "tail": null,
+                    "length": 0
+                  },
+                  "length": 0,
+                  "pipes": null,
+                  "pipesCount": 0,
+                  "flowing": null,
+                  "ended": false,
+                  "endEmitted": false,
+                  "reading": false,
+                  "sync": true,
+                  "needReadable": false,
+                  "emittedReadable": false,
+                  "readableListening": false,
+                  "resumeScheduled": false,
+                  "defaultEncoding": "utf8",
+                  "ranOut": false,
+                  "awaitDrain": 0,
+                  "readingMore": true,
+                  "decoder": null,
+                  "encoding": null
+                },
+                "readable": true,
+                "domain": null,
+                "_events": {},
+                "_eventsCount": 0,
+                "socket": null,
+                "connection": null,
+                "httpVersionMajor": 1,
+                "httpVersionMinor": 1,
+                "httpVersion": "1.1",
+                "complete": false,
+                "headers": {
+                  "host": "localhost:3000",
+                  "connection": "close"
+                },
+                "rawHeaders": [
+                  "host",
+                  "localhost:3000",
+                  "Connection",
+                  "close"
+                ],
+                "trailers": {},
+                "rawTrailers": [],
+                "upgrade": false,
+                "url": "/",
+                "method": "GET",
+                "statusCode": null,
+                "statusMessage": null,
+                "client": null,
+                "_consuming": false,
+                "_dumped": false,
+                "baseUrl": "",
+                "originalUrl": "/",
+                "_parsedUrl": {
+                  "protocol": null,
+                  "slashes": null,
+                  "auth": null,
+                  "host": null,
+                  "port": null,
+                  "hostname": null,
+                  "hash": null,
+                  "search": null,
+                  "query": null,
+                  "pathname": "/",
+                  "path": "/",
+                  "href": "/",
+                  "_raw": "/"
+                },
+                "params": {},
+                "query": {},
+                "res": null,
+                "route": {
+                  "path": "/",
+                  "stack": [
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "get"
+                    },
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "get"
+                    }
+                  ],
+                  "methods": {
+                    "get": true
+                  }
+                }
+              },
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "_header": null,
+          "_headers": {
+            "x-powered-by": "Express"
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By"
+          },
+          "req": null,
+          "locals": {}
+        }
+      },
+      {
+        "prevFunc": "<anonymous>",
+        "timestamp": 1493950796295,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": null,
+            "ended": true,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": true,
+            "readableListening": false,
+            "resumeScheduled": false,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 59,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "error": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 626,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": {
+              "domain": null,
+              "_events": {
+                "finish": []
+              },
+              "_eventsCount": 2,
+              "output": [],
+              "outputEncodings": [],
+              "outputCallbacks": [],
+              "outputSize": 0,
+              "writable": true,
+              "_last": false,
+              "upgrading": false,
+              "chunkedEncoding": false,
+              "shouldKeepAlive": false,
+              "useChunkedEncodingByDefault": true,
+              "sendDate": true,
+              "_removedHeader": {},
+              "_contentLength": null,
+              "_hasBody": true,
+              "_trailer": "",
+              "finished": false,
+              "_headerSent": false,
+              "socket": null,
+              "connection": null,
+              "_header": null,
+              "_headers": {
+                "x-powered-by": "Express",
+                "set-cookie": "cookie1=hello%20world; Path=/"
+              },
+              "_headerNames": {
+                "x-powered-by": "X-Powered-By",
+                "set-cookie": "Set-Cookie"
+              },
+              "req": null,
+              "locals": {}
+            }
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": true,
+          "headers": {
+            "host": "localhost:3000",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/",
+          "method": "GET",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": false,
+          "baseUrl": "",
+          "originalUrl": "/",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/",
+            "path": "/",
+            "href": "/",
+            "_raw": "/"
+          },
+          "params": {},
+          "query": {},
+          "res": null,
+          "route": {
+            "path": "/",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              },
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              }
+            ],
+            "methods": {
+              "get": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {
+            "finish": []
+          },
+          "_eventsCount": 2,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": false,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {},
+          "_contentLength": null,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": false,
+          "_headerSent": false,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 59,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "error": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 626,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": {
+                "_readableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "buffer": {
+                    "head": null,
+                    "tail": null,
+                    "length": 0
+                  },
+                  "length": 0,
+                  "pipes": null,
+                  "pipesCount": 0,
+                  "flowing": null,
+                  "ended": true,
+                  "endEmitted": false,
+                  "reading": false,
+                  "sync": true,
+                  "needReadable": false,
+                  "emittedReadable": true,
+                  "readableListening": false,
+                  "resumeScheduled": false,
+                  "defaultEncoding": "utf8",
+                  "ranOut": false,
+                  "awaitDrain": 0,
+                  "readingMore": true,
+                  "decoder": null,
+                  "encoding": null
+                },
+                "readable": true,
+                "domain": null,
+                "_events": {},
+                "_eventsCount": 0,
+                "socket": null,
+                "connection": null,
+                "httpVersionMajor": 1,
+                "httpVersionMinor": 1,
+                "httpVersion": "1.1",
+                "complete": true,
+                "headers": {
+                  "host": "localhost:3000",
+                  "connection": "close"
+                },
+                "rawHeaders": [
+                  "host",
+                  "localhost:3000",
+                  "Connection",
+                  "close"
+                ],
+                "trailers": {},
+                "rawTrailers": [],
+                "upgrade": false,
+                "url": "/",
+                "method": "GET",
+                "statusCode": null,
+                "statusMessage": null,
+                "client": null,
+                "_consuming": false,
+                "_dumped": false,
+                "baseUrl": "",
+                "originalUrl": "/",
+                "_parsedUrl": {
+                  "protocol": null,
+                  "slashes": null,
+                  "auth": null,
+                  "host": null,
+                  "port": null,
+                  "hostname": null,
+                  "hash": null,
+                  "search": null,
+                  "query": null,
+                  "pathname": "/",
+                  "path": "/",
+                  "href": "/",
+                  "_raw": "/"
+                },
+                "params": {},
+                "query": {},
+                "res": null,
+                "route": {
+                  "path": "/",
+                  "stack": [
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "get"
+                    },
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "get"
+                    }
+                  ],
+                  "methods": {
+                    "get": true
+                  }
+                }
+              },
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "_header": null,
+          "_headers": {
+            "x-powered-by": "Express",
+            "set-cookie": "cookie1=hello%20world; Path=/"
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By",
+            "set-cookie": "Set-Cookie"
+          },
+          "req": null,
+          "locals": {}
+        }
+      },
+      {
+        "prevFunc": "<anonymous>",
+        "timestamp": 1493950797319,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": true,
+            "ended": true,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": true,
+            "readableListening": false,
+            "resumeScheduled": true,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 59,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "finish": [],
+              "drain": [],
+              "error": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": true,
+              "ended": true,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": false,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 1,
+              "prefinished": true,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": false,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 271,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 1648,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": true,
+          "headers": {
+            "host": "localhost:3000",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/",
+          "method": "GET",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": true,
+          "baseUrl": "",
+          "originalUrl": "/",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/",
+            "path": "/",
+            "href": "/",
+            "_raw": "/"
+          },
+          "params": {},
+          "query": {},
+          "res": {
+            "domain": null,
+            "_events": {
+              "finish": []
+            },
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": true,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {
+              "content-length": false
+            },
+            "_contentLength": 31,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": true,
+            "_headerSent": true,
+            "socket": null,
+            "connection": null,
+            "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nSet-Cookie: cookie1=hello%20world; Path=/\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Fri, 05 May 2017 02:19:57 GMT\r\nConnection: close\r\n\r\n",
+            "_headers": {
+              "x-powered-by": "Express",
+              "set-cookie": "cookie1=hello%20world; Path=/",
+              "location": "/redirect",
+              "vary": "Accept",
+              "content-type": "text/plain; charset=utf-8",
+              "content-length": "31"
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By",
+              "set-cookie": "Set-Cookie",
+              "location": "Location",
+              "vary": "Vary",
+              "content-type": "Content-Type",
+              "content-length": "Content-Length"
+            },
+            "req": null,
+            "locals": {},
+            "__onFinished": null,
+            "statusCode": 302,
+            "statusMessage": "Found"
+          },
+          "route": {
+            "path": "/",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              },
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              }
+            ],
+            "methods": {
+              "get": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {
+            "finish": []
+          },
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": true,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {
+            "content-length": false
+          },
+          "_contentLength": 31,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": true,
+          "_headerSent": true,
+          "socket": null,
+          "connection": null,
+          "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nSet-Cookie: cookie1=hello%20world; Path=/\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Fri, 05 May 2017 02:19:57 GMT\r\nConnection: close\r\n\r\n",
+          "_headers": {
+            "x-powered-by": "Express",
+            "set-cookie": "cookie1=hello%20world; Path=/",
+            "location": "/redirect",
+            "vary": "Accept",
+            "content-type": "text/plain; charset=utf-8",
+            "content-length": "31"
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By",
+            "set-cookie": "Set-Cookie",
+            "location": "Location",
+            "vary": "Vary",
+            "content-type": "Content-Type",
+            "content-length": "Content-Length"
+          },
+          "req": {
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": true,
+              "endEmitted": false,
+              "reading": false,
+              "sync": true,
+              "needReadable": false,
+              "emittedReadable": true,
+              "readableListening": false,
+              "resumeScheduled": true,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": true,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 0,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 59,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "finish": [],
+                "drain": [],
+                "error": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": true,
+                "ended": true,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": false,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 1,
+                "prefinished": true,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": false,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 271,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 1648,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": null,
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "httpVersionMajor": 1,
+            "httpVersionMinor": 1,
+            "httpVersion": "1.1",
+            "complete": true,
+            "headers": {
+              "host": "localhost:3000",
+              "connection": "close"
+            },
+            "rawHeaders": [
+              "host",
+              "localhost:3000",
+              "Connection",
+              "close"
+            ],
+            "trailers": {},
+            "rawTrailers": [],
+            "upgrade": false,
+            "url": "/",
+            "method": "GET",
+            "statusCode": null,
+            "statusMessage": null,
+            "client": null,
+            "_consuming": false,
+            "_dumped": true,
+            "baseUrl": "",
+            "originalUrl": "/",
+            "_parsedUrl": {
+              "protocol": null,
+              "slashes": null,
+              "auth": null,
+              "host": null,
+              "port": null,
+              "hostname": null,
+              "hash": null,
+              "search": null,
+              "query": null,
+              "pathname": "/",
+              "path": "/",
+              "href": "/",
+              "_raw": "/"
+            },
+            "params": {},
+            "query": {},
+            "res": null,
+            "route": {
+              "path": "/",
+              "stack": [
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "get"
+                },
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "get"
+                }
+              ],
+              "methods": {
+                "get": true
+              }
+            }
+          },
+          "locals": {},
+          "__onFinished": null,
+          "statusCode": 302,
+          "statusMessage": "Found"
+        }
+      }
+    ],
+    "redirect": {
+      "method": "GET",
+      "route": "/redirect",
+      "start": 1493950797347,
+      "end": 1493950798161,
+      "duration": 814,
+      "statusCode": 200,
+      "statusMessage": "OK",
+      "error": null,
+      "midware": [
+        "<anonymous>"
+      ],
+      "timeline": [
+        {
+          "prevFunc": "initial state",
+          "timestamp": 1493950797347,
+          "req": {
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": null,
+              "ended": false,
+              "endEmitted": false,
+              "reading": false,
+              "sync": true,
+              "needReadable": false,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": true,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 0,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 100,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "drain": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": false,
+                "ended": false,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": true,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 0,
+                "prefinished": false,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": true,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 0,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 1674,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": null,
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": {
+                "domain": null,
+                "_events": {},
+                "_eventsCount": 1,
+                "output": [],
+                "outputEncodings": [],
+                "outputCallbacks": [],
+                "outputSize": 0,
+                "writable": true,
+                "_last": false,
+                "upgrading": false,
+                "chunkedEncoding": false,
+                "shouldKeepAlive": false,
+                "useChunkedEncodingByDefault": true,
+                "sendDate": true,
+                "_removedHeader": {},
+                "_contentLength": null,
+                "_hasBody": true,
+                "_trailer": "",
+                "finished": false,
+                "_headerSent": false,
+                "socket": null,
+                "connection": null,
+                "_header": null,
+                "_headers": {
+                  "x-powered-by": "Express"
+                },
+                "_headerNames": {
+                  "x-powered-by": "X-Powered-By"
+                },
+                "req": null,
+                "locals": {}
+              }
+            },
+            "connection": null,
+            "httpVersionMajor": 1,
+            "httpVersionMinor": 1,
+            "httpVersion": "1.1",
+            "complete": false,
+            "headers": {
+              "referer": "http://localhost:3000/",
+              "host": "localhost:3000",
+              "connection": "close"
+            },
+            "rawHeaders": [
+              "referer",
+              "http://localhost:3000/",
+              "host",
+              "localhost:3000",
+              "Connection",
+              "close"
+            ],
+            "trailers": {},
+            "rawTrailers": [],
+            "upgrade": false,
+            "url": "/redirect",
+            "method": "GET",
+            "statusCode": null,
+            "statusMessage": null,
+            "client": null,
+            "_consuming": false,
+            "_dumped": false,
+            "baseUrl": "",
+            "originalUrl": "/redirect",
+            "_parsedUrl": {
+              "protocol": null,
+              "slashes": null,
+              "auth": null,
+              "host": null,
+              "port": null,
+              "hostname": null,
+              "hash": null,
+              "search": null,
+              "query": null,
+              "pathname": "/redirect",
+              "path": "/redirect",
+              "href": "/redirect",
+              "_raw": "/redirect"
+            },
+            "params": {},
+            "query": {},
+            "res": null,
+            "route": {
+              "path": "/redirect",
+              "stack": [
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "get"
+                }
+              ],
+              "methods": {
+                "get": true
+              }
+            }
+          },
+          "res": {
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": false,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {},
+            "_contentLength": null,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": false,
+            "_headerSent": false,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 100,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "drain": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": false,
+                "ended": false,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": true,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 0,
+                "prefinished": false,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": true,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 0,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 1674,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": {
+                  "_readableState": {
+                    "objectMode": false,
+                    "highWaterMark": 16384,
+                    "buffer": {
+                      "head": null,
+                      "tail": null,
+                      "length": 0
+                    },
+                    "length": 0,
+                    "pipes": null,
+                    "pipesCount": 0,
+                    "flowing": null,
+                    "ended": false,
+                    "endEmitted": false,
+                    "reading": false,
+                    "sync": true,
+                    "needReadable": false,
+                    "emittedReadable": false,
+                    "readableListening": false,
+                    "resumeScheduled": false,
+                    "defaultEncoding": "utf8",
+                    "ranOut": false,
+                    "awaitDrain": 0,
+                    "readingMore": true,
+                    "decoder": null,
+                    "encoding": null
+                  },
+                  "readable": true,
+                  "domain": null,
+                  "_events": {},
+                  "_eventsCount": 0,
+                  "socket": null,
+                  "connection": null,
+                  "httpVersionMajor": 1,
+                  "httpVersionMinor": 1,
+                  "httpVersion": "1.1",
+                  "complete": false,
+                  "headers": {
+                    "referer": "http://localhost:3000/",
+                    "host": "localhost:3000",
+                    "connection": "close"
+                  },
+                  "rawHeaders": [
+                    "referer",
+                    "http://localhost:3000/",
+                    "host",
+                    "localhost:3000",
+                    "Connection",
+                    "close"
+                  ],
+                  "trailers": {},
+                  "rawTrailers": [],
+                  "upgrade": false,
+                  "url": "/redirect",
+                  "method": "GET",
+                  "statusCode": null,
+                  "statusMessage": null,
+                  "client": null,
+                  "_consuming": false,
+                  "_dumped": false,
+                  "baseUrl": "",
+                  "originalUrl": "/redirect",
+                  "_parsedUrl": {
+                    "protocol": null,
+                    "slashes": null,
+                    "auth": null,
+                    "host": null,
+                    "port": null,
+                    "hostname": null,
+                    "hash": null,
+                    "search": null,
+                    "query": null,
+                    "pathname": "/redirect",
+                    "path": "/redirect",
+                    "href": "/redirect",
+                    "_raw": "/redirect"
+                  },
+                  "params": {},
+                  "query": {},
+                  "res": null,
+                  "route": {
+                    "path": "/redirect",
+                    "stack": [
+                      {
+                        "name": "midware",
+                        "keys": [],
+                        "regexp": {
+                          "fast_star": false,
+                          "fast_slash": false
+                        },
+                        "method": "get"
+                      }
+                    ],
+                    "methods": {
+                      "get": true
+                    }
+                  }
+                },
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "_header": null,
+            "_headers": {
+              "x-powered-by": "Express"
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By"
+            },
+            "req": null,
+            "locals": {}
+          }
+        },
+        {
+          "prevFunc": "<anonymous>",
+          "timestamp": 1493950798161,
+          "req": {
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": true,
+              "endEmitted": false,
+              "reading": false,
+              "sync": true,
+              "needReadable": false,
+              "emittedReadable": true,
+              "readableListening": false,
+              "resumeScheduled": true,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": true,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 0,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 100,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "finish": [],
+                "drain": [],
+                "error": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": true,
+                "ended": true,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": false,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 3,
+                "prefinished": true,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": false,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 200,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 2492,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": null,
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "httpVersionMajor": 1,
+            "httpVersionMinor": 1,
+            "httpVersion": "1.1",
+            "complete": true,
+            "headers": {
+              "referer": "http://localhost:3000/",
+              "host": "localhost:3000",
+              "connection": "close"
+            },
+            "rawHeaders": [
+              "referer",
+              "http://localhost:3000/",
+              "host",
+              "localhost:3000",
+              "Connection",
+              "close"
+            ],
+            "trailers": {},
+            "rawTrailers": [],
+            "upgrade": false,
+            "url": "/redirect",
+            "method": "GET",
+            "statusCode": null,
+            "statusMessage": null,
+            "client": null,
+            "_consuming": false,
+            "_dumped": true,
+            "baseUrl": "",
+            "originalUrl": "/redirect",
+            "_parsedUrl": {
+              "protocol": null,
+              "slashes": null,
+              "auth": null,
+              "host": null,
+              "port": null,
+              "hostname": null,
+              "hash": null,
+              "search": null,
+              "query": null,
+              "pathname": "/redirect",
+              "path": "/redirect",
+              "href": "/redirect",
+              "_raw": "/redirect"
+            },
+            "params": {},
+            "query": {},
+            "res": {
+              "domain": null,
+              "_events": {
+                "finish": []
+              },
+              "_eventsCount": 1,
+              "output": [],
+              "outputEncodings": [],
+              "outputCallbacks": [],
+              "outputSize": 0,
+              "writable": true,
+              "_last": true,
+              "upgrading": false,
+              "chunkedEncoding": false,
+              "shouldKeepAlive": false,
+              "useChunkedEncodingByDefault": true,
+              "sendDate": true,
+              "_removedHeader": {
+                "content-length": false
+              },
+              "_contentLength": 2,
+              "_hasBody": true,
+              "_trailer": "",
+              "finished": true,
+              "_headerSent": true,
+              "socket": null,
+              "connection": null,
+              "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 2\r\nETag: W/\"2-witfkXg0JglCjW9RssWvTAveakI\"\r\nDate: Fri, 05 May 2017 02:19:58 GMT\r\nConnection: close\r\n\r\n",
+              "_headers": {
+                "x-powered-by": "Express",
+                "content-type": "text/html; charset=utf-8",
+                "content-length": "2",
+                "etag": "W/\"2-witfkXg0JglCjW9RssWvTAveakI\""
+              },
+              "_headerNames": {
+                "x-powered-by": "X-Powered-By",
+                "content-type": "Content-Type",
+                "content-length": "Content-Length",
+                "etag": "ETag"
+              },
+              "req": null,
+              "locals": {},
+              "__onFinished": null,
+              "statusMessage": "OK",
+              "statusCode": 200
+            },
+            "route": {
+              "path": "/redirect",
+              "stack": [
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "get"
+                }
+              ],
+              "methods": {
+                "get": true
+              }
+            }
+          },
+          "res": {
+            "domain": null,
+            "_events": {
+              "finish": []
+            },
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": true,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {
+              "content-length": false
+            },
+            "_contentLength": 2,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": true,
+            "_headerSent": true,
+            "socket": null,
+            "connection": null,
+            "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 2\r\nETag: W/\"2-witfkXg0JglCjW9RssWvTAveakI\"\r\nDate: Fri, 05 May 2017 02:19:58 GMT\r\nConnection: close\r\n\r\n",
+            "_headers": {
+              "x-powered-by": "Express",
+              "content-type": "text/html; charset=utf-8",
+              "content-length": "2",
+              "etag": "W/\"2-witfkXg0JglCjW9RssWvTAveakI\""
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By",
+              "content-type": "Content-Type",
+              "content-length": "Content-Length",
+              "etag": "ETag"
+            },
+            "req": {
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": true,
+                "endEmitted": false,
+                "reading": false,
+                "sync": true,
+                "needReadable": false,
+                "emittedReadable": true,
+                "readableListening": false,
+                "resumeScheduled": true,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": true,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {},
+              "_eventsCount": 0,
+              "socket": {
+                "connecting": false,
+                "_hadError": false,
+                "_handle": {
+                  "bytesRead": 100,
+                  "_externalStream": {},
+                  "fd": 15,
+                  "reading": true,
+                  "owner": null,
+                  "onconnection": null,
+                  "writeQueueSize": 0
+                },
+                "_parent": null,
+                "_host": null,
+                "_readableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "buffer": {
+                    "head": null,
+                    "tail": null,
+                    "length": 0
+                  },
+                  "length": 0,
+                  "pipes": null,
+                  "pipesCount": 0,
+                  "flowing": true,
+                  "ended": false,
+                  "endEmitted": false,
+                  "reading": true,
+                  "sync": false,
+                  "needReadable": true,
+                  "emittedReadable": false,
+                  "readableListening": false,
+                  "resumeScheduled": false,
+                  "defaultEncoding": "utf8",
+                  "ranOut": false,
+                  "awaitDrain": 0,
+                  "readingMore": false,
+                  "decoder": null,
+                  "encoding": null
+                },
+                "readable": true,
+                "domain": null,
+                "_events": {
+                  "end": [],
+                  "finish": [],
+                  "drain": [],
+                  "error": [],
+                  "close": []
+                },
+                "_eventsCount": 10,
+                "_writableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "needDrain": false,
+                  "ending": true,
+                  "ended": true,
+                  "finished": false,
+                  "decodeStrings": false,
+                  "defaultEncoding": "utf8",
+                  "length": 0,
+                  "writing": false,
+                  "corked": 0,
+                  "sync": false,
+                  "bufferProcessing": false,
+                  "writecb": null,
+                  "writelen": 0,
+                  "bufferedRequest": null,
+                  "lastBufferedRequest": null,
+                  "pendingcb": 3,
+                  "prefinished": true,
+                  "errorEmitted": false,
+                  "bufferedRequestCount": 0,
+                  "corkedRequestsFree": {
+                    "next": null,
+                    "entry": null
+                  }
+                },
+                "writable": false,
+                "allowHalfOpen": true,
+                "destroyed": false,
+                "_bytesDispatched": 200,
+                "_sockname": null,
+                "_pendingData": null,
+                "_pendingEncoding": "",
+                "server": {
+                  "domain": null,
+                  "_events": {
+                    "request": []
+                  },
+                  "_eventsCount": 2,
+                  "_connections": 1,
+                  "_handle": {
+                    "bytesRead": 0,
+                    "_externalStream": {},
+                    "fd": 13,
+                    "reading": false,
+                    "owner": null,
+                    "onread": null,
+                    "writeQueueSize": 0
+                  },
+                  "_usingSlaves": false,
+                  "_slaves": [],
+                  "_unref": false,
+                  "allowHalfOpen": true,
+                  "pauseOnConnect": false,
+                  "httpAllowHalfOpen": false,
+                  "timeout": 120000,
+                  "_pendingResponseData": 0,
+                  "_connectionKey": "6::::3000"
+                },
+                "_server": null,
+                "_idleTimeout": 120000,
+                "_idleNext": {
+                  "_idleNext": null,
+                  "_idlePrev": null,
+                  "_timer": {
+                    "_list": null
+                  },
+                  "_unrefed": true,
+                  "msecs": 120000
+                },
+                "_idlePrev": null,
+                "_idleStart": 2492,
+                "parser": {
+                  "_headers": [],
+                  "_url": "",
+                  "_consumed": true,
+                  "socket": null,
+                  "incoming": null,
+                  "outgoing": null,
+                  "maxHeaderPairs": 2000
+                },
+                "_paused": false,
+                "_consuming": true,
+                "_httpMessage": null
+              },
+              "connection": null,
+              "httpVersionMajor": 1,
+              "httpVersionMinor": 1,
+              "httpVersion": "1.1",
+              "complete": true,
+              "headers": {
+                "referer": "http://localhost:3000/",
+                "host": "localhost:3000",
+                "connection": "close"
+              },
+              "rawHeaders": [
+                "referer",
+                "http://localhost:3000/",
+                "host",
+                "localhost:3000",
+                "Connection",
+                "close"
+              ],
+              "trailers": {},
+              "rawTrailers": [],
+              "upgrade": false,
+              "url": "/redirect",
+              "method": "GET",
+              "statusCode": null,
+              "statusMessage": null,
+              "client": null,
+              "_consuming": false,
+              "_dumped": true,
+              "baseUrl": "",
+              "originalUrl": "/redirect",
+              "_parsedUrl": {
+                "protocol": null,
+                "slashes": null,
+                "auth": null,
+                "host": null,
+                "port": null,
+                "hostname": null,
+                "hash": null,
+                "search": null,
+                "query": null,
+                "pathname": "/redirect",
+                "path": "/redirect",
+                "href": "/redirect",
+                "_raw": "/redirect"
+              },
+              "params": {},
+              "query": {},
+              "res": null,
+              "route": {
+                "path": "/redirect",
+                "stack": [
+                  {
+                    "name": "midware",
+                    "keys": [],
+                    "regexp": {
+                      "fast_star": false,
+                      "fast_slash": false
+                    },
+                    "method": "get"
+                  }
+                ],
+                "methods": {
+                  "get": true
+                }
+              }
+            },
+            "locals": {},
+            "__onFinished": null,
+            "statusMessage": "OK",
+            "statusCode": 200
+          }
+        }
+      ],
+      "redirect": null
+    },
+    "totalDuration": 1852
+  },
+  "GET /redirect": {
+    "method": "GET",
+    "route": "/redirect",
+    "start": 1493950798190,
+    "end": 1493950799002,
+    "duration": 812,
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "error": null,
+    "midware": [
+      "<anonymous>"
+    ],
+    "timeline": [
+      {
+        "prevFunc": "initial state",
+        "timestamp": 1493950798190,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": null,
+            "ended": false,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": false,
+            "readableListening": false,
+            "resumeScheduled": false,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 67,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 2520,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": {
+              "domain": null,
+              "_events": {},
+              "_eventsCount": 1,
+              "output": [],
+              "outputEncodings": [],
+              "outputCallbacks": [],
+              "outputSize": 0,
+              "writable": true,
+              "_last": false,
+              "upgrading": false,
+              "chunkedEncoding": false,
+              "shouldKeepAlive": false,
+              "useChunkedEncodingByDefault": true,
+              "sendDate": true,
+              "_removedHeader": {},
+              "_contentLength": null,
+              "_hasBody": true,
+              "_trailer": "",
+              "finished": false,
+              "_headerSent": false,
+              "socket": null,
+              "connection": null,
+              "_header": null,
+              "_headers": {
+                "x-powered-by": "Express"
+              },
+              "_headerNames": {
+                "x-powered-by": "X-Powered-By"
+              },
+              "req": null,
+              "locals": {}
+            }
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": false,
+          "headers": {
+            "host": "localhost:3000",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/redirect",
+          "method": "GET",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": false,
+          "baseUrl": "",
+          "originalUrl": "/redirect",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/redirect",
+            "path": "/redirect",
+            "href": "/redirect",
+            "_raw": "/redirect"
+          },
+          "params": {},
+          "query": {},
+          "res": null,
+          "route": {
+            "path": "/redirect",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              }
+            ],
+            "methods": {
+              "get": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": false,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {},
+          "_contentLength": null,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": false,
+          "_headerSent": false,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 67,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 2520,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": {
+                "_readableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "buffer": {
+                    "head": null,
+                    "tail": null,
+                    "length": 0
+                  },
+                  "length": 0,
+                  "pipes": null,
+                  "pipesCount": 0,
+                  "flowing": null,
+                  "ended": false,
+                  "endEmitted": false,
+                  "reading": false,
+                  "sync": true,
+                  "needReadable": false,
+                  "emittedReadable": false,
+                  "readableListening": false,
+                  "resumeScheduled": false,
+                  "defaultEncoding": "utf8",
+                  "ranOut": false,
+                  "awaitDrain": 0,
+                  "readingMore": true,
+                  "decoder": null,
+                  "encoding": null
+                },
+                "readable": true,
+                "domain": null,
+                "_events": {},
+                "_eventsCount": 0,
+                "socket": null,
+                "connection": null,
+                "httpVersionMajor": 1,
+                "httpVersionMinor": 1,
+                "httpVersion": "1.1",
+                "complete": false,
+                "headers": {
+                  "host": "localhost:3000",
+                  "connection": "close"
+                },
+                "rawHeaders": [
+                  "host",
+                  "localhost:3000",
+                  "Connection",
+                  "close"
+                ],
+                "trailers": {},
+                "rawTrailers": [],
+                "upgrade": false,
+                "url": "/redirect",
+                "method": "GET",
+                "statusCode": null,
+                "statusMessage": null,
+                "client": null,
+                "_consuming": false,
+                "_dumped": false,
+                "baseUrl": "",
+                "originalUrl": "/redirect",
+                "_parsedUrl": {
+                  "protocol": null,
+                  "slashes": null,
+                  "auth": null,
+                  "host": null,
+                  "port": null,
+                  "hostname": null,
+                  "hash": null,
+                  "search": null,
+                  "query": null,
+                  "pathname": "/redirect",
+                  "path": "/redirect",
+                  "href": "/redirect",
+                  "_raw": "/redirect"
+                },
+                "params": {},
+                "query": {},
+                "res": null,
+                "route": {
+                  "path": "/redirect",
+                  "stack": [
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "get"
+                    }
+                  ],
+                  "methods": {
+                    "get": true
+                  }
+                }
+              },
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "_header": null,
+          "_headers": {
+            "x-powered-by": "Express"
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By"
+          },
+          "req": null,
+          "locals": {}
+        }
+      },
+      {
+        "prevFunc": "<anonymous>",
+        "timestamp": 1493950799002,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": true,
+            "ended": true,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": true,
+            "readableListening": false,
+            "resumeScheduled": true,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 67,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "finish": [],
+              "drain": [],
+              "error": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": true,
+              "ended": true,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": false,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 3,
+              "prefinished": true,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": false,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 200,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 3334,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": true,
+          "headers": {
+            "host": "localhost:3000",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/redirect",
+          "method": "GET",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": true,
+          "baseUrl": "",
+          "originalUrl": "/redirect",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/redirect",
+            "path": "/redirect",
+            "href": "/redirect",
+            "_raw": "/redirect"
+          },
+          "params": {},
+          "query": {},
+          "res": {
+            "domain": null,
+            "_events": {
+              "finish": []
+            },
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": true,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {
+              "content-length": false
+            },
+            "_contentLength": 2,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": true,
+            "_headerSent": true,
+            "socket": null,
+            "connection": null,
+            "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 2\r\nETag: W/\"2-witfkXg0JglCjW9RssWvTAveakI\"\r\nDate: Fri, 05 May 2017 02:19:58 GMT\r\nConnection: close\r\n\r\n",
+            "_headers": {
+              "x-powered-by": "Express",
+              "content-type": "text/html; charset=utf-8",
+              "content-length": "2",
+              "etag": "W/\"2-witfkXg0JglCjW9RssWvTAveakI\""
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By",
+              "content-type": "Content-Type",
+              "content-length": "Content-Length",
+              "etag": "ETag"
+            },
+            "req": null,
+            "locals": {},
+            "__onFinished": null,
+            "statusMessage": "OK",
+            "statusCode": 200
+          },
+          "route": {
+            "path": "/redirect",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "get"
+              }
+            ],
+            "methods": {
+              "get": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {
+            "finish": []
+          },
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": true,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {
+            "content-length": false
+          },
+          "_contentLength": 2,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": true,
+          "_headerSent": true,
+          "socket": null,
+          "connection": null,
+          "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 2\r\nETag: W/\"2-witfkXg0JglCjW9RssWvTAveakI\"\r\nDate: Fri, 05 May 2017 02:19:58 GMT\r\nConnection: close\r\n\r\n",
+          "_headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "2",
+            "etag": "W/\"2-witfkXg0JglCjW9RssWvTAveakI\""
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By",
+            "content-type": "Content-Type",
+            "content-length": "Content-Length",
+            "etag": "ETag"
+          },
+          "req": {
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": true,
+              "endEmitted": false,
+              "reading": false,
+              "sync": true,
+              "needReadable": false,
+              "emittedReadable": true,
+              "readableListening": false,
+              "resumeScheduled": true,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": true,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 0,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 67,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "finish": [],
+                "drain": [],
+                "error": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": true,
+                "ended": true,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": false,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 3,
+                "prefinished": true,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": false,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 200,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 3334,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": null,
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "httpVersionMajor": 1,
+            "httpVersionMinor": 1,
+            "httpVersion": "1.1",
+            "complete": true,
+            "headers": {
+              "host": "localhost:3000",
+              "connection": "close"
+            },
+            "rawHeaders": [
+              "host",
+              "localhost:3000",
+              "Connection",
+              "close"
+            ],
+            "trailers": {},
+            "rawTrailers": [],
+            "upgrade": false,
+            "url": "/redirect",
+            "method": "GET",
+            "statusCode": null,
+            "statusMessage": null,
+            "client": null,
+            "_consuming": false,
+            "_dumped": true,
+            "baseUrl": "",
+            "originalUrl": "/redirect",
+            "_parsedUrl": {
+              "protocol": null,
+              "slashes": null,
+              "auth": null,
+              "host": null,
+              "port": null,
+              "hostname": null,
+              "hash": null,
+              "search": null,
+              "query": null,
+              "pathname": "/redirect",
+              "path": "/redirect",
+              "href": "/redirect",
+              "_raw": "/redirect"
+            },
+            "params": {},
+            "query": {},
+            "res": null,
+            "route": {
+              "path": "/redirect",
+              "stack": [
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "get"
+                }
+              ],
+              "methods": {
+                "get": true
+              }
+            }
+          },
+          "locals": {},
+          "__onFinished": null,
+          "statusMessage": "OK",
+          "statusCode": 200
+        }
+      }
+    ],
+    "redirect": null,
+    "totalDuration": 812
+  },
+  "POST /": {
+    "method": "POST",
+    "route": "/",
+    "start": 1493950799028,
+    "end": 1493950799041,
+    "duration": 13,
+    "statusCode": 200,
+    "statusMessage": "OK",
+    "error": null,
+    "midware": [
+      "<anonymous>"
+    ],
+    "timeline": [
+      {
+        "prevFunc": "initial state",
+        "timestamp": 1493950799028,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": null,
+            "ended": false,
+            "endEmitted": false,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": false,
+            "readableListening": false,
+            "resumeScheduled": false,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": true,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": true,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 0,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 79,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 3356,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": {
+              "domain": null,
+              "_events": {},
+              "_eventsCount": 1,
+              "output": [],
+              "outputEncodings": [],
+              "outputCallbacks": [],
+              "outputSize": 0,
+              "writable": true,
+              "_last": false,
+              "upgrading": false,
+              "chunkedEncoding": false,
+              "shouldKeepAlive": false,
+              "useChunkedEncodingByDefault": true,
+              "sendDate": true,
+              "_removedHeader": {},
+              "_contentLength": null,
+              "_hasBody": true,
+              "_trailer": "",
+              "finished": false,
+              "_headerSent": false,
+              "socket": null,
+              "connection": null,
+              "_header": null,
+              "_headers": {
+                "x-powered-by": "Express"
+              },
+              "_headerNames": {
+                "x-powered-by": "X-Powered-By"
+              },
+              "req": null,
+              "locals": {}
+            }
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": false,
+          "headers": {
+            "host": "localhost:3000",
+            "content-length": "0",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "content-length",
+            "0",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/",
+          "method": "POST",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": false,
+          "_dumped": false,
+          "baseUrl": "",
+          "originalUrl": "/",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/",
+            "path": "/",
+            "href": "/",
+            "_raw": "/"
+          },
+          "params": {},
+          "query": {},
+          "res": null,
+          "route": {
+            "path": "/",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "post"
+              }
+            ],
+            "methods": {
+              "post": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": false,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {},
+          "_contentLength": null,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": false,
+          "_headerSent": false,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 79,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": true,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 0,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 3356,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": {
+                "_readableState": {
+                  "objectMode": false,
+                  "highWaterMark": 16384,
+                  "buffer": {
+                    "head": null,
+                    "tail": null,
+                    "length": 0
+                  },
+                  "length": 0,
+                  "pipes": null,
+                  "pipesCount": 0,
+                  "flowing": null,
+                  "ended": false,
+                  "endEmitted": false,
+                  "reading": false,
+                  "sync": true,
+                  "needReadable": false,
+                  "emittedReadable": false,
+                  "readableListening": false,
+                  "resumeScheduled": false,
+                  "defaultEncoding": "utf8",
+                  "ranOut": false,
+                  "awaitDrain": 0,
+                  "readingMore": true,
+                  "decoder": null,
+                  "encoding": null
+                },
+                "readable": true,
+                "domain": null,
+                "_events": {},
+                "_eventsCount": 0,
+                "socket": null,
+                "connection": null,
+                "httpVersionMajor": 1,
+                "httpVersionMinor": 1,
+                "httpVersion": "1.1",
+                "complete": false,
+                "headers": {
+                  "host": "localhost:3000",
+                  "content-length": "0",
+                  "connection": "close"
+                },
+                "rawHeaders": [
+                  "host",
+                  "localhost:3000",
+                  "content-length",
+                  "0",
+                  "Connection",
+                  "close"
+                ],
+                "trailers": {},
+                "rawTrailers": [],
+                "upgrade": false,
+                "url": "/",
+                "method": "POST",
+                "statusCode": null,
+                "statusMessage": null,
+                "client": null,
+                "_consuming": false,
+                "_dumped": false,
+                "baseUrl": "",
+                "originalUrl": "/",
+                "_parsedUrl": {
+                  "protocol": null,
+                  "slashes": null,
+                  "auth": null,
+                  "host": null,
+                  "port": null,
+                  "hostname": null,
+                  "hash": null,
+                  "search": null,
+                  "query": null,
+                  "pathname": "/",
+                  "path": "/",
+                  "href": "/",
+                  "_raw": "/"
+                },
+                "params": {},
+                "query": {},
+                "res": null,
+                "route": {
+                  "path": "/",
+                  "stack": [
+                    {
+                      "name": "midware",
+                      "keys": [],
+                      "regexp": {
+                        "fast_star": false,
+                        "fast_slash": false
+                      },
+                      "method": "post"
+                    }
+                  ],
+                  "methods": {
+                    "post": true
+                  }
+                }
+              },
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "_header": null,
+          "_headers": {
+            "x-powered-by": "Express"
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By"
+          },
+          "req": null,
+          "locals": {}
+        }
+      },
+      {
+        "prevFunc": "<anonymous>",
+        "timestamp": 1493950799041,
+        "req": {
+          "_readableState": {
+            "objectMode": false,
+            "highWaterMark": 16384,
+            "buffer": {
+              "head": null,
+              "tail": null,
+              "length": 0
+            },
+            "length": 0,
+            "pipes": null,
+            "pipesCount": 0,
+            "flowing": true,
+            "ended": true,
+            "endEmitted": true,
+            "reading": false,
+            "sync": true,
+            "needReadable": false,
+            "emittedReadable": false,
+            "readableListening": false,
+            "resumeScheduled": false,
+            "defaultEncoding": "utf8",
+            "ranOut": false,
+            "awaitDrain": 0,
+            "readingMore": false,
+            "decoder": null,
+            "encoding": null
+          },
+          "readable": false,
+          "domain": null,
+          "_events": {},
+          "_eventsCount": 2,
+          "socket": {
+            "connecting": false,
+            "_hadError": false,
+            "_handle": {
+              "bytesRead": 79,
+              "_externalStream": {},
+              "fd": 15,
+              "reading": true,
+              "owner": null,
+              "onconnection": null,
+              "writeQueueSize": 0
+            },
+            "_parent": null,
+            "_host": null,
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": false,
+              "endEmitted": false,
+              "reading": true,
+              "sync": false,
+              "needReadable": true,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "finish": [],
+              "drain": [],
+              "error": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": true,
+              "ended": true,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": false,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 3,
+              "prefinished": true,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+            "writable": false,
+            "allowHalfOpen": true,
+            "destroyed": false,
+            "_bytesDispatched": 231,
+            "_sockname": null,
+            "_pendingData": null,
+            "_pendingEncoding": "",
+            "server": {
+              "domain": null,
+              "_events": {
+                "request": []
+              },
+              "_eventsCount": 2,
+              "_connections": 1,
+              "_handle": {
+                "bytesRead": 0,
+                "_externalStream": {},
+                "fd": 13,
+                "reading": false,
+                "owner": null,
+                "onread": null,
+                "writeQueueSize": 0
+              },
+              "_usingSlaves": false,
+              "_slaves": [],
+              "_unref": false,
+              "allowHalfOpen": true,
+              "pauseOnConnect": false,
+              "httpAllowHalfOpen": false,
+              "timeout": 120000,
+              "_pendingResponseData": 0,
+              "_connectionKey": "6::::3000"
+            },
+            "_server": null,
+            "_idleTimeout": 120000,
+            "_idleNext": {
+              "_idleNext": null,
+              "_idlePrev": null,
+              "_timer": {
+                "_list": null
+              },
+              "_unrefed": true,
+              "msecs": 120000
+            },
+            "_idlePrev": null,
+            "_idleStart": 3373,
+            "parser": {
+              "_headers": [],
+              "_url": "",
+              "_consumed": true,
+              "socket": null,
+              "incoming": null,
+              "outgoing": null,
+              "maxHeaderPairs": 2000
+            },
+            "_paused": false,
+            "_consuming": true,
+            "_httpMessage": null
+          },
+          "connection": null,
+          "httpVersionMajor": 1,
+          "httpVersionMinor": 1,
+          "httpVersion": "1.1",
+          "complete": true,
+          "headers": {
+            "host": "localhost:3000",
+            "content-length": "0",
+            "connection": "close"
+          },
+          "rawHeaders": [
+            "host",
+            "localhost:3000",
+            "content-length",
+            "0",
+            "Connection",
+            "close"
+          ],
+          "trailers": {},
+          "rawTrailers": [],
+          "upgrade": false,
+          "url": "/",
+          "method": "POST",
+          "statusCode": null,
+          "statusMessage": null,
+          "client": null,
+          "_consuming": true,
+          "_dumped": false,
+          "baseUrl": "",
+          "originalUrl": "/",
+          "_parsedUrl": {
+            "protocol": null,
+            "slashes": null,
+            "auth": null,
+            "host": null,
+            "port": null,
+            "hostname": null,
+            "hash": null,
+            "search": null,
+            "query": null,
+            "pathname": "/",
+            "path": "/",
+            "href": "/",
+            "_raw": "/"
+          },
+          "params": {},
+          "query": {},
+          "res": {
+            "domain": null,
+            "_events": {
+              "finish": []
+            },
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": true,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {
+              "content-length": false
+            },
+            "_contentLength": 31,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": true,
+            "_headerSent": true,
+            "socket": null,
+            "connection": null,
+            "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 31\r\nETag: W/\"1f-stc8ofKBBGJKa7fEFt1CZvPz3ks\"\r\nDate: Fri, 05 May 2017 02:19:59 GMT\r\nConnection: close\r\n\r\n",
+            "_headers": {
+              "x-powered-by": "Express",
+              "content-type": "text/html; charset=utf-8",
+              "content-length": "31",
+              "etag": "W/\"1f-stc8ofKBBGJKa7fEFt1CZvPz3ks\""
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By",
+              "content-type": "Content-Type",
+              "content-length": "Content-Length",
+              "etag": "ETag"
+            },
+            "req": null,
+            "locals": {},
+            "__onFinished": null,
+            "statusMessage": "OK",
+            "statusCode": 200
+          },
+          "route": {
+            "path": "/",
+            "stack": [
+              {
+                "name": "midware",
+                "keys": [],
+                "regexp": {
+                  "fast_star": false,
+                  "fast_slash": false
+                },
+                "method": "post"
+              }
+            ],
+            "methods": {
+              "post": true
+            }
+          }
+        },
+        "res": {
+          "domain": null,
+          "_events": {
+            "finish": []
+          },
+          "_eventsCount": 1,
+          "output": [],
+          "outputEncodings": [],
+          "outputCallbacks": [],
+          "outputSize": 0,
+          "writable": true,
+          "_last": true,
+          "upgrading": false,
+          "chunkedEncoding": false,
+          "shouldKeepAlive": false,
+          "useChunkedEncodingByDefault": true,
+          "sendDate": true,
+          "_removedHeader": {
+            "content-length": false
+          },
+          "_contentLength": 31,
+          "_hasBody": true,
+          "_trailer": "",
+          "finished": true,
+          "_headerSent": true,
+          "socket": null,
+          "connection": null,
+          "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 31\r\nETag: W/\"1f-stc8ofKBBGJKa7fEFt1CZvPz3ks\"\r\nDate: Fri, 05 May 2017 02:19:59 GMT\r\nConnection: close\r\n\r\n",
+          "_headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "31",
+            "etag": "W/\"1f-stc8ofKBBGJKa7fEFt1CZvPz3ks\""
+          },
+          "_headerNames": {
+            "x-powered-by": "X-Powered-By",
+            "content-type": "Content-Type",
+            "content-length": "Content-Length",
+            "etag": "ETag"
+          },
+          "req": {
+            "_readableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "buffer": {
+                "head": null,
+                "tail": null,
+                "length": 0
+              },
+              "length": 0,
+              "pipes": null,
+              "pipesCount": 0,
+              "flowing": true,
+              "ended": true,
+              "endEmitted": true,
+              "reading": false,
+              "sync": true,
+              "needReadable": false,
+              "emittedReadable": false,
+              "readableListening": false,
+              "resumeScheduled": false,
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": false,
+            "domain": null,
+            "_events": {},
+            "_eventsCount": 2,
+            "socket": {
+              "connecting": false,
+              "_hadError": false,
+              "_handle": {
+                "bytesRead": 79,
+                "_externalStream": {},
+                "fd": 15,
+                "reading": true,
+                "owner": null,
+                "onconnection": null,
+                "writeQueueSize": 0
+              },
+              "_parent": null,
+              "_host": null,
+              "_readableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "buffer": {
+                  "head": null,
+                  "tail": null,
+                  "length": 0
+                },
+                "length": 0,
+                "pipes": null,
+                "pipesCount": 0,
+                "flowing": true,
+                "ended": false,
+                "endEmitted": false,
+                "reading": true,
+                "sync": false,
+                "needReadable": true,
+                "emittedReadable": false,
+                "readableListening": false,
+                "resumeScheduled": false,
+                "defaultEncoding": "utf8",
+                "ranOut": false,
+                "awaitDrain": 0,
+                "readingMore": false,
+                "decoder": null,
+                "encoding": null
+              },
+              "readable": true,
+              "domain": null,
+              "_events": {
+                "end": [],
+                "finish": [],
+                "drain": [],
+                "error": [],
+                "close": []
+              },
+              "_eventsCount": 10,
+              "_writableState": {
+                "objectMode": false,
+                "highWaterMark": 16384,
+                "needDrain": false,
+                "ending": true,
+                "ended": true,
+                "finished": false,
+                "decodeStrings": false,
+                "defaultEncoding": "utf8",
+                "length": 0,
+                "writing": false,
+                "corked": 0,
+                "sync": false,
+                "bufferProcessing": false,
+                "writecb": null,
+                "writelen": 0,
+                "bufferedRequest": null,
+                "lastBufferedRequest": null,
+                "pendingcb": 3,
+                "prefinished": true,
+                "errorEmitted": false,
+                "bufferedRequestCount": 0,
+                "corkedRequestsFree": {
+                  "next": null,
+                  "entry": null
+                }
+              },
+              "writable": false,
+              "allowHalfOpen": true,
+              "destroyed": false,
+              "_bytesDispatched": 231,
+              "_sockname": null,
+              "_pendingData": null,
+              "_pendingEncoding": "",
+              "server": {
+                "domain": null,
+                "_events": {
+                  "request": []
+                },
+                "_eventsCount": 2,
+                "_connections": 1,
+                "_handle": {
+                  "bytesRead": 0,
+                  "_externalStream": {},
+                  "fd": 13,
+                  "reading": false,
+                  "owner": null,
+                  "onread": null,
+                  "writeQueueSize": 0
+                },
+                "_usingSlaves": false,
+                "_slaves": [],
+                "_unref": false,
+                "allowHalfOpen": true,
+                "pauseOnConnect": false,
+                "httpAllowHalfOpen": false,
+                "timeout": 120000,
+                "_pendingResponseData": 0,
+                "_connectionKey": "6::::3000"
+              },
+              "_server": null,
+              "_idleTimeout": 120000,
+              "_idleNext": {
+                "_idleNext": null,
+                "_idlePrev": null,
+                "_timer": {
+                  "_list": null
+                },
+                "_unrefed": true,
+                "msecs": 120000
+              },
+              "_idlePrev": null,
+              "_idleStart": 3373,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": null,
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "httpVersionMajor": 1,
+            "httpVersionMinor": 1,
+            "httpVersion": "1.1",
+            "complete": true,
+            "headers": {
+              "host": "localhost:3000",
+              "content-length": "0",
+              "connection": "close"
+            },
+            "rawHeaders": [
+              "host",
+              "localhost:3000",
+              "content-length",
+              "0",
+              "Connection",
+              "close"
+            ],
+            "trailers": {},
+            "rawTrailers": [],
+            "upgrade": false,
+            "url": "/",
+            "method": "POST",
+            "statusCode": null,
+            "statusMessage": null,
+            "client": null,
+            "_consuming": true,
+            "_dumped": false,
+            "baseUrl": "",
+            "originalUrl": "/",
+            "_parsedUrl": {
+              "protocol": null,
+              "slashes": null,
+              "auth": null,
+              "host": null,
+              "port": null,
+              "hostname": null,
+              "hash": null,
+              "search": null,
+              "query": null,
+              "pathname": "/",
+              "path": "/",
+              "href": "/",
+              "_raw": "/"
+            },
+            "params": {},
+            "query": {},
+            "res": null,
+            "route": {
+              "path": "/",
+              "stack": [
+                {
+                  "name": "midware",
+                  "keys": [],
+                  "regexp": {
+                    "fast_star": false,
+                    "fast_slash": false
+                  },
+                  "method": "post"
+                }
+              ],
+              "methods": {
+                "post": true
+              }
+            }
+          },
+          "locals": {},
+          "__onFinished": null,
+          "statusMessage": "OK",
+          "statusCode": 200
+        }
+      }
+    ],
+    "redirect": null,
+    "totalDuration": 13
+  }
+}
