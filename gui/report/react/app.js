@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import XprAndSettingsTab from './xprAndSettingsTab';
-import AllSnapshots from './allSnapshots';
+import Report from './report';
 const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
+
 console.log(json)
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,16 +20,19 @@ class App extends Component {
       currMethod: "",
       currTab: "",
       openTabs: [],
-      xprSettingsTab: [{"xpr":"xprSelected"},{"Settings":"xprNotSelected"}]
+      xprSettingsTab: [{"xpr":"xprSelected"},{"Settings":"xprNotSelected"}],
+      details: {}
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
     this.responseSummaries = this.responseSummaries.bind(this);
     this.requestSummaries = this.requestSummaries.bind(this);
     this.displayReportFromTabs = this.displayReportFromTabs.bind(this);
-    this.initTab = this.initTab.bind(this);
+    this.initAndHighlightTab = this.initAndHighlightTab.bind(this);
     this.closeTab = this.closeTab.bind(this);
     this.toggleXprTab = this.toggleXprTab.bind(this);
+    this.detailedRequestSnapshot = this.detailedRequestSnapshot.bind(this);
+    this.detailedResponseSnapshot = this.detailedResponseSnapshot.bind(this);
   }
 
   //update state to populate routes
@@ -63,13 +68,14 @@ class App extends Component {
   }
 
   //create a new tab and tell what tab is selected
-  initTab(element) {
+  initAndHighlightTab(element) {
     let tempOpenTabs = this.state.openTabs;
     let tempCurrTab = element;
     //a variable to tell if element exist in the openTab state.
     let include = false;
 
-    //create new tabs if none already else add new tab
+    //create new tabs if no tabs are present, else add new tab
+    //provided there is no same named tab already open
     if (this.state.openTabs.length === 0) {
       let newObj = {};
       newObj[element] = 'selected';
@@ -80,7 +86,7 @@ class App extends Component {
         if (this.state.openTabs[i][Object.keys(this.state.openTabs[i])] === 'selected') {
           tempOpenTabs[i][Object.keys(tempOpenTabs[i])] = 'notSelected';
         }
-        //change the target one to selected
+        //change the class of what you clicked to selected
         if(tempOpenTabs[i][element] === "notSelected") tempOpenTabs[i][element] = 'selected';
       }
 
@@ -94,7 +100,7 @@ class App extends Component {
         newObj[element] = 'selected';
         tempOpenTabs.push(newObj);
       }
-
+      //new list of open tabs
       this.setState({ openTabs: tempOpenTabs });
     }
 
@@ -168,6 +174,20 @@ class App extends Component {
     this.setState({ xprSettingsTab:tempXprSettingsTab })
   }
 
+  //two functions below will pull res/req objects from proper timeline
+  detailedRequestSnapshot(index) {
+    let tempDetails = {};
+    //should do logic to create tempDetails to output only relevant info on req obj
+    tempDetails = this.state.userReports[index].req;
+    this.setState({details: tempDetails});
+  }
+  detailedResponseSnapshot(index) {
+    let tempDetails = {};
+    //should do logic to create tempDetails to output only relevant info on req obj
+    tempDetails = this.state.userReports[index].res;
+    this.setState({details: tempDetails});
+  }
+
   render() {
     return (
       <div className="App flex-container">
@@ -175,13 +195,14 @@ class App extends Component {
         <XprAndSettingsTab json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports}
           currMethod={this.state.currMethod}
           displayRoute={this.displayRoute} displayReport={this.displayReport}
-          openTabs={this.state.openTabs} initTab={this.initTab}
+          openTabs={this.state.openTabs} initAndHighlightTab={this.initAndHighlightTab}
           xprSettingsTab={this.state.xprSettingsTab} toggleXprTab={this.toggleXprTab}/>
 
-        <AllSnapshots json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
+        <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
           displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
           displayReportFromTabs={this.displayReportFromTabs} openTabs={this.state.openTabs}
-          currTab={this.state.currTab} closeTab={this.closeTab} initTab={this.initTab}/>
+          currTab={this.state.currTab} closeTab={this.closeTab} initAndHighlightTab={this.initAndHighlightTab}
+          detailedResponseSnapshot={this.detailedResponseSnapshot} detailedRequestSnapshot={this.detailedRequestSnapshot} details={this.state.details}/>
       </div>
     );
   }
