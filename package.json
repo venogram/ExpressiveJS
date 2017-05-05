@@ -10,7 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon test-servers/server-request-listener.js",
     "start": "node watchDog.js && npm run open",
-    "open": "open ./gui/report/public/index.html"
+    "open": "open ./gui/report/public/index.html", 
+    "testing": "node ./node_modules/mocha/bin/mocha"
+
   },
   "bin": {
     "xpr-test": "cli/runExpressive.js",
