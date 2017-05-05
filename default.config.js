@@ -8,8 +8,8 @@ const config = {
   host: 'http://localhost:3000', // port the dev server listens to
   testRoutes: [
     {method: "GET", uri:"/"},
-
-    // {method: "GET", uri:"/redirect"}
+    {method: "GET", uri:"/redirect"},
+    {method: "POST", uri:"/"}
   ], // specify routes to test. objects must be formatted according to the request module options
   useDefaults: true, // if false, default config will not augment provided config
 
