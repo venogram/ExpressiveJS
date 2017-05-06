@@ -59,7 +59,7 @@ const jsonController = {
 
   //follows redirects to find current report, then passes it to the callback
   updateCurrentReport: (parsed, callback) => {
-    let curr = parsed.currentRoute[0];
+    let curr = parsed[parsed.currentRoute[0]];
     while (curr.redirect) curr = curr.redirect;
     return callback(curr);
   }

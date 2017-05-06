@@ -9,7 +9,7 @@ const config = {
   testRoutes: [
     {method: "GET", uri:"/"},
     {method: "GET", uri:"/redirect"},
-    {method: "POST", uri:"/"}
+    {method: "POST", uri:"/", body:"Hello"}
   ], // specify routes to test. objects must be formatted according to the request module options
   useDefaults: true, // if false, default config will not augment provided config
 

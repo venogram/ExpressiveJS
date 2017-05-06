@@ -4,10 +4,8 @@ import SnapshotDetail from './snapshotDetail';
 
 class Report extends Component {
   render() {
-
     //generate report based on userReports (which is our timeline)
     let snapshot = this.props.userReports.map((element, index, array) => {
-      console.log(element)
       //access req,res object
       let reqObj = element['req'];
       let resObj = element['res'];
@@ -18,8 +16,8 @@ class Report extends Component {
             <span className="">{this.props.currTab}</span> <br />
             <span className="">{element['prevFunc']}</span> <br /><br />
             {/*should have onClick to show component with more information on respective click*/}
-            <span onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
-            <span onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
+            <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
+            <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
           </div>
         </div>
       }
@@ -29,8 +27,8 @@ class Report extends Component {
           <span>{this.props.currTab}</span> <br />
           <span>{element.prevFunc}</span> <br /><br />
           {/*should have onClick to show component with more information on respective click*/}
-          <span onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
-          <span onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
+          <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
+          <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
         </div>
         <img className="chain" src="./../public/images/yellowLine.png" />
       </div>

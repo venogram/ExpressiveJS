@@ -113,6 +113,11 @@ body {
         // top: 20px;
         left: 30px;
       }
+      .objButton {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
@@ -204,6 +209,14 @@ body {
   }
 }
 
-.hidden {
-  display: none;
-}
+
+   .snapshotDetails {
+      margin: {
+        right: 30%;
+        top: 30px;
+      }
+      width: 100%;
+      // background-color: $unfocusedTabColor;
+      //border: 1px $toggleViewBGColor solid;
+      height: 95%;
+    }

@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/venogram/ExpressiveJS#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "css-loader": "^0.27.3",
     "deep-diff": "^0.3.4",
     "electron": "^1.6.6",

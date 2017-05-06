@@ -40,6 +40,7 @@ class App extends Component {
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
+    const clearDetails = {};
 
     arrRoutes.map(element => {
       if (element.includes(method)) {
@@ -50,8 +51,9 @@ class App extends Component {
 
     this.setState({ userRoutes: tempRoute });
     this.setState({ currMethod: tempCurrMethod });
-    //clear off timeline text caused by other buttons
+    //clear off timeline & details text caused by other buttons
     this.setState({ userReports: clearReport });
+    this.setState({ details: clearDetails })
   }
 
   //display report according to the selected route
@@ -103,7 +105,6 @@ class App extends Component {
       //new list of open tabs
       this.setState({ openTabs: tempOpenTabs });
     }
-
     //update current selected tab
     this.setState({ currTab: tempCurrTab });
   }
@@ -127,8 +128,7 @@ class App extends Component {
     this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
     //update current selected tab
-    this.setState({ currTab: tempCurrTab })
-
+    this.setState({ currTab: tempCurrTab });
   }
 
   //generate summary lines for req and res objects
@@ -177,14 +177,27 @@ class App extends Component {
   //two functions below will pull res/req objects from proper timeline
   detailedRequestSnapshot(index) {
     let tempDetails = {};
+    let fullRequest = this.state.userReports[index].req;
     //should do logic to create tempDetails to output only relevant info on req obj
-    tempDetails = this.state.userReports[index].req;
+    for(let key in fullRequest['headers']) {
+      tempDetails['headers-' + key] = fullRequest['headers'].key;
+    }
+    tempDetails['complete'] = fullRequest.complete.toString();
+    //tempDetails['params'] = fullRequest.params; //is an object therefore, need to see if these ever get filled
+    //tempDetails['query'] = fullRequest.query; //is an object therefore, need to see if these ever get filled
+    tempDetails['socketDestroyed'] = fullRequest.socket.destroyed.toString();
+    //tempDetails['trailers'] = fullRequest.trailers; //is an object therefore, need to see if these ever get filled
     this.setState({details: tempDetails});
   }
   detailedResponseSnapshot(index) {
     let tempDetails = {};
-    //should do logic to create tempDetails to output only relevant info on req obj
-    tempDetails = this.state.userReports[index].res;
+    let fullResponse = this.state.userReports[index].res;
+    //should do logic to create tempDetails to output only relevant info on res obj
+    tempDetails['finished'] = fullResponse.finished.toString();
+    //tempDetails['locals'] = fullResponse.locals; //is an object therefore, need to see if these ever get filled
+    tempDetails['shouldKeepAlive'] = fullResponse.shouldKeepAlive.toString();
+    tempDetails['statusCode'] = fullResponse.statusCode;
+    tempDetails['statusMessage'] = fullResponse.statusMessage;
     this.setState({details: tempDetails});
   }
 

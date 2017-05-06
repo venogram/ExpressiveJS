@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 
 class SnapshotDetail extends Component {
   render() {
-    //console.log("userReports from snapshot", this.props.userReports) //timeline for respective currTab
-    // console.log('currentTab from snapshot', this.props.currTab) //GET /, GET /redirect
-    //console.log('details from snapshot', this.props.details)
-
+    console.log('user report from snapshot: ', this.props.userReports)
     //object which contains the object with all the details
-    let details = this.props.details;
-    let connection, host;
-    //console.log("details: ", details)
-    if(details.headers.connection) connection = details.headers.connection;
-    else connection = undefined;
+    let details;
 
-    if(details.headers.host) host = details.headers.host;
-    else host = undefined;
+    if (Object.keys(this.props.details).length === 0) {
+      details = undefined;
+    } else {
+      details = Object.keys(this.props.details).map((element, index) => {
+        return <span key={index}>{element}: {this.props.details[element]} <br /> </span>
+      })
+    }
+
+    // details = this.props.userReports.map((element, index) => {
+    //   return <span className="snapshot" key={index}> blah blah <br /></span>
+    // })
 
     return (
-      <div className={"snapshotDetails"}>
-        hidden text
-        {connection}
-        {host}
+      <div className="snapshotDetails">
+        {details}
       </div>
     );
   }

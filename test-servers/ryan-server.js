@@ -2,16 +2,17 @@ const express = require('./../expressive.js');
 //const express = require('express');
 const request = require('request');
 const path = require('path');
+const bodyParser = require('body-parser')
 
 const app = express();
 
-
+app.use(bodyParser.json());
 
 app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
   return next();
 }, (req, res, next) => {
-  setTimeout(() => {res.redirect('/redirect')}, 1000);
+  setTimeout(() => {res.redirect('/redirect')}, 8000);
 });
 //
 app.get('/redirect', (req, res) => {
