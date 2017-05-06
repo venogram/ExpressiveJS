@@ -7,10 +7,10 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon test-servers/server-request-listener.js",
     "start": "node watchDog.js && npm run open",
-    "open": "open ./gui/report/public/index.html"
+    "open": "open ./gui/report/public/index.html",
+    "test": "export NODE_ENV=test && mocha --timeout 8000 test/"
   },
   "bin": {
     "xpr-test": "cli/runExpressive.js",
@@ -48,8 +48,11 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "chai": "^3.5.0",
     "cookie-parser": "^1.4.3",
+    "mocha": "^3.3.0",
     "nodemon": "^1.11.0",
+    "supertest": "^3.0.0",
     "webpack-dev-server": "^2.4.2"
   }
 }

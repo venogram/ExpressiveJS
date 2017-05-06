@@ -7,9 +7,15 @@ const config = {
   entry: './test-servers/glenn-server.js', //relative path to server file to test
   host: 'http://localhost:3000', // port the dev server listens to
   testRoutes: [
+<<<<<<< HEAD
     {method: "GET", uri:"/"},
     {method: "GET", uri:"/redirect"},
     {method: "POST", uri:"/", body:"Hello"}
+=======
+    {method: "GET", uri:"/"}
+    // {method: "GET", uri:"/redirect"},
+    // {method: "POST", uri:"/"}
+>>>>>>> 0971d014b4aaf1a9a191fa80b972aa33e83a918e
   ], // specify routes to test. objects must be formatted according to the request module options
   useDefaults: true, // if false, default config will not augment provided config
 
