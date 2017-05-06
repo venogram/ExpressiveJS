@@ -18,6 +18,7 @@ class Report {
     this.route = req.originalUrl;
     this.start = now;
     this.end = null;
+    this.abandoned = false;
     this.duration = null;
     this.statusCode = null;
     this.statusMessage = null;
