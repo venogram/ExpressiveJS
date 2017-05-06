@@ -17,7 +17,8 @@
     "xpr-build": "cli/buildVisual.js",
     "xpr-display": "cli/displayElectron.js",
     "xpr": "cli/test-routes.js",
-    "xpr-reset-json": "cli/refresh-json.js"
+    "xpr-reset-json": "cli/refresh-json.js",
+    "xpr-init": "cli/xprInit.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/venogram/ExpressiveJS#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "css-loader": "^0.27.3",
     "deep-diff": "^0.3.4",
     "electron": "^1.6.6",
