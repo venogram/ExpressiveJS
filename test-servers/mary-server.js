@@ -12,7 +12,7 @@ app.get('/redirect', function(req, res){
 })
 
 app.get('/redirect2', function(req, res){
-  res.status(200).json({ methodRoute: 'VENOGRAM' });
+  res.status(200).json({ methodRoute: 'Mary' });
 })
 
 
