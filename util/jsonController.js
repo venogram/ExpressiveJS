@@ -51,13 +51,10 @@ const jsonController = {
   //removes keys in json object not useful to developer nor for visualization.
   scrub: (obj) => {
     delete obj.currentRoute;
-    Object.keys(obj).forEach((key) => {
-      if (key !== 'routes') delete obj[key].isRedirect;
-    })
     jsonController.overwrite(obj);
   },
 
-  //follows redirects to find current report, then passes it to the callback
+  //follows linked list of reports to find current report, then passes it to the callback function
   updateCurrentReport: (parsed, callback) => {
     let curr = parsed[parsed.currentRoute[0]];
     while (curr.redirect) curr = curr.redirect;

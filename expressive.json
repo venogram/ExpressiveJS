@@ -9,9 +9,15 @@
   "GET /": {
     "method": "GET",
     "route": "/",
+<<<<<<< HEAD
     "start": 1494092279078,
     "end": 1494092279105,
     "duration": 27,
+=======
+    "start": 1494005506533,
+    "end": 1494005506551,
+    "duration": 18,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
     "statusCode": 302,
     "statusMessage": "Found",
     "error": null,
@@ -21,7 +27,11 @@
     "timeline": [
       {
         "prevFunc": "initial state",
+<<<<<<< HEAD
         "timestamp": 1494092279078,
+=======
+        "timestamp": 1494005506533,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
         "req": {
           "_readableState": {
             "objectMode": false,
@@ -64,7 +74,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -161,6 +172,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -172,10 +184,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 222,
+=======
+            "_idleStart": 373,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -217,6 +234,8 @@
               "_headerNames": {
                 "x-powered-by": "X-Powered-By"
               },
+              "_sent100": false,
+              "_expect_continue": false,
               "req": null,
               "locals": {}
             }
@@ -315,7 +334,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -412,6 +432,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -423,10 +444,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 222,
+=======
+            "_idleStart": 373,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -543,13 +569,19 @@
           "_headerNames": {
             "x-powered-by": "X-Powered-By"
           },
+          "_sent100": false,
+          "_expect_continue": false,
           "req": null,
           "locals": {}
         }
       },
       {
         "prevFunc": "midware1",
+<<<<<<< HEAD
         "timestamp": 1494092279105,
+=======
+        "timestamp": 1494005506551,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
         "req": {
           "_readableState": {
             "objectMode": false,
@@ -592,7 +624,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -691,6 +724,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -702,10 +736,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 253,
+=======
+            "_idleStart": 397,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -790,7 +829,11 @@
             "_headerSent": true,
             "socket": null,
             "connection": null,
+<<<<<<< HEAD
             "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+            "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "_headers": {
               "x-powered-by": "Express",
               "location": "/redirect",
@@ -805,6 +848,11 @@
               "content-type": "Content-Type",
               "content-length": "Content-Length"
             },
+<<<<<<< HEAD
+=======
+            "_sent100": false,
+            "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "req": null,
             "locals": {},
             "__onFinished": null,
@@ -856,7 +904,11 @@
           "_headerSent": true,
           "socket": null,
           "connection": null,
+<<<<<<< HEAD
           "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+          "_header": "HTTP/1.1 302 Found\r\nX-Powered-By: Express\r\nLocation: /redirect\r\nVary: Accept\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 31\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "_headers": {
             "x-powered-by": "Express",
             "location": "/redirect",
@@ -871,6 +923,11 @@
             "content-type": "Content-Type",
             "content-length": "Content-Length"
           },
+<<<<<<< HEAD
+=======
+          "_sent100": false,
+          "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "req": {
             "_readableState": {
               "objectMode": false,
@@ -913,7 +970,12 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
+<<<<<<< HEAD
                 "writeQueueSize": 0
+=======
+                "writeQueueSize": 0,
+                "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               },
               "_parent": null,
               "_host": null,
@@ -1012,6 +1074,10 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+                "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -1023,10 +1089,18 @@
                   "_list": null
                 },
                 "_unrefed": true,
+<<<<<<< HEAD
                 "msecs": 120000
               },
               "_idlePrev": null,
               "_idleStart": 253,
+=======
+                "msecs": 120000,
+                "nextTick": false
+              },
+              "_idlePrev": null,
+              "_idleStart": 397,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "parser": {
                 "_headers": [],
                 "_url": "",
@@ -1113,9 +1187,15 @@
     "redirect": {
       "method": "GET",
       "route": "/redirect",
+<<<<<<< HEAD
       "start": 1494092279125,
       "end": 1494092279138,
       "duration": 13,
+=======
+      "start": 1494005506570,
+      "end": 1494005506579,
+      "duration": 9,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
       "statusCode": 200,
       "statusMessage": "OK",
       "error": null,
@@ -1125,7 +1205,11 @@
       "timeline": [
         {
           "prevFunc": "initial state",
+<<<<<<< HEAD
           "timestamp": 1494092279125,
+=======
+          "timestamp": 1494005506570,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "req": {
             "_readableState": {
               "objectMode": false,
@@ -1168,7 +1252,8 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
-                "writeQueueSize": 0
+                "writeQueueSize": 0,
+                "_consumed": true
               },
               "_parent": null,
               "_host": null,
@@ -1265,6 +1350,7 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+                "maxHeadersCount": null,
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -1276,10 +1362,15 @@
                   "_list": null
                 },
                 "_unrefed": true,
-                "msecs": 120000
+                "msecs": 120000,
+                "nextTick": false
               },
               "_idlePrev": null,
+<<<<<<< HEAD
               "_idleStart": 272,
+=======
+              "_idleStart": 415,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "parser": {
                 "_headers": [],
                 "_url": "",
@@ -1321,6 +1412,11 @@
                 "_headerNames": {
                   "x-powered-by": "X-Powered-By"
                 },
+<<<<<<< HEAD
+=======
+                "_sent100": false,
+                "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "req": null,
                 "locals": {}
               }
@@ -1422,7 +1518,12 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
+<<<<<<< HEAD
                 "writeQueueSize": 0
+=======
+                "writeQueueSize": 0,
+                "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               },
               "_parent": null,
               "_host": null,
@@ -1519,6 +1620,10 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+                "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -1528,6 +1633,7 @@
                 "_idlePrev": null,
                 "_timer": {
                   "_list": null
+<<<<<<< HEAD
                 },
                 "_unrefed": true,
                 "msecs": 120000
@@ -1653,13 +1759,147 @@
             "_headerNames": {
               "x-powered-by": "X-Powered-By"
             },
+=======
+                },
+                "_unrefed": true,
+                "msecs": 120000,
+                "nextTick": false
+              },
+              "_idlePrev": null,
+              "_idleStart": 415,
+              "parser": {
+                "_headers": [],
+                "_url": "",
+                "_consumed": true,
+                "socket": null,
+                "incoming": {
+                  "_readableState": {
+                    "objectMode": false,
+                    "highWaterMark": 16384,
+                    "buffer": {
+                      "head": null,
+                      "tail": null,
+                      "length": 0
+                    },
+                    "length": 0,
+                    "pipes": null,
+                    "pipesCount": 0,
+                    "flowing": null,
+                    "ended": false,
+                    "endEmitted": false,
+                    "reading": false,
+                    "sync": true,
+                    "needReadable": false,
+                    "emittedReadable": false,
+                    "readableListening": false,
+                    "resumeScheduled": false,
+                    "defaultEncoding": "utf8",
+                    "ranOut": false,
+                    "awaitDrain": 0,
+                    "readingMore": true,
+                    "decoder": null,
+                    "encoding": null
+                  },
+                  "readable": true,
+                  "domain": null,
+                  "_events": {},
+                  "_eventsCount": 0,
+                  "socket": null,
+                  "connection": null,
+                  "httpVersionMajor": 1,
+                  "httpVersionMinor": 1,
+                  "httpVersion": "1.1",
+                  "complete": false,
+                  "headers": {
+                    "referer": "http://localhost:3000/",
+                    "host": "localhost:3000",
+                    "connection": "close"
+                  },
+                  "rawHeaders": [
+                    "referer",
+                    "http://localhost:3000/",
+                    "host",
+                    "localhost:3000",
+                    "Connection",
+                    "close"
+                  ],
+                  "trailers": {},
+                  "rawTrailers": [],
+                  "upgrade": false,
+                  "url": "/redirect",
+                  "method": "GET",
+                  "statusCode": null,
+                  "statusMessage": null,
+                  "client": null,
+                  "_consuming": false,
+                  "_dumped": false,
+                  "baseUrl": "",
+                  "originalUrl": "/redirect",
+                  "_parsedUrl": {
+                    "protocol": null,
+                    "slashes": null,
+                    "auth": null,
+                    "host": null,
+                    "port": null,
+                    "hostname": null,
+                    "hash": null,
+                    "search": null,
+                    "query": null,
+                    "pathname": "/redirect",
+                    "path": "/redirect",
+                    "href": "/redirect",
+                    "_raw": "/redirect"
+                  },
+                  "params": {},
+                  "query": {},
+                  "res": null,
+                  "route": {
+                    "path": "/redirect",
+                    "stack": [
+                      {
+                        "name": "trackingMidware",
+                        "keys": [],
+                        "regexp": {
+                          "fast_star": false,
+                          "fast_slash": false
+                        },
+                        "method": "get"
+                      }
+                    ],
+                    "methods": {
+                      "get": true
+                    }
+                  }
+                },
+                "outgoing": null,
+                "maxHeaderPairs": 2000
+              },
+              "_paused": false,
+              "_consuming": true,
+              "_httpMessage": null
+            },
+            "connection": null,
+            "_header": null,
+            "_headers": {
+              "x-powered-by": "Express"
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By"
+            },
+            "_sent100": false,
+            "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "req": null,
             "locals": {}
           }
         },
         {
           "prevFunc": "midware2",
+<<<<<<< HEAD
           "timestamp": 1494092279138,
+=======
+          "timestamp": 1494005506579,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "req": {
             "_readableState": {
               "objectMode": false,
@@ -1702,7 +1942,12 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
+<<<<<<< HEAD
                 "writeQueueSize": 0
+=======
+                "writeQueueSize": 0,
+                "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               },
               "_parent": null,
               "_host": null,
@@ -1801,6 +2046,10 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+                "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -1812,10 +2061,18 @@
                   "_list": null
                 },
                 "_unrefed": true,
+<<<<<<< HEAD
                 "msecs": 120000
               },
               "_idlePrev": null,
               "_idleStart": 288,
+=======
+                "msecs": 120000,
+                "nextTick": false
+              },
+              "_idlePrev": null,
+              "_idleStart": 426,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "parser": {
                 "_headers": [],
                 "_url": "",
@@ -1903,7 +2160,11 @@
               "_headerSent": true,
               "socket": null,
               "connection": null,
+<<<<<<< HEAD
               "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+              "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "_headers": {
                 "x-powered-by": "Express",
                 "content-type": "text/html; charset=utf-8",
@@ -1916,6 +2177,8 @@
                 "content-length": "Content-Length",
                 "etag": "ETag"
               },
+              "_sent100": false,
+              "_expect_continue": false,
               "req": null,
               "locals": {},
               "__onFinished": null,
@@ -1944,6 +2207,7 @@
             "domain": null,
             "_events": {
               "finish": []
+<<<<<<< HEAD
             },
             "_eventsCount": 1,
             "output": [],
@@ -1980,6 +2244,46 @@
               "content-length": "Content-Length",
               "etag": "ETag"
             },
+=======
+            },
+            "_eventsCount": 1,
+            "output": [],
+            "outputEncodings": [],
+            "outputCallbacks": [],
+            "outputSize": 0,
+            "writable": true,
+            "_last": true,
+            "upgrading": false,
+            "chunkedEncoding": false,
+            "shouldKeepAlive": false,
+            "useChunkedEncodingByDefault": true,
+            "sendDate": true,
+            "_removedHeader": {
+              "content-length": false
+            },
+            "_contentLength": 3,
+            "_hasBody": true,
+            "_trailer": "",
+            "finished": true,
+            "_headerSent": true,
+            "socket": null,
+            "connection": null,
+            "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+            "_headers": {
+              "x-powered-by": "Express",
+              "content-type": "text/html; charset=utf-8",
+              "content-length": "3",
+              "etag": "W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\""
+            },
+            "_headerNames": {
+              "x-powered-by": "X-Powered-By",
+              "content-type": "Content-Type",
+              "content-length": "Content-Length",
+              "etag": "ETag"
+            },
+            "_sent100": false,
+            "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "req": {
               "_readableState": {
                 "objectMode": false,
@@ -2022,7 +2326,12 @@
                   "reading": true,
                   "owner": null,
                   "onconnection": null,
+<<<<<<< HEAD
                   "writeQueueSize": 0
+=======
+                  "writeQueueSize": 0,
+                  "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 },
                 "_parent": null,
                 "_host": null,
@@ -2121,6 +2430,10 @@
                   "httpAllowHalfOpen": false,
                   "timeout": 120000,
                   "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+                  "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                   "_connectionKey": "6::::3000"
                 },
                 "_server": null,
@@ -2132,10 +2445,18 @@
                     "_list": null
                   },
                   "_unrefed": true,
+<<<<<<< HEAD
                   "msecs": 120000
                 },
                 "_idlePrev": null,
                 "_idleStart": 288,
+=======
+                  "msecs": 120000,
+                  "nextTick": false
+                },
+                "_idlePrev": null,
+                "_idleStart": 426,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "parser": {
                   "_headers": [],
                   "_url": "",
@@ -2224,14 +2545,24 @@
       ],
       "redirect": null
     },
+<<<<<<< HEAD
     "totalDuration": 36
+=======
+    "totalDuration": 24
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
   },
   "GET /redirect": {
     "method": "GET",
     "route": "/redirect",
+<<<<<<< HEAD
     "start": 1494092279154,
     "end": 1494092279170,
     "duration": 16,
+=======
+    "start": 1494005506588,
+    "end": 1494005506595,
+    "duration": 7,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
     "statusCode": 200,
     "statusMessage": "OK",
     "error": null,
@@ -2241,7 +2572,11 @@
     "timeline": [
       {
         "prevFunc": "initial state",
+<<<<<<< HEAD
         "timestamp": 1494092279154,
+=======
+        "timestamp": 1494005506588,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
         "req": {
           "_readableState": {
             "objectMode": false,
@@ -2284,7 +2619,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -2381,6 +2717,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -2392,10 +2729,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 303,
+=======
+            "_idleStart": 435,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -2437,6 +2779,11 @@
               "_headerNames": {
                 "x-powered-by": "X-Powered-By"
               },
+<<<<<<< HEAD
+=======
+              "_sent100": false,
+              "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "req": null,
               "locals": {}
             }
@@ -2535,7 +2882,12 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
+<<<<<<< HEAD
               "writeQueueSize": 0
+=======
+              "writeQueueSize": 0,
+              "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             },
             "_parent": null,
             "_host": null,
@@ -2559,6 +2911,7 @@
               "emittedReadable": false,
               "readableListening": false,
               "resumeScheduled": false,
+<<<<<<< HEAD
               "defaultEncoding": "utf8",
               "ranOut": false,
               "awaitDrain": 0,
@@ -2601,6 +2954,50 @@
                 "entry": null
               }
             },
+=======
+              "defaultEncoding": "utf8",
+              "ranOut": false,
+              "awaitDrain": 0,
+              "readingMore": false,
+              "decoder": null,
+              "encoding": null
+            },
+            "readable": true,
+            "domain": null,
+            "_events": {
+              "end": [],
+              "drain": [],
+              "close": []
+            },
+            "_eventsCount": 10,
+            "_writableState": {
+              "objectMode": false,
+              "highWaterMark": 16384,
+              "needDrain": false,
+              "ending": false,
+              "ended": false,
+              "finished": false,
+              "decodeStrings": false,
+              "defaultEncoding": "utf8",
+              "length": 0,
+              "writing": false,
+              "corked": 0,
+              "sync": true,
+              "bufferProcessing": false,
+              "writecb": null,
+              "writelen": 0,
+              "bufferedRequest": null,
+              "lastBufferedRequest": null,
+              "pendingcb": 0,
+              "prefinished": false,
+              "errorEmitted": false,
+              "bufferedRequestCount": 0,
+              "corkedRequestsFree": {
+                "next": null,
+                "entry": null
+              }
+            },
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "writable": true,
             "allowHalfOpen": true,
             "destroyed": false,
@@ -2632,6 +3029,10 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+              "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -2643,10 +3044,18 @@
                 "_list": null
               },
               "_unrefed": true,
+<<<<<<< HEAD
               "msecs": 120000
             },
             "_idlePrev": null,
             "_idleStart": 303,
+=======
+              "msecs": 120000,
+              "nextTick": false
+            },
+            "_idlePrev": null,
+            "_idleStart": 435,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -2763,13 +3172,22 @@
           "_headerNames": {
             "x-powered-by": "X-Powered-By"
           },
+<<<<<<< HEAD
+=======
+          "_sent100": false,
+          "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "req": null,
           "locals": {}
         }
       },
       {
         "prevFunc": "midware2",
+<<<<<<< HEAD
         "timestamp": 1494092279170,
+=======
+        "timestamp": 1494005506595,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
         "req": {
           "_readableState": {
             "objectMode": false,
@@ -2812,7 +3230,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -2911,6 +3330,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -2922,10 +3342,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 320,
+=======
+            "_idleStart": 443,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -3010,7 +3435,11 @@
             "_headerSent": true,
             "socket": null,
             "connection": null,
+<<<<<<< HEAD
             "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+            "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "_headers": {
               "x-powered-by": "Express",
               "content-type": "text/html; charset=utf-8",
@@ -3023,6 +3452,11 @@
               "content-length": "Content-Length",
               "etag": "ETag"
             },
+<<<<<<< HEAD
+=======
+            "_sent100": false,
+            "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "req": null,
             "locals": {},
             "__onFinished": null,
@@ -3074,7 +3508,11 @@
           "_headerSent": true,
           "socket": null,
           "connection": null,
+<<<<<<< HEAD
           "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+          "_header": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 3\r\nETag: W/\"3-RRH4wOITyOxRVZ60of/MvH5CcQ4\"\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "_headers": {
             "x-powered-by": "Express",
             "content-type": "text/html; charset=utf-8",
@@ -3087,6 +3525,11 @@
             "content-length": "Content-Length",
             "etag": "ETag"
           },
+<<<<<<< HEAD
+=======
+          "_sent100": false,
+          "_expect_continue": false,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "req": {
             "_readableState": {
               "objectMode": false,
@@ -3129,7 +3572,12 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
+<<<<<<< HEAD
                 "writeQueueSize": 0
+=======
+                "writeQueueSize": 0,
+                "_consumed": true
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               },
               "_parent": null,
               "_host": null,
@@ -3228,6 +3676,10 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+<<<<<<< HEAD
+=======
+                "maxHeadersCount": null,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -3239,10 +3691,18 @@
                   "_list": null
                 },
                 "_unrefed": true,
+<<<<<<< HEAD
                 "msecs": 120000
               },
               "_idlePrev": null,
               "_idleStart": 320,
+=======
+                "msecs": 120000,
+                "nextTick": false
+              },
+              "_idlePrev": null,
+              "_idleStart": 443,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "parser": {
                 "_headers": [],
                 "_url": "",
@@ -3327,13 +3787,22 @@
       }
     ],
     "redirect": null,
+<<<<<<< HEAD
     "totalDuration": 14
+=======
+    "totalDuration": 6
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
   },
   "POST /": {
     "method": "POST",
     "route": "/",
+<<<<<<< HEAD
     "start": 1494092279194,
     "end": 1494092279194,
+=======
+    "start": 1494005506605,
+    "end": 1494005506605,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
     "duration": 0,
     "statusCode": 404,
     "statusMessage": "Not Found",
@@ -3344,7 +3813,11 @@
     "timeline": [
       {
         "prevFunc": "initial state",
+<<<<<<< HEAD
         "timestamp": 1494092279194,
+=======
+        "timestamp": 1494005506605,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
         "req": {
           "_readableState": {
             "objectMode": false,
@@ -3387,7 +3860,8 @@
               "reading": true,
               "owner": null,
               "onconnection": null,
-              "writeQueueSize": 0
+              "writeQueueSize": 0,
+              "_consumed": true
             },
             "_parent": null,
             "_host": null,
@@ -3486,6 +3960,7 @@
               "httpAllowHalfOpen": false,
               "timeout": 120000,
               "_pendingResponseData": 0,
+              "maxHeadersCount": null,
               "_connectionKey": "6::::3000"
             },
             "_server": null,
@@ -3497,10 +3972,15 @@
                 "_list": null
               },
               "_unrefed": true,
-              "msecs": 120000
+              "msecs": 120000,
+              "nextTick": false
             },
             "_idlePrev": null,
+<<<<<<< HEAD
             "_idleStart": 344,
+=======
+            "_idleStart": 453,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "parser": {
               "_headers": [],
               "_url": "",
@@ -3586,7 +4066,11 @@
             "_headerSent": true,
             "socket": null,
             "connection": null,
+<<<<<<< HEAD
             "_header": "HTTP/1.1 404 Not Found\r\nX-Powered-By: Express\r\nContent-Security-Policy: default-src 'self'\r\nX-Content-Type-Options: nosniff\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 140\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+            "_header": "HTTP/1.1 404 Not Found\r\nX-Powered-By: Express\r\nContent-Security-Policy: default-src 'self'\r\nX-Content-Type-Options: nosniff\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 140\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
             "_headers": {
               "x-powered-by": "Express",
               "content-security-policy": "default-src 'self'",
@@ -3601,6 +4085,8 @@
               "content-type": "Content-Type",
               "content-length": "Content-Length"
             },
+            "_sent100": false,
+            "_expect_continue": false,
             "req": null,
             "locals": {},
             "__onFinished": null,
@@ -3651,7 +4137,11 @@
           "_headerSent": true,
           "socket": null,
           "connection": null,
+<<<<<<< HEAD
           "_header": "HTTP/1.1 404 Not Found\r\nX-Powered-By: Express\r\nContent-Security-Policy: default-src 'self'\r\nX-Content-Type-Options: nosniff\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 140\r\nDate: Sat, 06 May 2017 17:37:59 GMT\r\nConnection: close\r\n\r\n",
+=======
+          "_header": "HTTP/1.1 404 Not Found\r\nX-Powered-By: Express\r\nContent-Security-Policy: default-src 'self'\r\nX-Content-Type-Options: nosniff\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 140\r\nDate: Fri, 05 May 2017 17:31:46 GMT\r\nConnection: close\r\n\r\n",
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
           "_headers": {
             "x-powered-by": "Express",
             "content-security-policy": "default-src 'self'",
@@ -3666,6 +4156,8 @@
             "content-type": "Content-Type",
             "content-length": "Content-Length"
           },
+          "_sent100": false,
+          "_expect_continue": false,
           "req": {
             "_readableState": {
               "objectMode": false,
@@ -3708,7 +4200,8 @@
                 "reading": true,
                 "owner": null,
                 "onconnection": null,
-                "writeQueueSize": 0
+                "writeQueueSize": 0,
+                "_consumed": true
               },
               "_parent": null,
               "_host": null,
@@ -3807,6 +4300,7 @@
                 "httpAllowHalfOpen": false,
                 "timeout": 120000,
                 "_pendingResponseData": 0,
+                "maxHeadersCount": null,
                 "_connectionKey": "6::::3000"
               },
               "_server": null,
@@ -3818,10 +4312,15 @@
                   "_list": null
                 },
                 "_unrefed": true,
-                "msecs": 120000
+                "msecs": 120000,
+                "nextTick": false
               },
               "_idlePrev": null,
+<<<<<<< HEAD
               "_idleStart": 344,
+=======
+              "_idleStart": 453,
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
               "parser": {
                 "_headers": [],
                 "_url": "",
@@ -3906,6 +4405,10 @@
       }
     ],
     "redirect": null,
+<<<<<<< HEAD
     "totalDuration": -3
+=======
+    "totalDuration": -5
+>>>>>>> e35308a0ae5ab6567608573fc45aa4a5bd0900e7
   }
 }
