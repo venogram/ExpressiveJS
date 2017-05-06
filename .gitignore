@@ -6,3 +6,4 @@ bundle.js.map
 bundle.js
 npm-debug.log
 expressive.json
+expressive.config.js

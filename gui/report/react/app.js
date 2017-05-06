@@ -37,6 +37,8 @@ class App extends Component {
 
   //update state to populate routes
   displayRoute(arrRoutes, method) {
+    console.log(arrRoutes) //  get /
+    console.log(method) //  get
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
