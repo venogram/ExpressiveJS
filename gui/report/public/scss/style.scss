@@ -26,6 +26,7 @@ body {
 }
 
 #methodColumn {
+  overflow: scroll;
   padding: {
     left: 10px;
     top: 20px;
@@ -61,10 +62,12 @@ body {
 
 /*TABS*/
 .selected{
+  color: $defaultFontColor;
   background-color: $mainDisplayBGColor;
 }
 .notSelected {
-  background-color: $unfocusedTabColor;
+  color: $toggleViewBGColor;
+  background-color: $settingNoFocused;
 }
 
 .reportColumn {
@@ -76,16 +79,40 @@ body {
   }
 
   #reportSummary {
-    width: 80vw;
+    width: 84vw;
     display: flex;
-    overflow: scroll;
+    height: 92vh;
+
+    #snapshotChain {
+      padding: {
+        //adjust where the snapshot chain appears
+        top: 30px;
+        left: 20px;
+      }
+      width: 84vw;
+      overflow: scroll;
+    }
 
     #toggleView {
       background-color: $toggleViewBGColor;
       height: 92vh;
     }
-    .report {
-      height: $reportHeight;
+    .snapshot {
+      padding: {
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+      }
+      border: 1px $toggleViewBGColor solid;
+      height: auto;
+      width: 200px;
+      background-color: $unfocusedTabColor;
+      margin: {
+        //control each snapshot's spacing in the main display area
+        // bottom: 30px;
+        // top: 20px;
+        left: 30px;
+      }
     }
   }
 }
@@ -101,10 +128,11 @@ body {
       cursor: pointer;
     }
 
-  display: inline-flex;
-  margin: {
-    // left: 2.1%;
+  border: {
+      left: 1px $bgcolor solid;
   }
+
+  display: inline-flex;
   padding: {
     left: 8px;
     right: 5px;
@@ -113,7 +141,6 @@ body {
   .tabLogo {
      margin: {
        top: 10px;
-      //  left: -5px;
      }
       width: 20px;
       height: 30px;
@@ -124,7 +151,7 @@ body {
       cursor: pointer;
     }
     letter-spacing: $buttonLetterSpacing;
-    color: $defaultFontColor;
+    // color: $toggleViewBGColor;
     height: $buttonHeight;
     font-size: 20px;
     outline: 0;
@@ -137,6 +164,10 @@ body {
     color: $toggleViewBGColor;
   }
 
+}
+
+#Settings {
+  border-left: 1px $bgcolor solid;
 }
 
 #xprColumn {
@@ -164,5 +195,11 @@ body {
     outline: 0;
     white-space: nowrap;
     border: none;
+  }
+}
+
+.chain {
+  margin: {
+    left: 80px;
   }
 }

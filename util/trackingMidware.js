@@ -21,8 +21,8 @@ const Report = Classes.Report;
 function wrapRedirect(res) {
   const clone = res.redirect.bind(res);
   function newRedirect(...args) {
-    //isRedirect property is stored at top-level report for current methodRoute key
-    res.locals._XPR[res.locals._XPR.currentRoute[0]].isRedirect = true;
+    //isRedirect property is stored at currentInfo key in json object
+    res.locals._XPR.currentInfo.isRedirect = true;
     jsonController.overwrite(res.locals._XPR);
     return clone(...args);
   }
@@ -30,50 +30,44 @@ function wrapRedirect(res) {
 }
 
 //fired before first devMiddleware upon a non-redirected client request
-//creates a report in json object and in res.locals._XPR
-function initTracking(req, res, funcName) {
-  const parsed = jsonController.getAndParse();
+//creates a report in res.locals._XPR and in json object
+function initTracking(req, res, nextFuncName, parsed) {
   let methodRoute = req.method + ' ' + req.originalUrl;
   if (parsed[methodRoute]) {
-    let newMethodRoute = methodRoute
-    for (let i = 1; parsed[newMethodRoute]; i += 1) {
+    let newMethodRoute = methodRoute;
+    for (let i = 2; parsed[newMethodRoute]; i += 1) {
       newMethodRoute = methodRoute + ' ' + i;
     }
     methodRoute = newMethodRoute;
   }
-  parsed.currentRoute = [methodRoute];
-  parsed[methodRoute] = new Report(req, res, funcName);
-  parsed[methodRoute].isRedirect = false;
-  wrapRedirect(res);
+  parsed.currentInfo.currentRoute = methodRoute;
+  parsed[methodRoute] = new Report(req, res, 'initial state', nextFuncName);
   jsonController.overwrite(parsed);
   res.locals._XPR = parsed;
+  wrapRedirect(res);
   onFinished(res, resListeners.finish);
 }
 
 //fired after each devMiddleware
 //updates report timeline with current state of request and response objects
-function trackState(req, res, funcName) {
+function trackState(req, res, nextFuncName) {
   const xpr = res.locals._XPR;
-  const calledArr = eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware');
-  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].timeline.push(new Snapshot(req, res, calledArr[calledArr.length - 1]))');
-  eval('xpr["' + xpr.currentRoute.join('"]["') + '"].midware.push(funcName)');
+  jsonController.updateCurrentReport(xpr, (report) => {
+    report.next = new Report(req, res, report.nextFuncName, nextFuncName);
+  });
   jsonController.overwrite(xpr);
 }
 
 //fired before first devMiddleware upon a redirected client request
 //creates a report in json object and in res.locals._XPR
-function initRedirect(req, res, funcName) {
-  const parsed = jsonController.getAndParse();
-  //updates currentRoute -- an array in the json object storing redirect history
-  parsed.currentRoute.push('redirect');
-  //We only want to fire initRedirect once per redirected request,
-  //so we set isRedirect back to false to avoid repeated calls for same redirect
-  parsed[parsed.currentRoute[0]].isRedirect = false;
-  //assigns redirect property of current report to a new nested report
-  eval('parsed["' + parsed.currentRoute.join('"]["') + '"] = new Report(req, res, funcName)');
-  wrapRedirect(res);
+function initRedirect(req, res, nextFuncName, parsed) {
+  parsed.currentInfo.isRedirect = false;
+  jsonController.updateCurrentReport(parsed, (report) => {
+    report.next = new Report(req, res, 'initial state', nextFuncName, true);
+  });
   res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
+  wrapRedirect(res);
   onFinished(res, resListeners.finish);
 }
 
@@ -81,28 +75,18 @@ function initRedirect(req, res, funcName) {
 //Wraps developer's midware and determines which child tracking midware
 // to fire based on state of json object
 function expressiveMidware(func) {
-  const funcName = func.name ? func.name : '<anonymous>';
+  const nextFuncName = func.name ? func.name : '<anonymous>';
   function trackingMidware(req, res, next) {
-    const startTime = Date.now();
-    //if res.locals has no _XPR property, we know this is a fresh request to app.METHOD
+    //if res.locals has no _XPR property, this must be a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
-    //isRedirect property in json current report tells us if fresh request is a redirect
-      if (parsed.currentRoute && parsed[parsed.currentRoute[0]].isRedirect) {
-        initRedirect(req, res, funcName);
-      } else {
-        initTracking(req, res, funcName);
-      }
-    } else {
-      trackState(req, res, funcName);
+      if (parsed.currentInfo.isRedirect) initRedirect(req, res, nextFuncName, parsed);
+      else initTracking(req, res, nextFuncName, parsed);
     }
+    else trackState(req, res, nextFuncName);
     //waits for server to possibly respond to request event
     //then subtracts expressMidware time from totalDuration for current route being tested
     return process.nextTick(() => {
-      const updated = jsonController.getAndParse();
-      let exists = updated[updated.currentRoute[0]].totalDuration !== undefined;
-      exists ? exists -= (Date.now() - startTime) : updated[updated.currentRoute[0]].totalDuration = (-1 * (Date.now() - startTime));
-      jsonController.overwrite(updated);
       return func(req, res, next);
     });
   }

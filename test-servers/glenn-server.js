@@ -10,7 +10,12 @@ console.log('hello from glenn server');
 const server = app.listen(3000, () => {
   console.log('Listening on port 3000\n');
 })
-// router.route('/').get(function midware1(req, res, next){res.send("yay")});
-app.route('/').get(function midware1(req, res, next){res.redirect('/redirect')})
 
-app.get('/redirect', function midware2(req, res){res.send('yay')});
+
+app.get('/', function midware1(req, res){
+  res.redirect('/redirectRoute');
+})
+
+app.get('/redirectRoute', function midware2(req, res){
+  res.send('yay');
+});

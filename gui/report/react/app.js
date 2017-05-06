@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import XprAndSettingsTab from './xprAndSettingsTab';
-import Report from './Report';
+import AllSnapshots from './allSnapshots';
 const json = require('./../../../expressive.json');
 import JSONInterface from './../public/expressiveJSONInterface';
 import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
-//console.log(json)
+console.log(json)
 class App extends Component {
   constructor(props) {
     super(props);
@@ -178,7 +178,7 @@ class App extends Component {
           openTabs={this.state.openTabs} initTab={this.initTab}
           xprSettingsTab={this.state.xprSettingsTab} toggleXprTab={this.toggleXprTab}/>
 
-        <Report json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
+        <AllSnapshots json={this.state.json} userRoutes={this.state.userRoutes} userReports={this.state.userReports} stateChangeLogs={this.state.stateChangeLogs}
           displayRoute={this.displayRoute} displayReport={this.displayReport} responseSummaries={this.responseSummaries} requestSummaries={this.requestSummaries}
           displayReportFromTabs={this.displayReportFromTabs} openTabs={this.state.openTabs}
           currTab={this.state.currTab} closeTab={this.closeTab} initTab={this.initTab}/>
