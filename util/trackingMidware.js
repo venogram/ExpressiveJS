@@ -18,16 +18,16 @@ const Report = Classes.Report;
 
 
 //wraps red.redirect method to write to the json file that a redirect just occurred
-// function wrapRedirect(res) {
-//   const clone = res.redirect.bind(res);
-//   function newRedirect(...args) {
-//     //isRedirect property is stored at top-level report for current methodRoute key
-//     res.locals._XPR[res.locals._XPR.currentRoute[0]].isRedirect = true;
-//     jsonController.overwrite(res.locals._XPR);
-//     return clone(...args);
-//   }
-//   res.redirect = newRedirect;
-// }
+function wrapRedirect(res) {
+  const clone = res.redirect.bind(res);
+  function newRedirect(...args) {
+    //isRedirect property is stored at currentInfo key in json object
+    res.locals._XPR.currentInfo.isRedirect = true;
+    jsonController.overwrite(res.locals._XPR);
+    return clone(...args);
+  }
+  res.redirect = newRedirect;
+}
 
 //fired before first devMiddleware upon a non-redirected client request
 //creates a report in res.locals._XPR and in json object
@@ -40,10 +40,11 @@ function initTracking(req, res, nextFuncName, parsed) {
     }
     methodRoute = newMethodRoute;
   }
-  parsed.currentRoute = methodRoute;
+  parsed.currentInfo.currentRoute = methodRoute;
   parsed[methodRoute] = new Report(req, res, 'initial state', nextFuncName);
   jsonController.overwrite(parsed);
   res.locals._XPR = parsed;
+  wrapRedirect(res);
   onFinished(res, resListeners.finish);
 }
 
@@ -60,11 +61,13 @@ function trackState(req, res, nextFuncName) {
 //fired before first devMiddleware upon a redirected client request
 //creates a report in json object and in res.locals._XPR
 function initRedirect(req, res, nextFuncName, parsed) {
+  parsed.currentInfo.isRedirect = false;
   jsonController.updateCurrentReport(parsed, (report) => {
     report.next = new Report(req, res, 'initial state', nextFuncName, true);
   });
   res.locals._XPR = parsed;
   jsonController.overwrite(parsed);
+  wrapRedirect(res);
   onFinished(res, resListeners.finish);
 }
 
@@ -77,9 +80,7 @@ function expressiveMidware(func) {
     //if res.locals has no _XPR property, this must be a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
-      //if current route has been defined, this must be a redirect.
-      //otherwise, this must be a fresh client request 
-      if (parsed.currentRoute) initRedirect(req, res, nextFuncName, parsed);
+      if (parsed.currentInfo.isRedirect) initRedirect(req, res, nextFuncName, parsed);
       else initTracking(req, res, nextFuncName, parsed);
     }
     else trackState(req, res, nextFuncName);

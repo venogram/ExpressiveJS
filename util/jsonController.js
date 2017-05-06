@@ -20,6 +20,10 @@ const jsonController = {
   createJSON: () => {
     const skeleton = {
       routes: {},
+      currentInfo: {
+        currentRoute: null,
+        isRedirect: false
+      },
       completedReqs: 0
     };
     jsonController.overwrite(skeleton);
@@ -50,13 +54,16 @@ const jsonController = {
 
   //removes keys in json object not useful to developer nor for visualization.
   scrub: (obj) => {
-    delete obj.currentRoute;
+    obj.currentInfo = {
+      currentRoute: null,
+      isRedirect: false
+    }
     jsonController.overwrite(obj);
   },
 
   //follows linked list of reports to find current report, then passes it to the callback function
   updateCurrentReport: (parsed, callback) => {
-    let curr = parsed[parsed.currentRoute];
+    let curr = parsed[parsed.currentInfo.currentRoute];
     while (curr.next) curr = curr.next;
     return callback(curr);
   }
