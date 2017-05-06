@@ -33,9 +33,9 @@ function collectMethodArgs(...args) {
 //name of previous function is passed
 function getAppMethodArgs(args) {
   const { path, devMidware } = collectMethodArgs(...args);
-  const newMidware = devMidware.map(func => {
-    if (typeof func === 'function') return expressiveMidware(func);
-    return func;
+  const newMidware = devMidware.map(key => {
+    if (typeof key === 'function') return expressiveMidware(key);
+    return key;
   });
   return path === null ? [...newMidware] : [path, ...newMidware];
 }

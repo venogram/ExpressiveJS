@@ -13,20 +13,16 @@ const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
     let xpr = res.locals._XPR;
-    let validRequest = true;
-    let isRedirect = false;
-    // no xpr means this is a request to an invalid route (i.e. 404 error)
-    if (!xpr) {
-      xpr = jsonController.getAndParse();
-      validRequest = false;
-    }
-    // if currentRoute has been defined then request is a redirect
-    // otherwise it is a client request
-    if (xpr.currentRoute) {
+    // no xpr means this is request has not been tracked 
+    // therefore it must be a request to an invalid route (i.e. 404 error)
+    const validRequest = xpr ? true : false;
+    if (!xpr) xpr = jsonController.getAndParse();
+    const isRedirect = xpr.currentInfo.isRedirect;
+    // no current Route means this is a fresh request to an invalid route
+    if (xpr.currentInfo.currentRoute) {
       jsonController.updateCurrentReport(xpr, (report) => {
-        report.next = new Report(res.req, res, report.nextFuncName, null, true);
+        report.next = new Report(res.req, res, report.nextFuncName, null);
       })
-      isRedirect = true;
     } else {
       let methodRoute = res.req.method + ' ' + res.req.originalUrl;
       if (xpr[methodRoute]) {
@@ -39,24 +35,6 @@ const resListeners = {
       xpr.currentRoute = methodRoute;
       xpr[methodRoute] = new Report(req, res, 'initial state', null);
     }
-
-
-
-    // let reportDuration;
-    // jsonController.updateCurrentReport(xpr, (report) => {
-    //   if (validRequest) report.timeline.push(new Snapshot(res.req, res, report.midware[report.midware.length - 1], now));
-    //   report.end = now;
-    //   reportDuration = report.duration = report.end - report.start;
-    //   report.error = err;
-    //   report.statusCode = res.statusCode;
-    //   report.statusMessage = res.statusMessage;
-    // })
-
-    // const finishDuration = Date.now() - now;
-    // //increments totalDuration in initial report with duration of current report
-    // xpr[xpr.currentRoute[0]].hasOwnProperty('totalDuration') ?
-    //   xpr[xpr.currentRoute[0]].totalDuration += reportDuration - finishDuration :
-    //   xpr[xpr.currentRoute[0]].totalDuration = reportDuration - finishDuration;
 
     if (!isRedirect) xpr.completedReqs += 1;
     jsonController.overwrite(xpr);

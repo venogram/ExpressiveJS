@@ -7,8 +7,7 @@ const serverListeners = {
   // checkContinue: () => {},
   // checkExpectation: () => {},
   // clientError: () => {},
-  // close: (/*accepts no params*/) => {},
-  // //connect, connection are socket-related
+  // close: () => {},
   // connect: () => {},
   // connection: () => {},
   request: (req, res) => {
