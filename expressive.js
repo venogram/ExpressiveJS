@@ -55,14 +55,14 @@ const expressive = () => {
       return returnedRoute;
     },
      param: (...args) => insertExpressiveMidware('param', ...args),
-    
-    // These do not alter the request and response 
+
+    // These do not alter the request and response
     // Therefore we don't need to track them
     // disable: () => {},
     // disabled: () => {},
     // enable: () => {},
     // enabled: () => {},
-    // engine: () => {},  
+    // engine: () => {},
     // path: () => {},
     // render: () => {},
     // set: () => {},
