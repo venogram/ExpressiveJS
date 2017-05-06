@@ -102,7 +102,10 @@ const expressive = () => {
   //assign all properties and methods of the express app to the expressiveObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {
-    if (!expressiveObj.hasOwnProperty(key)) expressiveObj[key] = app[key];
+    if (!expressiveObj.hasOwnProperty(key)) {
+      console.log('fallback created:', key);
+      expressiveObj[key] = app[key];
+    }
   });
 
   return expressiveObj;
