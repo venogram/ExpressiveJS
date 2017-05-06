@@ -63,13 +63,8 @@ const jsonController = {
 
   //follows linked list of reports to find current report, then passes it to the callback function
   updateCurrentReport: (parsed, callback) => {
-<<<<<<< HEAD
-    let curr = parsed[parsed.currentRoute[0]];
-    while (curr.redirect) curr = curr.redirect;
-=======
     let curr = parsed[parsed.currentInfo.currentRoute];
     while (curr.next) curr = curr.next;
->>>>>>> 0971d014b4aaf1a9a191fa80b972aa33e83a918e
     return callback(curr);
   }
 
