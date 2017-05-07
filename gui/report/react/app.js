@@ -37,8 +37,6 @@ class App extends Component {
 
   //update state to populate routes
   displayRoute(arrRoutes, method) {
-    console.log(arrRoutes) //  get /
-    console.log(method) //  get
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
@@ -46,7 +44,7 @@ class App extends Component {
 
     arrRoutes.map(element => {
       if (element.includes(method)) {
-        tempRoute.push(this.state.json[element]['method'] + " " + this.state.json[element]['route']);
+        tempRoute.push(this.state.json[element]['originalUrl']);
         tempCurrMethod = method;
       }
     });
@@ -60,15 +58,25 @@ class App extends Component {
 
   //display report according to the selected route
   displayReport(route) {
+    let currMiddleWare = this.state.json[this.state.currMethod + ' ' + route]; //keep track of when to end while loop
     let tempReport = [];
+    let tempCurrTab = '';
+    // console.log(this.state.currMethod) //GET
+    // console.log(route) //               / or /redirect
 
-    //find timeline of only the selected method and route
-    if (this.state.json[route]['method'] + " " + this.state.json[route]['route'] === route) {
-      tempReport = (this.state.json[route]['timeline'])
+    //traverse json until null, pushing in req/res object along the way
+    while(currMiddleWare.next){
+      tempReport.push(currMiddleWare.snapshot);
+      //move pointer to next node
+      currMiddleWare = currMiddleWare.next;
     }
+
+    //set new current tab
+    tempCurrTab = this.state.currMethod + ' ' + route;
     //change state according to selected method and route
     this.setState({ userReports: tempReport });
-    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+    this.setState({ currTab: tempCurrTab })
+    //this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
   }
 
   //create a new tab and tell what tab is selected
@@ -77,12 +85,11 @@ class App extends Component {
     let tempCurrTab = element;
     //a variable to tell if element exist in the openTab state.
     let include = false;
-
     //create new tabs if no tabs are present, else add new tab
     //provided there is no same named tab already open
     if (this.state.openTabs.length === 0) {
       let newObj = {};
-      newObj[element] = 'selected';
+      newObj[this.state.currMethod + ' ' + element] = 'selected';
       tempOpenTabs.push(newObj);
       this.setState({ openTabs: tempOpenTabs })
     } else {
@@ -127,7 +134,7 @@ class App extends Component {
 
     //change state according to selected method and route
     this.setState({ userReports: tempReport });
-    this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+    //this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
 
     //update current selected tab
     this.setState({ currTab: tempCurrTab });

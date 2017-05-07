@@ -5,16 +5,18 @@ import SnapshotDetail from './snapshotDetail';
 class Report extends Component {
   render() {
     //generate report based on userReports (which is our timeline)
+    //console.log(this.props.currTab)
     let snapshot = this.props.userReports.map((element, index, array) => {
       //access req,res object
       let reqObj = element['req'];
       let resObj = element['res'];
+      //console.log(element)
 
       if (index === array.length - 1) {
         return <div key={index}>
           <div className="snapshot" id={index}>
             <span className="">{this.props.currTab}</span> <br />
-            <span className="">{element['prevFunc']}</span> <br /><br />
+            <span className="">{element['prevFuncName']}</span> <br /><br />
             {/*should have onClick to show component with more information on respective click*/}
             <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
             <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
