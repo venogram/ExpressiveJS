@@ -9,12 +9,11 @@ class MethodAndRouteTabs extends Component {
 
   render() {
     //render tabs into the tab div
-    console.log(this.props.openTabs)
+    //console.log(this.props.openTabs)
     let tabs = this.props.openTabs.map((element, index) => {
-
       return <div key={index} className={"flex-tab " + this.initClassName(Object.keys(element)[0], index)}>
         <img className="tabLogo" src="./../public/images/whiteTabLogo@2x.png" />
-        <button className={"tabs " + this.initClassName(Object.keys(element)[0], index)} onClick={() => { this.props.displayReportFromTabs(Object.keys(element)[0]); this.props.initAndHighlightTab(Object.keys(element)[0]) }}>{Object.keys(element)[0].toLowerCase()}</button>
+        <button className={"tabs " + this.initClassName(Object.keys(element)[0], index)} onClick={() => { this.props.displayReport(Object.keys(element)[0]); this.props.initAndHighlightTab(Object.keys(element)[0]) }}>{Object.keys(element)[0].toLowerCase()}</button>
         <span className={"hover cancel"} onClick={() => this.props.closeTab(index)}>x</span>
       </div>
     });

@@ -5,18 +5,16 @@ import SnapshotDetail from './snapshotDetail';
 class Report extends Component {
   render() {
     //generate report based on userReports (which is our timeline)
-    //console.log(this.props.currTab)
     let snapshot = this.props.userReports.map((element, index, array) => {
-      //access req,res object
-      let reqObj = element['req'];
-      let resObj = element['res'];
-      //console.log(element)
-
       if (index === array.length - 1) {
         return <div key={index}>
           <div className="snapshot" id={index}>
-            <span className="">{this.props.currTab}</span> <br />
-            <span className="">{element['prevFuncName']}</span> <br /><br />
+            <span>{this.props.currTab}</span> <br />
+            <span>{Object.keys(element)}</span> <br /><br />
+
+            <span> Status Code: {element[Object.keys(element)[0]].statusCode} </span> <br />
+            <span> timestamp: {element[Object.keys(element)[0]].timestamp} </span> <br /> <br />
+
             {/*should have onClick to show component with more information on respective click*/}
             <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
             <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
@@ -27,7 +25,11 @@ class Report extends Component {
       return <div key={index}>
         <div className="snapshot" id={index}>
           <span>{this.props.currTab}</span> <br />
-          <span>{element.prevFunc}</span> <br /><br />
+          <span>{Object.keys(element)}</span> <br /><br />
+
+          <span> Status Code: {element[Object.keys(element)[0]].statusCode} </span> <br />
+          <span> timestamp: {element[Object.keys(element)[0]].timestamp} </span> <br /> <br />
+
           {/*should have onClick to show component with more information on respective click*/}
           <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
           <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
@@ -39,7 +41,7 @@ class Report extends Component {
     return (
       <div className='reportColumn' >
 
-        <MethodAndRouteTabs displayReport={this.displayReport} displayReportFromTabs={this.props.displayReportFromTabs}
+        <MethodAndRouteTabs displayReport={this.props.displayReport}
           openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} initAndHighlightTab={this.props.initAndHighlightTab} />
 
         <div id="reportSummary" className="flex-item">
