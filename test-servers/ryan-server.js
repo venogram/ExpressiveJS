@@ -2,14 +2,11 @@ const express = require('./../expressive.js');
 //const express = require('express');
 const request = require('request');
 const path = require('path');
-<<<<<<< HEAD
-const bodyParser = require('body-parser')
-=======
-
 const app = express();
->>>>>>> ca9eae7857cd26c36549942bbaa9735549eb4be7
+
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser')
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
