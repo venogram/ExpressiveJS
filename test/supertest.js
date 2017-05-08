@@ -1,6 +1,6 @@
 // Uncomment this to get the 'app.address is not a function' error
 // Requiring express instead of expressive removes the error
-const request = require('supertest');
+const request = require('superagent');
 const express = require('./../expressive.js');
 //const express = require('express');
 const app = express();
@@ -9,15 +9,22 @@ app.get('/user', function(req, res) {
   res.status(200).json({ name: 'tobi' });
 });
 
-describe('GET /user', function() {
-  it('respond with json', function(done) {
-    request(app)
-      .get('/user')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200, done);
+app.listen(3000, () => {
+  describe('GET /user', function() {
+    it('respond with json', function(done) {
+      request('localhost:3000/user')
+        .get('/user')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200, done);
+    });
   });
+
+
 });
+
+
+
 
 // Comment out above and uncomment below to run tests with npm test
 
@@ -105,4 +112,3 @@ describe('GET /user', function() {
 // //       done();
 // //   });
 // // });
-

@@ -76,6 +76,9 @@ body {
   #tabsMenu {
     background-color: $bgcolor;
     height: 50px;
+    border-radius: {
+      top: 3px;
+    }
   }
 
   #reportSummary {
@@ -130,6 +133,10 @@ body {
 
   border: {
       left: 1px $bgcolor solid;
+  }
+
+  border-radius: {
+    top: 5px;
   }
 
   display: inline-flex;
