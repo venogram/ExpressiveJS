@@ -113,7 +113,18 @@ body {
         // top: 20px;
         left: 30px;
       }
+      .objButton {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+  }
+}
+
+.chain {
+  margin: {
+    left: 80px;
   }
 }
 
@@ -151,7 +162,6 @@ body {
       cursor: pointer;
     }
     letter-spacing: $buttonLetterSpacing;
-    // color: $toggleViewBGColor;
     height: $buttonHeight;
     font-size: 20px;
     outline: 0;
@@ -161,7 +171,6 @@ body {
   }
 
   .cancel {
-
     color: $toggleViewBGColor;
   }
 
@@ -199,8 +208,14 @@ body {
   }
 }
 
-.chain {
-  margin: {
-    left: 80px;
-  }
-}
+
+   .snapshotDetails {
+      margin: {
+        right: 30%;
+        top: 30px;
+      }
+      width: 100%;
+      // background-color: $unfocusedTabColor;
+      //border: 1px $toggleViewBGColor solid;
+      height: 95%;
+    }

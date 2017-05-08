@@ -54,15 +54,15 @@ const expressive = () => {
       returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
       return returnedRoute;
     },
-     param: (...args) => insertExpressiveMidware('param', ...args),
     
-    // These do not alter the request and response 
-    // Therefore we don't need to track them
+    param: (...args) => insertExpressiveMidware('param', ...args),
+
+    // These do not alter the request and response so there is no need to track them
     // disable: () => {},
     // disabled: () => {},
     // enable: () => {},
     // enabled: () => {},
-    // engine: () => {},  
+    // engine: () => {},
     // path: () => {},
     // render: () => {},
     // set: () => {},
@@ -93,7 +93,7 @@ const expressive = () => {
     requestMethods.forEach(method => {
       router[method] = (...args) => set(method, ...args);
     })
-    router.param = (...args) =>  insertExpressiveMidware('param', ...args);
+    router.param = (...args) => insertExpressiveMidware('param', ...args);
     return router;
   };
 
@@ -102,8 +102,6 @@ const expressive = () => {
   //assign all properties and methods of the express app to the expressiveObj that
   //aren't explicitly defined
   Object.keys(app).forEach(key => {
-
-    // console.log('key:', key, '\ttype:', typeof app[key], '\n');
     if (!expressiveObj.hasOwnProperty(key)) expressiveObj[key] = app[key];
   });
 
