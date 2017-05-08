@@ -54,6 +54,7 @@ const expressive = () => {
       returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
       return returnedRoute;
     },
+    
     param: (...args) => insertExpressiveMidware('param', ...args),
 
     // These do not alter the request and response so there is no need to track them
@@ -61,7 +62,7 @@ const expressive = () => {
     // disabled: () => {},
     // enable: () => {},
     // enabled: () => {},
-    // engine: () => {},  
+    // engine: () => {},
     // path: () => {},
     // render: () => {},
     // set: () => {},
