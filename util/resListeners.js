@@ -32,7 +32,7 @@ const resListeners = {
         }
         methodRoute = newMethodRoute;
       }
-      xpr.currengInfo.currentRoute = methodRoute;
+      xpr.currentInfo.currentRoute = methodRoute;
       xpr[methodRoute] = new Report(res.req, res, 'initial state', null);
     }
 
