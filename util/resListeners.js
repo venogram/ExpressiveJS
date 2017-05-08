@@ -32,8 +32,8 @@ const resListeners = {
         }
         methodRoute = newMethodRoute;
       }
-      xpr.currentRoute = methodRoute;
-      xpr[methodRoute] = new Report(req, res, 'initial state', null);
+      xpr.currentInfo.currentRoute = methodRoute;
+      xpr[methodRoute] = new Report(res.req, res, 'initial state', null);
     }
 
     if (!isRedirect) xpr.completedReqs += 1;
