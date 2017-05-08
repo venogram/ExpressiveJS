@@ -13,11 +13,11 @@
     "test": "export NODE_ENV=test && mocha --timeout 8000 test/"
   },
   "bin": {
-    "xpr-test": "cli/runExpressive.js",
-    "xpr-build": "cli/buildVisual.js",
-    "xpr-display": "cli/displayElectron.js",
-    "xpr": "cli/test-routes.js",
-    "xpr-reset-json": "cli/refresh-json.js",
+    "xpr-test": "cli/xprTest.js",
+    "xpr-build": "cli/xprBuild.js",
+    "xpr-display": "cli/xprDisplay.js",
+    "xpr": "cli/xpr.js",
+    "xpr-reset-json": "cli/xprRefreshJson.js",
     "xpr-init": "cli/xprInit.js"
   },
   "repository": {
@@ -51,6 +51,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.17.1",
     "chai": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "mocha": "^3.3.0",
