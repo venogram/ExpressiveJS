@@ -2,22 +2,27 @@ const express = require('./../expressive.js');
 //const express = require('express');
 const request = require('request');
 const path = require('path');
-const bodyParser = require('body-parser')
 
 const app = express();
-
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
-  return next();
+  res.send();
+  // return next();
 }, (req, res, next) => {
-  setTimeout(() => {res.redirect('/redirect')}, 8000);
+  setTimeout(() => {res.redirect('/redirect')}, 10);
 });
 //
 app.get('/redirect', (req, res) => {
   console.log('========/REDIRECT=======');
-  setTimeout(() => {res.send('hi')}, 800);
+  setTimeout(() => {
+    console.log('==========SETTIMEOUT WAS CALLED==========');
+    res.send('hi')
+  }, 10);
 })
 
 app.post('/', (req, res) => {

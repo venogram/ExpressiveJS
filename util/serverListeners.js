@@ -7,8 +7,7 @@ const serverListeners = {
   // checkContinue: () => {},
   // checkExpectation: () => {},
   // clientError: () => {},
-  // close: (/*accepts no params*/) => {},
-  // //connect, connection are socket-related
+  // close: () => {},
   // connect: () => {},
   // connection: () => {},
   request: (req, res) => {
@@ -18,8 +17,10 @@ const serverListeners = {
       setTimeout(() => {
         const parsed = jsonController.getAndParse();
         if (completedBefore === parsed.completedReqs) {
+          eval('res.locals._XPR["' + res.locals._XPR.currentRoute.join('"]["') + '"].abandoned = true');
           process.send('abandonReq');
           res.end();
+          // res.destroy();
         }
       }, ms);
     }

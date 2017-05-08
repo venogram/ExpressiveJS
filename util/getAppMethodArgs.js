@@ -20,7 +20,8 @@ function flatten(array) {
 // accepts the arguments of app.METHOD and returns an object with the path and a
 // flattened array with the devMidware.  Used in getAppMethodArgs
 function collectMethodArgs(...args) {
-  const path = typeof args[0] !== 'function' && !Array.isArray(args[0]) ? args[0] : null;
+  //path is not defined if the first argument is a function or a non-array object
+  const path = (typeof args[0] === 'function' || (typeof args[0] === 'object' && !Array.isArray(args[0]))) ? null : args[0];
   const devMidware = path === null ? flatten(args) : flatten(args.slice(1));
   return {
     path,
@@ -33,9 +34,9 @@ function collectMethodArgs(...args) {
 //name of previous function is passed
 function getAppMethodArgs(args) {
   const { path, devMidware } = collectMethodArgs(...args);
-  const newMidware = devMidware.map(func => {
-    if (typeof func === 'function') return expressiveMidware(func);
-    return func;
+  const newMidware = devMidware.map(key => {
+    if (typeof key === 'function') return expressiveMidware(key);
+    return key;
   });
   return path === null ? [...newMidware] : [path, ...newMidware];
 }

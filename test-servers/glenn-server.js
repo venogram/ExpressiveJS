@@ -12,10 +12,8 @@ const server = app.listen(3000, () => {
 })
 
 
-app.get('/', function midware1(req, res){
-  res.redirect('/redirectRoute');
-})
+app.get('/hello', router);
 
-app.get('/redirectRoute', function midware2(req, res){
-  res.send('yay');
-});
+router.get('/hi', (req, res) => {
+  res.send('how are you?')
+})
