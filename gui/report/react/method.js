@@ -28,7 +28,7 @@ class Method extends Component {
         {element}
         <Route json={this.props.json} userRoutes={this.props.userRoutes} userReports={this.props.userReports}
             currMethod={this.props.currMethod}
-            displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} initTab={this.props.initTab}/>
+            displayRoute={this.props.displayRoute} displayReport={this.props.displayReport} initAndHighlightTab={this.props.initAndHighlightTab}/>
         </span>
       } else {
         return element
