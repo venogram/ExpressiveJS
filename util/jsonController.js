@@ -19,7 +19,6 @@ const jsonController = {
   //Creates skeleton JSON file
   createJSON: () => {
     const skeleton = {
-      routes: {},
       currentInfo: {
         currentRoute: null,
         isRedirect: false
