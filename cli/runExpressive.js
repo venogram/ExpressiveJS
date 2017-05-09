@@ -50,7 +50,7 @@ const testRoutes = config.testRoutes;
 const abandonReq = config.abandonRequest;
 
 let silentServer;
-if (config.silentServer !== undefined) silentServer = config.silentServer
+if (config.silentServer) silentServer = config.silentServer
 else {
   silentServer = false;
   process.emitWarning(silentServerWarn);
