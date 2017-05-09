@@ -3,17 +3,15 @@
 */
 
 const reqListeners = {
-  abort: () => {},
-  aborted:() => {},
-  connect: () => {},
-  continue: () => {},
-  response: () => {},
-  socket: () => {},
-  upgrade: () => {},
+  // abort: () => {},
+  // aborted:() => {},
+  // connect: () => {},
+  // continue: () => {},
+  // response: () => {},
+  // socket: () => {},
+  // upgrade: () => {},
   //for onFinish? may not need
-  finish: (err, req) => {
-
-  }
+  // finish: (err, req) => {}
 }
 
 module.exports = reqListeners;
