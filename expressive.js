@@ -11,6 +11,7 @@ const getAppMethodArgs = require('./util/getAppMethodArgs.js');
 const jsonController = require('./util/jsonController.js');
 const serverListeners = require('./util/serverListeners.js');
 
+
 // //wrapper for app.METHOD
 // //wraps developer midware with expressive midware
 // function insertExpressiveMidware(...args) {
@@ -111,12 +112,15 @@ const expressive = () => {
     return router;
   }
 
-  expressive.static = (...args) => express.static(...args);
 
-  //assign all properties and methods of the express app to the expressiveObj that
-  //aren't explicitly defined
+
+  //FALLBACKS: assign all undefined properties and methods of express and express app 
+  //to expressive and expressiveObj respectively
   Object.keys(app).forEach(key => {
     if (!expressiveObj.hasOwnProperty(key)) expressiveObj[key] = app[key];
+  });
+  Object.keys(express).forEach(key => {
+    if (!expressive.hasOwnProperty(key)) expressive[key] = express[key];
   });
 
   return expressiveObj;

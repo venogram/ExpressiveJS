@@ -4,17 +4,17 @@ var express = usingExpressive ? require('./../expressive.js') : require('express
 var app = express();
 
 
-var router = express.Router();
+// var router = express.Router();
 
 
-app.use('/api', router);
+// app.use('/api', router);
 
-router.route('/').get(function jsonMidware(req,res, next){
-  res.locals._ryan = 'isdumb';
-  return next();
-}, function mw2(req, res) {
-  res.send('success!')
-});
+// router.route('/').get(function jsonMidware(req,res, next){
+//   res.locals._ryan = 'isdumb';
+//   return next();
+// }, function mw2(req, res) {
+//   res.send('success!')
+// });
 
 
 // app.get('/', (req, res, next) => {
@@ -24,6 +24,16 @@ router.route('/').get(function jsonMidware(req,res, next){
 //   console.log('midware 2 hit!');
 //   res.send('yippee!');
 // })
+
+app.get('/', function mw1(req, res, next) {
+  console.log('one!');
+  return next();
+})
+
+app.get('/', function mw2(req, res) {
+  console.log('two!');
+  res.send('yippee!');
+})
 
 
 app.listen(3000,function(){
