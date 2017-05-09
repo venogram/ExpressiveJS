@@ -38,7 +38,7 @@ const resListeners = {
 
     if (!isRedirect) xpr.completedReqs += 1;
     jsonController.overwrite(xpr);
-    if (!isRedirect || !validRequest) process.send('next');
+    if (process.send && (!isRedirect || !validRequest)) process.send('next');
   }
 
 }

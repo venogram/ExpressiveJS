@@ -11,20 +11,20 @@ const getAppMethodArgs = require('./util/getAppMethodArgs.js');
 const jsonController = require('./util/jsonController.js');
 const serverListeners = require('./util/serverListeners.js');
 
-//wrapper for app.METHOD
-//intersperses tracking midware between developer midware
-function insertExpressiveMidware(method, ...args) {
-  let expressiveMidware = getAppMethodArgs(args);
-  return app[method](...expressiveMidware);
-}
+// //wrapper for app.METHOD
+// //wraps developer midware with expressive midware
+// function insertExpressiveMidware(...args) {
+//   const expressiveMidware = getAppMethodArgs(args);
+//   return myApp[method](...expressiveMidware);
+// }
 
-//stores route and method in json object for creation of default config file
-//then wraps app.METHOD
-function set(method, ...args) {
-  const route = args[0];
-  jsonController.addRoute(method, route);
-  return insertExpressiveMidware(method, ...args);
-}
+// //stores route and method in json object for creation of default config file
+// //then wraps app.METHOD
+// function set(...args) {
+//   const route = args[0];
+//   jsonController.addRoute(method, route);
+//   return insertExpressiveMidware(myApp, method, ...args);
+// }
 
 const requestMethods = ['all', 'checkout', 'copy', 'delete', 'get', 'head', 'lock', 'merge',
   'mkactivity', 'mkcol', 'move', 'm-search', 'notify', 'options', 'patch', 'post',
@@ -40,22 +40,27 @@ const expressive = () => {
         server.on(event, serverListeners[event]);
       });
       //sends message to parent process that it may start firing requests!
-      process.send('listening');
+      if (process.send) process.send('listening');
       return server;
     },
 
-    use: (...args) => insertExpressiveMidware('use', ...args),
+    use: (...args) => app.use(...getAppMethodArgs(args)),
 
     route: (path) => {
       const returnedRoute = app.route(path);
+
       requestMethods.forEach(method => {
-        returnedRoute[method] = (...args) => set(method, path, ...args);
+        const originalMethod = returnedRoute[method];
+        returnedRoute[method] = (...args) => originalMethod.call(returnedRoute, ...getAppMethodArgs(args));
       });
-      returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
+
+      const originalUse = returnedRoute.use;
+      returnedRoute.use = (...args) => originalUse.call(returnedRoute, ...getAppMethodArgs(args));
+
       return returnedRoute;
     },
-    
-    param: (...args) => insertExpressiveMidware('param', ...args),
+
+    param: (...args) => app.param(...getAppMethodArgs(args)),
 
     // These do not alter the request and response so there is no need to track them
     // disable: () => {},
@@ -70,32 +75,41 @@ const expressive = () => {
 
   //assigns app.METHOD for all request methods
   requestMethods.forEach(method => {
-    expressiveObj[method] = (...args) => set(method, ...args);
+    expressiveObj[method] = (...args) => app[method](...getAppMethodArgs(args));
   });
 
 
   expressive.Router = (...args) => {
-    //router instance returned by app.Router()
     const router = express.Router(...args);
-    const newRouteFunc = router.route.bind(router);
-    router.route = (path) => {
-      //route instance returned by router.route()
-      const returnedRoute = newRouteFunc(path);
-      //assign all app.METHODS to the route instance
-      requestMethods.forEach(method => {
-        returnedRoute[method] = (...args) => set(method, path, ...args);
-      });
-      returnedRoute.use = (...args) => insertExpressiveMidware('use', path, ...args);
-      return returnedRoute;
-    };
-    //assign all app.METHODS to the router instance
-    router.use = (...args) => insertExpressiveMidware('use', ...args);
+
     requestMethods.forEach(method => {
-      router[method] = (...args) => set(method, ...args);
+      const originalMethod = router[method];
+      router[method] = (...methodArgs) => originalMethod.call(router, ...getAppMethodArgs(methodArgs));
     })
-    router.param = (...args) => insertExpressiveMidware('param', ...args);
+    
+    const originalUse = router.use;
+    router.use = (...useArgs) => originalUse.call(router, ...getAppMethodArgs(methodArgs));
+
+    const originalParam = router.param;
+    router.param = (...paramArgs) => originalParam.call(router, ...getAppMethodArgs(paramArgs));
+
+    const originalRoute = router.route;
+    router.route = (path) => {
+      const returnedRoute = originalRoute.call(router ,path);
+
+      requestMethods.forEach(routeMethod => {
+        const originalMethod = returnedRoute[routeMethod];
+        returnedRoute[routeMethod] = (...routeArgs) => originalMethod.call(returnedRoute, ...getAppMethodArgs(routeArgs));
+      })
+
+      const originalRouteUse = returnedRoute.use;
+      returnedRoute.use = (...routeUseArgs) => originalRouteUse.call(returnedRoute, ...getAppMethodArgs(routeUseArgs));
+
+      return returnedRoute;
+    }
+
     return router;
-  };
+  }
 
   expressive.static = (...args) => express.static(...args);
 
