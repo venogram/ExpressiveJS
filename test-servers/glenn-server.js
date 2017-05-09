@@ -10,7 +10,6 @@ var app = express();
 // app.use('/api', router);
 
 // router.route('/').get(function jsonMidware(req,res, next){
-//   res.locals._ryan = 'isdumb';
 //   return next();
 // }, function mw2(req, res) {
 //   res.send('success!')
