@@ -43,17 +43,14 @@ class Report extends Component {
 
         <MethodAndRouteTabs displayReport={this.props.displayReport}
           openTabs={this.props.openTabs} currTab={this.props.currTab} closeTab={this.props.closeTab} initAndHighlightTab={this.props.initAndHighlightTab} />
-
         <div id="reportSummary" className="flex-item">
-
           <div id="toggleView">...</div> {/* going to becoming a react component */}
-
           <div id="snapshotChain">
             {snapshot}
           </div>
 
-          <SnapshotDetail currTab={this.props.currTab} userReports={this.props.userReports} details={this.props.details}
-            detailedRequestSnapshot={this.props.detailedRequestSnapshot} detailedResponseSnapshot={this.detailedResponseSnapshot}/>
+          {<SnapshotDetail currTab={this.props.currTab} userReports={this.props.userReports} details={this.props.details}
+            detailedRequestSnapshot={this.props.detailedRequestSnapshot} detailedResponseSnapshot={this.detailedResponseSnapshot}/>}
 
         </div>
 

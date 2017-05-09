@@ -21,7 +21,7 @@ class App extends Component {
       currTab: "",
       openTabs: [],
       xprSettingsTab: [{"xpr":"xprSelected"},{"Settings":"xprNotSelected"}],
-      details: {}
+      details: []
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -33,6 +33,7 @@ class App extends Component {
     this.toggleXprTab = this.toggleXprTab.bind(this);
     this.detailedRequestSnapshot = this.detailedRequestSnapshot.bind(this);
     this.detailedResponseSnapshot = this.detailedResponseSnapshot.bind(this);
+    this.createSnapshots = this.createSnapshots.bind(this);
   }
 
   //update state to populate routes
@@ -40,7 +41,7 @@ class App extends Component {
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
-    const clearDetails = {};
+    const clearDetails = [];
 
     arrRoutes.map(element => {
       if (element.includes(method)) {
@@ -76,9 +77,21 @@ class App extends Component {
     //set new current tab
     tempCurrTab = this.state.currMethod + ' ' + route;
     //change state according to selected method and route
-    this.setState({ userReports: tempReport });
+    this.setState({ userReports: tempReport }, this.createSnapshots());
     this.setState({ currTab: tempCurrTab })
     //this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+    // CALL A FUNCTION THAT WILL GENERATE SNAPSHOTS; THESE SNAPSHOTS SHOULD NOT BE VISILBE UNITL CLICKED
+    //USE STATE TO UPDATE THE VISUALIZATION 
+  }
+
+  createSnapshots(){
+    let snapshotChain = this.state.userReports.length; 
+    let tempDisplay = {};
+    let currReport = userReports;
+    let counter = 0;  
+    console.log(snapshotChain)
+    console.log(tempDisplay[counter]);
+  
   }
 
   //create a new tab and tell what tab is selected
@@ -188,7 +201,7 @@ class App extends Component {
 
   //two functions below will pull res/req objects from proper timeline
   detailedRequestSnapshot(index) {
-    let tempDetails = {};
+    let tempDetails = [];
     let fullRequest = this.state.userReports[index][Object.keys(this.state.userReports[index])].snapshot.req;
     console.log(fullRequest)
     //should do logic to create tempDetails to output only relevant info on req obj
@@ -203,7 +216,7 @@ class App extends Component {
     this.setState({details: tempDetails});
   }
   detailedResponseSnapshot(index) {
-    let tempDetails = {};
+    let tempDetails = [];
     let fullResponse = this.state.userReports[index][Object.keys(this.state.userReports[index])].snapshot.res;
     //should do logic to create tempDetails to output only relevant info on res obj
     tempDetails['finished'] = fullResponse.finished.toString();
