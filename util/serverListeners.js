@@ -17,8 +17,11 @@ const serverListeners = {
       setTimeout(() => {
         const parsed = jsonController.getAndParse();
         if (completedBefore === parsed.completedReqs) {
-          eval('res.locals._XPR["' + res.locals._XPR.currentRoute.join('"]["') + '"].abandoned = true');
-          process.send('abandonReq');
+          // eval('res.locals._XPR["' + res.locals._XPR.currentRoute.join('"]["') + '"].abandoned = true');
+          jsonController.updateCurrentReport(res.locals._XPR, (report) => {
+            report.abandoned = true;
+          })
+          if (process.send) process.send('abandonReq');
           res.end();
           // res.destroy();
         }

@@ -1,19 +1,31 @@
-const express = require('express');
-const Expressive = require('./../expressive.js');
-const path = require('path');
-const app = Expressive();
-const blog = Expressive();
-const router = Expressive.Router()
+const usingExpressive = true;
 
-console.log('hello from glenn server');
-
-const server = app.listen(3000, () => {
-  console.log('Listening on port 3000\n');
-})
+var express = usingExpressive ? require('./../expressive.js') : require('express');
+var app = express();
 
 
-app.get('/hello', router);
+var router = express.Router();
 
-router.get('/hi', (req, res) => {
-  res.send('how are you?')
-})
+
+app.use('/api', router);
+
+router.route('/').get(function jsonMidware(req,res, next){
+  res.locals._ryan = 'isdumb';
+  return next();
+}, function mw2(req, res) {
+  res.send('success!')
+});
+
+
+// app.get('/', (req, res, next) => {
+//   console.log('midware 1 hit!');
+//   return next();
+// }, (req, res) => {
+//   console.log('midware 2 hit!');
+//   res.send('yippee!');
+// })
+
+
+app.listen(3000,function(){
+  console.log("Live at Port 3000");
+});
