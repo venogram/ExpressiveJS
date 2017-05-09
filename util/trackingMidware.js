@@ -84,8 +84,7 @@ function expressiveMidware(func) {
       else initTracking(req, res, nextFuncName, parsed);
     }
     else trackState(req, res, nextFuncName);
-    //waits for server to possibly respond to request event
-    //then subtracts expressMidware time from totalDuration for current route being tested
+    //waits for server to possibly respond to request event, then calls developer middleware
     return process.nextTick(() => {
       return func(req, res, next);
     });
