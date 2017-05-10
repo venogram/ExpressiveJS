@@ -11,16 +11,16 @@ const serverListeners = {
   // connect: () => {},
   // connection: () => {},
   request: (req, res) => {
+    let xpr = res.locals._XPR;
+    let completedBefore = xpr ? xpr.completedReqs : null;
     const ms = Number(process.env.ABANDON_REQ) * 1000;
-    let completedBefore = res.locals._XPR ? res.locals._XPR.completedReqs : null;
     if (ms) {
       setTimeout(() => {
         const parsed = jsonController.getAndParse();
         if (completedBefore === parsed.completedReqs) {
-          eval('res.locals._XPR["' + res.locals._XPR.currentRoute.join('"]["') + '"].abandoned = true');
-          process.send('abandonReq');
-          res.end();
-          // res.destroy();
+          //let onFinish know that xpr is abandoning the request
+          xpr.currentInfo.isAbandoned = true;
+          res.status(504).end();
         }
       }, ms);
     }

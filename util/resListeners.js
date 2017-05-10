@@ -13,11 +13,12 @@ const resListeners = {
   //passed as callback into onFinish
   finish: (err, res) => {
     let xpr = res.locals._XPR;
-    // no xpr means this is request has not been tracked 
+    // no xpr means this is request has not been tracked
     // therefore it must be a request to an invalid route (i.e. 404 error)
     const validRequest = xpr ? true : false;
     if (!xpr) xpr = jsonController.getAndParse();
     const isRedirect = xpr.currentInfo.isRedirect;
+    const isAbandoned = xpr.currentInfo.isAbandoned;
     // no current Route means this is a fresh request to an invalid route
     if (xpr.currentInfo.currentRoute) {
       jsonController.updateCurrentReport(xpr, (report) => {
@@ -37,8 +38,14 @@ const resListeners = {
     }
 
     if (!isRedirect) xpr.completedReqs += 1;
-    jsonController.overwrite(xpr);
-    if (!isRedirect || !validRequest) process.send('next');
+    if (isAbandoned) {
+      let curr = xpr[xpr.currentInfo.currentRoute];
+      while (curr.next) curr = curr.next;
+      curr.abandoned = true;
+    }
+    jsonController.scrub(xpr);
+    if (isAbandoned) process.send('abandonReq');
+    else if (!isRedirect || !validRequest) process.send('next');
   }
 
 }
