@@ -1,12 +1,14 @@
 // Uncomment this to get the 'app.address is not a function' error
 // Requiring express instead of expressive removes the error
 const request = require('superagent');
-const express = require('./../expressive.js');
+const express = require('express');
 //const express = require('express');
 const app = express();
 
+console.log(app.__proto__.toString());
+
 app.get('/user', function(req, res) {
-  res.status(200).json({ name: 'tobi' });
+  res.status(202).json({ name: 'tobi' });
 });
 
 app.listen(3000, () => {
@@ -19,9 +21,9 @@ app.listen(3000, () => {
         .expect(200, done);
     });
   });
-
-
 });
+
+
 
 
 
