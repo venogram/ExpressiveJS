@@ -19,11 +19,9 @@ app.get('/', (req, res, next) => {
 });
 //
 app.get('/redirect', (req, res) => {
-  console.log('========/REDIRECT=======');
   setTimeout(() => {
-    console.log('==========SETTIMEOUT WAS CALLED==========');
     res.send('hi')
-  }, 10);
+  }, 10000);
 })
 
 app.post('/', (req, res) => {
@@ -32,9 +30,20 @@ app.post('/', (req, res) => {
   req.on('end', () => {
     res.send('server response to post request');
   });
+});
 
-})
+app.get('/route1', (req, res) => {
+  res.send('route 1 says hello');
+});
+
+app.get('/route2', (req, res) => {
+  res.send('route 2 says hello');
+});
+
+app.get('/route3', (req, res) => {
+  res.send('route 3 says hello');
+});
 
 app.listen(3000, () => {
-  console.log('Listening on port 3000');
+
 });

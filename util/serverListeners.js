@@ -5,17 +5,18 @@ const jsonController = require('./jsonController.js'),
 
 const serverListeners = {
   request: (req, res) => {
+    let xpr = res.locals._XPR;
+    let completedBefore = xpr ? xpr.completedReqs : null;
     const ms = Number(process.env.ABANDON_REQ) * 1000;
-    let completedBefore = res.locals._XPR ? res.locals._XPR.completedReqs : null;
     if (ms) {
       setTimeout(() => {
         const parsed = jsonController.getAndParse();
         if (completedBefore === parsed.completedReqs) {
-          jsonController.updateCurrentReport(res.locals._XPR, (report) => {
-            report.abandoned = true;
-          })
-          if (process.send) process.send('abandonReq');
-          res.end();
+
+          //let onFinish know that xpr is abandoning the request
+          xpr.currentInfo.isAbandoned = true;
+          res.status(504).end();
+
         }
       }, ms);
     }
