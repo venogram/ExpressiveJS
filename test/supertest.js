@@ -1,28 +1,9 @@
-// Uncomment this to get the 'app.address is not a function' error
-// Requiring express instead of expressive removes the error
-const request = require('superagent');
-const express = require('express');
-//const express = require('express');
-const app = express();
+const usingExpressive = true;
 
-console.log(app.__proto__.toString());
+// const request = require('supertest');
+// const express = usingExpressive ? require('./../expressive.js') : require('express');
 
-app.get('/user', function(req, res) {
-  res.status(202).json({ name: 'tobi' });
-});
-
-app.listen(3000, () => {
-  describe('GET /user', function() {
-    it('respond with json', function(done) {
-      request('localhost:3000/user')
-        .get('/user')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-    });
-  });
-});
-
+// const app = express();
 
 
 
@@ -30,17 +11,30 @@ app.listen(3000, () => {
 
 // Comment out above and uncomment below to run tests with npm test
 
-// const request = require('supertest');
+const request = require('supertest');
 // app = require('./../test-servers/mary-server.js')
-// const should = require('should')
 
-// // app.get('/user', function(req, res) {
-// //   res.status(800).json({ name: 'tobi' });
-// // });
+// app.get('/user', function(req, res) {
+//   res.status(800).json({ name: 'tobi' });
+// });
+
+// app.get('/user', function(req, res) {
+//   res.status(800).json({ name: 'tobi' });
+// });
+
+// request(app)
+//   .get('/user')
+//   .expect('Content-Type', /json/)
+//   .expect('Content-Length', '15')
+//   .expect(200)
+//   .end(function(err, res) {
+//     if (err) throw err;
+//   });
+
 
 // //TESTS BASIC GET FUNCTIONALITY
-// describe('GET /user', function() {
-//   it('respond with json', function(done) {
+// describe('GET /user', function () {
+//   it('respond with json', function (done) {
 //     request(app)
 //       .get('/')
 //       // .set('Accept', 'application/json')
@@ -53,20 +47,20 @@ app.listen(3000, () => {
 //   it('gets status code 302', function (done) {
 //     request(app)
 //       .get('/redirect')
-//       .expect(function(res){
-//         res.body.methodRoute =  res.body.methodRoute.toLowerCase();
+//       .expect(function (res) {
+//         res.body.methodRoute = res.body.methodRoute.toLowerCase();
 //       })
 //       .expect(302, {
 //         methodRoute: 'redirect2'
-//       },done);
+//       }, done);
 //   });
 // });
 
-// describe("Get /", function(){
-//   it('home name should be a match to "venogram"', function(done){
+// describe("Get /", function () {
+//   it('home name should be a match to "venogram"', function (done) {
 //     request(app)
 //       .get('/')
-//       .expect(function(res){
+//       .expect(function (res) {
 //         res.body.name = res.body.name.toLowerCase();
 //       })
 //       .expect(200, {
@@ -78,39 +72,39 @@ app.listen(3000, () => {
 
 
 
-// // const request = require('supertest');
-// // const path = require('path');
-// // //  const express = require('./../expressive.js');
-// // const express = require('express')
-// // // console.log(express)
-// // const app = express();
-// // // const app = require('./mary-server.js')
-// //   // const PORT = process.env.PORT || 3000;
-// //  const HOST = `http://localhost:8080`
-// // const expect = require('expect')
+// const request = require('supertest');
+const path = require('path');
+//  const express = require('./../expressive.js');
+const express = usingExpressive ? require('./../expressive.js') : require('express');
+// console.log(express)
+const app = express();
+// const app = require('./mary-server.js')
+// const PORT = process.env.PORT || 3000;
+const HOST = `http://localhost:8080`
+const expect = require('expect')
 
-// // app.get('/', function(req, res){
-// //   res.send(200)
-// //   res.json({name: 'mary'})
-// // })
-// // describe('Get/', function () {
-// //   it('should respond with status code 400', function (done) {
-// //     request(app)
-// //       .get('/')
-// //       .expect('Content-Type', /json/)
-// //       .expect(400, done)
-// //       done();
-// //   });
-// // });
+app.get('/', function (req, res) {
+  // res.send(200)
+  res.json({ name: 'mary' })
+})
+describe('Get/', function () {
+  it('should respond with status code 200', function (done) {
+    request(app)
+      .get('/')
+      .expect('Content-Type', /json/)
+      // .expect(200, done)
+    done();
+  });
+});
 
 
-// // describe('GET/redirect', function () {
-// //   it('should keep redirecting until res.body.name = "venogram"', function (done) {
-// //     request(HOST)
-// //       .get('/redirect')
-// //       .expect(function (res) {
-// //         res.body.name = 'venogram';
-// //       })
-// //       done();
-// //   });
-// // });
+describe('GET/redirect', function () {
+  it('should keep redirecting until res.body.name = "venogram"', function (done) {
+    request(HOST)
+      .get('/redirect')
+      .expect(function (res) {
+        res.body.name = 'venogram';
+      })
+    done();
+  });
+});
