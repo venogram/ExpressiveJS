@@ -6,6 +6,15 @@
 */
 
 const exec = require('child_process').exec;
+const ProgressBar = require('progress');
+
+const bar = new ProgressBar(' webpack bundling [:bar]', {
+  complete: '=',
+  incomplete: ' ',
+  total: 2
+});
+
+
 
 exec('xpr-test', () => {
   exec('xpr-build', () => {

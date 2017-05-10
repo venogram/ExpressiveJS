@@ -12,7 +12,7 @@ const jsonController = {
 
   //Returns parsed JSON file
   getAndParse: () => {
-    const json = fs.readFileSync(path.join(__dirname, './../expressive.json'));
+    const json = fs.readFileSync(path.join(process.env.OUTPUT_DIR, './expressive.json'));
     return JSON.parse(json);
   },
 
@@ -21,7 +21,8 @@ const jsonController = {
     const skeleton = {
       currentInfo: {
         currentRoute: null,
-        isRedirect: false
+        isRedirect: false,
+        isAbandoned: false
       },
       completedReqs: 0
     };
@@ -48,16 +49,23 @@ const jsonController = {
 
   //Overwrites existing JSON file or creates a new one with a new JSON object
   overwrite: (obj) => {
-    fs.writeFileSync(path.join(__dirname, './../expressive.json'), JSON.stringify(obj, null, '  '));
+    fs.writeFileSync(path.join(process.env.OUTPUT_DIR, './expressive.json'), JSON.stringify(obj, null, '  '));
   },
 
   //removes keys in json object not useful to developer nor for visualization.
   scrub: (obj) => {
     obj.currentInfo = {
       currentRoute: null,
-      isRedirect: false
+      isRedirect: false,
+      isAbandoned: false
     }
     jsonController.overwrite(obj);
+  },
+
+  delCurrInf: () => {
+    const parsed = jsonController.getAndParse();
+    delete parsed.currentInfo;
+    jsonController.overwrite(parsed);
   },
 
   //follows linked list of reports to find current report, then passes it to the callback function
