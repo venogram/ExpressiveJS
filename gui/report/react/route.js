@@ -5,7 +5,7 @@ class Route extends Component {
     //generate route buttons that will show report on click
     let methodRouteButtons = this.props.userRoutes.map((element, index) => {
       let methodAndRoute = this.props.currMethod + ' ' + element;
-      return <p key={index} className="indent hover" onClick={() => {this.props.displayReport(methodAndRoute); this.props.initAndHighlightTab(methodAndRoute)}}> {element} </p>
+      return <p key={index} className="indent hover" onClick={() => {this.props.displayReport(methodAndRoute); this.props.initAndHighlightTab(methodAndRoute);}}> {element} </p>
     });
 
     return (

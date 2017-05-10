@@ -4,12 +4,6 @@ const jsonController = require('./jsonController.js'),
   resListeners = require('./resListeners');
 
 const serverListeners = {
-  // checkContinue: () => {},
-  // checkExpectation: () => {},
-  // clientError: () => {},
-  // close: () => {},
-  // connect: () => {},
-  // connection: () => {},
   request: (req, res) => {
     let xpr = res.locals._XPR;
     let completedBefore = xpr ? xpr.completedReqs : null;
@@ -18,9 +12,11 @@ const serverListeners = {
       setTimeout(() => {
         const parsed = jsonController.getAndParse();
         if (completedBefore === parsed.completedReqs) {
+
           //let onFinish know that xpr is abandoning the request
           xpr.currentInfo.isAbandoned = true;
           res.status(504).end();
+
         }
       }, ms);
     }
@@ -29,6 +25,12 @@ const serverListeners = {
       onFinished(res, resListeners.finish);
     }
   },
+  // checkContinue: () => {},
+  // checkExpectation: () => {},
+  // clientError: () => {},
+  // close: () => {},
+  // connect: () => {},
+  // connection: () => {},
   // upgrade: () => {}
 }
 

@@ -64,10 +64,14 @@ body {
 .selected{
   color: $defaultFontColor;
   background-color: $mainDisplayBGColor;
+  border-top-right-radius:15px;
+  border-top-left-radius:15px;
 }
 .notSelected {
   color: $toggleViewBGColor;
   background-color: $settingNoFocused;
+  border-top-left-radius: 15px;
+  border-top-right-radius:15px;
 }
 
 .reportColumn {
@@ -107,6 +111,7 @@ body {
         bottom: 10px;
       }
       border: 1px $toggleViewBGColor solid;
+      border-radius:3%;
       height: auto;
       width: 200px;
       background-color: $unfocusedTabColor;
@@ -185,6 +190,13 @@ body {
 
 #Settings {
   border-left: 1px $bgcolor solid;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#xpr{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 #xprColumn {

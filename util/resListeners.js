@@ -46,6 +46,8 @@ const resListeners = {
     jsonController.scrub(xpr);
     if (isAbandoned) process.send('abandonReq');
     else if (!isRedirect || !validRequest) process.send('next');
+
+
   }
 
 }
