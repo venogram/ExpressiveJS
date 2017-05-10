@@ -4,7 +4,9 @@
 
 
 # Expressive.js
-> End to end server route tracking for [Express](https://expressjs.com/) applications.
+Expressive is a developer tool that tracks and visualizes server routes in [Express](https://expressjs.com/) applications.  Useful for debugging and teaching alike, Expressive enables developers, from the command line, to send client requests to their Express server, and then render a visualization of server state throughout the lifespan of each request.
+
+
 
 #### Note: Expressive is in active development.  Follow our GitHub repo for updates.
 
@@ -22,7 +24,7 @@ Replace all instances of  ```require('express')``` with ```require('expressivejs
 This will enable Expressive to progressively document the state of client requests and server responses.
 
 
-### 2) *(Optional)* Create a configuration file
+### 2) Create a configuration file
 
 This file should be called __expressive.config.js__ and be located in your application's root directory.
 
@@ -38,11 +40,13 @@ TBD
 
 ### Command Line Scripts
 
-__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server using request methods, routes, and bodies specified either by your __expressive.config.js__ configuration file or by Expressive's default settings.  This will create an __expressive.json__ file in your application's root directory where information on request and response states is stored.
+__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server using request methods, routes, and bodies specified by your __expressive.config.js__ configuration file.  This will create an __expressive.json__ file where information on request and response states is stored.
 
-__```$ xpr-display```: Render a visualization__ of your server routes based on the __expressive.json__ file created from the *xpr-test* command.
+__```$ xpr-build```: Bundle data__ from the __expressive.json__ file created using the *xpr-test* command for use in rendering a visualization of your server routes.
 
-__```$ xpr```: Test your server routes__ and then __render a visualization__.  Equivalent to running *xpr-test* followed by *xpr-display*.
+__```$ xpr-display```: Render a visualization__ of your server routes based on the data bundled from the *xpr-test* command.
+
+__```$ xpr```: Test your server routes__, then __bundle the collected data__, and then __render a visualization__.  Equivalent to running *xpr-test* followed by *xpr-build* followed by *xpr-display*.
 
 
 
@@ -52,4 +56,4 @@ __```$ xpr```: Test your server routes__ and then __render a visualization__.  E
 Any server middleware that alters **res.locals._XPR** will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
 ### Expressive is not for use in production
-Be sure to change all instances of ```var express = require('expressivejs');``` back to ```var express = require('express');``` before running your application for non-testing purposes.
+Be sure to change all instances of ```require('expressivejs')``` back to ```require('express')``` before running your application for non-testing purposes.
