@@ -50,7 +50,7 @@ express.Router = (...routerArgs) => {
 
 
 const expressive = () => {
-  const app = express();
+  const app = express.call(expressive);
 
   const originalListen = app.listen;
   app.listen = (...listenArgs) => {
