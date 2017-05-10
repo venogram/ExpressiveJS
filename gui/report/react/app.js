@@ -7,8 +7,6 @@ import Summaries from './../public/summaries';
 
 import style from './../public/scss/style.scss';
 
-console.log(json)
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +19,10 @@ class App extends Component {
       currTab: "",
       openTabs: [],
       xprSettingsTab: [{"xpr":"xprSelected"},{"Settings":"xprNotSelected"}],
-      details: {}
+      details: {}, 
+      reqDetails :[], 
+      resDetails :[], 
+      changeDetails :[],
     };
     this.displayRoute = this.displayRoute.bind(this);
     this.displayReport = this.displayReport.bind(this);
@@ -40,7 +41,7 @@ class App extends Component {
     let tempRoute = [];
     let tempCurrMethod = '';
     const clearReport = [];
-    const clearDetails = {};
+    const clearDetails = [];
 
     arrRoutes.map(element => {
       if (element.includes(method)) {
@@ -76,10 +77,37 @@ class App extends Component {
     //set new current tab
     tempCurrTab = this.state.currMethod + ' ' + route;
     //change state according to selected method and route
+      // this.setState((prevState, props) => {
+      //   return {userReports: tempReport}
+      // });
+
     this.setState({ userReports: tempReport });
     this.setState({ currTab: tempCurrTab })
     //this.setState({ stateChangeLogs: JSONInterface.getStateChanges(this.state.json[route]) });
+    // CALL A FUNCTION THAT WILL GENERATE SNAPSHOTS; THESE SNAPSHOTS SHOULD NOT BE VISILBE UNITL CLICKED
+    //USE STATE TO UPDATE THE VISUALIZATION
+    // this.createSnapshots(tempReport)
   }
+
+  // createSnapshots(report){    
+  //   console.log(report)
+  //   let tempDisplay = {};
+  //   let reportKeys = Object.keys(report)
+  //   if (reportKeys.length >= 1){
+  //     tempDisplay[0] = {};
+  //     tempDisplay[0]['request'] =report[0]['initial state']['snapshot']['req']
+  //     tempDisplay[0]['response'] = report[0]['initial state']['snapshot']['res']
+  //     tempDisplay[0]['changes'] = "Access Diffing Here"
+  //   }
+
+  //   for(let i = 1; i < reportKeys.length; i++){
+  //     tempDisplay[i] = {};
+  //     tempDisplay[i]['request'] =report[0]['initial state']['snapshot']['req']
+  //     tempDisplay[i]['response'] = report[0]['initial state']['snapshot']['res']
+  //     tempDisplay[i]['changes'] = "Access Diffing Here"
+  //   }
+  //   console.log(tempDisplay)
+  // }
 
   //create a new tab and tell what tab is selected
   initAndHighlightTab(element) {
@@ -188,29 +216,31 @@ class App extends Component {
 
   //two functions below will pull res/req objects from proper timeline
   detailedRequestSnapshot(index) {
-    let tempDetails = {};
+    let tempDetails = this.state.details;
+    tempDetails[index] ={};
     let fullRequest = this.state.userReports[index][Object.keys(this.state.userReports[index])].snapshot.req;
     console.log(fullRequest)
     //should do logic to create tempDetails to output only relevant info on req obj
     for(let key in fullRequest['headers']) {
-      tempDetails['headers-' + key] = fullRequest['headers'].key;
+      tempDetails[index]['headers-' + key] = fullRequest['headers'].key;
     }
-    tempDetails['complete'] = fullRequest.complete.toString();
+    tempDetails[index]['complete'] = fullRequest.complete.toString();
     //tempDetails['params'] = fullRequest.params; //is an object therefore, need to see if these ever get filled
     //tempDetails['query'] = fullRequest.query; //is an object therefore, need to see if these ever get filled
-    tempDetails['socketDestroyed'] = fullRequest.socket.destroyed.toString();
+    tempDetails[index]['socketDestroyed'] = fullRequest.socket.destroyed.toString();
     //tempDetails['trailers'] = fullRequest.trailers; //is an object therefore, need to see if these ever get filled
     this.setState({details: tempDetails});
   }
   detailedResponseSnapshot(index) {
-    let tempDetails = {};
+    let tempDetails = this.state.details;
+    tempDetails[index] = {};
     let fullResponse = this.state.userReports[index][Object.keys(this.state.userReports[index])].snapshot.res;
     //should do logic to create tempDetails to output only relevant info on res obj
-    tempDetails['finished'] = fullResponse.finished.toString();
+    tempDetails[index]['finished'] = fullResponse.finished.toString();
     //tempDetails['locals'] = fullResponse.locals; //is an object therefore, need to see if these ever get filled
-    tempDetails['shouldKeepAlive'] = fullResponse.shouldKeepAlive.toString();
-    tempDetails['statusCode'] = fullResponse.statusCode;
-    tempDetails['statusMessage'] = fullResponse.statusMessage;
+    tempDetails[index]['shouldKeepAlive'] = fullResponse.shouldKeepAlive.toString();
+    tempDetails[index]['statusCode'] = fullResponse.statusCode;
+    tempDetails[index]['statusMessage'] = fullResponse.statusMessage;
     this.setState({details: tempDetails});
   }
 
