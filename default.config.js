@@ -7,7 +7,7 @@ const config = {
   entry: './test-servers/glenn-server.js', //relative path to server file to test
   host: 'http://localhost:3000', // port the dev server listens to
   testRoutes: [
-    {method: "GET", uri:"/", jar: true}
+    {method: "GET", uri:"/api", jar: true}
   ], // specify routes to test. objects must be formatted according to the request module options
   useDefaults: true, // if false, default config will not augment provided config
   silentServer: false, // if false, xpr command will log server's log statements
