@@ -13,11 +13,11 @@ class Report extends Component {
             <span>{Object.keys(element)}</span> <br /><br />
 
             <span> Status Code: {element[Object.keys(element)[0]].statusCode} </span> <br />
-            <span> timestamp: {element[Object.keys(element)[0]].timestamp} </span> <br /> <br />
 
             {/*should have onClick to show component with more information on respective click*/}
             <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
-            <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
+            <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span> <br />
+            <span className = 'objButton'> CHANGES </span>
           </div>
         </div>
       }
@@ -28,11 +28,11 @@ class Report extends Component {
           <span>{Object.keys(element)}</span> <br /><br />
 
           <span> Status Code: {element[Object.keys(element)[0]].statusCode} </span> <br />
-          <span> timestamp: {element[Object.keys(element)[0]].timestamp} </span> <br /> <br />
 
           {/*should have onClick to show component with more information on respective click*/}
           <span className='objButton' onClick={()=> this.props.detailedRequestSnapshot(index)}>request state</span> <br />
-          <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span>
+          <span className='objButton' onClick={()=> this.props.detailedResponseSnapshot(index)}>response state</span> <br />
+          <span className = 'objButton' >CHANGES </span>
         </div>
         <img className="chain" src="./../public/images/yellowLine.png" />
       </div>
