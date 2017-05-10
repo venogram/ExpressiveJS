@@ -1,4 +1,6 @@
-const express = require('express');
+const usingExpressive = true;
+
+const express = usingExpressive ? require('./../expressive.js') : require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 //app.use(cookieParser);
