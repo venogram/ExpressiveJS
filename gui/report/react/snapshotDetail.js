@@ -18,7 +18,7 @@ class SnapshotDetail extends Component {
     let displayArr = []
     let element= [];
     for(let i = 0; i < keysOfDetails.length; i++){
-      if(this.props.details[i] === undefined) displayArr.push(<span key = {i} className= 'snapshots'></span>)
+      if(this.props.details[i] === undefined) element.push(<span className= 'snapshots'></span>)
       else if(this.props.details[i]["complete"] !== undefined){
         element.push(<p>complete: {this.props.details[i]["complete"]}</p>);
         element.push(<p>socket destroyed: {this.props.details[i]["socketDestroyed"]}</p>);
@@ -28,15 +28,7 @@ class SnapshotDetail extends Component {
         element.push(<p>{finished}</p>)
         element.push(<p>Should Keep Alive: {this.props.details[i]["shouldKeepAlive"]}</p>);
       }
-      // console.log("is details[i] undefined", this.props.details[i] === undefined)
-      // console.log("Details At I", this.props.details[i])
-    console.log("element", element)
-    }
-    console.log("details in the console", this.props.details)
-
-    
-   
-    // }
+    }     
 
     return (
       <div className="snapshotDetails">
