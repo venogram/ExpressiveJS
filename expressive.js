@@ -104,7 +104,7 @@ const expressive = () => {
 }
 
 
-//Assign all properties and methods of express to expressive
+//Assign prototype and all properties and methods from express to expressive
 Object.keys(express).forEach(key => {
   if (typeof express[key] === 'function') {
     const originalMethod = express[key];
@@ -112,6 +112,7 @@ Object.keys(express).forEach(key => {
   } else expressive[key] = express[key];
 });
 
+Object.setPrototypeOf(expressive, express);
 
 
 module.exports = expressive;
