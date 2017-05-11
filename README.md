@@ -15,9 +15,7 @@ __```$ npm install expressivejs --save-dev```__
 ## Setup
 
 ### 1) Modify Express server files
-Replace all instances of  __```require('express')```__ with __```require('expressivejs')```__.
-
-This will enable Expressive to progressively document the state of client requests and server responses.
+Replace all instances of  __```require('express')```__ with __```require('expressivejs')```__.  This will enable Expressive to progressively document the state of client requests and server responses.
 
 
 ### 2) Create a configuration file
@@ -59,5 +57,5 @@ Follow our [GitHub](https://github.com/venogram/ExpressiveJS) repo for updates.
 
 
 
-##Contributors
+## Contributors
 [Glenn Alexander](https://github.com/gcz23) | [Ryan Fowlkes Smith](https://github.com/ryanfowlkes) | [Kangseon Cho](https://github.com/littletoy) | [Mary Snow](https://github.com/Mary-Snow)
