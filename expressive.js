@@ -50,7 +50,7 @@ express.Router = (...routerArgs) => {
 
 
 const expressive = () => {
-  const app = express.call(expressive);
+  const app = express(); //.call(expressive);
 
   const originalListen = app.listen;
   app.listen = (...listenArgs) => {
@@ -89,16 +89,16 @@ const expressive = () => {
     const originalMethod = app[method];
     app[method] = (...args) => originalMethod.call(app, ...getAppMethodArgs(args));
   });
-  
-// These do not alter the request and response so there is no need to track them
-// app.disable: () => {};
-// app.disabled: () => {};
-// app.enable: () => {};
-// app.enabled: () => {};
-// app.engine: () => {};
-// app.path: () => {};
-// app.render: () => {};
-// app.set: () => {};
+
+  // These do not alter the request and response so there is no need to track them
+  // app.disable: () => {};
+  // app.disabled: () => {};
+  // app.enable: () => {};
+  // app.enabled: () => {};
+  // app.engine: () => {};
+  // app.path: () => {};
+  // app.render: () => {};
+  // app.set: () => {};
 
   return app;
 }
