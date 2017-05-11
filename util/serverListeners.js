@@ -20,10 +20,8 @@ const serverListeners = {
         }
       }, ms);
     }
-
-    if (!res.locals._XPR) {
-      onFinished(res, resListeners.finish);
-    }
+    //Attaches a listener for the completion of a server response
+    onFinished(res, resListeners.finish);
   },
   // checkContinue: () => {},
   // checkExpectation: () => {},
