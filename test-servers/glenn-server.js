@@ -3,6 +3,10 @@ const usingExpressive = true;
 var express = usingExpressive ? require('./../expressive.js') : require('express');
 var app = express();
 
+// console.log(typeof app);
+// console.log(app.handle.toString());
+// console.log(app.toString());
+
 
 
 var router = express.Router();

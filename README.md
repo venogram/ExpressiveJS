@@ -2,13 +2,9 @@
 
 
 
-
 # Expressive.js
-Expressive is a developer tool that tracks and visualizes server routes in [Express](https://expressjs.com/) applications.  Useful for debugging and teaching alike, Expressive enables developers, from the command line, to send client requests to their Express server, and then render a visualization of server state throughout the lifespan of each request.
+Expressive is a developer tool that tracks and visualizes server routes in [Express](https://expressjs.com/) applications.  Useful for debugging and teaching alike, Expressive enables developers to send client requests to their Express server, and then render a dynamic and comprehensive visualization of server state throughout the lifespan of each request -- *all from the command line*.
 
-
-
-#### Note: Expressive is in active development.  Follow our GitHub repo for updates.
 
 
 ### Install
@@ -19,19 +15,17 @@ Expressive is a developer tool that tracks and visualizes server routes in [Expr
 ## Setup
 
 ### 1) Modify Express server files
-Replace all instances of  ```require('express')``` with ```require('expressivejs')```
-
-This will enable Expressive to progressively document the state of client requests and server responses.
+Replace all instances of  ```require('express')``` with ```require('expressivejs')```.  This will enable Expressive to progressively document the state of client requests and server responses.
 
 
 ### 2) Create a configuration file
 
 This file should be called __expressive.config.js__ and be located in your application's root directory.
 
-#### Options:
+#### Option 1: Use the command line
 TBD
 
-#### Default Settings:
+#### Option 2: Create expressive.config.js manually 
 TBD
 
 
@@ -40,7 +34,7 @@ TBD
 
 ### Command Line Scripts
 
-__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server using request methods, routes, and bodies specified by your __expressive.config.js__ configuration file.  This will create an __expressive.json__ file where information on request and response states is stored.
+__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server as specified in your __expressive.config.js__ file.  This will create an __expressive.json__ file in which information on request and response states is stored.  If the file already exists from previous tests, it will be overwritten.
 
 __```$ xpr-build```: Bundle data__ from the __expressive.json__ file created using the *xpr-test* command for use in rendering a visualization of your server routes.
 
@@ -56,4 +50,12 @@ __```$ xpr```: Test your server routes__, then __bundle the collected data__, an
 Any server middleware that alters **res.locals._XPR** will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
 ### Expressive is not for use in production
-Be sure to change all instances of ```require('expressivejs')``` back to ```require('express')``` before running your application for non-testing purposes.
+Before running your application for non-testing purposes, be sure to change all instances of ```require('expressivejs')``` in your server files back to ```require('express')```.
+
+### Expressive is in active development.
+Follow our [GitHub](https://github.com/venogram/ExpressiveJS) repo for updates.
+
+
+
+## Contributors
+[Glenn Alexander](https://github.com/gcz23) | [Ryan Fowlkes Smith](https://github.com/ryanfowlkes) | [Kangseon Cho](https://github.com/littletoy) | [Mary Snow](https://github.com/Mary-Snow)
