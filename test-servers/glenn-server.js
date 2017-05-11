@@ -1,20 +1,24 @@
-const usingExpressive = true;
+const usingExpressive = false;
 
 var express = usingExpressive ? require('./../expressive.js') : require('express');
 var app = express();
 
+// console.log(typeof app);
+// console.log(app.handle.toString());
+// console.log(app.toString());
 
 
-var router = express.Router();
+
+// var router = express.Router();
 
 
-app.use('/api', router);
+// app.use('/api', router);
 
-router.route('/').get(function jsonMidware(req,res, next){
-  return next();
-}, function mw2(req, res) {
-  res.send('success!')
-});
+// router.route('/').get(function jsonMidware(req,res, next){
+//   return next();
+// }, function mw2(req, res) {
+//   res.send('success!')
+// });
 
 
 // app.get('/', (req, res, next) => {
