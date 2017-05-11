@@ -21,26 +21,26 @@ express.Router = (...routerArgs) => {
 
   requestMethods.forEach(method => {
     const originalMethod = router[method];
-    router[method] = (...methodArgs) => originalMethod.call(router, ...getAppMethodArgs(methodArgs));
+    router[method] = (...methodArgs) => originalMethod.bind(router)(...getAppMethodArgs(methodArgs));
   })
 
   const originalUse = router.use;
-  router.use = (...useArgs) => originalUse.call(router, ...getAppMethodArgs(useArgs));
+  router.use = (...useArgs) => originalUse.bind(router)(...getAppMethodArgs(useArgs));
 
   const originalParam = router.param;
-  router.param = (...paramArgs) => originalParam.call(router, ...getAppMethodArgs(paramArgs));
+  router.param = (...paramArgs) => originalParam.bind(router)(...getAppMethodArgs(paramArgs));
 
   const originalRoute = router.route;
   router.route = (path) => {
-    const route = originalRoute.call(router, path);
+    const route = originalRoute.bind(router)(path);
 
     requestMethods.forEach(method => {
       const originalMethod = route[method];
-      route[method] = (...methodArgs) => originalMethod.call(route, ...getAppMethodArgs(methodArgs));
+      route[method] = (...methodArgs) => originalMethod.bind(route)(...getAppMethodArgs(methodArgs));
     })
 
     const originalUse = route.use;
-    route.use = (...useArgs) => originalUse.call(route, ...getAppMethodArgs(useArgs));
+    route.use = (...useArgs) => originalUse.bind(route)(...getAppMethodArgs(useArgs));
 
     return route;
   }
@@ -54,7 +54,7 @@ const expressive = () => {
 
   const originalListen = app.listen;
   app.listen = (...listenArgs) => {
-    const server = originalListen.call(app, ...listenArgs);
+    const server = originalListen.bind(app)(...listenArgs);
     //set up server listeners!
     Object.keys(serverListeners).forEach(event => {
       server.on(event, serverListeners[event]);
@@ -65,29 +65,29 @@ const expressive = () => {
   };
 
   const originalUse = app.use;
-  app.use = (...useArgs) => originalUse.call(app, ...getAppMethodArgs(useArgs));
+  app.use = (...useArgs) => originalUse.bind(app)(...getAppMethodArgs(useArgs));
 
   const originalRoute = app.route;
   app.route = (path) => {
-    const route = originalRoute.call(app, path);
+    const route = originalRoute.bind(app)(path);
 
     requestMethods.forEach(method => {
       const originalMethod = route[method];
-      route[method] = (...methodArgs) => originalMethod.call(route, ...getAppMethodArgs(methodArgs));
+      route[method] = (...methodArgs) => originalMethod.bind(route)(...getAppMethodArgs(methodArgs));
     });
 
     const originalUse = route.use;
-    route.use = (...useArgs) => originalUse.call(route, ...getAppMethodArgs(useArgs));
+    route.use = (...useArgs) => originalUse.bind(route)(...getAppMethodArgs(useArgs));
 
     return route;
   }
 
   const originalParam = app.param;
-  app.param = (...args) => originalParam.call(app, ...getAppMethodArgs(args))
+  app.param = (...args) => originalParam.bind(app)(...getAppMethodArgs(args))
 
   requestMethods.forEach(method => {
     const originalMethod = app[method];
-    app[method] = (...args) => originalMethod.call(app, ...getAppMethodArgs(args));
+    app[method] = (...args) => originalMethod.bind(app)(...getAppMethodArgs(args));
   });
 
   // These do not alter the request and response so there is no need to track them
@@ -108,7 +108,7 @@ const expressive = () => {
 Object.keys(express).forEach(key => {
   if (typeof express[key] === 'function') {
     const originalMethod = express[key];
-    expressive[key] = (...methodArgs) => originalMethod.call(expressive, ...methodArgs);
+    expressive[key] = (...methodArgs) => originalMethod.bind(expressive)(...methodArgs);
   } else expressive[key] = express[key];
 });
 
