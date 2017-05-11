@@ -8,14 +8,14 @@ Expressive is a developer tool that tracks and visualizes server routes in [Expr
 
 
 ### Install
-__```$ npm install expressivejs --save-dev```__
+```$ npm install expressivejs --save-dev```
 
 
 
 ## Setup
 
 ### 1) Modify Express server files
-Replace all instances of  __```require('express')```__ with __```require('expressivejs')```__.  This will enable Expressive to progressively document the state of client requests and server responses.
+Replace all instances of  ```require('express')``` with ```require('expressivejs')```.  This will enable Expressive to progressively document the state of client requests and server responses.
 
 
 ### 2) Create a configuration file
@@ -34,7 +34,7 @@ TBD
 
 ### Command Line Scripts
 
-__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server using the request methods, routes, and bodies specified by your __expressive.config.js__ configuration file.  This will create an __expressive.json__ file in which information on request and response states is stored.  If the file already exists from previous tests, it will be overwritten.
+__```$ xpr-test```: Test your server routes__.  Sends http requests to your Express server as specified in your __expressive.config.js__ file.  This will create an __expressive.json__ file in which information on request and response states is stored.  If the file already exists from previous tests, it will be overwritten.
 
 __```$ xpr-build```: Bundle data__ from the __expressive.json__ file created using the *xpr-test* command for use in rendering a visualization of your server routes.
 
@@ -50,7 +50,7 @@ __```$ xpr```: Test your server routes__, then __bundle the collected data__, an
 Any server middleware that alters **res.locals._XPR** will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
 ### Expressive is not for use in production
-Before running your application for non-testing purposes, be sure to change all instances of __```require('expressivejs')```__ in your server files back to __```require('express')```__.
+Before running your application for non-testing purposes, be sure to change all instances of ```require('expressivejs')``` in your server files back to ```require('express')```.
 
 ### Expressive is in active development.
 Follow our [GitHub](https://github.com/venogram/ExpressiveJS) repo for updates.
