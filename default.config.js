@@ -9,7 +9,8 @@ const config = {
   testRoutes: [
     {method: "GET", uri:"/"},
     {method: "GET", uri:"/redirect"},
-    {method: "GET", uri:"/route1"}
+    {method: "GET", uri:"/route1"},
+    {method: "POST", uri:"/"}
     // {method: "POST", uri:"/", body:"i am a request body"},
     // {method: "GET", uri:"/route1"},
     // {method: "GET", uri:"/route2"},
