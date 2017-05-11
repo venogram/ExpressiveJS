@@ -25,7 +25,7 @@ This file should be called __expressive.config.js__ and be located in your appli
 #### Option 1: Use the command line
 TBD
 
-#### Option 2: Create the file
+#### Option 2: Create expressive.config.js manually 
 TBD
 
 
