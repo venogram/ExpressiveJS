@@ -8,8 +8,8 @@
 const exec = require('child_process').exec;
 const ProgressBar = require('progress');
 
-const bar = new ProgressBar(' webpack bundling [:bar]', {
-  complete: '=',
+const bar = new ProgressBar(' expressive [:bar] :step', {
+  complete: '#',
   incomplete: ' ',
   total: 2
 });
