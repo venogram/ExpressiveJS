@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Report(props) {
   //detailsDisplay={}
   let reportView;
-  if(!props.reportState) reportView = <img id="grayLogo" src="./../images/grayEXPRLogo.png"/>;
+  if(!props.reportState) reportView = <img id="grayLogo" src="./images/grayEXPRLogo.png"/>;
   else reportView = props.reportState.reportLines.map((line, i) => <ReportLine line={line} eventHandlers={props.eventHandlers} lineNum={i} key={i} />);
 
   return (

@@ -13,7 +13,7 @@ function MainTab(props) {
 
   return (
     <div className={classString} onClick={() => {props.onMainTabClick(props.routeId)}}>
-      <img className="tab-logo" src="./../images/whiteTabLogo.png" />
+      <img className="tab-logo" src="./images/whiteTabLogo.png" />
       {props.routeId}
       <div className="escape-tab-container">
         <div className="escape-tab" onClick={escapeTab}>x</div>
