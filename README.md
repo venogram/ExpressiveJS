@@ -49,6 +49,9 @@ __```$ xpr```: Test your server routes__, then __bundle the collected data__, an
 ### Do not alter res.locals._XPR
 Any server middleware that alters **res.locals._XPR** will interfere with Expressive's functionality.  Expressive tracks the state of client requests and server responses by storing information at the _XPR key within the locals property of the server response body.
 
+### On relocating expressive.config.js
+When relocating your Expressive configuration file, be sure to alter its relative path to your server file accordingly.
+
 ### Expressive is not for use in production
 Before running your application for non-testing purposes, be sure to change all instances of ```require('expressivejs')``` in your server files back to ```require('express')```.
 
