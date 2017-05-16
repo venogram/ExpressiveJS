@@ -1,7 +1,7 @@
 node_modules
 .DS_Store
-bundle.js.map
-bundle.js
+webpack-bundle.js.map
+webpack-bundle.js
 npm-debug.log
 expressive.json
 expressive.config.js

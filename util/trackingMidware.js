@@ -60,7 +60,6 @@ function trackState(req, res, nextFuncName) {
 //fired before first devMiddleware upon a redirected client request
 //creates a report in json object and in res.locals._XPR
 function initRedirect(req, res, nextFuncName, parsed) {
-  console.log('init redirect');
   parsed.currentInfo.isRedirect = false;
   jsonController.updateCurrentReport(parsed, (report) => {
     report.next = new Report(req, res, 'initial state', nextFuncName, true);
@@ -79,7 +78,6 @@ function expressiveMidware(func) {
     //if res.locals has no _XPR property, this must be a fresh request to app.METHOD
     if (!res.locals._XPR) {
       const parsed = jsonController.getAndParse();
-      console.log('isRedirect (in tracking midware):',parsed.currentInfo.isRedirect)
       if (parsed.currentInfo.isRedirect) initRedirect(req, res, nextFuncName, parsed);
       else initTracking(req, res, nextFuncName, parsed);
     }
