@@ -8,11 +8,16 @@ var app = express();
 // console.log(app.toString());
 
 
+app.post('/', (req, res) => {
+  console.log('req.cookies:', req.cookies);
+  res.send('hit send!');
+})
+
 
 var router = express.Router();
 
 
-app.use'/api', router);
+app.use('/api', router);
 
 router.route('/').get(function jsonMidware(req,res, next){
   return next();
