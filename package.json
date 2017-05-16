@@ -45,6 +45,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.1",
     "on-finished": "^2.3.0",
+    "progress": "^2.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
