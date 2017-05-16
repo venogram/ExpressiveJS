@@ -1,15 +1,10 @@
 /*
   Client-side utilities for parsing expressive.json into manageable chucks to hand
   to react components
-
-  TODO: figure out better names for getStateChange and getStateChanges
-  TODO: expressive.json format isn't stable - make sure the functions take relevant input
 */
 
 const diff = require('deep-diff').diff;
-//const ourJSON = require('./../../../expressive.json');
-const getStateChange = require('./../../../util/getStateChange.js');
-const xpr = require('../../../expressive.json');
+const xpr = require('./../../expressive.json');
 
 const JSONInterface = {
   getStateChanges: (xpr) => {
@@ -115,11 +110,65 @@ const JSONInterface = {
       }
       return reportsObj;
     }, {});
+  },
+
+  getReportLines: (xpr, routeId) => {
+    const reports = JSONInterface.getReports(xpr);
+
+    const reportLines = [];
+    reports[routeId].resSnaps.forEach((resSnap, i) => {
+      const change = reports[routeId].changes[i - 1] ? reports[routeId].changes[i - 1] : null;
+      reportLines.push({
+        isOpen: true,
+        detailsDisplay: '',
+        res: resSnap,
+        req: reports[routeId].reqSnaps[i],
+        change,
+        overview: reports[routeId].summaries[i]
+      });
+    });
+
+    return reportLines;
+  },
+
+  getChangeHighlights: (changes) => {
+    const watchPaths = [
+      'res._headers', 'res.locals', 'res._headerSent', 'res.finished',
+      'req.complete', 'req.body', 'req.cookies', 'req.signedCookies'
+    ];
+
+    function isWatched(diffObj, i, changes) {
+      const paths = changes.map(diffObj => diffObj.path.join('.'));
+      let watched = false;
+      let j = 0;
+      while (!watched && j < watchPaths.length) {
+        if (paths[i].indexOf(watchPaths[j]) === 0) watched = true;
+        j += 1;
+      }
+      return watched;
+    }
+
+    let watchedChanges;
+    if (changes) {
+      watchedChanges = changes.filter(isWatched);
+    }
+    return watchedChanges;
+  },
+
+  getResponseHighlights: (res) => {
+    const watchPaths = [
+      '_headers', 'locals', '_headerSent', 'finished', '_contentLength', '_last',
+      '_events', '_removedHeader', '_hasBody', '_trailer'
+    ];
+
+    const highlights = Object.keys(res).filter(key => watchPaths.includes(key)).reduce((obj, key) => {
+      obj[key] = res[key];
+      return obj
+    }, {});
+    return highlights;
   }
 
 };
-
-console.log(JSONInterface.getReports(xpr)['GET /route1'].changes.length);
 
 
 module.exports = JSONInterface;

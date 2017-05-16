@@ -17,6 +17,9 @@ const path = require('path');
 const fs = require('fs');
 const jsonController = require('./../util/jsonController.js');
 const fork = require('child_process').fork;
+const ProgressBar = require('progress');
+
+
 // default and user config files
 
 const defaultConfig = require('./../default.config.js');
@@ -52,6 +55,12 @@ const numOfReqs = requests.length;
 // number of requests already sent
 let completedReqs = 0;
 
+const bar = new ProgressBar(' expressive (:bar) processing request :completedReqs of :numOfReqs', {
+  complete: '##',
+  incomplete: '  ',
+  total: numOfReqs
+});
+
 const forkOptions = {
   env: {
     ABANDON_REQ: abandonReq,
@@ -66,7 +75,11 @@ function msgCallback(message) {
   if (message === 'listening') {
     if (!heardListening) heardListening = true;
     if (completedReqs < numOfReqs) {
-      request(requests[completedReqs]).on('error', (e) => { console.log('caught the error') });
+      bar.tick({
+        completedReqs: completedReqs + 1,
+        numOfReqs
+      });
+      request(requests[completedReqs]).on('error', (e) => {console.log('caught the error')});
     }
     else {
       serv.kill('SIGINT');
@@ -74,7 +87,11 @@ function msgCallback(message) {
   } else if (message === 'next') {
     completedReqs += 1;
     if (completedReqs < numOfReqs) {
-      request(requests[completedReqs]).on('error', (e) => { console.log('caught the error') });
+      bar.tick({
+        completedReqs: completedReqs + 1,
+        numOfReqs
+      })
+      request(requests[completedReqs]).on('error', (e) => {console.log('caught the error')});
     }
     else {
       serv.kill('SIGINT');
@@ -100,6 +117,7 @@ function exitCallback(code) {
 function errorCallback(err) {
   console.log('caught server error:', err);
 }
+
 
 //initialize json file
 jsonController.createJSON();
