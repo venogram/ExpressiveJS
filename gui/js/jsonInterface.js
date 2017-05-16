@@ -171,7 +171,7 @@ const JSONInterface = {
   getRequestHighlights: (req) => {
     console.log("this is the req", req)
     const watchPaths = [
-      'route', 'rawHeaders', 'readableState'
+      'body', 'complete', 'headers', 'params', 'query', 'trailers'
     ];
     const highlights = Object.keys(req).filter(key => watchPaths.includes(key)).reduce((obj, key) => {
       obj[key] = req[key];

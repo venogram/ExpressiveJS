@@ -10,6 +10,7 @@ function ChangeDetails(props) {
 
   return (
     <div className="Details ChangeDetails">
+      <p className = "DetailsTitle"> State Changes </p>
       <ul>
         {highlights}
       </ul>
