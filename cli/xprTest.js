@@ -31,8 +31,14 @@ const { userConfig, configPath } = getConfig(cwd);
 let config = Object.assign({}, defaultConfig, userConfig);
 
 // get config settings
-const entry = config.entry;
-const serverPath = path.join(__dirname, './../', entry);
+let entry = config.entry;
+let serverPath;
+if (userConfig) {
+  serverPath = path.join(configPath, '/..', entry);
+} else {
+  serverPath = path.join(cwd, entry);
+}
+
 if (!fs.existsSync(serverPath)) throw new Error('Invalid server path.  Edit expressive.config.js entry')
 const host = config.host;
 const requests = config.requests;
