@@ -166,6 +166,18 @@ const JSONInterface = {
       return obj
     }, {});
     return highlights;
+  }, 
+
+  getRequestHighlights: (req) => {
+    console.log("this is the req", req)
+    const watchPaths = [
+      'route', 'rawHeaders', 'readableState'
+    ];
+    const highlights = Object.keys(req).filter(key => watchPaths.includes(key)).reduce((obj, key) => {
+      obj[key] = req[key];
+      return obj
+    }, {});
+    return highlights;
   }
 
 };
