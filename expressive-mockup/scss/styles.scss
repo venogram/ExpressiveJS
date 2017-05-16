@@ -1,0 +1,301 @@
+@import '_variables';
+
+html{
+  height: 100%;
+  width: 100%;
+  background-color: $bodyColor;
+}
+
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  vertical-align: middle;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#App {
+  height: 100%;
+  width: 100%;
+  font-family: $font;
+  display: inline-flex;
+}
+
+#Sidebar {
+  width: $sidebarWidth;
+  height: 100%;
+  background-color: $sidebarColor;
+  display: inline-block;
+
+  #SideTabsMenu {
+    height: $tabHeight;
+    width: 100%;
+    font-size: 18px;
+    background-color: $bodyColor;
+
+    .SideTab {
+      color: $defaultFontColor;
+      width: 50%;
+      height: 100%;
+      display: inline-block;
+      overflow: hidden;
+      text-align: center;
+      line-height: 50px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+
+      img {
+        margin-top: 9px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      #ExpressiveLogo {
+        height: $expressiveLogoHeight;
+        width: $expressiveLogoWidth;
+      }
+    }
+
+    .activeSideTab {
+      background-color: $sidebarColor;
+    }
+    .inactiveSideTab {
+      background-color: darken($bodyColor, 2%);
+    }
+  }
+
+  #RouteTree {
+    color: $defaultFontColor;
+    width: 100%;
+    height: calc(100% - 40px);
+
+    .HttpMethodDisplay {
+      .triangle-right {
+        margin-left: 10px;
+        display: inline-block;
+      	width: 0;
+      	height: 0;
+        position: relative;
+        bottom: 4px;
+      	border-top: 3px solid transparent;
+      	border-left: 6px solid $defaultFontColor;
+      	border-bottom: 3px solid transparent;
+      }
+
+      .triangle-down {
+        margin-left: 10px;
+        display: inline-block;
+      	width: 0;
+      	height: 0;
+        position: relative;
+        bottom: 4px;
+      	border-left: 3px solid transparent;
+      	border-right: 3px solid transparent;
+      	border-top: 6px solid $defaultFontColor;
+      }
+
+      .MethodButton {
+        display: inline-block;
+        outline: none;
+        font-size: 18px;
+        color: $defaultFontColor;
+        width: auto;
+        background-color: $sidebarColor;
+        text-align: left;
+        border: none;
+        padding: {
+          left: 15px;
+          top: 15px;
+        }
+        &:hover {
+          cursor: pointer;
+          color: $buttonHoverColor;
+        }
+      }
+
+      .RouteList {
+        .RouteButton {
+          font-size: 14px;
+          outline: none;
+          border: none;
+          color: $defaultFontColor;
+          padding: {
+            left: 30px;
+          }
+          background-color: $sidebarColor;
+          width: 100%;
+          text-align: left;
+          display: block;
+          &:hover {
+            cursor: pointer;
+            color: $buttonHoverColor;
+            background-color: $bodyColor;
+          }
+        }
+      }
+
+      .openRouteList {
+        display: block;
+      }
+
+      .closedRouteList {
+        display: none;
+      }
+    }
+
+  }
+}
+
+#MainDisplay {
+  width: $mainDisplayWidth;
+  height: 100%;
+  background-color: $mainDisplayColor;
+  display: inline-block;
+
+  #MainTabsMenu {
+    font-size: 18px;
+    background-color: $bodyColor;
+    width: 100%;
+    height: $tabHeight;
+    .MainTab {
+      border-left: 1px solid $bodyColor;
+      display: inline-block;
+      height: 100%;
+      width: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      overflow: hidden;
+      text-align: center;
+      line-height: 50px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+
+      img {
+        height: 60%;
+        width: 15px;
+        display: inline-block;
+        margin-right: 3px;
+        position: relative;
+        top: 8px;
+      }
+
+      .escape-tab-container {
+        display: inline-block;
+        transition: display 5s;
+        width: 10px;
+        height: 10px;
+        position: relative;
+        bottom: 15px;
+        left: 5px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        .escape-tab {
+          display: inline-block;
+        }
+      }
+      .escape-tab {
+        color: lighten($bodyColor, 15%);
+        font-size: 16px;
+        display: none;
+      }
+    }
+
+    .activeMainTab {
+      color: $defaultFontColor;
+      background-color: $mainDisplayColor;
+    }
+
+    .inactiveMainTab {
+      color: lighten($bodyColor, 15%);
+      background-color: $inactiveTabColor;
+    }
+  }
+  #Report {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100% - 50px);
+    #grayLogo {
+      opacity: .1;
+      width: 50%;
+      height: auto;
+      padding-left: 25%;
+      padding-top: 20%;
+    }
+
+    .ReportLine {
+      color: $defaultFontColor;
+      display: inline-block;
+      width: 100%;
+      height: $reportLineHeight;
+      padding: 5px;
+      border-bottom: 1px solid $bodyColor;
+      position: relative;
+
+      .ToggleLineDisplay {
+        display: inline-block;
+        width: 15px;
+        height: 100%;
+        background-color: darkgray;
+      }
+
+      .MidwareOverview {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-left: 15px;
+        margin-top: 7px;
+        position: absolute;
+        display: inline-block;
+        height: 160px;
+        width: $midwareOverviewWidth;
+        background-color: lighten($inactiveTabColor, 10%);
+        border-radius: 3px;
+        padding: {
+          left: 15px;
+          right: 15px;
+        }
+
+        .overview-top {
+          margin-top: 15px;
+        }
+
+        .overview-bottom{
+          position: relative;
+          top: 30px;
+
+          .overviewDeets{
+              &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .Details {
+        color: $detailsColor;
+        border-radius: 3px;
+        background-color: $bodyColor;
+        overflow: scroll;
+        width: 60%;
+        height: 145px;
+        display: inline-block;
+        position: absolute;
+        margin-left: 250px;
+        margin-top: 7px;
+        padding: {
+          left: 15px;
+          right: 15px;
+          top: 15px;
+        }
+      }
+    }
+  }
+}
