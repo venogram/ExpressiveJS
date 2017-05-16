@@ -8,16 +8,25 @@
 const exec = require('child_process').exec;
 const ProgressBar = require('progress');
 
-const bar = new ProgressBar(' expressive [:bar] :step', {
-  complete: '#',
-  incomplete: ' ',
-  total: 2
-});
+const argument = process.argv[2];
+if (argument === 'test') exec('xpr-test');
+else if (argument === 'build') exec('xpr-build');
+else if (argument === 'display') exec('xpr-display');
+else if (argument === 'init') exec('xpr-init');
+else {
+
+  const bar = new ProgressBar(' expressive [:bar] :step', {
+    complete: '#',
+    incomplete: ' ',
+    total: 2
+  });
 
 
 
-exec('xpr-test', () => {
-  exec('xpr-build', () => {
-    exec('xpr-display');
-  })
-});
+  exec('xpr-test', () => {
+    exec('xpr-build', () => {
+      exec('xpr-display');
+    })
+  });
+
+}

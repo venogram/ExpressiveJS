@@ -4,7 +4,6 @@
 */
 
 const diff = require('deep-diff').diff;
-const xpr = require('./../../expressive.json');
 
 const JSONInterface = {
   getStateChanges: (xpr) => {

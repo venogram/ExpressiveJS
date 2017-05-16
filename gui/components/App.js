@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Sidebar from './Sidebar.js';
 import MainDisplay from './MainDisplay.js';
 import PropTypes from 'prop-types';
-
 import jsonInterface from './../js/jsonInterface.js';
-const xpr  = require('./../../expressive.json');
+
+const xpr  = require('./../expressive.json');
+
+// console.log('hello???', xpr.testProp);
 
 function getInitialState() {
   return {
