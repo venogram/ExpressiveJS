@@ -12,7 +12,7 @@ var app = express();
 var router = express.Router();
 
 
-app.use('/api', router);
+app.use'/api', router);
 
 router.route('/').get(function jsonMidware(req,res, next){
   return next();
