@@ -5,3 +5,5 @@ webpack-bundle.js
 npm-debug.log
 expressive.json
 expressive.config.js
+bundle.js
+bundle.js.map
