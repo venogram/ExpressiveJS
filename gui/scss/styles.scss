@@ -248,7 +248,7 @@ body {
       }
 
       .MidwareOverview {
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         margin-left: 15px;
         margin-top: 7px;
@@ -283,7 +283,7 @@ body {
         color: $detailsColor;
         border-radius: 3px;
         background-color: $bodyColor;
-        overflow: scroll;
+        overflow: auto;
         width: 60%;
         height: 145px;
         display: inline-block;
@@ -294,6 +294,10 @@ body {
           left: 15px;
           right: 15px;
           top: 15px;
+        }
+        .DetailsTitle{
+          margin:0;
+          font-size: 1.01em;
         }
       }
     }

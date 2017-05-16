@@ -8,6 +8,7 @@ function ResDetails(props) {
 
   return (
     <div className="Details ResDetails">
+      <p className = "DetailsTitle"> Response Details </p>
       <ul>
         {highlights}
       </ul>
