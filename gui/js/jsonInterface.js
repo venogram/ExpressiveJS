@@ -4,7 +4,7 @@
 */
 
 const diff = require('deep-diff').diff;
-const xpr = require('./../expressive.json');
+const xpr = require('./../../expressive.json');
 
 const JSONInterface = {
   getStateChanges: (xpr) => {
@@ -160,7 +160,7 @@ const JSONInterface = {
       '_headers', 'locals', '_headerSent', 'finished', '_contentLength', '_last',
       '_events', '_removedHeader', '_hasBody', '_trailer'
     ];
-    
+
     const highlights = Object.keys(res).filter(key => watchPaths.includes(key)).reduce((obj, key) => {
       obj[key] = res[key];
       return obj

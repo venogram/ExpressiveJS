@@ -4,7 +4,7 @@ import MainDisplay from './MainDisplay.js';
 import PropTypes from 'prop-types';
 
 import jsonInterface from './../js/jsonInterface.js';
-const xpr  = require('./../expressive.json');
+const xpr  = require('./../../expressive.json');
 
 function getInitialState() {
   return {
