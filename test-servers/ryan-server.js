@@ -12,16 +12,14 @@ app.use(cookieParser());
 
 app.get('/', (req, res, next) => {
   res.cookie('cookie1', 'hello world');
-  res.send();
-  // return next();
+  return next();
 }, (req, res, next) => {
+  res.locals.newprop = 'string prop!!';
   setTimeout(() => {res.redirect('/redirect')}, 10);
 });
 //
 app.get('/redirect', (req, res) => {
-  setTimeout(() => {
-    res.send('hi')
-  }, 10000);
+    res.send('hi');
 })
 
 app.post('/', (req, res) => {
