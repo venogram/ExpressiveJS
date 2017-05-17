@@ -15,7 +15,7 @@
 const request = require('request');
 const path = require('path');
 const fs = require('fs');
-const jsonController = require('./../util/jsonController.js');
+const jsonController = require('./jsonController.js');
 const fork = require('child_process').fork;
 const ProgressBar = require('progress');
 
