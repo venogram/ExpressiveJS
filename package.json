@@ -1,13 +1,9 @@
 {
   "name": "expressivejs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "End to end server route tracking for express.js applications",
   "main": "./gui/electron.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
-    "test": "export NODE_ENV=test && mocha --timeout 8000 test/",
     "xpr-test": "cli/xprTest.js",
     "xpr-build": "cli/xprBuild.js",
     "xpr-display": "cli/xprDisplay.js",
@@ -41,28 +37,14 @@
     "css-loader": "^0.27.3",
     "deep-diff": "^0.3.4",
     "electron": "^1.6.6",
-    "express": "^4.15.2",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.1",
-    "on-finished": "^2.3.0",
     "progress": "^2.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "request": "^2.81.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.0",
     "webpack": "^2.4.1"
-  },
-  "devDependencies": {
-    "body-parser": "^1.17.1",
-    "chai": "^3.5.0",
-    "cookie-parser": "^1.4.3",
-    "expect": "^1.20.2",
-    "mocha": "^3.3.0",
-    "nodemon": "^1.11.0",
-    "should": "^11.2.1",
-    "supertest": "^3.0.0",
-    "webpack-dev-server": "^2.4.2"
   }
 }
