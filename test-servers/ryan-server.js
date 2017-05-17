@@ -1,4 +1,4 @@
-const express = require('./../expressive.js');
+const express = require('expressive-proxy');
 //const express = require('express');
 const request = require('request');
 const path = require('path');
