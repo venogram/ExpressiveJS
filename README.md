@@ -38,7 +38,7 @@ module.exports = {
   // Optional Keys
   silentServer: false,   // Hide server's console logs?  Default: false.
   wipeCookies: false,    // Wipe cookies after each request?  Default: false.
-  abandonRequest: 3     // Seconds to wait before abandoning a request.  Default: 3.
+  abandonRequest: 3      // Seconds to wait before abandoning a request.  Default: 3.
 } 
 ~~~~
 
