@@ -15,20 +15,45 @@ Expressive is a developer tool that tracks and visualizes server routes in [Expr
 ## Setup
 
 ### 1) Modify Express server files
-Replace all instances of  ```require('express')``` with ```require('expressivejs')```.  This will enable Expressive to progressively document the state of client requests and server responses.
+Replace all instances of  ```require('express')``` with ```require('expressive-proxy')```.  This will enable Expressive to progressively document the state of client requests and server responses.
 
 
 ### 2) Create a configuration file
 
 This file should be called __expressive.config.js__ and be located in your application's root directory.
 
-#### Option 1: Use the command line
-TBD
+#### From the command line
+Enter ```$ xpr-init``` from your application's root directory to create the basic shell of your __expressive.config.js__ file.
 
-#### Option 2: Create expressive.config.js manually 
-TBD
+#### Manually 
+Here is what your __expressive.config.js__ file should look like:
+~~~~javascript
+module.exports = {
+  // Required Keys
+  entry: './server.js',          // Relative path to your Express server file.
+  outputDir: '/',                // Should always be set to '/'.
+  host: 'http://localhost:3000', // Server network host and port.
+  requests: [...reqObj],         // Array of HTTP requests. Specifications below.
 
+  // Optional Keys
+  silentServer: false,   // Hide server's console logs?  Default: false.
+  wipeCookies: false,    // Wipe cookies after each request?  Default: false.
+  abandonRequest: 3     // Seconds to wait before abandoning a request.  Default: 3.
+} 
+~~~~
 
+Here is what the objects in the requests array should look like:
+~~~~javascript
+{
+  // Required Keys
+  method: 'GET',  // HTTP request method
+  route: '/',     // HTTP request route
+
+  // Optional Keys: See below
+}
+~~~~
+##### Optional Keys:
+When testing server routes, Expressive passes each object in the requests array as the options parameter in the ```request(options, callback)``` function of the Request module.  Consult the [Request documentation](https://www.npmjs.com/package/request#requestoptions-callback) for details on adding further request specifications, such as headers or bodies.  __*DO NOT*__ modify the *uri||url* or *baseUrl* keys.
 
 ## Testing Server Routes
 
@@ -53,7 +78,7 @@ Any server middleware that alters **res.locals._XPR** will interfere with Expres
 When relocating your Expressive configuration file, be sure to alter its relative path to your server file accordingly.
 
 ### Expressive is not for use in production
-Before running your application for non-testing purposes, be sure to change all instances of ```require('expressivejs')``` in your server files back to ```require('express')```.
+Before running your application for non-testing purposes, be sure to change all instances of ```require('expressive-proxy')``` in your server files back to ```require('express')```.
 
 ### Expressive is in active development.
 Follow our [GitHub](https://github.com/venogram/ExpressiveJS) repo for updates.
