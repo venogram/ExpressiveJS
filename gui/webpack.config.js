@@ -5,9 +5,8 @@ const webpack = require('webpack');
 module.exports = {
   entry: './index.js',
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'webpack-bundle.js',
-    publicPath: '/build/'
+    path: path.join(__dirname, '/'),
+    filename: 'webpack-bundle.js'
   },
   node: {
    fs: "empty"
